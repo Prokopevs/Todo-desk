@@ -1,4 +1,5 @@
 import React from 'react'
+import AddTask from './AddTask'
 
 const Desk = () => {
     return (
@@ -42,6 +43,8 @@ const Desk = () => {
                         </div>
                     </li>
                 </ul>
+
+                <AddTask />
             </div>
         </div>
     )

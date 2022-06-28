@@ -1,0 +1,69 @@
+.addTask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+
+    background: #E0E0E0;
+    box-shadow: -5px 5px 10px rgba(202, 202, 202, 0.2), 5px -5px 10px rgba(202, 202, 202, 0.2), -5px -5px 10px rgba(246, 246, 246, 0.9), 5px 5px 13px rgba(202, 202, 202, 0.9), inset 1px 1px 2px rgba(246, 246, 246, 0.3), inset -1px -1px 2px rgba(202, 202, 202, 0.5);
+
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+:root {
+    --transitionTimingFunction: ease;
+    --transitionDuration: 0.2s;
+}
+
+.addTask__plus {
+    position: relative;
+    --size: 30px;
+    --heightLine: 3.8px;
+    --colorLine: #8A8383;
+    --scale: 0.8;
+    --backgroundColor: #E0E0E0;
+    width: var(--size);
+    height: var(--size);
+    overflow: hidden;
+    outline: none;
+    user-select: none;
+
+    transition-duration: var(--transitionDuration);
+    transition-timing-function: var(--transitionTimingFunction);
+    transition-property: background-color;
+    
+}
+
+.addTask__plus::before,
+.addTask__plus::after {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--colorLine);
+    width: calc(var(--scale) * 100%);
+    height: var(--heightLine);
+    transition-duration: var(--transitionDuration);
+    transition-timing-function: var(--transitionTimingFunction);
+    transition-property: transform, background-color;
+    border-radius: 40px;
+}
+
+.addTask__plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+// .addTask__plus:hover::before {
+//     transform: translate(-50%, -50%) rotate(-45deg);
+// }
+
+// .addTask__plus:hover::after {
+//     transform: translate(-50%, -50%) rotate(45deg);
+// }
