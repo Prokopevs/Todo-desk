@@ -1,14 +1,15 @@
 import React from 'react';
-import Desk from './components/Desk';
-import Login from './components/Login';
+import Home from './pages/Home';
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
-  return (
-    <div className='container'>
-        <Login />
-        <Desk />
-    </div>
-  );
+    return (
+        <div className='container'>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
