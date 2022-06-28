@@ -1,0 +1,63 @@
+.block__line {
+    border-bottom: 5px solid #E0E0E0;
+    width: 85%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3), -1px -1px 2px rgba(190, 190, 190, 0.5), inset -6px 6px 12px rgba(190, 190, 190, 0.2), inset 6px -6px 12px rgba(190, 190, 190, 0.2), inset -6px -6px 12px rgba(255, 255, 255, 0.9), inset 6px 6px 15px rgba(190, 190, 190, 0.9);
+    border-radius: 4px;
+}
+
+.block__priority {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.block__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    margin: 12px 0;
+    width: 70%;
+    height: 32px;
+}
+
+.block__button-purple {
+    background: linear-gradient(135deg, #E792FF 0%, #D184EA 100%);
+    box-shadow: -3px 3px 10px rgba(198, 125, 221, 0.2), 3px -3px 10px rgba(198, 125, 221, 0.2), -3px -3px 10px rgba(242, 153, 255, 0.9), 3px 3px 13px rgba(198, 125, 221, 0.9), inset 1px 1px 2px rgba(242, 153, 255, 0.3), inset -1px -1px 2px rgba(198, 125, 221, 0.5);
+    border-radius: 20px;
+}
+
+.block__button-red {
+    background: linear-gradient(135deg, #FF9292 0%, #EA8484 100%);
+    box-shadow: -3px 3px 10px rgba(221, 125, 125, 0.2), 3px -3px 10px rgba(221, 125, 125, 0.2), -3px -3px 10px rgba(255, 153, 153, 0.9), 3px 3px 13px rgba(221, 125, 125, 0.9), inset 1px 1px 2px rgba(255, 153, 153, 0.3), inset -1px -1px 2px rgba(221, 125, 125, 0.5);
+    border-radius: 20px;
+}
+
+.block__button-green {
+    background: linear-gradient(135deg, #7AD58E 0%, #6EC180 100%);
+    box-shadow: -3px 3px 10px rgba(104, 183, 122, 0.2), 3px -3px 10px rgba(104, 183, 122, 0.2), -3px -3px 10px rgba(128, 223, 149, 0.9), 3px 3px 13px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
+    border-radius: 20px;
+}
+
+.block__button-blue {
+    background: linear-gradient(135deg, #8D8BF9 0%, #7F7DE1 100%);
+    box-shadow: -3px 3px 10px rgba(121, 119, 213, 0.2), 3px -3px 10px rgba(121, 119, 213, 0.2), -3px -3px 10px rgba(147, 145, 255, 0.9), 3px 3px 13px rgba(121, 119, 213, 0.9), inset 1px 1px 2px rgba(147, 145, 255, 0.3), inset -1px -1px 2px rgba(121, 119, 213, 0.5);
+    border-radius: 20px;
+}
+
+.block__button-lightblue {
+    background: linear-gradient(135deg, #8BCBF9 0%, #7DB7E1 100%);
+    box-shadow: -3px 3px 10px rgba(119, 174, 213, 0.2), 3px -3px 10px rgba(119, 174, 213, 0.2), -3px -3px 10px rgba(145, 212, 255, 0.9), 3px 3px 13px rgba(119, 174, 213, 0.9), inset 1px 1px 2px rgba(145, 212, 255, 0.3), inset -1px -1px 2px rgba(119, 174, 213, 0.5);
+    border-radius: 20px;
+}
+
+.block__button_text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+
+    color: #E1E1E1;
+}
