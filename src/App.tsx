@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
-import Desk from './components/Desk/Desk';
-import Login from './components/Login/Login';
+import Desk from './components/Desk';
+import Login from './components/Login';
 
 function App() {
   return (
