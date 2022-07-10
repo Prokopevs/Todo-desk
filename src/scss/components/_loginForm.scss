@@ -1,6 +1,6 @@
 .login__form {
-    width: 390px;
-    height: 410px;
+    width: 500px;
+    height: 600px;
 
     background: #E0E0E0;
     box-shadow: -7px 7px 14px rgba(197, 197, 197, 0.2), 7px -7px 14px rgba(197, 197, 197, 0.2), -7px -7px 14px rgba(251, 251, 251, 0.9), 7px 7px 18px rgba(197, 197, 197, 0.9), inset 1px 1px 2px rgba(251, 251, 251, 0.3), inset -1px -1px 2px rgba(197, 197, 197, 0.5);
@@ -12,17 +12,17 @@
 }
 
 .login__form_container {
-    width: 65%;
+    width: 70%;
     height: auto;
 }
 
 .login__form_name {
     font-style: normal;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 37px;
     color: #8A8383;
 
-    padding: 50px 0 40px;
+    padding: 60px 0 45px;
 }
 
 .block__line-form {
@@ -32,20 +32,133 @@
 .login__form_data_name {
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 22px;
     color: #8A8383;
 
-    margin: 10px 0 6px;
+    margin: 20px 0 13px;
+}
+
+.login__firm_input_holder {
+    background: #E0E0E0;
+
+    box-shadow: -3px 3px 4px rgba(199, 199, 199, 0.2), 3px -3px 4px rgba(199, 199, 199, 0.2), -3px -3px 4px rgba(249, 249, 249, 0.9), 3px 3px 6px rgba(199, 199, 199, 0.9), inset 1px 1px 2px rgba(249, 249, 249, 0.3), inset -1px -1px 2px rgba(199, 199, 199, 0.5);
+
+    border-radius: 16px;
+
+    padding: 6px;
+    margin: 0 0 10px 0;
 }
 
 .login__form_input {
-    height: 40px;
+    height: 47px;
     width: 100%;
 
     background: #E0E0E0;
-    box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5), inset -5px 5px 10px rgba(202, 202, 202, 0.2), inset 5px -5px 10px rgba(202, 202, 202, 0.2), inset -5px -5px 10px rgba(246, 246, 246, 0.9), inset 5px 5px 13px rgba(202, 202, 202, 0.9);
+    box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5), inset -3px 3px 4px rgba(202, 202, 202, 0.2), inset 3px -3px 4px rgba(202, 202, 202, 0.2), inset -3px -3px 4px rgba(246, 246, 246, 0.9), inset 3px 3px 6px rgba(202, 202, 202, 0.9);
     border-radius: 14px;
 
     outline: none;
     border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+
+    padding: 9px 14px 11px 14px;
+    font-size: 18px;
+    color: #8A8383;
+}
+
+.login__form_remember {
+    display: flex;
+    align-items: center;
+}
+
+/*----toggle---- */
+.css-stmgjb {
+    box-shadow: none !important;
+    background: none !important;
+    width: auto !important;
+    height: auto !important;
+    position: static !important;
+    margin: 0 !important;
+
+    box-shadow: -1px 1px 1px rgba(199, 199, 199, 0.2), 1px -1px 1px rgba(199, 199, 199, 0.2), -1px -1px 1px rgba(249, 249, 249, 0.9), 1px 1px 3px rgba(199, 199, 199, 0.9), inset 1px 1px 1px rgba(249, 249, 249, 0.3), inset -1px -1px 1px rgba(199, 199, 199, 0.5) !important;
+}
+
+.css-1mngnt6 {
+    background: #E0E0E0 !important;
+    border: 2.5px solid #E0E0E0 !important;
+
+    box-shadow: 1px 1px 1px rgba(246, 246, 246, 0.3), -1px -1px 1px rgba(202, 202, 202, 0.5), inset -1px 1px 1px rgba(202, 202, 202, 0.2), inset 1px -1px 1px rgba(202, 202, 202, 0.2), inset -1px -1px 1px rgba(246, 246, 246, 0.9), inset 1px 1px 3px rgba(202, 202, 202, 0.9) !important;
+    height: 28px !important;
+    width: 46px !important;
+}
+
+.css-1mngnt6::after {
+    background: #E0E0E0 !important;
+    box-shadow: -1px 1px 1px rgba(202, 202, 202, 0.2), 1px -1px 1px rgba(202, 202, 202, 0.2), -1px -1px 1px rgba(246, 246, 246, 0.9), 1px 1px 1.5px rgba(202, 202, 202, 0.9), inset 1px 1px 1px rgba(246, 246, 246, 0.3), inset -1px -1px 1px rgba(202, 202, 202, 0.5) !important;
+
+    top: 3px !important;
+    left: 3.5px !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.css-1mngnt6::before { 
+    background: #8A8383 !important;
+    top: 9.5px !important;
+    left: 9.5px !important;
+    width: 4.5px !important;
+    height: 4.5px !important;
+}
+
+
+/*----placeholder---- */
+::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+    color: #BCBCBC;
+}
+
+::-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+    color: #BCBCBC;
+}
+
+:-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+    color: #BCBCBC;
+}
+
+:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 18px;
+    color: #BCBCBC;
+}
+
+:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
