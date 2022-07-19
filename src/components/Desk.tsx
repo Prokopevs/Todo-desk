@@ -27,6 +27,7 @@ const Desk = () => {
                                         <p className="block__content_text">Do some shit blah blah blah blah blah shit blah blah blah blah blahshit blah blah blah blah blahshit blah lah blahshit blah blah blah blah blah blah blah </p>
                                     </div>
                                     <Priority />
+                                    <Priority />
                             </div>
                         </div>
                     </li>
