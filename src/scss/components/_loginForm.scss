@@ -1,6 +1,6 @@
 .login__form {
     width: 500px;
-    height: 600px;
+    height: auto;
 
     background: #E0E0E0;
     box-shadow: -7px 7px 14px rgba(197, 197, 197, 0.2), 7px -7px 14px rgba(197, 197, 197, 0.2), -7px -7px 14px rgba(251, 251, 251, 0.9), 7px 7px 18px rgba(197, 197, 197, 0.9), inset 1px 1px 2px rgba(251, 251, 251, 0.3), inset -1px -1px 2px rgba(197, 197, 197, 0.5);
@@ -11,9 +11,13 @@
     flex-direction: column;
 }
 
-.login__form_container {
+.form_container {
     width: 70%;
     height: auto;
+}
+
+.form_container-modalWindow {
+    width: 83%;
 }
 
 .login__form_name {
@@ -38,7 +42,7 @@
     margin: 20px 0 13px;
 }
 
-.login__firm_input_holder {
+.form__input_holder {
     background: #E0E0E0;
 
     box-shadow: -3px 3px 4px rgba(199, 199, 199, 0.2), 3px -3px 4px rgba(199, 199, 199, 0.2), -3px -3px 4px rgba(249, 249, 249, 0.9), 3px 3px 6px rgba(199, 199, 199, 0.9), inset 1px 1px 2px rgba(249, 249, 249, 0.3), inset -1px -1px 2px rgba(199, 199, 199, 0.5);
@@ -49,7 +53,7 @@
     margin: 0 0 10px 0;
 }
 
-.login__form_input {
+.form__input {
     height: 47px;
     width: 100%;
 
@@ -67,6 +71,30 @@
     padding: 9px 14px 11px 14px;
     font-size: 18px;
     color: #8A8383;
+}
+
+.form__input-textarea {
+    height: 120px;
+    resize: none;
+}
+
+.form__input-textarea::-webkit-scrollbar {
+    width: 5px;
+}
+
+.form__input-textarea::-webkit-scrollbar-track {
+    background: #d4d4d4;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+    border-radius: 20px;
+}
+
+.form__input-textarea::-webkit-scrollbar-thumb {
+    background: #939393;
+    border-radius: 8px;
+}
+
+.form__input-textarea::-webkit-scrollbar-thumb:hover {
+    background: #7c7c7c;
 }
 
 .login__form_remember {
