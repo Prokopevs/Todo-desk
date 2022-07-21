@@ -1,8 +1,8 @@
 import React from 'react'
 
-const AddTask = () => {
+const AddTask = ({active, setActive}) => {
   return (
-    <div className="addTask">
+    <div className="addTask" onClick={() => setActive(true)}>
         <div className="addTask__plus"></div>
     </div>
   )

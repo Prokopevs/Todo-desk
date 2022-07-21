@@ -13,6 +13,12 @@
     position: absolute;
     bottom: 19px;
     right: 19px;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+        background: #d6d4d4;
+    }
 }
 
 :root {
@@ -36,7 +42,6 @@
     transition-duration: var(--transitionDuration);
     transition-timing-function: var(--transitionTimingFunction);
     transition-property: background-color;
-    
 }
 
 .addTask__plus::before,

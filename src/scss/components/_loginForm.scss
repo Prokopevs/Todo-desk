@@ -81,23 +81,23 @@
 }
 
 .form__input-textarea::-webkit-scrollbar {
-    width: 5px;
+    width: 0;
 }
 
-.form__input-textarea::-webkit-scrollbar-track {
-    background: #d4d4d4;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
-    border-radius: 20px;
-}
+// .form__input-textarea::-webkit-scrollbar-track {
+//     background: #d4d4d4;
+//     box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+//     border-radius: 20px;
+// }
 
-.form__input-textarea::-webkit-scrollbar-thumb {
-    background: #939393;
-    border-radius: 8px;
-}
+// .form__input-textarea::-webkit-scrollbar-thumb {
+//     background: #939393;
+//     border-radius: 8px;
+// }
 
-.form__input-textarea::-webkit-scrollbar-thumb:hover {
-    background: #7c7c7c;
-}
+// .form__input-textarea::-webkit-scrollbar-thumb:hover {
+//     background: #7c7c7c;
+// }
 
 .login__form_remember {
     display: flex;
