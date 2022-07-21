@@ -2,7 +2,7 @@ import React from 'react'
 import AddTask from './AddTask'
 import Priority from './Priority'
 
-const Desk = () => {
+const Desk = (props) => {
     return (
         <div className="row margin">
             <div className="col-12 desk">
@@ -26,8 +26,6 @@ const Desk = () => {
                                         <div className="pretty__line"></div>
                                         <p className="block__content_text">Do some shit blah blah blah blah blah shit blah blah blah blah blahshit blah blah blah blah blahshit blah lah blahshit blah blah blah blah blah blah blah </p>
                                     </div>
-                                    <Priority />
-                                    <Priority />
                             </div>
                         </div>
                     </li>
@@ -44,7 +42,7 @@ const Desk = () => {
                     </li>
                 </ul>
 
-                <AddTask />
+                <AddTask active={props.active} setActive={props.setActive}/>
             </div>
         </div>
     )

@@ -8,11 +8,15 @@
     z-index: 100;
     background: rgba(224, 224, 224, 0.4);
     backdrop-filter: blur(7px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modalWindow_content {
     position: relative;
-    width: 500px;
+    width: 430px;
     height: auto;
 
     background: #E0E0E0;
@@ -123,3 +127,18 @@
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+
+.my-node-enter {
+    opacity: 0;
+  }
+  .my-node-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+  .my-node-exit {
+    opacity: 1;
+  }
+  .my-node-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
