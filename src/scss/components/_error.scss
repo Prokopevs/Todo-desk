@@ -1,0 +1,23 @@
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.error__text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 200px;
+    color: #8A8383;
+}
+
+.error__text_decription {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    color: #8A8383;
+
+    margin-top: 40px;
+}
