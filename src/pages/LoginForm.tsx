@@ -1,6 +1,6 @@
 import React from 'react'
 import { NeuToggle } from 'neumorphism-react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
     return (
@@ -23,7 +23,9 @@ const LoginForm = () => {
                     <p className="login__form_remember_text">Remember me</p>
                 </div>
 
-                <p className="login__form_new login__form_new-mt">New user?</p>
+                <button className="button__big button__big-green button__big-green-mr">Login</button>
+
+                <p className="login__form_new">New user?</p>
                 <p className="login__form_new login__form_new-mb">You can create you account <Link to="/register" className="login__form_register">now</Link></p> 
             </div>
         </div>
