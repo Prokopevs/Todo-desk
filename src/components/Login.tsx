@@ -1,5 +1,5 @@
-import React from 'react'
-import { login, logout, corgi } from '../pictures'
+import React from "react"
+import { login, logout, corgi } from "../pictures"
 
 const Login = () => {
     return (

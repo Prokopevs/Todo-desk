@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 const RegisterForm = () => {
     return (
@@ -9,18 +9,32 @@ const RegisterForm = () => {
 
                 <p className="login__form_data_name">Email</p>
                 <div className="form__input_holder">
-                    <input placeholder="Your email..." type="email" className="form__input"></input>
+                    <input
+                        placeholder="Your email..."
+                        type="email"
+                        className="form__input"
+                    ></input>
                 </div>
                 <p className="login__form_data_name">Name</p>
                 <div className="form__input_holder">
-                    <input placeholder="Your display name..." type="text" className="form__input"></input>
+                    <input
+                        placeholder="Your display name..."
+                        type="text"
+                        className="form__input"
+                    ></input>
                 </div>
                 <p className="login__form_data_name">Password</p>
                 <div className="form__input_holder">
-                    <input placeholder="Your account password..." type="text" className="form__input"></input>
+                    <input
+                        placeholder="Your account password..."
+                        type="text"
+                        className="form__input"
+                    ></input>
                 </div>
 
-                <button className="button__big button__big-green button__big-green-mr button__big-green-register">Login</button>
+                <button className="button__big button__big-green button__big-green-mr button__big-green-register">
+                    Login
+                </button>
             </div>
         </div>
     )

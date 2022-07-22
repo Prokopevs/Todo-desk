@@ -1,7 +1,8 @@
-import React from 'react'
-import { CSSTransition } from 'react-transition-group';
+import React from "react"
+import { CSSTransition } from "react-transition-group"
+import { IDesk } from "../models/IDesk"
 
-const ModalWindow = ({ active, setActive }) => {
+const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
     return (
         <CSSTransition in={active} timeout={200} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
@@ -12,7 +13,10 @@ const ModalWindow = ({ active, setActive }) => {
 
                         <p className="modalWindow__text-description">Content</p>
                         <div className="form__input_holder">
-                            <textarea placeholder="Write task content here..." className="form__input form__input-textarea"></textarea>
+                            <textarea
+                                placeholder="Write task content here..."
+                                className="form__input form__input-textarea"
+                            ></textarea>
                         </div>
 
                         <p className="modalWindow__text-description">Priority</p>
@@ -27,7 +31,6 @@ const ModalWindow = ({ active, setActive }) => {
                 </div>
             </div>
         </CSSTransition>
-
     )
 }
 
