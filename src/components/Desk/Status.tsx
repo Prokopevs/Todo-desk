@@ -4,7 +4,7 @@ import { Droppable } from "react-beautiful-dnd"
 import { IStatusProps } from "../../models/IStatusProps"
 
 const Status: React.FC<IStatusProps> = React.memo(
-    ({ column, tasks, colorArray, setOpen }) => {
+    ({ column, tasks, priorityArray, setOpen, onChangePriority }) => {
         return (
             <Droppable droppableId={column.id}>
                 {(provided) => (
@@ -20,11 +20,11 @@ const Status: React.FC<IStatusProps> = React.memo(
                                     key={task.id}
                                     task={task}
                                     index={index}
-                                    colorArray={colorArray}
+                                    priorityArray={priorityArray}
                                     setOpen={setOpen}
+                                    onChangePriority={onChangePriority}
                                 />
                             ))}
-
                             {provided.placeholder}
                         </div>
                     </li>

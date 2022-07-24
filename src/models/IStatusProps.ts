@@ -1,6 +1,7 @@
 export interface IStatusProps {
-    column: any
+    column?: any
     tasks: any
-    colorArray: any
+    priorityArray: any
     setOpen: (...args: string[]) => void
+    onChangePriority: (...args: number[]) => void
 };

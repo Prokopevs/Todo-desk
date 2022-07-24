@@ -7,7 +7,14 @@ import { DragDropContext } from "react-beautiful-dnd"
 
 const Desk: React.FC<IDesk> = (props) => {
     const [state, setState] = React.useState(initialData)
-    const colorArray = ["lightblue", "blue", "green", "red", "purple"]
+
+    const priorityArray = [
+        { color: "purple", description: "Very High" },
+        { color: "red", description: "High" },
+        { color: "green", description: "Normal" },
+        { color: "blue", description: "Low" },
+        { color: "lightblue", description: "Very Low" },
+    ]
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result
@@ -92,6 +99,24 @@ const Desk: React.FC<IDesk> = (props) => {
         setState(newState)
     }
 
+    const onChangePriority = (id, index) => {
+        const task = state.tasks[id]
+
+        const newPriority = {
+            ...task,
+            priority: index,
+        }
+
+        const newState = {
+            ...state,
+            tasks: {
+                ...state.tasks,
+                [id]: newPriority,
+            },
+        }
+        setState(newState)
+    }
+
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="row margin">
@@ -108,8 +133,9 @@ const Desk: React.FC<IDesk> = (props) => {
                                     key={column.id}
                                     column={column}
                                     tasks={tasks}
-                                    colorArray={colorArray}
+                                    priorityArray={priorityArray}
                                     setOpen={setOpen}
+                                    onChangePriority={onChangePriority}
                                 />
                             )
                         })}
