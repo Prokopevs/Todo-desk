@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { login } from '../Store/reducers/authorizationSlice'
+import { AuthRedirect } from "../helpers/AuthRedirect"
 
 const LoginForm = ({ loginClick, setloginClick }) => {
     const [email, setEmail] = React.useState<string>('')
@@ -11,24 +12,13 @@ const LoginForm = ({ loginClick, setloginClick }) => {
 
     const dispatch = useAppDispatch()
     const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
-    const navigate = useNavigate()
 
     const onClickLogin = (email, password) => {
         dispatch(login(email, password))
         setloginClick(true)
     }
 
-    React.useEffect(() => {
-        if (loginClick && isAuth) {
-            console.log("in 1 if")
-            navigate('/dashboard')
-            setloginClick(false)
-        }
-        if (!loginClick && isAuth) {
-            console.log("in 2 if")
-            navigate('/dashboard')
-        }
-    }, [isAuth])
+    AuthRedirect(loginClick, setloginClick)
 
     if (isAuth === false) {
         return (
