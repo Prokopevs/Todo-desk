@@ -14,12 +14,12 @@ const initialData = {
       "column-2": {
         id: "column-2",
         title: "In progress",
-        taskIds: ["3"],
+        taskIds: [],
       },
       "column-3": {
         id: "column-3",
         title: "Done",
-        taskIds: ["2"],
+        taskIds: ["2", "3"],
       },
     },
     

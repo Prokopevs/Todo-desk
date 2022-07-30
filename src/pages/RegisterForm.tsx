@@ -1,6 +1,29 @@
 import React from "react"
+import { registration } from '../Store/reducers/authorizationSlice'
+import { useAppSelector, useAppDispatch } from '../hooks/redux'
+import { useNavigate } from "react-router-dom"
 
-const RegisterForm = () => {
+const RegisterForm = ({ registerClick, setRegisterClick }) => {
+    const [email, setEmail] = React.useState<string>('')
+    const [name, setName] = React.useState<string>('')
+    const [password, setPassword] = React.useState<string>('')
+    const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
+
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+    const onClickRegister = (email, name, password) => {
+        dispatch(registration(email, name, password))
+        setRegisterClick(true)
+    }
+
+    React.useEffect(() => {
+        if (registerClick && isAuth) {
+            navigate('/dashboard')
+            setRegisterClick(false)
+        }
+    }, [isAuth])
+
     return (
         <div className="form position-absolute top-50 start-50 translate-middle">
             <div className="form__container">
@@ -13,6 +36,8 @@ const RegisterForm = () => {
                         placeholder="Your email..."
                         type="email"
                         className="form__input"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     ></input>
                 </div>
                 <p className="login__form_data_name">Name</p>
@@ -21,6 +46,8 @@ const RegisterForm = () => {
                         placeholder="Your display name..."
                         type="text"
                         className="form__input"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     ></input>
                 </div>
                 <p className="login__form_data_name">Password</p>
@@ -29,12 +56,14 @@ const RegisterForm = () => {
                         placeholder="Your account password..."
                         type="text"
                         className="form__input"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     ></input>
                 </div>
 
-                <button className="button__big button__big-green button__big-green-mr button__big-green-register">
-                    Login
-                </button>
+                <button className="button__big button__big-green button__big-green-mr button__big-green-register" onClick={() => onClickRegister(email, name, password)}>
+                    Register
+                </button >
             </div>
         </div>
     )

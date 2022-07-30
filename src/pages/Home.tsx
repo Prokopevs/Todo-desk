@@ -1,16 +1,22 @@
-import React from "react"
-import Desk from "../components/Desk"
-import Login from "../components/Login"
-import ModalWindow from "../components/ModalWindow"
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../hooks/redux'
 
 const Home = () => {
-    const [modalActive, setModalActive] = React.useState(false)
+    const { isAuth } = useAppSelector(state => state.authorizationSlice)
+    const navigate = useNavigate()
+
+    React.useEffect(() => {
+        if (isAuth) {
+            navigate('/dashboard')
+        }
+        if (isAuth === false) {
+            navigate('/static')
+        }
+    }, [isAuth])
+
     return (
-        <div>
-            <Login />
-            <Desk active={modalActive} setActive={setModalActive} />
-            <ModalWindow active={modalActive} setActive={setModalActive} />
-        </div>
+        <div></div>
     )
 }
 
