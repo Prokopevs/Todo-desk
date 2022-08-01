@@ -4,19 +4,22 @@ import Desk from "../components/Desk"
 import Login from "../components/Login"
 import ModalWindow from "../components/ModalWindow"
 import { useAppSelector } from "../hooks/redux"
+import { useSessionStorage } from "../hooks/useSessionStorage"
 
 const DashBoard = () => {
-    const [modalActive, setModalActive] = React.useState(false)
-    const { isAuth } = useAppSelector(state => state.authorizationSlice)
+    const [modalActive, setModalActive] = useSessionStorage("modalDashBoard", false)
+    localStorage.removeItem("modal")
+    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
     const navigate = useNavigate()
 
-    React.useEffect(() => {
-        if (isAuth === false) {
-            navigate('/static')
-        }
-    }, [isAuth])
+    // React.useEffect(() => {
+    //     if (isAuth === false) {
+    //         navigate('/static')
+    //     }
+    // }, [isAuth])
 
-    if(isAuth) {
+    // isAuth
+    if (true) {
         return (
             <div>
                 <Login />
@@ -25,6 +28,7 @@ const DashBoard = () => {
             </div>
         )
     }
+    return <></>
 }
 
 export default DashBoard

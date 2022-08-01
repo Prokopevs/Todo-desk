@@ -1,14 +1,13 @@
 import React from "react"
-import { registration } from '../Store/reducers/authorizationSlice'
-import { useAppSelector, useAppDispatch } from '../hooks/redux'
-import { useNavigate } from "react-router-dom"
+import { registration } from "../Store/reducers/authorizationSlice"
+import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 
 const RegisterForm = ({ registerClick, setRegisterClick }) => {
-    const [email, setEmail] = React.useState<string>('')
-    const [name, setName] = React.useState<string>('')
-    const [password, setPassword] = React.useState<string>('')
-    const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
+    const [email, setEmail] = React.useState<string>("")
+    const [name, setName] = React.useState<string>("")
+    const [password, setPassword] = React.useState<string>("")
+    const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
 
     const dispatch = useAppDispatch()
 
@@ -33,7 +32,7 @@ const RegisterForm = ({ registerClick, setRegisterClick }) => {
                             type="email"
                             className="form__input"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         ></input>
                     </div>
                     <p className="login__form_data_name">Name</p>
@@ -43,7 +42,7 @@ const RegisterForm = ({ registerClick, setRegisterClick }) => {
                             type="text"
                             className="form__input"
                             value={name}
-                            onChange={e => setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                         ></input>
                     </div>
                     <p className="login__form_data_name">Password</p>
@@ -53,17 +52,21 @@ const RegisterForm = ({ registerClick, setRegisterClick }) => {
                             type="text"
                             className="form__input"
                             value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         ></input>
                     </div>
 
-                    <button className="button__big button__big-green button__big-green-mr button__big-green-register" onClick={() => onClickRegister(email, name, password)}>
+                    <button
+                        className="button__big button__big-green button__big-green-mr button__big-green-register"
+                        onClick={() => onClickRegister(email, name, password)}
+                    >
                         Register
-                    </button >
+                    </button>
                 </div>
             </div>
         )
     }
+    return <></>
 }
 
 export default RegisterForm

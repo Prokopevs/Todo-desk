@@ -1,4 +1,4 @@
 export interface IDesk {
-    active: boolean
+    active?: boolean
     setActive: (...args: boolean[]) => void
 }
