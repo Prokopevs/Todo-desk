@@ -1,5 +1,5 @@
 import React from "react"
-import { login, corgi } from "../pictures"
+import { login, corgi} from "../pictures"
 import { useAppDispatch } from '../hooks/redux'
 import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
 import { IUser } from "../models/IUser"
