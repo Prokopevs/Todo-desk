@@ -8,6 +8,7 @@ interface AuthorizationState {
   user: IUser,
   isAuth: null | boolean,
   isLoading: boolean,
+  rememberMe: boolean,
 }
 
 const initialState: AuthorizationState = {
@@ -19,6 +20,7 @@ const initialState: AuthorizationState = {
   },
   isAuth: null,
   isLoading: false,
+  rememberMe: false,
 }
 
 export const authorizationSlice = createSlice({
@@ -34,13 +36,18 @@ export const authorizationSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
         state.isLoading = action.payload
     },
+    setRememberMe: (state, action: PayloadAction<boolean>) => {
+        state.rememberMe = action.payload
+    },
   }
 })
 
-export const login = (email, password) => async (dispatch: AppDispatch) => {
+export const login = (email, password, rememberMe) => async (dispatch: AppDispatch) => {
     try {
         const response = await AuthService.login(email, password)
         localStorage.setItem('token', response.data.accessToken)
+        localStorage.setItem('rememberMe', rememberMe)
+        sessionStorage.setItem('checkReboot', "true")
         dispatch(checkAuth())
     } catch (e) {
         console.log(e.response?.data?.message)
@@ -73,6 +80,6 @@ export const checkAuth = () => async (dispatch: AppDispatch) => {
     }
 }
 
-export const { setAuth, setUser, setLoading } = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe } = authorizationSlice.actions
 
 export default authorizationSlice.reducer
