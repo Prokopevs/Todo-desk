@@ -1,21 +1,28 @@
 import React from "react"
+import { useForm, SubmitHandler } from "react-hook-form";
 import { NeuToggle } from "neumorphism-react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { login } from '../Store/reducers/authorizationSlice'
+import { login, setRememberMe } from '../Store/reducers/authorizationSlice'
 import { AuthRedirect } from "../helpers/AuthRedirect"
+import { ILoginForm } from "../models/ILoginForm";
 
-const LoginForm = ({ loginClick, setloginClick }) => {
-    const [email, setEmail] = React.useState<string>('')
-    const [password, setPassword] = React.useState<string>('')
+type Inputs = {
+    password: string,
+    email: string,
+  };
 
+const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
     const dispatch = useAppDispatch()
-    const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
+    const {isAuth, rememberMe} = useAppSelector(state => state.authorizationSlice)
 
-    const onClickLogin = (email, password) => {
-        dispatch(login(email, password))
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        const { email, password } = data
+        dispatch(login(email, password, rememberMe))
         setloginClick(true)
+        reset()
     }
 
     AuthRedirect(loginClick, setloginClick)
@@ -27,38 +34,50 @@ const LoginForm = ({ loginClick, setloginClick }) => {
                     <p className="login__form_name text-center">Login</p>
                     <div className="block__line block__line-form"></div>
 
-                    <p className="login__form_data_name">Email</p>
-                    <div className="form__input_holder">
-                        <input
-                            placeholder="Your email..."
-                            type="email"
-                            className="form__input"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        ></input>
-                    </div>
-                    <p className="login__form_data_name">Password</p>
-                    <div className="form__input_holder">
-                        <input
-                            placeholder="Your account password..."
-                            type="password"
-                            className="form__input"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        ></input>
-                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <p className="login__form_data_name">Email</p>
+                        <div className={errors?.email ? "form__input_holder error-holder" : "form__input_holder"}>
+                            <input
+                                placeholder="Your email..."
+                                type="email"
+                                className={errors?.email ? "form__input error-input" : "form__input"}
+                                autoComplete="off"
+                                {...register("email",
+                                 { required: "cannot be empty" })}
+                            ></input>
+                        </div>
 
-                    <div className="login__form_remember">
-                        <NeuToggle
-                            size="small"
-                            onChange={(value) => console.log("new toggle value : ", value)}
-                        />
-                        <p className="login__form_remember_text">Remember me</p>
-                    </div>
+                        <div className="error__message">
+                            {errors?.email && <p className="error__message_text">{errors?.email?.message}</p>}
+                        </div>
 
-                    <button className="button__big button__big-green button__big-green-mr" onClick={() => onClickLogin(email, password)}>
-                        Login
-                    </button>
+                        <p className="login__form_data_name">Password</p>
+                        <div className={errors?.password ? "form__input_holder error-holder" : "form__input_holder"}>
+                            <input
+                                placeholder="Your account password..."
+                                type="password"
+                                className={errors?.password ? "form__input error-input" : "form__input"}
+                                {...register("password",
+                                 { required: "cannot be empty" })}
+                            ></input>
+                        </div>
+                    
+                        <div className="error__message">
+                            {errors?.password && <p className="error__message_text">{errors?.password?.message}</p>}
+                        </div>
+
+                        <div className="login__form_remember">
+                            <NeuToggle
+                                size="small"
+                                onChange={(value) => dispatch(setRememberMe(value))}
+                            />
+                            <p className="login__form_remember_text">Remember me</p>
+                        </div>
+
+                        <button type="submit" className="button__big button__big-green">
+                            Login
+                        </button>
+                    </form>
 
                     <p className="login__form_new">New user?</p>
                     <p className="login__form_new login__form_new-mb">
