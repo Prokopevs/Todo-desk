@@ -89,7 +89,7 @@ const RegisterForm: React.FC<IRegisterForm> =({ registerClick, setRegisterClick 
                             {errors?.password && <p className="error__message_text">{errors?.password?.message}</p>}
                         </div>
 
-                        <button type="submit" className="button__big button__big-green button__big-green-register">
+                        <button type="submit" className="block__button submit big mr2">
                             Register
                         </button >
                     </form>

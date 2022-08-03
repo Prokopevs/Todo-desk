@@ -4,6 +4,7 @@ import Status from "./Status"
 import { IDesk } from "../../models/IDesk"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import priorityArray from "../../components/Desk/priorityArray";
 import {
     reorderTaskInDifferentStatus,
     reorderTaskInOwnStatus,
@@ -15,14 +16,6 @@ import {
 const Desk: React.FC<IDesk> = (props) => {
     const data = useAppSelector((state) => state.dndSlice.data)
     const dispatch = useAppDispatch()
-
-    const priorityArray = [
-        { color: "purple", description: "Very High" },
-        { color: "red", description: "High" },
-        { color: "green", description: "Normal" },
-        { color: "blue", description: "Low" },
-        { color: "lightblue", description: "Very Low" },
-    ]
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result

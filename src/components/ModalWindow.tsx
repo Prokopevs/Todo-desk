@@ -1,8 +1,31 @@
 import React from "react"
+import { useForm, SubmitHandler } from "react-hook-form";
 import { CSSTransition } from "react-transition-group"
+import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { IDesk } from "../models/IDesk"
+import PriorityButtons from "./PriorityButtons"
+import priorityArray from "../components/Desk/priorityArray";
+import { addTask } from "../Store/reducers/prioritySlice";
+
+type Inputs = {
+    content: string,
+    priority: number
+};
 
 const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
+    const dispatch = useAppDispatch()
+    const { priority } = useAppSelector(state => state.prioritySlice)
+    const [changePrioprity, setChangePrioprity] = React.useState(false)
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        data["priority"] = priority
+        console.log(data)
+        dispatch(addTask(data))
+        setActive(false)
+        reset()
+    }
+
     return (
         <CSSTransition in={active} timeout={200} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
@@ -11,20 +34,36 @@ const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
                         <p className="modalWindow__text text-center">Add task</p>
                         <div className="block__line block__line-form"></div>
 
-                        <p className="modalWindow__text-description">Content</p>
-                        <div className="form__input_holder">
-                            <textarea
-                                placeholder="Write task content here..."
-                                className="form__input form__input-textarea"
-                            ></textarea>
-                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <p className="modalWindow__text-description">Content</p>
+                            <div className={errors?.content ? "form__input_holder error-holder" : "form__input_holder"}>
+                                <textarea
+                                    placeholder="Write task content here..."
+                                    className={errors?.content ? "form__input textarea error-input" : "form__input textarea"}
+                                    autoComplete="off"
+                                    {...register("content",
+                                    { required: "cannot be empty" })}
+                                ></textarea>
+                            </div>
 
-                        <p className="modalWindow__text-description">Priority</p>
-                        <button className="button__big button__big-mr-1">High</button>
+                            <div className="error__message">
+                            {errors?.content && <p className="error__message_text">{errors?.content?.message}</p>}
+                            </div>
 
-                        <div className="block__line block__line-form"></div>
+                            <p className="modalWindow__text-description">Priority</p>
 
-                        <button className="button__big button__big-green button__big-mb">Submit</button>
+                            {changePrioprity
+                                ? <ul><PriorityButtons setChangePrioprity={setChangePrioprity}/></ul>
+                                :<div className="modalWindow__button">
+                                    <button className={`block__button ${priorityArray[priority].color} big mr1`} 
+                                    onClick={() => setChangePrioprity(true)}>
+                                        {priorityArray[priority].description}
+                                    </button>
+                                </div>}
+
+                            <div className="block__line block__line-form"></div>
+                            <button type="submit" disabled={changePrioprity} className="block__button submit big mb">Submit</button>
+                        </form>
                     </div>
 
                     <div className="close" onClick={() => setActive(false)}>
