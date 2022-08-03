@@ -1,19 +1,27 @@
 import React from "react"
-import { registration } from "../Store/reducers/authorizationSlice"
-import { useAppSelector, useAppDispatch } from "../hooks/redux"
+import { useForm, SubmitHandler } from "react-hook-form";
+import { registration } from '../Store/reducers/authorizationSlice'
+import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import { AuthRedirect } from "../helpers/AuthRedirect"
+import { IRegisterForm } from "../models/IRegisterForm"
 
-const RegisterForm = ({ registerClick, setRegisterClick }) => {
-    const [email, setEmail] = React.useState<string>("")
-    const [name, setName] = React.useState<string>("")
-    const [password, setPassword] = React.useState<string>("")
-    const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
 
+type Inputs = {
+    name: string,
+    email: string,
+    password: string,
+};
+
+const RegisterForm: React.FC<IRegisterForm> =({ registerClick, setRegisterClick }) => {
+    const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
     const dispatch = useAppDispatch()
 
-    const onClickRegister = (email, name, password) => {
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        const { email, name, password } = data
         dispatch(registration(email, name, password))
         setRegisterClick(true)
+        reset()
     }
 
     AuthRedirect(registerClick, setRegisterClick)
@@ -25,43 +33,66 @@ const RegisterForm = ({ registerClick, setRegisterClick }) => {
                     <p className="register__form_name text-center">Register</p>
                     <div className="block__line block__line-form"></div>
 
-                    <p className="login__form_data_name">Email</p>
-                    <div className="form__input_holder">
-                        <input
-                            placeholder="Your email..."
-                            type="email"
-                            className="form__input"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        ></input>
-                    </div>
-                    <p className="login__form_data_name">Name</p>
-                    <div className="form__input_holder">
-                        <input
-                            placeholder="Your display name..."
-                            type="text"
-                            className="form__input"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        ></input>
-                    </div>
-                    <p className="login__form_data_name">Password</p>
-                    <div className="form__input_holder">
-                        <input
-                            placeholder="Your account password..."
-                            type="text"
-                            className="form__input"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        ></input>
-                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <p className="login__form_data_name">Email</p>
+                        <div className={errors?.email ? "form__input_holder error-holder" : "form__input_holder"}>
+                            <input
+                                placeholder="Your email..."
+                                type="email"
+                                className={errors?.email ? "form__input error-input" : "form__input"}
+                                autoComplete="off"
+                                {...register("email",
+                                 { required: "cannot be empty" })}
+                            ></input>
+                        </div>
+                        <div className="error__message">
+                            {errors?.email && <p className="error__message_text">{errors?.email?.message}</p>}
+                        </div>
 
-                    <button
-                        className="button__big button__big-green button__big-green-mr button__big-green-register"
-                        onClick={() => onClickRegister(email, name, password)}
-                    >
-                        Register
-                    </button>
+                        <p className="login__form_data_name">Name</p>
+                        <div className={errors?.name ? "form__input_holder error-holder" : "form__input_holder"}>
+                            <input
+                                placeholder="Your display name..."
+                                type="text"
+                                className={errors?.name ? "form__input error-input" : "form__input"}
+                                autoComplete="off"
+                                {...register("name",
+                                 { required: "cannot be empty" })}
+                            ></input>
+                        </div>
+                        <div className="error__message">
+                            {errors?.name && <p className="error__message_text">{errors?.name?.message}</p>}
+                        </div>
+
+                        <p className="login__form_data_name">Password</p>
+                        <div className={errors?.password ? "form__input_holder error-holder" : "form__input_holder"}>
+                            <input
+                                placeholder="Your account password..."
+                                type="text"
+                                className={errors?.password ? "form__input error-input" : "form__input"}
+                                autoComplete="off"
+                                {...register("password",
+                                    {required: "cannot be empty",
+                                    minLength: {
+                                        value: 8,
+                                        message: "must be at least 8 characters"
+                                    },
+                                    validate: {
+                                        hasSpecialChar: (value) => /[^a-zA-Z0-9]/.test(value) || "Must have special chars",
+                                        hasNumbers: (value) => /[0-9]/.test(value) || "Must have at least one number",
+                                        hasCapitalLetter: (value) => /[A-Z]/.test(value) || "Must have at least one capital letter",
+                                    },
+                                })}
+                            ></input>
+                        </div>
+                        <div className="error__message">
+                            {errors?.password && <p className="error__message_text">{errors?.password?.message}</p>}
+                        </div>
+
+                        <button type="submit" className="button__big button__big-green button__big-green-register">
+                            Register
+                        </button >
+                    </form>
                 </div>
             </div>
         )

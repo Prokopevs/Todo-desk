@@ -20,9 +20,11 @@ const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
                         </div>
 
                         <p className="modalWindow__text-description">Priority</p>
-                        <button className="button__big">High</button>
+                        <button className="button__big button__big-mr-1">High</button>
 
-                        <button className="button__big button__big-green">Submit</button>
+                        <div className="block__line block__line-form"></div>
+
+                        <button className="button__big button__big-green button__big-mb">Submit</button>
                     </div>
 
                     <div className="close" onClick={() => setActive(false)}>

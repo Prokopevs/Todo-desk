@@ -49,7 +49,7 @@
 .button__big {
     width: 100%;
     height: 42px;
-    background: linear-gradient(135deg, #FF9292 0%, #EA8484 100%);
+    background-color: #FF9292;
     box-shadow: -2px 2px 5px rgba(221, 125, 125, 0.2), 2px -2px 5px rgba(221, 125, 125, 0.2), -2px -2px 5px rgba(255, 153, 153, 0.9), 2px 2px 6px rgba(221, 125, 125, 0.9), inset 1px 1px 2px rgba(255, 153, 153, 0.3), inset -1px -1px 2px rgba(221, 125, 125, 0.5);
     border-radius: 20px;
     border: none;
@@ -60,16 +60,30 @@
     color: #E1E1E1;
 
     position: relative;
+    transition: background-color .1s linear;
+
+    &:hover {
+        background-color: #ed8787;
+    }
 }
 
 .button__big-green {
-    background: linear-gradient(135deg, #7AD58E 0%, #6EC180 100%);
+    background-color: #7AD58E ;
     box-shadow: -3px 3px 5px rgba(104, 183, 122, 0.2), 3px -3px 5px rgba(104, 183, 122, 0.2), -3px -3px 5px rgba(128, 223, 149, 0.9), 3px 3px 6px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
-    margin: 45px 0;
+    margin: 25px 0;
+    transition: background-color .1s linear;
+
+    &:hover {
+        background-color: #76ca88;
+    }
 }
 
-.button__big-green-mr {
-    margin: 25px 0;
+.button__big-mr-1 {
+    margin: 10px 0 25px;
+}
+
+.button__big-mb {
+    margin-bottom: 35px;
 }
 
 .close {

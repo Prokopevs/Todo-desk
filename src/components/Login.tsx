@@ -1,6 +1,6 @@
 import React from "react"
 import { login, corgi } from "../pictures"
-import { useAppDispatch } from '../hooks/redux'
+import { useAppDispatch } from "../hooks/redux"
 import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
 import { IUser } from "../models/IUser"
 import { useNavigate } from "react-router-dom"
@@ -10,10 +10,11 @@ const Login = () => {
     const navigate = useNavigate()
 
     const logout = () => {
-        localStorage.removeItem('token');
-        dispatch(setAuth(false));
-        dispatch(setUser({} as IUser));
-        navigate('/')
+        localStorage.removeItem("token")
+        localStorage.removeItem("rememberMe")
+        dispatch(setAuth(false))
+        dispatch(setUser({} as IUser))
+        navigate("/")
     } 
 
     return (
