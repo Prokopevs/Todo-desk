@@ -60,7 +60,7 @@ const Desk: React.FC<IDesk> = (props) => {
                 <div className="col-12 desk">
                     <ul className="row row-padding">
                         {data.columnOrder.map((columnId) => {
-                            const column = data.columns[columnId] // id: 'column-1' title: 'To do', taskIds: ['task-1', 'task-2']
+                            const column = data.columns[columnId] // id: 'column-1' title: 'To do', taskIds: ['0', '1']
                             const tasks = column.taskIds.map(
                                 (taskId) => data.tasks[taskId]
                             )

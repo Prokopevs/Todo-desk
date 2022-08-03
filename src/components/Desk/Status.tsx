@@ -20,6 +20,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
                                 task={task}
                                 index={index}
                                 priorityArray={priorityArray}
+                                column={column}
                             />
                         ))}
                         {provided.placeholder}

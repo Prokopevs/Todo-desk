@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import initialData from "../../components/Desk/initial-data";
 import { IColumns, ITasks } from "../../models/dnd/IData";
 import { IResult } from "../../models/dnd/IResult";
+import { IDeleteTask } from '../../models/dnd/IDeleteTask';
 
 interface DndState {
     data: {
@@ -60,6 +61,7 @@ export const dndSlice = createSlice({
             const newTaskIds = Array.from(state.start.taskIds) // получили массив с тасками taskIds: ["0", "1"]
             newTaskIds.splice(state.result.source.index!, 1) // удалили элемент, который тянули
             newTaskIds.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили этот элемент в новое место
+
             const Status = state.data.columns[state.start.id] // Status (столбец где произошло изменение) 
             Status.taskIds = newTaskIds // заменили старый массив на новый 
         },
@@ -84,9 +86,16 @@ export const dndSlice = createSlice({
             const task = state.data.tasks[action.payload.id]
             task.priority = action.payload.index
         },
+        deleteTask: (state, action: PayloadAction<IDeleteTask>) => { 
+            const deleteArr = state.data.columns[action.payload.column.id].taskIds // массив где произойдёт удаление таски
+            const index = deleteArr.indexOf(action.payload.id) // индекс удаляемого элемента в массиве
+            deleteArr.splice(index, 1) 
+
+            delete state.data.tasks[action.payload.id] 
+        },
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority } = dndSlice.actions
+export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask } = dndSlice.actions
 
 export default dndSlice.reducer
