@@ -2,6 +2,7 @@ import React from "react"
 import Tasks from "./Tasks"
 import { Droppable } from "react-beautiful-dnd"
 import { IStatus } from "../../models/IStatus"
+import { isConstructorDeclaration } from "typescript"
 
 const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) => {
     return (

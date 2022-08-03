@@ -25,29 +25,102 @@
     border-radius: 20px;
 }
 
+.block__button.big {
+    display: block;
+    cursor: pointer;
+    margin: 0;
+
+    width: 100%;
+    height: 42px;
+    border-radius: 20px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #E1E1E1;
+
+    position: relative;
+}
+
+.block__button.submit {
+    background-color: #7AD58E;
+    box-shadow: -3px 3px 5px rgba(104, 183, 122, 0.2), 3px -3px 5px rgba(104, 183, 122, 0.2), -3px -3px 5px rgba(128, 223, 149, 0.9), 3px 3px 6px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
+    margin: 25px 0;
+    transition: background-color .1s linear;
+
+    &:hover {
+        background-color: #76ca88;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}
+
+.block__button.mr1 {
+    margin: 10px 0 15px;
+    width: 92%;
+    height: 37px;
+    font-size: 17px;
+}
+
+.block__button.mr2 {
+    margin: 35px 0 55px 0;
+}
+
+.block__button.mb {
+    margin-bottom: 35px;
+}
+
 .block__button.purple {
-    background: linear-gradient(135deg, #E792FF 0%, #D184EA 100%);
+    background-color:#E792FF;
     box-shadow: -3px 3px 10px rgba(198, 125, 221, 0.2), 3px -3px 10px rgba(198, 125, 221, 0.2), -3px -3px 10px rgba(242, 153, 255, 0.9), 3px 3px 13px rgba(198, 125, 221, 0.9), inset 1px 1px 2px rgba(242, 153, 255, 0.3), inset -1px -1px 2px rgba(198, 125, 221, 0.5);
+
+    transition: background-color .1s linear;
+    &:hover {
+        background-color: #df8ef6;
+    }
 }
 
 .block__button.red {
-    background: linear-gradient(135deg, #FF9292 0%, #EA8484 100%);
+    background-color: #FF9292;
     box-shadow: -3px 3px 10px rgba(221, 125, 125, 0.2), 3px -3px 10px rgba(221, 125, 125, 0.2), -3px -3px 10px rgba(255, 153, 153, 0.9), 3px 3px 13px rgba(221, 125, 125, 0.9), inset 1px 1px 2px rgba(255, 153, 153, 0.3), inset -1px -1px 2px rgba(221, 125, 125, 0.5);
+
+    transition: background-color .1s linear;
+    &:hover {
+        background-color: #f48989;
+    }
 }
 
 .block__button.green {
-    background: linear-gradient(135deg, #7AD58E 0%, #6EC180 100%);
+    background-color: #7AD58E;
     box-shadow: -3px 3px 10px rgba(104, 183, 122, 0.2), 3px -3px 10px rgba(104, 183, 122, 0.2), -3px -3px 10px rgba(128, 223, 149, 0.9), 3px 3px 13px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
+
+    transition: background-color .1s linear;
+    &:hover {
+        background-color: #76ca88;
+    }
 }
 
 .block__button.blue {
-    background: linear-gradient(135deg, #8D8BF9 0%, #7F7DE1 100%);
+    background-color:#8D8BF9;
     box-shadow: -3px 3px 10px rgba(121, 119, 213, 0.2), 3px -3px 10px rgba(121, 119, 213, 0.2), -3px -3px 10px rgba(147, 145, 255, 0.9), 3px 3px 13px rgba(121, 119, 213, 0.9), inset 1px 1px 2px rgba(147, 145, 255, 0.3), inset -1px -1px 2px rgba(121, 119, 213, 0.5);
+
+    transition: background-color .1s linear;
+    &:hover {
+        background-color: #8684ee;
+    }
 }
 
 .block__button.lightblue {
-    background: linear-gradient(135deg, #8BCBF9 0%, #7DB7E1 100%);
+    background-color:#8BCBF9;
     box-shadow: -3px 3px 10px rgba(119, 174, 213, 0.2), 3px -3px 10px rgba(119, 174, 213, 0.2), -3px -3px 10px rgba(145, 212, 255, 0.9), 3px 3px 13px rgba(119, 174, 213, 0.9), inset 1px 1px 2px rgba(145, 212, 255, 0.3), inset -1px -1px 2px rgba(119, 174, 213, 0.5);
+
+    transition: background-color .1s linear;
+    &:hover {
+        background-color: #86c4f0;
+    }
 }
 
 .block__button_text {

@@ -10,7 +10,7 @@ import { ILoginForm } from "../models/ILoginForm";
 type Inputs = {
     password: string,
     email: string,
-  };
+};
   
 const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
     const dispatch = useAppDispatch()
@@ -73,7 +73,7 @@ const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
                             <p className="login__form_remember_text">Remember me</p>
                         </div>
 
-                        <button type="submit" className="button__big button__big-green">
+                        <button type="submit" className="block__button submit big">
                             Login
                         </button>
                     </form>
