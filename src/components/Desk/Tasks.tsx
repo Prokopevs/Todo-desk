@@ -1,9 +1,17 @@
 import React from "react"
 import Priority from "../Priority"
 import { Draggable } from "react-beautiful-dnd"
+import { useAppDispatch } from "../../hooks/redux"
+import { setOpenPriorityСolumn } from "../../Store/reducers/dndSlice"
+import { ITasksProps } from "../../models/ITasksProps"
 
-const Tasks = ({ task, index, priorityArray, setOpen, onChangePriority }) => {
+const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray }) => {
+    const dispatch = useAppDispatch()
     const color = priorityArray[task.priority].color
+
+    const setOpen = (id: string) => {
+        dispatch(setOpenPriorityСolumn(id))
+    }
 
     return (
         <Draggable draggableId={task.id} index={index}>
@@ -22,11 +30,7 @@ const Tasks = ({ task, index, priorityArray, setOpen, onChangePriority }) => {
                         <p className="block__content_text">{task.content}</p>
                     </div>
                     {task.isOpen && (
-                        <Priority
-                            priorityArray={priorityArray}
-                            id={task.id}
-                            onChangePriority={onChangePriority}
-                        />
+                        <Priority priorityArray={priorityArray} id={task.id} />
                     )}
                 </div>
             )}

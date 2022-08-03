@@ -2,7 +2,6 @@ import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { NeuToggle } from "neumorphism-react"
 import { Link } from "react-router-dom"
-
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { login, setRememberMe } from '../Store/reducers/authorizationSlice'
 import { AuthRedirect } from "../helpers/AuthRedirect"
@@ -12,7 +11,7 @@ type Inputs = {
     password: string,
     email: string,
   };
-
+  
 const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
     const dispatch = useAppDispatch()
     const {isAuth, rememberMe} = useAppSelector(state => state.authorizationSlice)
@@ -78,7 +77,6 @@ const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
                             Login
                         </button>
                     </form>
-
                     <p className="login__form_new">New user?</p>
                     <p className="login__form_new login__form_new-mb">
                         You can create you account{" "}
@@ -90,6 +88,7 @@ const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
             </div>
         )
     }
+    return <></>
 }
 
 export default LoginForm

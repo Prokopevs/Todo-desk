@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { IRegisterForm } from "../models/IRegisterForm"
 
+
 type Inputs = {
     name: string,
     email: string,
@@ -96,6 +97,7 @@ const RegisterForm: React.FC<IRegisterForm> =({ registerClick, setRegisterClick 
             </div>
         )
     }
+    return <></>
 }
 
 export default RegisterForm
