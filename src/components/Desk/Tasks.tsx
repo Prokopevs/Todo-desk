@@ -4,7 +4,7 @@ import { Draggable } from "react-beautiful-dnd"
 import { useAppDispatch } from "../../hooks/redux"
 import { deleteTask, setOpenPriorityСolumn } from "../../Store/reducers/dndSlice"
 import { ITasksProps } from "../../models/ITasksProps"
-import { dots } from "../../pictures"
+import TasksContent from "./TasksContent"
 
 const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) => {
     const dispatch = useAppDispatch()
@@ -31,26 +31,20 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                 >
-                    <div className="block__content">
-                        <div className="block__item-inner">
-                            <img
-                                className="block__item_icon-dots"
-                                src={String(dots)}
-                                alt=""
-                            ></img>
+                    <div
+                        className="block__inner_delete"
+                        onClick={() => deleteTaskFunc(task.id)}
+                    >
+                        <div className="close__button task"></div>
+                    </div>
+                    <div className="block__inner_content">
+                        <div className="block__content">
                             <div
-                                className="block__item_action_menu"
-                                onClick={() => deleteTaskFunc(task.id)}
-                            >
-                                <p className="block__item_action_menu_text">Delete</p>
-                            </div>
+                                className={`pretty__line ${color}`}
+                                onClick={() => setOpen(task.id)}
+                            ></div>
+                            <TasksContent task={task} />
                         </div>
-
-                        <div
-                            className={`pretty__line ${color}`}
-                            onClick={() => setOpen(task.id)}
-                        ></div>
-                        <p className="block__content_text">{task.content}</p>
                     </div>
 
                     {task.isOpen && (
