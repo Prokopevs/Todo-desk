@@ -15,14 +15,19 @@ const Login = () => {
         dispatch(setAuth(false))
         dispatch(setUser({} as IUser))
         navigate("/")
-    } 
+    }
 
     return (
         <div className="row">
             <div className="col-12 d-flex justify-content-center">
                 <div className="login">
                     <img className="login__user_img" src={String(corgi)} alt=""></img>
-                    <img className="login__icon" src={String(login)} alt="" onClick={() => logout()}></img>
+                    <img
+                        className="login__icon"
+                        src={String(login)}
+                        alt=""
+                        onClick={() => logout()}
+                    ></img>
                 </div>
             </div>
         </div>

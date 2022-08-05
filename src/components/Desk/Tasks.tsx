@@ -17,7 +17,7 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
     const deleteTaskFunc = (id: string) => {
         const obj = {
             id: id,
-            column: column
+            column: column,
         }
         dispatch(deleteTask(obj))
     }
@@ -38,7 +38,10 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
                                 src={String(dots)}
                                 alt=""
                             ></img>
-                            <div className="block__item_action_menu" onClick={() => deleteTaskFunc(task.id)}>
+                            <div
+                                className="block__item_action_menu"
+                                onClick={() => deleteTaskFunc(task.id)}
+                            >
                                 <p className="block__item_action_menu_text">Delete</p>
                             </div>
                         </div>

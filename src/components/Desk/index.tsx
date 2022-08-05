@@ -4,7 +4,7 @@ import Status from "./Status"
 import { IDesk } from "../../models/IDesk"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import priorityArray from "../../components/Desk/priorityArray";
+import priorityArray from "../../components/Desk/priorityArray"
 import {
     reorderTaskInDifferentStatus,
     reorderTaskInOwnStatus,
