@@ -12,9 +12,10 @@ type Inputs = {
     email: string,
 };
   
-const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
+const LoginForm = () => {
     const dispatch = useAppDispatch()
     const {isAuth, rememberMe} = useAppSelector(state => state.authorizationSlice)
+    const [loginClick, setloginClick] = React.useState<boolean>(false)
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
     const onSubmit: SubmitHandler<Inputs> = (data) => {

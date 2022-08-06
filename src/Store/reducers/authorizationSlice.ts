@@ -18,8 +18,8 @@ const initialState: AuthorizationState = {
     emailConfirmed: false,
     name: "",
   },
-  isAuth: null,
-  isLoading: false,
+  isAuth: false,
+  isLoading: true,
   rememberMe: false,
 }
 

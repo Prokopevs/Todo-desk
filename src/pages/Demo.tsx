@@ -1,29 +1,33 @@
 import React from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Desk from "../components/Desk"
-import Logout from "../components/Logout"
 import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
 
-const DashBoard = () => {
-
-    localStorage.removeItem("modal")
+const Demo = () => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        if (isAuth === false) {
-            navigate('/demo')
+        if (isAuth) {
+            navigate("/dashboard")
         }
     }, [isAuth])
 
-    if (isAuth) {
+    if (!isAuth) {
         return (
             <div>
-                <Logout />
+                <div className="demo">
+                    <div className="static">Demo mode</div>
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                    <button className="block__button submit big demo">
+                            Login
+                        </button>
+                    </Link>
+                </div>
                 <Desk />
-                <TaskModalWindow />
+                <TaskModalWindow/>
                 <StatusModalWindow />
             </div>
         )
@@ -31,4 +35,4 @@ const DashBoard = () => {
     return <></>
 }
 
-export default DashBoard
+export default Demo

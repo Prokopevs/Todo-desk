@@ -45,7 +45,7 @@
 
 .block__button.submit {
     background-color: #7AD58E;
-    box-shadow: -3px 3px 5px rgba(104, 183, 122, 0.2), 3px -3px 5px rgba(104, 183, 122, 0.2), -3px -3px 5px rgba(128, 223, 149, 0.9), 3px 3px 6px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
+    box-shadow: -2px 2px 4px rgba(104, 183, 122, 0.2), 2px -2px 4px rgba(104, 183, 122, 0.2), -2px -2px 4px rgba(128, 223, 149, 0.9), 2px 2px 5px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
     margin: 25px 0;
     transition: background-color .1s linear;
 
@@ -56,6 +56,18 @@
     &:disabled {
         opacity: 0.5;
     }
+}
+.block__button.demo {
+    width: 200px;
+    height: 55px;
+    border-radius: 15px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    color: #fff;
+    text-decoration: none !important;
 }
 
 .block__button.mr1 {
@@ -75,7 +87,7 @@
 
 .block__button.purple {
     background-color:#E792FF;
-    box-shadow: -3px 3px 10px rgba(198, 125, 221, 0.2), 3px -3px 10px rgba(198, 125, 221, 0.2), -3px -3px 10px rgba(242, 153, 255, 0.9), 3px 3px 13px rgba(198, 125, 221, 0.9), inset 1px 1px 2px rgba(242, 153, 255, 0.3), inset -1px -1px 2px rgba(198, 125, 221, 0.5);
+    box-shadow: -2px 2px 4px rgba(198, 125, 221, 0.2), 2px -2px 4px rgba(198, 125, 221, 0.2), -2px -2px 4px rgba(242, 153, 255, 0.9), 2px 2px 5px rgba(198, 125, 221, 0.9), inset 1px 1px 2px rgba(242, 153, 255, 0.3), inset -1px -1px 2px rgba(198, 125, 221, 0.5);
 
     transition: background-color .1s linear;
     &:hover {
@@ -85,7 +97,7 @@
 
 .block__button.red {
     background-color: #FF9292;
-    box-shadow: -3px 3px 10px rgba(221, 125, 125, 0.2), 3px -3px 10px rgba(221, 125, 125, 0.2), -3px -3px 10px rgba(255, 153, 153, 0.9), 3px 3px 13px rgba(221, 125, 125, 0.9), inset 1px 1px 2px rgba(255, 153, 153, 0.3), inset -1px -1px 2px rgba(221, 125, 125, 0.5);
+    box-shadow: -2px 2px 4px rgba(221, 125, 125, 0.2), 2px -2px 4px rgba(221, 125, 125, 0.2), -2px -2px 4px rgba(255, 153, 153, 0.9), 2px 2px 5px rgba(221, 125, 125, 0.9), inset 1px 1px 2px rgba(255, 153, 153, 0.3), inset -1px -1px 2px rgba(221, 125, 125, 0.5);
 
     transition: background-color .1s linear;
     &:hover {
@@ -95,7 +107,7 @@
 
 .block__button.green {
     background-color: #7AD58E;
-    box-shadow: -3px 3px 10px rgba(104, 183, 122, 0.2), 3px -3px 10px rgba(104, 183, 122, 0.2), -3px -3px 10px rgba(128, 223, 149, 0.9), 3px 3px 13px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
+    box-shadow: -2px 2px 4px rgba(104, 183, 122, 0.2), 2px -2px 4px rgba(104, 183, 122, 0.2), -2px -2px 4px rgba(128, 223, 149, 0.9), 2px 2px 5px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
 
     transition: background-color .1s linear;
     &:hover {
@@ -105,7 +117,7 @@
 
 .block__button.blue {
     background-color:#8D8BF9;
-    box-shadow: -3px 3px 10px rgba(121, 119, 213, 0.2), 3px -3px 10px rgba(121, 119, 213, 0.2), -3px -3px 10px rgba(147, 145, 255, 0.9), 3px 3px 13px rgba(121, 119, 213, 0.9), inset 1px 1px 2px rgba(147, 145, 255, 0.3), inset -1px -1px 2px rgba(121, 119, 213, 0.5);
+    box-shadow: -2px 2px 4px rgba(121, 119, 213, 0.2), 2px -2px 4px rgba(121, 119, 213, 0.2), -2px -2px 4px rgba(147, 145, 255, 0.9), 2px 2px 5px rgba(121, 119, 213, 0.9), inset 1px 1px 2px rgba(147, 145, 255, 0.3), inset -1px -1px 2px rgba(121, 119, 213, 0.5);
 
     transition: background-color .1s linear;
     &:hover {
@@ -115,7 +127,7 @@
 
 .block__button.lightblue {
     background-color:#8BCBF9;
-    box-shadow: -3px 3px 10px rgba(119, 174, 213, 0.2), 3px -3px 10px rgba(119, 174, 213, 0.2), -3px -3px 10px rgba(145, 212, 255, 0.9), 3px 3px 13px rgba(119, 174, 213, 0.9), inset 1px 1px 2px rgba(145, 212, 255, 0.3), inset -1px -1px 2px rgba(119, 174, 213, 0.5);
+    box-shadow: -2px 2px 4px rgba(119, 174, 213, 0.2), 2px -2px 4px rgba(119, 174, 213, 0.2), -2px -2px 4px rgba(145, 212, 255, 0.9), 2px 2px 5px rgba(119, 174, 213, 0.9), inset 1px 1px 2px rgba(145, 212, 255, 0.3), inset -1px -1px 2px rgba(119, 174, 213, 0.5);
 
     transition: background-color .1s linear;
     &:hover {

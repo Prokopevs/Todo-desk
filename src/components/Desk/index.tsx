@@ -4,7 +4,7 @@ import Status from "./Status"
 import { IDesk } from "../../models/IDesk"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import priorityArray from "../../components/Desk/priorityArray";
+import priorityArray from "../../components/Desk/priorityArray"
 import {
     reorderTaskInDifferentStatus,
     reorderTaskInOwnStatus,
@@ -12,10 +12,14 @@ import {
     setResult,
     setStart,
 } from "../../Store/reducers/dndSlice"
+import SelectModal from "../SelectModal"
+import { useSessionStorage } from "../../hooks/useSessionStorage"
 
-const Desk: React.FC<IDesk> = (props) => {
-    const data = useAppSelector((state) => state.dndSlice.data)
+const Desk = () => {
     const dispatch = useAppDispatch()
+    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const [changesActive, setChangesActive] = useSessionStorage("SelectChanges", false)
+    const data = useAppSelector((state) => state.dndSlice.data)
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result
@@ -68,9 +72,16 @@ const Desk: React.FC<IDesk> = (props) => {
                             )
                         })}
                     </ul>
-
-                    <AddTask active={props.active} setActive={props.setActive} />
+                    {!isAuth && (
+                    <p className="demo__description">
+                        This is only a demo, login to get full functionality
+                    </p>
+                )}
                 </div>
+                <SelectModal
+                    changesActive={changesActive}
+                />
+                <AddTask changesActive={changesActive} setChangesActive={setChangesActive} />
             </div>
         </DragDropContext>
     )

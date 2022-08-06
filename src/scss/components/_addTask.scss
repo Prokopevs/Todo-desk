@@ -10,15 +10,22 @@
     background: #E0E0E0;
     box-shadow: -5px 5px 10px rgba(202, 202, 202, 0.2), 5px -5px 10px rgba(202, 202, 202, 0.2), -5px -5px 10px rgba(246, 246, 246, 0.9), 5px 5px 13px rgba(202, 202, 202, 0.9), inset 1px 1px 2px rgba(246, 246, 246, 0.3), inset -1px -1px 2px rgba(202, 202, 202, 0.5);
 
-    position: absolute;
-    bottom: 19px;
-    right: 19px;
+    position: sticky;
+    left: 100vw;
+    bottom: 90px;
     cursor: pointer;
     transition: 0.5s;
+    margin-right: 15px;
+    margin-top: -50px;
 
     &:hover {
         background: #d6d4d4;
     }
+}
+
+.addTask.demo {
+    margin-right: 15px;
+    margin-top: -30px;
 }
 
 :root {
@@ -65,10 +72,10 @@
     transform: translate(-50%, -50%) rotate(90deg);
 }
 
-// .addTask__plus:hover::before {
-//     transform: translate(-50%, -50%) rotate(-45deg);
-// }
+.addTask__plus.change::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
 
-// .addTask__plus:hover::after {
-//     transform: translate(-50%, -50%) rotate(45deg);
-// }
+.addTask__plus.change::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}

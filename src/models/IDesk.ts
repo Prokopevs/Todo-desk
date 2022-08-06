@@ -1,4 +1,6 @@
 export interface IDesk {
-    active?: boolean
-    setActive: (...args: boolean[]) => void
+    addTaskActive?: boolean
+    setAddTaskActive?: (...args: boolean[]) => void
+    statusActive?: boolean
+    setStatusActive?: (...args: boolean[]) => void
 }
