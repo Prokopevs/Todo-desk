@@ -7,7 +7,7 @@ import PriorityButtons from "./PriorityButtons"
 import priorityArray from "../components/Desk/priorityArray"
 import { addTask } from "../Store/reducers/prioritySlice"
 
-type Inputs = {
+interface Inputs {
     content: string
     priority: number
 }

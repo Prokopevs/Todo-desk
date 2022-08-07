@@ -1,56 +1,56 @@
 import React from "react"
 import { ITasksContent } from "../../models/ITasksContent"
+import TextareaAutosize from "react-textarea-autosize"
+import { useForm, SubmitHandler } from "react-hook-form"
 
-const TasksContent: React.FC<ITasksContent> = ({ task }) => {
-    const [editMode, setEditMod] = React.useState(false)
-    const textareaRef = React.useRef<HTMLTextAreaElement>(null)
+interface Inputs {
+    text: string
+}
 
-    const focusOnElement = () => {
-        setEditMod(!editMode)
-    }
-
+const TasksContent: React.FC<ITasksContent> = ({ task, editMode, control }) => {
     const moveCaretAtEnd = (e) => {
         let temp_value = e.target.value
         e.target.value = ""
         e.target.value = temp_value
     }
+    // const [value, setValue] = React.useState(task.content)
+    // const onChange = (event) => setValue(event.target.value)
 
-    const [value, setValue] = React.useState(task.content)
-    const onChange = (event) => setValue(event.target.value)
-    const MIN_TEXTAREA_HEIGHT = 10
+    const {
+        register,
+        handleSubmit,
+        reset,
+        getValues,
+        formState: { errors },
+    } = useForm<Inputs>({ mode: "onChange" })
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        console.log(data)
+        reset()
+    }
 
-    React.useLayoutEffect(() => {
-        if (textareaRef.current) {
-            textareaRef.current.style.height = "inherit"
-
-            textareaRef.current.style.height = `${Math.max(
-                textareaRef.current.scrollHeight,
-                MIN_TEXTAREA_HEIGHT
-            )}px`
-        }
-    })
+    const handleBlur = () => {
+        const values = getValues()
+        console.log(values)
+    }
 
     return (
-        <>
+        <form onSubmit={handleSubmit(onSubmit)}>
             {editMode ? (
-                <textarea
-                    onChange={onChange}
-                    ref={textareaRef}
+                <TextareaAutosize
                     className="block__content_input"
-                    // style={{
-                    //     minHeight: MIN_TEXTAREA_HEIGHT,
-                    // }}
-                    value={value}
+                    defaultValue={task.content}
                     autoFocus
                     onFocus={moveCaretAtEnd}
-                    onDoubleClick={() => focusOnElement()}
+                    autoComplete="off"
+                    {...register("text", {
+                        required: "cannot be empty",
+                    })}
+                    onBlur={handleBlur}
                 />
             ) : (
-                <p className="block__content_text" onDoubleClick={() => focusOnElement()}>
-                    {task.content}
-                </p>
+                <p className="block__content_text">{task.content}</p>
             )}
-        </>
+        </form>
     )
 }
 

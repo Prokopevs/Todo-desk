@@ -75,6 +75,10 @@ li:first-child:before {
     margin: 0 26.5px 25px 26.5px;
 }
 
+.block__inner_todo.editMode { 
+    border: 2px solid #8A8383;
+}
+
 @media (max-width: 1399px) {
     .block__inner_todo {
         margin: 0 22px 22px 22px;
@@ -93,7 +97,11 @@ li:first-child:before {
     margin-top: 2px;
     box-sizing: content-box;
     cursor: pointer;
-    padding: 4px;
+    padding: 4px 4px 4px 4px;
+}
+
+.block__inner_delete.editMode {
+    padding: 2px 6px 2px 6px;
 }
 
 .block__inner_content {
@@ -103,6 +111,15 @@ li:first-child:before {
 .block__content {
     display: flex;
     padding: 20px 15px;
+}
+
+.block__content.editMode {
+    padding: 22px 13px 18px 13px;
+}
+
+.block__content_text_area {
+    width: 100%;
+    height: 100%;
 }
 
 .block__content_text {
