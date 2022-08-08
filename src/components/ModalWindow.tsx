@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { IDesk } from "../models/IDesk"
 import PriorityButtons from "./PriorityButtons"
 import priorityArray from "../components/Desk/priorityArray"
-import { addTask } from "../Store/reducers/prioritySlice"
+// import { addTask } from "../Store/reducers/prioritySlice"
 
 interface Inputs {
     content: string
@@ -26,7 +26,7 @@ const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data["priority"] = priority
         console.log(data)
-        dispatch(addTask(data))
+        // dispatch(addTask(data))
         setActive(false)
         reset()
     }

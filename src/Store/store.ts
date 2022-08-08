@@ -1,3 +1,4 @@
+import contentSlice from './reducers/contentSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import authorizationSlice from './reducers/authorizationSlice'
 import dndSlice from './reducers/dndSlice'
@@ -8,6 +9,7 @@ export const store = configureStore({
         authorizationSlice,
         dndSlice,
         prioritySlice,
+        contentSlice,
     }
 })
 

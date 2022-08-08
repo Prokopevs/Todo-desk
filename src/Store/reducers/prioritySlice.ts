@@ -1,4 +1,3 @@
-import { IAddTask } from './../../models/IAddTask';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface PriorityState {
@@ -16,12 +15,10 @@ export const prioritySlice = createSlice({
         setPriority: (state, action: PayloadAction<number>) => {
             state.priority = action.payload
         },
-        addTask: (state, action: PayloadAction<IAddTask>) => {
-            
-        },
+
     }
 })
 
-export const { setPriority, addTask } = prioritySlice.actions
+export const { setPriority, } = prioritySlice.actions
 
 export default prioritySlice.reducer
