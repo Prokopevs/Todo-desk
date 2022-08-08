@@ -1,17 +1,18 @@
-FROM node:14.17.6-stretch as builder
+FROM node:17.3-stretch
 
 WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
+RUN npm install react-scripts@5.0.1 -g --silent
+
 COPY package.json ./
 COPY yarn.lock ./
 COPY tsconfig.json ./
-RUN npm install --silent
-RUN npm install react-scripts@5.0.0 -g --silent
+RUN yarn install --silent
 
 COPY public public
 COPY src src
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
 
