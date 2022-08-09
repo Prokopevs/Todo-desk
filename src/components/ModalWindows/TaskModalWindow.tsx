@@ -8,7 +8,7 @@ import priorityArray from "../Desk/priorityArray";
 import { addTask } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App";
 
-type Inputs = {
+interface Inputs {
     content: string
     priority: number
 }

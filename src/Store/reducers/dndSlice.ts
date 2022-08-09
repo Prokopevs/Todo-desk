@@ -7,6 +7,7 @@ import { IAddTask } from './../../models/IAddTask';
 import { IResult } from "../../models/dnd/IResult";
 import { IDeleteTask } from '../../models/dnd/IDeleteTask';
 import { IAddStatus } from '../../models/IAddStatus';
+import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
 interface DndState {
     data: {
         tasks: ITasks,
@@ -116,9 +117,12 @@ export const dndSlice = createSlice({
             state.data.columns[`column-${newIndexToColumn}`] = newColumnValue // добавили а объект новое свойство
             state.data.columnOrder.splice(Number(action.payload.priority) - 1, 0, `column-${newIndexToColumn}`)
         },
+        changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
+            state.data.tasks[action.payload.id].content = action.payload.text
+        },
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus } = dndSlice.actions
+export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus, changeTaskContent } = dndSlice.actions
 
 export default dndSlice.reducer

@@ -19,5 +19,4 @@ export const prioritySlice = createSlice({
 })
 
 export const { setPriority } = prioritySlice.actions
-
 export default prioritySlice.reducer

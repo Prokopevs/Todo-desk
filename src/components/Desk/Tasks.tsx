@@ -1,65 +1,103 @@
 import React from "react"
 import Priority from "../Priority"
 import { Draggable } from "react-beautiful-dnd"
-import { useAppDispatch } from "../../hooks/redux"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { deleteTask, setOpenPriorityСolumn } from "../../Store/reducers/dndSlice"
 import { ITasksProps } from "../../models/ITasksProps"
-import { dots } from "../../pictures"
+import TasksContent from "./TasksContent"
+import { useForm } from "react-hook-form"
 
-const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) => {
-    const dispatch = useAppDispatch()
-    const color = priorityArray[task.priority].color
+type Click = MouseEvent & {
+    path: Node[]
+}
 
-    const setOpen = (id: string) => {
-        dispatch(setOpenPriorityСolumn(id))
-    }
+const Tasks: React.FC<ITasksProps> = React.memo(
+    ({ task, index, priorityArray, column }) => {
+        const TaskRef = React.useRef<HTMLDivElement>(null)
+        const { isValid } = useAppSelector((state) => state.contentSlice)
+        const dispatch = useAppDispatch()
+        const color = priorityArray[task.priority].color
 
-    const deleteTaskFunc = (id: string) => {
-        const obj = {
-            id: id,
-            column: column,
+        const [editMode, setEditMod] = React.useState(false)
+
+        const setOpen = (id: string) => {
+            dispatch(setOpenPriorityСolumn(id))
         }
-        dispatch(deleteTask(obj))
-    }
 
-    return (
-        <Draggable draggableId={task.id} index={index}>
-            {(provided) => (
-                <div
-                    className="block__inner_todo"
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    ref={provided.innerRef}
-                >
-                    <div className="block__content">
-                        <div className="block__item-inner">
-                            <img
-                                className="block__item_icon-dots"
-                                src={String(dots)}
-                                alt=""
-                            ></img>
+        const deleteTaskFunc = (id: string) => {
+            const obj = {
+                id: id,
+                column: column,
+            }
+            dispatch(deleteTask(obj))
+        }
+
+        const onDoubleClickTextarea = () => {
+            isValid && setEditMod(!editMode)
+        }
+
+        React.useEffect(() => {
+            const handleClickOutside = (event: MouseEvent) => {
+                const _event = event as Click
+                if (TaskRef.current && !_event.path.includes(TaskRef.current)) {
+                    isValid && setEditMod(false)
+                }
+            }
+            document.body.addEventListener("click", handleClickOutside)
+
+            return () => document.body.removeEventListener("click", handleClickOutside)
+        }, [isValid])
+
+        return (
+            <Draggable draggableId={task.id} index={index}>
+                {(provided) => (
+                    <div
+                        className={
+                            editMode ? "block__inner_todo editMode" : "block__inner_todo"
+                        }
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                    >
+                        <div
+                            className={
+                                editMode
+                                    ? "block__inner_delete editMode"
+                                    : "block__inner_delete"
+                            }
+                            onClick={() => deleteTaskFunc(task.id)}
+                        >
+                            <div className="close__button task"></div>
+                        </div>
+                        <div ref={TaskRef} className="block__inner_content">
                             <div
-                                className="block__item_action_menu"
-                                onClick={() => deleteTaskFunc(task.id)}
+                                className={
+                                    editMode
+                                        ? "block__content editMode"
+                                        : "block__content"
+                                }
                             >
-                                <p className="block__item_action_menu_text">Delete</p>
+                                <div
+                                    className={`pretty__line ${color}`}
+                                    onClick={() => setOpen(task.id)}
+                                ></div>
+                                <div
+                                    className="block__content_text_area"
+                                    onDoubleClick={() => onDoubleClickTextarea()}
+                                >
+                                    <TasksContent task={task} editMode={editMode} />
+                                </div>
                             </div>
                         </div>
 
-                        <div
-                            className={`pretty__line ${color}`}
-                            onClick={() => setOpen(task.id)}
-                        ></div>
-                        <p className="block__content_text">{task.content}</p>
+                        {task.isOpen && (
+                            <Priority priorityArray={priorityArray} id={task.id} />
+                        )}
                     </div>
-
-                    {task.isOpen && (
-                        <Priority priorityArray={priorityArray} id={task.id} />
-                    )}
-                </div>
-            )}
-        </Draggable>
-    )
-}
+                )}
+            </Draggable>
+        )
+    }
+)
 
 export default Tasks
