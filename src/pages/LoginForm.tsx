@@ -10,6 +10,7 @@ import { ILoginForm } from "../models/ILoginForm"
 type Inputs = {
     password: string,
     email: string,
+    rememberMe: boolean
 };
   
 const LoginForm = () => {
@@ -24,8 +25,8 @@ const LoginForm = () => {
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        const { email, password } = data
-        dispatch(login(email, password, rememberMe))
+        data["rememberMe"] = rememberMe
+        dispatch(login(data))
         setloginClick(true)
         reset()
     }

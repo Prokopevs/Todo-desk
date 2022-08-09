@@ -1,8 +1,7 @@
-import { AppDispatch } from './../store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import $api from "../../http";
 import {IUser} from "../../models/IUser";
-import AuthService from "../../services/AuthService";
+import { ILogin } from '../../models/Auth/ILogin';
+import { IRegistration } from '../../models/Auth/IRegistration';
 
 interface AuthorizationState {
   user: IUser,
@@ -27,6 +26,9 @@ export const authorizationSlice = createSlice({
   name: 'authorization',
   initialState,
   reducers: {
+    login: (state, action: PayloadAction<ILogin>) => {},
+    registration: (state, action: PayloadAction<IRegistration>) => {},
+    checkAuth: (state) => {},
     setAuth: (state, action: PayloadAction<boolean>) => {
         state.isAuth = action.payload
     },
@@ -42,44 +44,6 @@ export const authorizationSlice = createSlice({
   }
 })
 
-export const login = (email, password, rememberMe) => async (dispatch: AppDispatch) => {
-    try {
-        const response = await AuthService.login(email, password)
-        localStorage.setItem('token', response.data.accessToken)
-        localStorage.setItem('rememberMe', rememberMe)
-        sessionStorage.setItem('checkReboot', "true")
-        dispatch(checkAuth())
-    } catch (e) {
-        console.log(e.response?.data?.message)
-        dispatch(setAuth(false))
-    }
-}
-
-export const registration = (email, name, password) => async (dispatch: AppDispatch) => {
-    try {
-        const response = await AuthService.registration(email, name, password)
-        localStorage.setItem('token', response.data.accessToken)
-        dispatch(checkAuth())
-    } catch (e) {
-        console.log(e.response?.data?.message)
-        dispatch(setAuth(false))
-    }
-}
-
-export const checkAuth = () => async (dispatch: AppDispatch) => {
-    dispatch(setLoading(true))
-    try {
-        const response = await $api.get<IUser>('/auth/me')
-        dispatch(setUser(response.data))
-        dispatch(setAuth(true))
-    } catch (e) {
-        console.log(e.response?.data?.message);
-        dispatch(setAuth(false))
-    } finally {
-        dispatch(setLoading(false))
-    }
-}
-
-export const { setAuth, setUser, setLoading, setRememberMe } = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth } = authorizationSlice.actions
 
 export default authorizationSlice.reducer
