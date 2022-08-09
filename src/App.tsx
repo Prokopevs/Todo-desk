@@ -15,14 +15,13 @@ export const ModalWindowContext = React.createContext(null);
 const App = () => {
     const dispatch = useAppDispatch()
     const { isLoading } = useAppSelector(state => state.authorizationSlice)
-    const { data } = useAppSelector(state => state.dndSlice)
 
     const [modalTaskActive, setModalTaskActive] = useSessionStorage("TaskModal", false);
     const [modalStatusActive, setStatusActive] = useSessionStorage("StatusModal", false);
     
     const rememberMe = localStorage.getItem("rememberMe")
     const token = localStorage.getItem("token")
-    const checkReboot = sessionStorage.getItem("checkReboot") // при перезагрузке в sessionStorage есть значение, из за этого токен не удаляется. Но если мы закроем вкладку sessionStorage умрет и при следующем входе код в if сможет выполниться
+    const checkReboot = sessionStorage.getItem("checkReboot")
 
     React.useEffect(() => {
         if(rememberMe === "false" && token && !checkReboot) {
