@@ -8,13 +8,14 @@ import { AuthRedirect } from "../helpers/AuthRedirect"
 import { ILoginForm } from "../models/ILoginForm"
 
 type Inputs = {
-    password: string
-    email: string
-}
-
-const LoginForm: React.FC<ILoginForm> = ({ loginClick, setloginClick }) => {
+    password: string,
+    email: string,
+};
+  
+const LoginForm = () => {
     const dispatch = useAppDispatch()
-    const { isAuth, rememberMe } = useAppSelector((state) => state.authorizationSlice)
+    const {isAuth, rememberMe} = useAppSelector(state => state.authorizationSlice)
+    const [loginClick, setloginClick] = React.useState<boolean>(false)
 
     const {
         register,

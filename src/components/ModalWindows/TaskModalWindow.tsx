@@ -1,21 +1,23 @@
 import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
-import { useAppDispatch, useAppSelector } from "../hooks/redux"
-import { IDesk } from "../models/IDesk"
-import PriorityButtons from "./PriorityButtons"
-import priorityArray from "../components/Desk/priorityArray"
-import { addTask } from "../Store/reducers/prioritySlice"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { IDesk } from "../../models/IDesk"
+import PriorityButtons from "../PriorityButtons"
+import priorityArray from "../Desk/priorityArray";
+import { addTask } from "../../Store/reducers/dndSlice";
+import { ModalWindowContext } from "../../App";
 
 type Inputs = {
     content: string
     priority: number
 }
 
-const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
+const TaskModalWindow = () => {
     const dispatch = useAppDispatch()
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const [changePrioprity, setChangePrioprity] = React.useState(false)
+    const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
 
     const {
         register,
@@ -25,14 +27,17 @@ const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data["priority"] = priority
-        console.log(data)
         dispatch(addTask(data))
-        setActive(false)
+        setModalTaskActive(false)
         reset()
+    }
+    const closeTaskWindow = () => {
+        setModalTaskActive(false)
+        setTimeout(() => reset(), 200);
     }
 
     return (
-        <CSSTransition in={active} timeout={200} classNames="my-node" unmountOnExit>
+        <CSSTransition in={modalTaskActive} timeout={200} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -100,7 +105,7 @@ const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
                         </form>
                     </div>
 
-                    <div className="close" onClick={() => setActive(false)}>
+                    <div className="close" onClick={() => closeTaskWindow()}>
                         <div className="close__button"></div>
                     </div>
                 </div>
@@ -109,4 +114,4 @@ const ModalWindow: React.FC<IDesk> = ({ active, setActive }) => {
     )
 }
 
-export default ModalWindow
+export default TaskModalWindow

@@ -55,6 +55,10 @@
     margin: 0 0 8px 0;
 }
 
+.form__input_holder.margin {
+    margin-bottom: 30px;
+}
+
 .form__input_holder.error-holder {
     background: #EC7676;
     box-shadow: -3px 3px 4px rgba(212, 106, 106, 0.2), 3px -3px 4px rgba(212, 106, 106, 0.2), -3px -3px 4px rgba(255, 130, 130, 0.9), 3px 3px 6px rgba(212, 106, 106, 0.9), inset 1px 1px 2px rgba(255, 130, 130, 0.3), inset -1px -1px 2px rgba(212, 106, 106, 0.5);
@@ -95,6 +99,10 @@
 .error__message_text {
     color: #EC7676;
     font-size: 15px;
+}
+
+.error__message_text.top {
+    margin-top: -22px;
 }
 
 .form__input.textarea {

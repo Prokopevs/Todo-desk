@@ -3,9 +3,10 @@ import { IColumn } from './../../models/dnd/IData';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import initialData from "../../components/Desk/initial-data";
 import { IColumns, ITasks } from "../../models/dnd/IData";
+import { IAddTask } from './../../models/IAddTask';
 import { IResult } from "../../models/dnd/IResult";
 import { IDeleteTask } from '../../models/dnd/IDeleteTask';
-
+import { IAddStatus } from '../../models/IAddStatus';
 interface DndState {
     data: {
         tasks: ITasks,
@@ -93,9 +94,31 @@ export const dndSlice = createSlice({
 
             delete state.data.tasks[action.payload.id] 
         },
+        addTask: (state, action: PayloadAction<IAddTask>) => {
+            const newTaskKey = Number(Object.keys(state.data.tasks)[Object.keys(state.data.tasks).length - 1]) + 1
+            const newTaskValue = { 
+                id: String(newTaskKey),
+                content: action.payload.content, 
+                priority: action.payload.priority, 
+                isOpen: false 
+            }
+            state.data.tasks[newTaskKey] = newTaskValue
+            state.data.columns["column-1"].taskIds.push(String(newTaskKey))
+        },
+        addStatus: (state, action: PayloadAction<IAddStatus>) => {
+            const lastColumnItem = Object.keys(state.data.columns)[Object.keys(state.data.columns).length - 1] // "column-3"
+            const newIndexToColumn = Number(lastColumnItem[lastColumnItem.length-1]) + 1 // 4
+            const newColumnValue = {
+                id: `column-${newIndexToColumn}`, //column-4
+                title: action.payload.name,
+                taskIds: [],
+            }
+            state.data.columns[`column-${newIndexToColumn}`] = newColumnValue // добавили а объект новое свойство
+            state.data.columnOrder.splice(Number(action.payload.priority) - 1, 0, `column-${newIndexToColumn}`)
+        },
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask } = dndSlice.actions
+export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus } = dndSlice.actions
 
 export default dndSlice.reducer

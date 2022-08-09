@@ -11,8 +11,9 @@ type Inputs = {
     password: string
 }
 
-const RegisterForm: React.FC<IRegisterForm> = ({ registerClick, setRegisterClick }) => {
-    const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
+const RegisterForm = () => {
+    const [registerClick, setRegisterClick] = React.useState<boolean>(false)
+    const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
     const dispatch = useAppDispatch()
 
     const {
@@ -116,17 +117,6 @@ const RegisterForm: React.FC<IRegisterForm> = ({ registerClick, setRegisterClick
                                     minLength: {
                                         value: 8,
                                         message: "must be at least 8 characters",
-                                    },
-                                    validate: {
-                                        hasSpecialChar: (value) =>
-                                            /[^a-zA-Z0-9]/.test(value) ||
-                                            "Must have special chars",
-                                        hasNumbers: (value) =>
-                                            /[0-9]/.test(value) ||
-                                            "Must have at least one number",
-                                        hasCapitalLetter: (value) =>
-                                            /[A-Z]/.test(value) ||
-                                            "Must have at least one capital letter",
                                     },
                                 })}
                             ></input>

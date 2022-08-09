@@ -10,8 +10,8 @@ const Home = () => {
         if (isAuth) {
             navigate("/dashboard")
         }
-        if (isAuth === false) {
-            navigate("/static")
+        if (!isAuth) {
+            navigate("/demo")
         }
     }, [isAuth])
 
