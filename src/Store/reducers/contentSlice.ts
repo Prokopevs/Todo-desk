@@ -5,7 +5,7 @@ interface contentState {
 }
 
 const initialState: contentState = {
-    isValid: false
+    isValid: true
 }
 
 export const contentSlice = createSlice({

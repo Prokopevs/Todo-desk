@@ -4,9 +4,11 @@ import TextareaAutosize from "react-textarea-autosize"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch } from "../../hooks/redux"
 import { setIsValid } from "../../Store/reducers/contentSlice"
+import { changeTaskContent } from "../../Store/reducers/dndSlice"
 
 interface Inputs {
-    text: string
+    id: string
+    text: string 
 }
 
 const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
@@ -21,7 +23,6 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
     const {
         register,
         handleSubmit,
-        reset,
         getValues,
         formState: { errors, isDirty, isValid },
     } = useForm<Inputs>({ mode: "onChange" })
@@ -34,8 +35,14 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
         dispatch(setIsValid(isValid))
         const values = getValues()
         if (isDirty && isValid) {
+            values["id"]=task.id
+            dispatch(changeTaskContent(values))
             console.log(values)
         }
+    }
+
+    const handleClick = () => {
+        dispatch(setIsValid(isValid))
     }
 
     return (
@@ -51,6 +58,7 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
                         required: "cannot be empty",
                     })}
                     onBlur={handleBlur}
+                    onClick={handleClick}
                 />
             ) : (
                 <p className="block__content_text">{task.content}</p>

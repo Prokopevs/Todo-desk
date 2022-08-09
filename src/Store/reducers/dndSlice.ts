@@ -5,6 +5,7 @@ import initialData from "../../components/Desk/initial-data";
 import { IColumns, ITasks } from "../../models/dnd/IData";
 import { IResult } from "../../models/dnd/IResult";
 import { IDeleteTask } from '../../models/dnd/IDeleteTask';
+import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
 
 interface DndState {
     data: {
@@ -93,9 +94,12 @@ export const dndSlice = createSlice({
 
             delete state.data.tasks[action.payload.id] 
         },
+        changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
+            state.data.tasks[action.payload.id].content = action.payload.text
+        }
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask } = dndSlice.actions
+export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, changeTaskContent } = dndSlice.actions
 
 export default dndSlice.reducer
