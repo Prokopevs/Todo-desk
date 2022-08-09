@@ -10,7 +10,7 @@ import Demo from "./pages/Demo";
 import Home from "./pages/Home";
 import { useSessionStorage } from "./hooks/useSessionStorage";
 
-export const ModalWindowContext = React.createContext(null);
+export const ModalWindowContext = React.createContext(null) as any
 
 const App = () => {
     const dispatch = useAppDispatch()
