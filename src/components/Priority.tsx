@@ -1,9 +1,10 @@
 import React from "react"
 import { useAppDispatch } from "../hooks/redux"
 import { IPriorityProps } from "../models/IPriorityProps"
-import { onChangePriority, setOpenPriorityСolumn } from "../Store/reducers/dndSlice"
+import { onChangePriority} from "../Store/reducers/dndSlice"
+import { setPriority } from "../Store/reducers/prioritySlice"
 
-const Priority: React.FC<IPriorityProps> = ({ priorityArray, id }) => {
+const Priority: React.FC<IPriorityProps> = ({ priorityArray, id, setChangePrioprity }) => {
     const dispatch = useAppDispatch()
 
     const onChange = (id: string, index: number) => {
@@ -12,12 +13,14 @@ const Priority: React.FC<IPriorityProps> = ({ priorityArray, id }) => {
             index: index,
         }
         dispatch(onChangePriority(obj))
-        dispatch(setOpenPriorityСolumn(id))
+        // dispatch(setOpenPriorityСolumn(id))
+        dispatch(setPriority(index))
+        setChangePrioprity(false)
     }
 
     return (
         <>
-            <div className="block__line"></div>
+            <div className="block__line block__line-task"></div>
             <ul className="block__priority">
                 {priorityArray.map((item, index) => (
                     <li

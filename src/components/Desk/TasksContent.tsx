@@ -49,7 +49,7 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             {editMode ? (
                 <TextareaAutosize
-                    className="block__content_input"
+                    className={editMode ? "block__content_input editMode" : "block__content_input"}
                     defaultValue={task.content}
                     autoFocus
                     onFocus={moveCaretAtEnd}
@@ -66,7 +66,7 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
 
             <div className="error__message">
                 {errors?.text && (
-                    <p className="error__message_text">{errors?.text?.message}</p>
+                    <p className="error__message_text tasks">{errors?.text?.message}</p>
                 )}
             </div>
         </form>

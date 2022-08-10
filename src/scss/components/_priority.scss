@@ -6,11 +6,25 @@
     border-radius: 4px;
 }
 
+.block__line-form {
+    width: 100%;
+}
+
+.block__line-task {
+    width: 40%;
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+
 .block__priority {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px 0;
+}
+
+li:first-child {
+    margin-top: -3px;
 }
 
 .block__button {

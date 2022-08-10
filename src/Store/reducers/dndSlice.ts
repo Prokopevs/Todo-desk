@@ -80,10 +80,10 @@ export const dndSlice = createSlice({
             startStatus.taskIds = startTaskIds // заменили старый массив на новый 
             finishStatus.taskIds = finishTaskIds // заменили старый массив на новый 
         },
-        setOpenPriorityСolumn: (state, action: PayloadAction<string>) => {
-            const task = state.data.tasks[action.payload]
-            task.isOpen = !task.isOpen
-        },
+        // setOpenPriorityСolumn: (state, action: PayloadAction<string>) => {
+        //     const task = state.data.tasks[action.payload]
+        //     task.isOpen = !task.isOpen
+        // },
         onChangePriority: (state, action: PayloadAction<IPriority>) => {
             const task = state.data.tasks[action.payload.id]
             task.priority = action.payload.index
@@ -94,6 +94,11 @@ export const dndSlice = createSlice({
             deleteArr.splice(index, 1) 
 
             delete state.data.tasks[action.payload.id] 
+        },
+        deleteStatus: (state, action: PayloadAction<string>) => { 
+            state.data.columnOrder.splice(state.data.columnOrder.indexOf(action.payload), 1)
+
+            delete state.data.columns[action.payload]
         },
         addTask: (state, action: PayloadAction<IAddTask>) => {
             const newTaskKey = Number(Object.keys(state.data.tasks)[Object.keys(state.data.tasks).length - 1]) + 1
@@ -123,6 +128,6 @@ export const dndSlice = createSlice({
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus, changeTaskContent } = dndSlice.actions
+export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, onChangePriority, deleteTask, addTask, addStatus, changeTaskContent, deleteStatus } = dndSlice.actions
 
 export default dndSlice.reducer

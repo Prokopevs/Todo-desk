@@ -1,6 +1,6 @@
 const login = require("../assets/img/login.png")
 const logout = require("../assets/img/logout.png")
 const corgi = require("../assets/img/corgi.jpg")
-const dots = require("../assets/img/dots.png")
+const pen = require("../assets/img/edit.png")
 
-export { login, logout, corgi, dots }
+export { login, logout, corgi, pen }

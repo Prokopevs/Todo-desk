@@ -30,10 +30,6 @@
     padding: 52px 0 45px;
 }
 
-.block__line-form {
-    width: 100%;
-}
-
 .login__form_data_name {
     font-style: normal;
     font-weight: 500;
@@ -103,6 +99,11 @@
 
 .error__message_text.top {
     margin-top: -22px;
+}
+.error__message_text.tasks {
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 1px;
 }
 
 .form__input.textarea {

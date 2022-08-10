@@ -1,3 +1,4 @@
+import taskPrioritySlice from './reducers/taskPrioritySlice';
 import contentSlice from './reducers/contentSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import authorizationSlice from './reducers/authorizationSlice'
@@ -10,6 +11,7 @@ export const store = configureStore({
         dndSlice,
         prioritySlice,
         contentSlice,
+        taskPrioritySlice,
     }
 })
 
