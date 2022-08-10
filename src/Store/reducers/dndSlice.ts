@@ -48,6 +48,12 @@ export const dndSlice = createSlice({
     name: 'dnd',
     initialState,
     reducers: {
+        setStatus: (state, action: PayloadAction<IResult>) => {
+            console.log(action.payload)
+        },
+        setTask: (state, action: PayloadAction<IResult>) => {
+            console.log(action.payload)
+        },
         setResult: (state, action: PayloadAction<IResult>) => {
             state.result.destination = action.payload.destination
             state.result.source = action.payload.source
@@ -123,6 +129,6 @@ export const dndSlice = createSlice({
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus, changeTaskContent } = dndSlice.actions
+export const { setStatus, setResult, setTask, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus, changeTaskContent } = dndSlice.actions
 
 export default dndSlice.reducer

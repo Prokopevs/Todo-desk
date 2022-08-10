@@ -23,11 +23,11 @@ const StatusModalWindow = () => {
     }
     const closeStatusWindow = () => {
         setStatusActive(false)
-        setTimeout(() => reset(), 200);
+        setTimeout(() => reset(), 150);
     }
 
     return (
-        <CSSTransition in={modalStatusActive} timeout={200} classNames="my-node" unmountOnExit>
+        <CSSTransition in={modalStatusActive} timeout={150} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">

@@ -1,7 +1,17 @@
-import { takeEvery, put, call, fork } from 'redux-saga/effects';
+import { takeEvery, put, call, fork, all } from 'redux-saga/effects';
 import AuthService from "../../services/AuthService";
 import { checkAuthService } from '../../services/CheckAuthService';
-import { checkAuth, setAuth, setLoading, setUser } from '../reducers/authorizationSlice';
+import { setAuth, setLoading, setUser } from '../reducers/authorizationSlice';
+import { handleGetStatus } from './statusSaga';
+import { handleGetTask } from './taskSaga';
+
+export function* handleData() {
+    yield all([
+        fork(handleCheckAuth),
+        fork(handleGetStatus),
+        fork(handleGetTask),
+    ])
+}
 
 export function* handleLogin(action) {
     const { email, password, rememberMe } = action.payload
@@ -10,7 +20,7 @@ export function* handleLogin(action) {
         localStorage.setItem('token', response.data.accessToken)
         localStorage.setItem('rememberMe', rememberMe)
         sessionStorage.setItem('checkReboot', "true")
-        yield fork(handleCheckAuth)
+        yield handleData()
     } catch (e) {
         console.log(e.response?.data?.message);
         yield put(setAuth(false))
@@ -23,7 +33,7 @@ export function* handleRegistration(action) {
         const response = yield call(() => AuthService.registration(email, name, password))
         localStorage.setItem('token', response.data.accessToken)
         sessionStorage.setItem('checkReboot', "true")
-        yield fork(handleCheckAuth)
+        yield handleData()
     } catch (e) {
         console.log(e.response?.data?.message);
         yield put(setAuth(false))
@@ -45,7 +55,7 @@ export function* handleCheckAuth() {
 }
 
 export function* authSaga() {
-    yield takeEvery('authorization/checkAuth', handleCheckAuth);
+    yield takeEvery('authorization/checkAuth', handleData);
     yield takeEvery('authorization/login', handleLogin);
     yield takeEvery('authorization/registration', handleRegistration);
 }

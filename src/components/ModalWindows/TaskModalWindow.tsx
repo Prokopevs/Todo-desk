@@ -33,11 +33,12 @@ const TaskModalWindow = () => {
     }
     const closeTaskWindow = () => {
         setModalTaskActive(false)
-        setTimeout(() => reset(), 200);
+        setTimeout(() => reset(), 150);
+        setTimeout(() => setChangePrioprity(false), 150);
     }
 
     return (
-        <CSSTransition in={modalTaskActive} timeout={200} classNames="my-node" unmountOnExit>
+        <CSSTransition in={modalTaskActive} timeout={150} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -100,7 +101,7 @@ const TaskModalWindow = () => {
                                 disabled={changePrioprity}
                                 className="block__button submit big mb"
                             >
-                                Submit
+                                Add
                             </button>
                         </form>
                     </div>
