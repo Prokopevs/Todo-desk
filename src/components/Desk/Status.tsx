@@ -14,7 +14,10 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
                 <li className="col-md-4 block">
                     <div className="block__status-inner">
                         <h1 className="block__status_name">{column.title}</h1>
-                        <div className="block__minus" onClick={() => dispatch(deleteStatus(column.id))}>
+                        <div
+                            className="block__minus"
+                            onClick={() => dispatch(deleteStatus(column.id))}
+                        >
                             <div className="block__minus-line"></div>
                         </div>
                     </div>

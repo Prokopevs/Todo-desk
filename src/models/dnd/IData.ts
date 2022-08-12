@@ -1,4 +1,4 @@
-interface ITask {
+export interface ITask {
     id: string
     content: string
     priority: number,

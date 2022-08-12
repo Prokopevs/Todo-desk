@@ -12,8 +12,12 @@
 
 .block__line-task {
     width: 40%;
-    margin-top: 7px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.block__line-task-mt {
+    margin-top: 0px;
 }
 
 .block__priority {
@@ -37,6 +41,7 @@ li:first-child {
     width: 70%;
     height: 32px;
     border-radius: 20px;
+    border: none;
 }
 
 .block__button.big {
@@ -55,6 +60,10 @@ li:first-child {
     color: #E1E1E1;
 
     position: relative;
+}
+
+.block__button.task {
+    width: 80%;
 }
 
 .block__button.submit {

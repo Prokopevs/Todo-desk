@@ -1,10 +1,11 @@
 import React from "react"
 import AddTask from "../AddTask"
 import Status from "./Status"
-import { IDesk } from "../../models/IDesk"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import priorityArray from "../../components/Desk/priorityArray"
+import SelectModal from "../SelectModal"
+import { useSessionStorage } from "../../hooks/useSessionStorage"
+import priorityArray from "../../data/Desk/priorityArray"
 import {
     reorderTaskInDifferentStatus,
     reorderTaskInOwnStatus,
@@ -12,8 +13,6 @@ import {
     setResult,
     setStart,
 } from "../../Store/reducers/dndSlice"
-import SelectModal from "../SelectModal"
-import { useSessionStorage } from "../../hooks/useSessionStorage"
 
 const Desk = () => {
     const dispatch = useAppDispatch()

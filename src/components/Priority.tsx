@@ -1,10 +1,9 @@
 import React from "react"
 import { useAppDispatch } from "../hooks/redux"
 import { IPriorityProps } from "../models/IPriorityProps"
-import { onChangePriority} from "../Store/reducers/dndSlice"
-import { setPriority } from "../Store/reducers/prioritySlice"
+import { onChangePriority, setOpenPriorityСolumn } from "../Store/reducers/dndSlice"
 
-const Priority: React.FC<IPriorityProps> = ({ priorityArray, id, setChangePrioprity }) => {
+const Priority: React.FC<IPriorityProps> = ({ priorityArray, task }) => {
     const dispatch = useAppDispatch()
 
     const onChange = (id: string, index: number) => {
@@ -13,24 +12,32 @@ const Priority: React.FC<IPriorityProps> = ({ priorityArray, id, setChangePriopr
             index: index,
         }
         dispatch(onChangePriority(obj))
-        // dispatch(setOpenPriorityСolumn(id))
-        dispatch(setPriority(index))
-        setChangePrioprity(false)
+        dispatch(setOpenPriorityСolumn(id))
     }
 
     return (
         <>
             <div className="block__line block__line-task"></div>
             <ul className="block__priority">
-                {priorityArray.map((item, index) => (
-                    <li
-                        className={`block__button ${item.color}`}
-                        key={index}
-                        onClick={() => onChange(id, index)}
-                    >
-                        <p className="block__button_text">{item.description}</p>
-                    </li>
-                ))}
+                <li
+                    className={`block__button task ${priorityArray[task.priority].color}`}
+                    onClick={() => dispatch(setOpenPriorityСolumn(task.id))}
+                >
+                    <p className="block__button_text">
+                        {priorityArray[task.priority].description}
+                    </p>
+                </li>
+                {priorityArray
+                    .filter((item) => item.index != task.priority)
+                    .map((item, index) => (
+                        <li
+                            className={`block__button task ${item.color}`}
+                            key={index}
+                            onClick={() => onChange(task.id, item.index)}
+                        >
+                            <p className="block__button_text">{item.description}</p>
+                        </li>
+                    ))}
             </ul>
         </>
     )

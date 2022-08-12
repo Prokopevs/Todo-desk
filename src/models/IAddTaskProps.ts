@@ -1,4 +1,4 @@
 export interface IAddTaskProps {
-    changesActive: (...args: boolean[]) => void
+    changesActive: boolean
     setChangesActive: (...args: boolean[]) => void
 }

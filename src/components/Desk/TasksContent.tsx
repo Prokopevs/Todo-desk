@@ -3,15 +3,22 @@ import { ITasksContent } from "../../models/ITasksContent"
 import TextareaAutosize from "react-textarea-autosize"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch } from "../../hooks/redux"
-import { setIsValid } from "../../Store/reducers/contentSlice"
-import { changeTaskContent } from "../../Store/reducers/dndSlice"
+import { changeTaskContent, deleteTask } from "../../Store/reducers/dndSlice"
+import TaskPriority from "./TaskPriority"
+import { container, vector } from "../../pictures"
 
 interface Inputs {
     id: string
-    text: string 
+    text: string
 }
 
-const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
+const TasksContent: React.FC<ITasksContent> = ({
+    task,
+    editMode,
+    priorityArray,
+    column,
+    setEditMod,
+}) => {
     const dispatch = useAppDispatch()
 
     const moveCaretAtEnd = (e) => {
@@ -20,36 +27,37 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
         e.target.value = temp_value
     }
 
+    const deleteTaskFunc = (id: string) => {
+        if (column !== undefined) {
+            const obj = {
+                id: id,
+                column: column,
+            }
+            dispatch(deleteTask(obj))
+        }
+    }
+
     const {
         register,
         handleSubmit,
-        getValues,
         formState: { errors, isDirty, isValid },
     } = useForm<Inputs>({ mode: "onChange" })
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data)
-    }
-
-    const handleBlur = () => {
-        dispatch(setIsValid(isValid))
-        const values = getValues()
-        if (isDirty && isValid) {
-            values["id"]=task.id
-            dispatch(changeTaskContent(values))
-            console.log(values)
-        }
-    }
-
-    const handleClick = () => {
-        dispatch(setIsValid(isValid))
+        data["id"] = task.id
+        dispatch(changeTaskContent(data))
+        setEditMod(false)
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {editMode ? (
                 <TextareaAutosize
-                    className={editMode ? "block__content_input editMode" : "block__content_input"}
+                    className={
+                        editMode
+                            ? "block__content_input editMode"
+                            : "block__content_input"
+                    }
                     defaultValue={task.content}
                     autoFocus
                     onFocus={moveCaretAtEnd}
@@ -57,8 +65,6 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
                     {...register("text", {
                         required: "cannot be empty",
                     })}
-                    onBlur={handleBlur}
-                    onClick={handleClick}
                 />
             ) : (
                 <p className="block__content_text">{task.content}</p>
@@ -69,6 +75,40 @@ const TasksContent: React.FC<ITasksContent> = ({ task, editMode }) => {
                     <p className="error__message_text tasks">{errors?.text?.message}</p>
                 )}
             </div>
+
+            <TaskPriority task={task} editMode={editMode} priorityArray={priorityArray} />
+
+            {editMode && (
+                <>
+                    <div className="block__line block__line-task block__line-task-mt"></div>
+                    <div className="block__content_selection">
+                        <button
+                            className="block__content_selection_button delete"
+                            onClick={() => deleteTaskFunc(task.id)}
+                        >
+                            <img
+                                className="block__content_selection_img delete"
+                                src={String(container)}
+                                alt=""
+                            ></img>
+                            <p className="block__content_selection_text">Delete</p>
+                        </button>
+
+                        <button
+                            className="block__content_selection_button apply"
+                            type="submit"
+                            disabled={!isValid}
+                        >
+                            <img
+                                className="block__content_selection_img apply"
+                                src={String(vector)}
+                                alt=""
+                            ></img>
+                            <p className="block__content_selection_text">Apply</p>
+                        </button>
+                    </div>
+                </>
+            )}
         </form>
     )
 }

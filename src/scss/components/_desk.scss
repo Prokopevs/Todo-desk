@@ -70,7 +70,7 @@ li:first-child:before {
 
 .block__minus-line {
     width: 10px;
-    height: 1.5px;
+    height: 2px;
     background-color: #9d9a9a;
     border-radius: 2px;
 }
@@ -129,6 +129,10 @@ li:first-child:before {
     box-shadow: -2px 2px 2px rgba(195, 195, 195, 0.2), 2px -2px 2px rgba(195, 195, 195, 0.2), -2px -2px 2px rgba(239, 239, 239, 0.9), 2px 2px 2.5px rgba(195, 195, 195, 0.9), inset 1px 1px 1px rgba(239, 239, 239, 0.3), inset -1px -1px 1px rgba(195, 195, 195, 0.5);
 }
 
+.block__inner-editPan.active {
+    visibility: hidden;
+}
+
 .block__inner-editPan-img {
     position: absolute;
     top: 4px;
@@ -142,7 +146,11 @@ li:first-child:before {
 
 .block__content {
     display: flex;
-    padding: 15px 15px;
+    padding: 15px;
+}
+
+.block__content.editMode {
+    padding: 22px;
 }
 
 .block__content_text_area {
@@ -195,38 +203,96 @@ li:first-child:before {
 .pretty__line {
     min-width: 11px;
     min-height: 24px;
-    margin-right: 6px;
+    margin-right: 3px;
     border-radius: 20.5px;
 }
 
 .pretty__line.red {
     background: #F98B8B;
     box-shadow: 1px 1px 2px rgba(255, 153, 153, 0.3), -1px -1px 2px rgba(224, 125, 125, 0.5), inset -5px 5px 10px rgba(224, 125, 125, 0.2), inset 5px -5px 10px rgba(224, 125, 125, 0.2), inset -5px -5px 10px rgba(255, 153, 153, 0.9), inset 5px 5px 13px rgba(224, 125, 125, 0.9);
-    transition: background-color .1s linear;
 }
 
 .pretty__line.purple {
     background: #DC8BF9;
     box-shadow: 1px 1px 2px rgba(242, 153, 255, 0.3), -1px -1px 2px rgba(198, 125, 224, 0.5), inset -5px 5px 10px rgba(198, 125, 224, 0.2), inset 5px -5px 10px rgba(198, 125, 224, 0.2), inset -5px -5px 10px rgba(242, 153, 255, 0.9), inset 5px 5px 13px rgba(198, 125, 224, 0.9);
-    transition: background-color .1s linear;
 }
 
 .pretty__line.green {
     background: #74CB87;
     box-shadow: 1px 1px 2px rgba(128, 223, 149, 0.3), -1px -1px 2px rgba(104, 183, 122, 0.5), inset -5px 5px 10px rgba(104, 183, 122, 0.2), inset 5px -5px 10px rgba(104, 183, 122, 0.2), inset -5px -5px 10px rgba(128, 223, 149, 0.9), inset 5px 5px 13px rgba(104, 183, 122, 0.9);
-    transition: background-color .1s linear;
 }
 
 .pretty__line.blue {
     background: #7F7DE1;
     box-shadow: 1px 1px 2px rgba(121, 119, 213, 0.2), -1px -1px 2px rgba(121, 119, 213, 0.2), inset -5px 5px 10px rgba(147, 145, 255, 0.9), inset 5px -5px 10px rgba(121, 119, 213, 0.9), inset -5px -5px 10px rgba(147, 145, 255, 0.3), inset 5px 5px 13px rgba(121, 119, 213, 0.5);
-    transition: background-color .1s linear;
 }
 
 .pretty__line.lightblue {
     background: #7DB7E1;
     box-shadow: 1px 1px 2px rgba(119, 174, 213, 0.2), -1px -1px 2px rgba(119, 174, 213, 0.2), inset -5px 5px 10px rgba(145, 212, 255, 0.9), inset 5px -5px 10px rgba(119, 174, 213, 0.9), inset -5px -5px 10px rgba(145, 212, 255, 0.3), inset 5px 5px 13px rgba(119, 174, 213, 0.5);
+}
+
+.block__content_selection {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 4px 0 4px;
+}
+
+.block__content_selection_button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+
+    width: 45%;
+    height: 35px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.block__content_selection_button.delete {
+    background-color: #E84E4E;
+    box-shadow: -1.5px 1.5px 3px rgba(197, 66, 66, 0.2), 1.5px -1.5px 3px rgba(197, 66, 66, 0.2), -1.5px -1.5px 3px rgba(245, 82, 82, 0.9), 1.5px 1.5px 5px rgba(197, 66, 66, 0.9), inset 1px 1px 2px rgba(245, 82, 82, 0.3), inset -1px -1px 2px rgba(197, 66, 66, 0.5);
     transition: background-color .1s linear;
+
+    &:hover {
+        background-color: rgb(223, 69, 69);
+    }
+}
+
+.block__content_selection_button.apply {
+    background-color: #74CB86;
+    box-shadow: -1.5px 1.5px 3px rgba(100, 174, 115, 0.2), 1.5px -1.5px 3px rgba(100, 174, 115, 0.2), -1.5px -1.5px 3px rgba(122, 212, 141, 0.9), 1.5px 1.5px 4px rgba(100, 174, 115, 0.9), inset 1px 1px 2px rgba(122, 212, 141, 0.3), inset -1px -1px 2px rgba(100, 174, 115, 0.5);
+    transition: background-color .1s linear;
+
+    &:hover {
+        background-color: #71bf81;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        &:hover {
+            background-color: #74CB86;
+        }
+    
+    }
+}
+
+.block__content_selection_img.delete {
+    width: 11px;
+    height: 14.3px;
+}
+
+.block__content_selection_img.apply {
+    width: 15px;
+    height: 12px;
+}
+
+.block__content_selection_text {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
 }
 
 /* ------------------------------------ */

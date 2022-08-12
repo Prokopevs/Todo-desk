@@ -15,7 +15,10 @@ const SelectModal = ({ changesActive }) => {
             unmountOnExit
         >
             <div className={isAuth ? "selectChanges" : "selectChanges demo"}>
-                <p className="selectChanges_task" onClick={() => setModalTaskActive(true)}>
+                <p
+                    className="selectChanges_task"
+                    onClick={() => setModalTaskActive(true)}
+                >
                     Task
                 </p>
                 <p className="selectChanges_status" onClick={() => setStatusActive(true)}>

@@ -1,5 +1,6 @@
+import { ITask } from "./dnd/IData"
+import { IPriorityArray } from "./ITasksProps"
 export interface IPriorityProps {
-    priorityArray: any
-    id: string
-    setChangePrioprity: (...args: boolean[]) => void
+    priorityArray: IPriorityArray
+    task: ITask
 }

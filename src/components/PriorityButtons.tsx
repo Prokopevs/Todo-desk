@@ -1,5 +1,5 @@
 import React from "react"
-import priorityArray from "../components/Desk/priorityArray"
+import priorityArray from "../data/Desk/priorityArray"
 import { useAppDispatch } from "../hooks/redux"
 import { setPriority } from "../Store/reducers/prioritySlice"
 
