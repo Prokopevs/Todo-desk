@@ -10,6 +10,7 @@
 
 .margin {
     margin: 50px 10px 0;
+    position: relative;
 }
 
 .block {
@@ -37,6 +38,12 @@ li:first-child:before {
 .row-padding {
     padding: 0 28px;
     margin-bottom: 37px;
+}
+
+.block__wraper {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
 }
 
 .block__name {

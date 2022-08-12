@@ -5,12 +5,13 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { IDesk } from "../../models/IDesk"
 import PriorityButtons from "../PriorityButtons"
 import priorityArray from "../Desk/priorityArray";
-import { addTask } from "../../Store/reducers/dndSlice";
+import { addTaskQuery } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App";
 
 interface Inputs {
     content: string
     priority: number
+    status_id: string
 }
 
 const TaskModalWindow = () => {
@@ -18,6 +19,8 @@ const TaskModalWindow = () => {
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const [changePrioprity, setChangePrioprity] = React.useState(false)
     const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
+    const { data } = useAppSelector((state) => state.dndSlice)
+    const firstItemOfColumnOrder = data.columnOrder[0]
 
     const {
         register,
@@ -27,7 +30,8 @@ const TaskModalWindow = () => {
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data["priority"] = priority
-        dispatch(addTask(data))
+        data["status_id"] = firstItemOfColumnOrder
+        dispatch(addTaskQuery(data))
         setModalTaskActive(false)
         reset()
     }

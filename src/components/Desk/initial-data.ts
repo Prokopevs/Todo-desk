@@ -6,24 +6,24 @@ const initialData = {
       "3": { id: "3", content: "fuck you up ohohofuck you up ohoho", priority: 4, isOpen: false },
     },
     columns: {
-      "column-1": {
-        id: "column-1",
-        title: "To do",
+      "1": {
+        id: "1",
+        name: "To do",
         taskIds: ["0", "1"],
       },
-      "column-2": {
-        id: "column-2",
-        title: "In progress",
+      "2": {
+        id: "2",
+        name: "In progress",
         taskIds: [],
       },
-      "column-3": {
-        id: "column-3",
-        title: "Done",
+      "3": {
+        id: "3",
+        name: "Done",
         taskIds: ["2", "3"],
       },
     },
     
-    columnOrder: ["column-1", "column-2", "column-3"],
+    columnOrder: ["1", "2", "3"],
 };
   
 export default initialData;

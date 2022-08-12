@@ -8,6 +8,9 @@ import { IResult } from "../../models/dnd/IResult";
 import { IDeleteTask } from '../../models/dnd/IDeleteTask';
 import { IAddStatus } from '../../models/IAddStatus';
 import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
+import { IStatusObj } from '../../models/Status/IStatusObj';
+import { stringify } from 'querystring';
+import { ITasksObj } from '../../models/Task/ITasksObj';
 interface DndState {
     data: {
         tasks: ITasks,
@@ -34,12 +37,12 @@ const initialState: DndState = {
     },
     start: {
         id: "",
-        title: "",
+        name: "",
         taskIds: [],
     },
     finish: {
         id: "",
-        title: "",
+        name: "",
         taskIds: [],
     },
 }
@@ -48,11 +51,14 @@ export const dndSlice = createSlice({
     name: 'dnd',
     initialState,
     reducers: {
-        setStatus: (state, action: PayloadAction<IResult>) => {
-            console.log(action.payload)
+        setStatuses: (state, action: PayloadAction<IStatusObj>) => {
+            state.data.columns = action.payload
         },
-        setTask: (state, action: PayloadAction<IResult>) => {
-            console.log(action.payload)
+        setColumnOrder: (state, action: PayloadAction<string[]>) => {
+            state.data.columnOrder = action.payload
+        },
+        setTasks: (state, action: PayloadAction<ITasksObj>) => {
+            state.data.tasks = action.payload
         },
         setResult: (state, action: PayloadAction<IResult>) => {
             state.result.destination = action.payload.destination
@@ -67,6 +73,7 @@ export const dndSlice = createSlice({
         },
         reorderTaskInOwnStatus: (state) => {
             const newTaskIds = Array.from(state.start.taskIds) // получили массив с тасками taskIds: ["0", "1"]
+            console.log(state.start)
             newTaskIds.splice(state.result.source.index!, 1) // удалили элемент, который тянули
             newTaskIds.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили этот элемент в новое место
 
@@ -101,27 +108,31 @@ export const dndSlice = createSlice({
 
             delete state.data.tasks[action.payload.id] 
         },
+        addTaskQuery: (state, action: PayloadAction<IAddTask>) => {},
         addTask: (state, action: PayloadAction<IAddTask>) => {
-            const newTaskKey = Number(Object.keys(state.data.tasks)[Object.keys(state.data.tasks).length - 1]) + 1
+            const { content, priority, status_id, id } = action.payload
             const newTaskValue = { 
-                id: String(newTaskKey),
-                content: action.payload.content, 
-                priority: action.payload.priority, 
+                id: String(id),
+                content: content, 
+                priority: priority, 
                 isOpen: false 
             }
-            state.data.tasks[newTaskKey] = newTaskValue
-            state.data.columns["column-1"].taskIds.push(String(newTaskKey))
+            state.data.tasks[`${id}`] = newTaskValue
+            state.data.columns[`${status_id}`].taskIds.push(String(id))
+            
+            let taskIdsNumbers = localStorage.getItem(`${status_id}`)
+            localStorage.setItem(`${status_id}`, `${taskIdsNumbers ? `${taskIdsNumbers},` : ""}${id}`)
         },
+        addStatusQuery: (state, action: PayloadAction<IAddStatus>) => {},
         addStatus: (state, action: PayloadAction<IAddStatus>) => {
-            const lastColumnItem = Object.keys(state.data.columns)[Object.keys(state.data.columns).length - 1] // "column-3"
-            const newIndexToColumn = Number(lastColumnItem[lastColumnItem.length-1]) + 1 // 4
+            const {id, name, priority} = action.payload
             const newColumnValue = {
-                id: `column-${newIndexToColumn}`, //column-4
-                title: action.payload.name,
+                id: String(id), //4
+                name: name,
                 taskIds: [],
             }
-            state.data.columns[`column-${newIndexToColumn}`] = newColumnValue // добавили а объект новое свойство
-            state.data.columnOrder.splice(Number(action.payload.priority) - 1, 0, `column-${newIndexToColumn}`)
+            state.data.columns[`${id}`] = newColumnValue // добавили а объект новое свойство
+            state.data.columnOrder.splice(Number(priority), 0, `${id}`)
         },
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
             state.data.tasks[action.payload.id].content = action.payload.text
@@ -129,6 +140,6 @@ export const dndSlice = createSlice({
     }
 })
 
-export const { setStatus, setResult, setTask, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addStatus, changeTaskContent } = dndSlice.actions
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addTaskQuery, addStatus, addStatusQuery,changeTaskContent } = dndSlice.actions
 
 export default dndSlice.reducer

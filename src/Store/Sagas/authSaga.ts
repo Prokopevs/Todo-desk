@@ -7,7 +7,6 @@ import { handleGetTask } from './taskSaga';
 
 export function* handleData() {
     yield all([
-        fork(handleCheckAuth),
         fork(handleGetStatus),
         fork(handleGetTask),
     ])
@@ -20,7 +19,7 @@ export function* handleLogin(action) {
         localStorage.setItem('token', response.data.accessToken)
         localStorage.setItem('rememberMe', rememberMe)
         sessionStorage.setItem('checkReboot', "true")
-        yield handleData()
+        yield handleCheckAuth()
     } catch (e) {
         console.log(e.response?.data?.message);
         yield put(setAuth(false))
@@ -33,7 +32,7 @@ export function* handleRegistration(action) {
         const response = yield call(() => AuthService.registration(email, name, password))
         localStorage.setItem('token', response.data.accessToken)
         sessionStorage.setItem('checkReboot', "true")
-        yield handleData()
+        yield handleCheckAuth()
     } catch (e) {
         console.log(e.response?.data?.message);
         yield put(setAuth(false))
@@ -46,6 +45,8 @@ export function* handleCheckAuth() {
         const response = yield call(checkAuthService)
         yield put(setUser(response.data))
         yield put(setAuth(true))
+        yield handleData()
+        // localStorage.removeItem("6")
     } catch (e) {
         console.log(e.response?.data?.message);
         yield put(setAuth(false))
@@ -55,7 +56,7 @@ export function* handleCheckAuth() {
 }
 
 export function* authSaga() {
-    yield takeEvery('authorization/checkAuth', handleData);
+    yield takeEvery('authorization/checkAuth', handleCheckAuth);
     yield takeEvery('authorization/login', handleLogin);
     yield takeEvery('authorization/registration', handleRegistration);
 }

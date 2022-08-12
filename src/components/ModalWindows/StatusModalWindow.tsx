@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { ModalWindowContext } from "../../App";
-import { addStatus } from "../../Store/reducers/dndSlice";
+import { addStatusQuery } from "../../Store/reducers/dndSlice";
 
 type Inputs = {
     name: string,
@@ -14,10 +14,11 @@ const StatusModalWindow = () => {
     const dispatch = useAppDispatch()
     const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
     const  {data}  = useAppSelector((state) => state.dndSlice)
-    const maxArrLength = data.columnOrder.length + 1
+
+    const columnOrderLength = data.columnOrder.length
     const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        dispatch(addStatus(data))
+        dispatch(addStatusQuery(data))
         setStatusActive(false)
         reset()
     }
@@ -53,18 +54,18 @@ const StatusModalWindow = () => {
                             <p className="modalWindow__text-description">Priority</p>
                             <div className={errors?.priority ? "form__input_holder error-holder margin" : "form__input_holder margin"}>
                                 <input
-                                    placeholder={`Write status priority from 1 to ${maxArrLength}`}
+                                    placeholder={`Write status priority from 0 to ${columnOrderLength}`}
                                     className={errors?.priority ? "form__input error-input" : "form__input"}
                                     autoComplete="off"
                                     {...register("priority",
                                         { required: "cannot be empty",
                                         min: {
-                                            value: 1,
-                                            message: "cannot be less than 1"
+                                            value: 0,
+                                            message: "cannot be less than 0"
                                         },
                                         max: {
-                                            value: maxArrLength,
-                                            message: `cannot be more than ${maxArrLength}`
+                                            value: columnOrderLength,
+                                            message: `cannot be more than ${columnOrderLength}`
                                         },
                                         validate: {
                                             number: (value) => /[0-9]/.test(value) || 'must be a number' 

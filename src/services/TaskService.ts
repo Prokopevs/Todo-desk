@@ -7,7 +7,7 @@ export const getTaskService = async () => {
     return response
 };
 
-export const postTaskService = async (id, name, priority) => {
-    const response = await $api.post<IPostTask>('/tasks/tasks', {id, name, priority})
+export const postTaskService = async (id, content, priority, status_id) => {
+    const response = await $api.post<IPostTask>('/tasks/task', {id, content, priority, status_id})
     return response
 };

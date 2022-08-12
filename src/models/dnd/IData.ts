@@ -11,7 +11,7 @@ export interface ITasks {
 
 export interface IColumn {
     id: string
-    title: string
+    name: string
     taskIds: string[]
 }
 
