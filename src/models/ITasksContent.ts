@@ -7,8 +7,10 @@ export interface ITasksContent {
     setEditMod: (...args: boolean[]) => void
 }
 
-export interface ITasksPrioritySelect {
+export interface ITasksContentEditMode {
     task: any
     editMode: boolean
-    priorityArray: any
+    priorityArray?: any
+    isValid?:boolean
+    column?: IColumn
 }

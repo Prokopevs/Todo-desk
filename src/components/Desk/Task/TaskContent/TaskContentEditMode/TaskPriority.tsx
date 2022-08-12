@@ -1,10 +1,10 @@
 import React from "react"
-import { useAppDispatch } from "../../hooks/redux"
-import { ITasksPrioritySelect } from "../../models/ITasksContent"
-import { setOpenPriorityСolumn } from "../../Store/reducers/dndSlice"
-import Priority from "../Priority"
+import { useAppDispatch } from "../../../../../hooks/redux"
+import { ITasksContentEditMode } from "../../../../../models/ITasksContent"
+import { setOpenPriorityСolumn } from "../../../../../Store/reducers/dndSlice"
+import Priority from "./Priority"
 
-const TaskPriority: React.FC<ITasksPrioritySelect> = ({ task, editMode, priorityArray }) => {
+const TaskPriority: React.FC<ITasksContentEditMode> = ({ task, editMode, priorityArray }) => {
     const dispatch = useAppDispatch()
 
     return (

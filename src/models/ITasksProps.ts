@@ -12,7 +12,7 @@ export interface IPriorityArray {
 
 export interface ITasksProps {
     task: any
-    index: number
+    index?: number
     priorityArray: IPriorityArray
     column: IColumn
 }

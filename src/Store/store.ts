@@ -1,3 +1,4 @@
+import editModeSlice from './reducers/editModeSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import authorizationSlice from './reducers/authorizationSlice'
 import dndSlice from './reducers/dndSlice'
@@ -7,7 +8,8 @@ export const store = configureStore({
     reducer: {
         authorizationSlice,
         dndSlice,
-        prioritySlice
+        prioritySlice,
+        editModeSlice,
     }
 })
 

@@ -67,7 +67,7 @@ const Desk = () => {
                                     key={column.id}
                                     column={column}
                                     tasks={tasks}
-                                    priorityArray={priorityArray}
+                                    priorityArray={priorityArray}             
                                 />
                             )
                         })}
