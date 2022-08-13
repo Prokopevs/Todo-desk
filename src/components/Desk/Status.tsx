@@ -3,25 +3,28 @@ import Tasks from "./Tasks"
 import { Droppable } from "react-beautiful-dnd"
 import { IStatus } from "../../models/IStatus"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { deleteStatus, setLineValue } from "../../Store/reducers/dndSlice"
+import { deleteStatus, setLineArray } from "../../Store/reducers/dndSlice"
 import Line from "./Line"
 
 const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) => {
     const dispatch = useAppDispatch()
     const columnId = Number(column.id)
-    const lineArray = useAppSelector((state) => state.dndSlice.lineArray)
+    const lineArrays = useAppSelector((state) => state.dndSlice.lineArrays)
     const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
     
-    dispatch(setLineValue(Object.keys(columnOrder).length))
-
-
-
+    React.useEffect(() => {
+        dispatch(setLineArray(Object.keys(columnOrder).length))
+        // console.log("Status")
+    }, [column])
+    
+    // console.log(lineArrays)
+    // console.log(columnId)
     return (
         <Droppable droppableId={column.id}>
             {(provided) => (
                 <>
                     <li className="col-md-4 block">
-                        {columnId !== 0 && lineArray.includes(columnId) && <Line />}
+                        {columnId !== 0 && lineArrays["firstArray"].includes(columnId) && <Line />}
                         <div className="block__status-inner">
                             <h1 className="block__status_name">{column.title}</h1>
                             <button
@@ -47,7 +50,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
                             ))}
                             {provided.placeholder}
                         </div>
-                        {columnId !== 0 && lineArray[lineArray.length - 1] - 2 === columnId && <Line />}
+                        {columnId !== 0 && lineArrays["secondArray"].includes(columnId) && <Line />}
                     </li>
                 </>
             )}

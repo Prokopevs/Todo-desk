@@ -18,7 +18,10 @@ interface DndState {
     start: IColumn,
     finish: IColumn
     activePen: boolean
-    lineArray: number[]
+    lineArrays: {
+        firstArray: number[]
+        secondArray: number[]
+    }
 }
   
 const initialState: DndState = {
@@ -45,7 +48,10 @@ const initialState: DndState = {
         taskIds: [],
     },
     activePen: false,
-    lineArray: []
+    lineArrays: {
+        firstArray: [],
+        secondArray: [],
+    }
 }
 
 export const dndSlice = createSlice({
@@ -129,14 +135,17 @@ export const dndSlice = createSlice({
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
             state.data.tasks[action.payload.id].content = action.payload.text
         },
-        setLineValue: (state, action: PayloadAction<number>) => {
+        setLineArray: (state, action: PayloadAction<number>) => {
+            let arr: number[] = []
             for(let i=1; i<=action.payload; i++) {
-                state.lineArray.push(3*i-1)
+                arr.push(3*i-1)
             }
+            state.lineArrays["firstArray"] = arr
+            state.lineArrays["secondArray"] = arr.map((item) => item + 1)
         },
     }
 })
 
-export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, onChangePriority, setOpenPriorityСolumn, deleteTask, addTask, addStatus, changeTaskContent, deleteStatus, setLineValue, } = dndSlice.actions
+export const { setResult, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, onChangePriority, setOpenPriorityСolumn, deleteTask, addTask, addStatus, changeTaskContent, deleteStatus, setLineArray, } = dndSlice.actions
 
 export default dndSlice.reducer
