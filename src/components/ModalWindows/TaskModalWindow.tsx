@@ -3,6 +3,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import PriorityButtons from "../PriorityButtons"
+import priorityArray from "../Desk/priorityArray";
+import { addTaskQuery } from "../../Store/reducers/dndSlice";
 import { addTask } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App";
 import priorityArray from "../../data/Desk/priorityArray"
@@ -10,6 +12,7 @@ import priorityArray from "../../data/Desk/priorityArray"
 interface Inputs {
     content: string
     priority: number
+    status_id: string
 }
 
 const TaskModalWindow = () => {
@@ -17,6 +20,8 @@ const TaskModalWindow = () => {
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const [changePrioprity, setChangePrioprity] = React.useState(false)
     const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
+    const { data } = useAppSelector((state) => state.dndSlice)
+    const firstItemOfColumnOrder = data.columnOrder[0]
 
     const {
         register,
@@ -26,17 +31,19 @@ const TaskModalWindow = () => {
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data["priority"] = priority
-        dispatch(addTask(data))
+        data["status_id"] = firstItemOfColumnOrder
+        dispatch(addTaskQuery(data))
         setModalTaskActive(false)
         reset()
     }
     const closeTaskWindow = () => {
         setModalTaskActive(false)
-        setTimeout(() => reset(), 200);
+        setTimeout(() => reset(), 150);
+        setTimeout(() => setChangePrioprity(false), 150);
     }
 
     return (
-        <CSSTransition in={modalTaskActive} timeout={200} classNames="my-node" unmountOnExit>
+        <CSSTransition in={modalTaskActive} timeout={150} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -99,7 +106,7 @@ const TaskModalWindow = () => {
                                 disabled={changePrioprity}
                                 className="block__button submit big mb"
                             >
-                                Submit
+                                Add
                             </button>
                         </form>
                     </div>

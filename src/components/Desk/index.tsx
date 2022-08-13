@@ -43,12 +43,12 @@ const Desk = () => {
 
         // Moving in one list
         if (start === finish) {
-            dispatch(reorderTaskInOwnStatus())
+            dispatch(reorderTaskInOwnStatus(isAuth))
             return
         }
 
         // Moving from one list to another
-        dispatch(reorderTaskInDifferentStatus())
+        dispatch(reorderTaskInDifferentStatus(isAuth))
     }
 
     return (
@@ -57,7 +57,7 @@ const Desk = () => {
                 <div className="col-12 desk">
                     <ul className="row row-padding">
                         {data.columnOrder.map((columnId) => {
-                            const column = data.columns[columnId] // id: 'column-1' title: 'To do', taskIds: ['0', '1']
+                            const column = data.columns[columnId] // id: 'column-1' name: 'To do', taskIds: ['0', '1']
                             const tasks = column.taskIds.map(
                                 (taskId) => data.tasks[taskId]
                             )

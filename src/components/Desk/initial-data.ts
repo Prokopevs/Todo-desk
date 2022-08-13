@@ -8,17 +8,17 @@ const initialData = {
     columns: {
       "1": {
         id: "1",
-        title: "To do",
+        name: "To do",
         taskIds: ["0", "1"],
       },
       "2": {
         id: "2",
-        title: "In progress",
+        name: "In progress",
         taskIds: [],
       },
       "3": {
         id: "3",
-        title: "Done",
+        name: "Done",
         taskIds: ["2", "3"],
       },
     },

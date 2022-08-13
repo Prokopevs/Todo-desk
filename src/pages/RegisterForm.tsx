@@ -23,8 +23,7 @@ const RegisterForm = () => {
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        const { email, name, password } = data
-        dispatch(registration(email, name, password))
+        dispatch(registration(data))
         setRegisterClick(true)
         reset()
     }

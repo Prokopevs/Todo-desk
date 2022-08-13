@@ -1,4 +1,5 @@
 import React from "react"
+import { ModalWindowContext } from "../App"
 import { useAppSelector } from "../hooks/redux"
 import { IAddTaskProps } from "../models/IAddTaskProps"
 
@@ -9,6 +10,9 @@ type addTaskClick = MouseEvent & {
 const AddTask: React.FC<IAddTaskProps> = ({ changesActive, setChangesActive }) => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
     const { data } = useAppSelector((state) => state.dndSlice)
+
+    const columLength = data.columnOrder.length
+    const { modalTaskActive, modalStatusActive } = React.useContext(ModalWindowContext)
     const addTaskRef = React.useRef<HTMLDivElement>(null)
 
     React.useEffect(() => {
@@ -26,11 +30,11 @@ const AddTask: React.FC<IAddTaskProps> = ({ changesActive, setChangesActive }) =
     }, [])
 
     return (
-        <div ref={addTaskRef} className={isAuth ? "addTask" : "addTask demo"} onClick={() => setChangesActive(!changesActive)}>
-            <div
-                className={changesActive ? "addTask__plus change" : "addTask__plus"}
-            ></div>
-        </div>
+            <div ref={addTaskRef} className={columLength > 3 ? isAuth ? "addTask" : "addTask demo" : isAuth ? "addTask-absolute" : "addTask-absolute demo"} onClick={() => setChangesActive(!changesActive)}>
+                <div
+                    className={changesActive ? "addTask__plus change" : "addTask__plus"}
+                ></div>
+            </div>
     )
 }
 

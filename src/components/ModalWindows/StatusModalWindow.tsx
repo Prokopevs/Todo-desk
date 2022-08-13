@@ -2,6 +2,9 @@ import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+
+import { ModalWindowContext } from "../../App";
+import { addStatusQuery } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App"
 import { addStatus } from "../../Store/reducers/dndSlice"
 
@@ -13,31 +16,22 @@ type Inputs = {
 const StatusModalWindow = () => {
     const dispatch = useAppDispatch()
     const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
-    const { data } = useAppSelector((state) => state.dndSlice)
-    const maxArrLength = data.columnOrder.length + 1
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    const  {data}  = useAppSelector((state) => state.dndSlice)
+
+    const columnOrderLength = data.columnOrder.length
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        dispatch(addStatus(data))
+        dispatch(addStatusQuery(data))
         setStatusActive(false)
         reset()
     }
     const closeStatusWindow = () => {
         setStatusActive(false)
-        setTimeout(() => reset(), 200)
+        setTimeout(() => reset(), 150);
     }
 
     return (
-        <CSSTransition
-            in={modalStatusActive}
-            timeout={200}
-            classNames="my-node"
-            unmountOnExit
-        >
+        <CSSTransition in={modalStatusActive} timeout={150} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -81,22 +75,18 @@ const StatusModalWindow = () => {
                                 }
                             >
                                 <input
-                                    placeholder={`Write status priority from 1 to ${maxArrLength}`}
-                                    className={
-                                        errors?.priority
-                                            ? "form__input error-input"
-                                            : "form__input"
-                                    }
+                                    placeholder={`Write status priority from 0 to ${columnOrderLength}`}
+                                    className={errors?.priority ? "form__input error-input" : "form__input"}
                                     autoComplete="off"
                                     {...register("priority", {
                                         required: "cannot be empty",
                                         min: {
-                                            value: 1,
-                                            message: "cannot be less than 1",
+                                            value: 0,
+                                            message: "cannot be less than 0"
                                         },
                                         max: {
-                                            value: maxArrLength,
-                                            message: `cannot be more than ${maxArrLength}`,
+                                            value: columnOrderLength,
+                                            message: `cannot be more than ${columnOrderLength}`
                                         },
                                         validate: {
                                             number: (value) =>

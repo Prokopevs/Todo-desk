@@ -4,6 +4,7 @@ import { useAppDispatch } from "../hooks/redux"
 import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
 import { IUser } from "../models/IUser"
 import { useNavigate } from "react-router-dom"
+import { setInitialData } from "../Store/reducers/dndSlice"
 
 const Logout = () => {
     const dispatch = useAppDispatch()
@@ -14,6 +15,7 @@ const Logout = () => {
         localStorage.removeItem("rememberMe")
         dispatch(setAuth(false))
         dispatch(setUser({} as IUser))
+        dispatch(setInitialData())
         navigate("/")
     }
 

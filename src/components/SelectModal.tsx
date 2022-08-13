@@ -6,6 +6,8 @@ import { useAppSelector } from "../hooks/redux"
 const SelectModal = ({ changesActive }) => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
     const { setModalTaskActive, setStatusActive } = React.useContext(ModalWindowContext)
+    const { data } = useAppSelector((state) => state.dndSlice)
+    const columLength = data.columnOrder.length
 
     return (
         <CSSTransition
@@ -14,11 +16,8 @@ const SelectModal = ({ changesActive }) => {
             classNames="my-node"
             unmountOnExit
         >
-            <div className={isAuth ? "selectChanges" : "selectChanges demo"}>
-                <p
-                    className="selectChanges_task"
-                    onClick={() => setModalTaskActive(true)}
-                >
+            <div className={columLength > 3 ? isAuth ? "selectChanges" : "selectChanges demo" : isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"}>
+                <p className="selectChanges_task" onClick={() => setModalTaskActive(true)}>
                     Task
                 </p>
                 <p className="selectChanges_status" onClick={() => setStatusActive(true)}>
