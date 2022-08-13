@@ -20,6 +20,11 @@ interface DndState {
     result: IResult,
     start: IColumn,
     finish: IColumn
+    activePen: boolean
+    lineArrays: {
+        firstArray: number[]
+        secondArray: number[]
+    }
 }
   
 const initialState: DndState = {
@@ -45,6 +50,11 @@ const initialState: DndState = {
         name: "",
         taskIds: [],
     },
+    activePen: false,
+    lineArrays: {
+        firstArray: [],
+        secondArray: [],
+    }
 }
 
 export const dndSlice = createSlice({
@@ -135,10 +145,15 @@ export const dndSlice = createSlice({
             const deleteArr = state.data.columns[action.payload.column.id].taskIds // массив где произойдёт удаление таски
             const index = deleteArr.indexOf(action.payload.id) // индекс удаляемого элемента в массиве
             deleteArr.splice(index, 1) 
-
+    
             delete state.data.tasks[action.payload.id] 
         },
         addTaskQuery: (state, action: PayloadAction<IAddTask>) => {},
+        deleteStatus: (state, action: PayloadAction<string>) => { 
+            state.data.columnOrder.splice(state.data.columnOrder.indexOf(action.payload), 1)
+
+            delete state.data.columns[action.payload]
+        },
         addTask: (state, action: PayloadAction<IAddTask>) => {
             const { content, priority, status_id, id } = action.payload
             const newTaskValue = { 
@@ -169,10 +184,17 @@ export const dndSlice = createSlice({
         },
         setInitialData: (state) => {
             state.data = initialData
+        setLineArray: (state, action: PayloadAction<number>) => {
+            let arr: number[] = []
+            for(let i=1; i<=action.payload; i++) {
+                arr.push(3*i-1)
+            }
+            state.lineArrays["firstArray"] = arr
+            state.lineArrays["secondArray"] = arr.map((item) => item + 1)
         },
     }
 })
 
-export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addTaskQuery, addStatus, addStatusQuery,changeTaskContent, setInitialData } = dndSlice.actions
 
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addTaskQuery, addStatus, changeTaskContent, deleteStatus, setLineArray, addStatusQuery,changeTaskContent, setInitialData } = dndSlice.actions
 export default dndSlice.reducer

@@ -1,3 +1,4 @@
+import editModeSlice from './reducers/editModeSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import authorizationSlice from './reducers/authorizationSlice'
@@ -13,7 +14,7 @@ export const store = configureStore({
         authorizationSlice,
         dndSlice,
         prioritySlice,
-        contentSlice,
+        editModeSlice,
     },
     middleware: [saga]
 })

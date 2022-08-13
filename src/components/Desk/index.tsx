@@ -1,10 +1,11 @@
 import React from "react"
 import AddTask from "../AddTask"
 import Status from "./Status"
-import { IDesk } from "../../models/IDesk"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import priorityArray from "../../components/Desk/priorityArray"
+import SelectModal from "../SelectModal"
+import { useSessionStorage } from "../../hooks/useSessionStorage"
+import priorityArray from "../../data/Desk/priorityArray"
 import {
     reorderTaskInDifferentStatus,
     reorderTaskInOwnStatus,
@@ -12,14 +13,13 @@ import {
     setResult,
     setStart,
 } from "../../Store/reducers/dndSlice"
-import SelectModal from "../SelectModal"
-import { useSessionStorage } from "../../hooks/useSessionStorage"
 
 const Desk = () => {
     const dispatch = useAppDispatch()
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
     const [changesActive, setChangesActive] = useSessionStorage("SelectChanges", false)
     const data = useAppSelector((state) => state.dndSlice.data)
+    console.log(data)
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result
@@ -67,21 +67,23 @@ const Desk = () => {
                                     key={column.id}
                                     column={column}
                                     tasks={tasks}
-                                    priorityArray={priorityArray}
+                                    priorityArray={priorityArray}             
                                 />
                             )
                         })}
                     </ul>
                     {!isAuth && (
-                    <p className="demo__description">
-                        This is only a demo, login to get full functionality
-                    </p>
-                )}
+                        <p className="demo__description">
+                            This is only a demo, all your work will not be saved. Log in
+                            to get full functionality
+                        </p>
+                    )}
                 </div>
-                <SelectModal
+                <SelectModal changesActive={changesActive} />
+                <AddTask
                     changesActive={changesActive}
+                    setChangesActive={setChangesActive}
                 />
-                <AddTask changesActive={changesActive} setChangesActive={setChangesActive} />
             </div>
         </DragDropContext>
     )

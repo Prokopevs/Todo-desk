@@ -1,14 +1,17 @@
 import React from "react"
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+
 import { ModalWindowContext } from "../../App";
 import { addStatusQuery } from "../../Store/reducers/dndSlice";
+import { ModalWindowContext } from "../../App"
+import { addStatus } from "../../Store/reducers/dndSlice"
 
 type Inputs = {
-    name: string,
-    priority: string,
-};
+    name: string
+    priority: string
+}
 
 const StatusModalWindow = () => {
     const dispatch = useAppDispatch()
@@ -36,29 +39,47 @@ const StatusModalWindow = () => {
                         <div className="block__line block__line-form"></div>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-
                             <p className="modalWindow__text-description">Name</p>
-                            <div className={errors?.name ? "form__input_holder error-holder" : "form__input_holder"}>
+                            <div
+                                className={
+                                    errors?.name
+                                        ? "form__input_holder error-holder"
+                                        : "form__input_holder"
+                                }
+                            >
                                 <input
                                     placeholder="Write status name here..."
-                                    className={errors?.name ? "form__input error-input" : "form__input "}
+                                    className={
+                                        errors?.name
+                                            ? "form__input error-input"
+                                            : "form__input "
+                                    }
                                     autoComplete="off"
-                                    {...register("name",
-                                    { required: "cannot be empty" })}
+                                    {...register("name", { required: "cannot be empty" })}
                                 ></input>
                             </div>
                             <div className="error__message">
-                                {errors?.name && <p className="error__message_text">{errors?.name?.message}</p>}
+                                {errors?.name && (
+                                    <p className="error__message_text">
+                                        {errors?.name?.message}
+                                    </p>
+                                )}
                             </div>
 
                             <p className="modalWindow__text-description">Priority</p>
-                            <div className={errors?.priority ? "form__input_holder error-holder margin" : "form__input_holder margin"}>
+                            <div
+                                className={
+                                    errors?.priority
+                                        ? "form__input_holder error-holder margin"
+                                        : "form__input_holder margin"
+                                }
+                            >
                                 <input
                                     placeholder={`Write status priority from 0 to ${columnOrderLength}`}
                                     className={errors?.priority ? "form__input error-input" : "form__input"}
                                     autoComplete="off"
-                                    {...register("priority",
-                                        { required: "cannot be empty",
+                                    {...register("priority", {
+                                        required: "cannot be empty",
                                         min: {
                                             value: 0,
                                             message: "cannot be less than 0"
@@ -68,19 +89,25 @@ const StatusModalWindow = () => {
                                             message: `cannot be more than ${columnOrderLength}`
                                         },
                                         validate: {
-                                            number: (value) => /[0-9]/.test(value) || 'must be a number' 
-                                        }
+                                            number: (value) =>
+                                                /[0-9]/.test(value) || "must be a number",
+                                        },
                                     })}
                                 ></input>
                             </div>
                             <div className="error__message">
-                                {errors?.priority && <p className="error__message_text top">{errors?.priority?.message}</p>}
+                                {errors?.priority && (
+                                    <p className="error__message_text top">
+                                        {errors?.priority?.message}
+                                    </p>
+                                )}
                             </div>
 
                             <div className="block__line block__line-form"></div>
 
-                            <button type="submit" className="block__button submit big mb">Submit</button>
-
+                            <button type="submit" className="block__button submit big mb">
+                                Submit
+                            </button>
                         </form>
                     </div>
 

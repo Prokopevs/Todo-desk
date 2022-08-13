@@ -6,11 +6,29 @@
     border-radius: 4px;
 }
 
+.block__line-form {
+    width: 100%;
+}
+
+.block__line-task {
+    width: 40%;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.block__line-task-mt {
+    margin-top: 0px;
+}
+
 .block__priority {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px 0;
+}
+
+li:first-child {
+    margin-top: -3px;
 }
 
 .block__button {
@@ -23,6 +41,7 @@
     width: 70%;
     height: 32px;
     border-radius: 20px;
+    border: none;
 }
 
 .block__button.big {
@@ -41,6 +60,10 @@
     color: #E1E1E1;
 
     position: relative;
+}
+
+.block__button.task {
+    width: 80%;
 }
 
 .block__button.submit {

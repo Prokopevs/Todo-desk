@@ -2,11 +2,12 @@ import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { IDesk } from "../../models/IDesk"
 import PriorityButtons from "../PriorityButtons"
 import priorityArray from "../Desk/priorityArray";
 import { addTaskQuery } from "../../Store/reducers/dndSlice";
+import { addTask } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App";
+import priorityArray from "../../data/Desk/priorityArray"
 
 interface Inputs {
     content: string

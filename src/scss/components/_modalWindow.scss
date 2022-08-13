@@ -32,6 +32,10 @@
     margin-bottom: 10px;
 }
 
+.modalWindow__button.task {
+    margin-bottom: 8px;
+}
+
 .modalWindow_content {
     position: relative;
     width: 430px;
@@ -97,16 +101,6 @@
 
     &:hover {
         --colorLine: #636161;
-    }
-}
-
-.close__button.task {
-    --size: 13px;
-    --heightLine: 2px;
-    --colorLine: #a3a1a1;
-
-    &:hover {
-        --colorLine: #777777;
     }
 }
 

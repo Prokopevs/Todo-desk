@@ -2,15 +2,17 @@ import { IColumn } from "./dnd/IData"
 interface IPriority {
     color: string
     description: string
+    index: number
 }
 
-interface IPriorityArray {
+export interface IPriorityArray {
+    filter(arg0: (item: any) => boolean)
     [K: number]: IPriority
 }
 
 export interface ITasksProps {
     task: any
-    index: number
+    index?: number
     priorityArray: IPriorityArray
     column: IColumn
 }
