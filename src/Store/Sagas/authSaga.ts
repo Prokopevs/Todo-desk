@@ -46,7 +46,6 @@ export function* handleCheckAuth() {
         yield put(setUser(response.data))
         yield put(setAuth(true))
         yield handleData()
-        // localStorage.removeItem("6")
     } catch (e) {
         console.log(e.response?.data?.message);
         yield put(setAuth(false))

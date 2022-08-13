@@ -43,12 +43,12 @@ const Desk = () => {
 
         // Moving in one list
         if (start === finish) {
-            dispatch(reorderTaskInOwnStatus())
+            dispatch(reorderTaskInOwnStatus(isAuth))
             return
         }
 
         // Moving from one list to another
-        dispatch(reorderTaskInDifferentStatus())
+        dispatch(reorderTaskInDifferentStatus(isAuth))
     }
 
     return (

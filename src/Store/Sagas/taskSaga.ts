@@ -19,7 +19,7 @@ export function* handleGetTask() {
         yield put(setTasks(taskObj))
     } catch (e) {
         console.log(e.response?.data?.message);
-    }
+    } 
 }
 
 export function* handlePostTask(action) {

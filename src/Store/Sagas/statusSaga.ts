@@ -1,5 +1,6 @@
 import { takeEvery, put, call, fork } from 'redux-saga/effects';
 import { getStatusService, postStatusService } from '../../services/StatusService';
+import { setLoading } from '../reducers/authorizationSlice';
 import { addStatus, setColumnOrder, setStatuses } from '../reducers/dndSlice';
 
 export function* handleGetStatus() {
@@ -15,7 +16,6 @@ export function* handleGetStatus() {
                 StatusObj[arr[i].id].id = String(StatusObj[arr[i].id].id) // "3" = {id: '3', name: 'Progress2'}
 
                 let taskIdsNumbers = localStorage.getItem(`${arr[i].id}`) // "1,2"
-                console.log(taskIdsNumbers)
                 let taskIdsArr
                 if(taskIdsNumbers) {
                     taskIdsArr = taskIdsNumbers.split(',') //["1","2"]
@@ -29,7 +29,7 @@ export function* handleGetStatus() {
         yield put(setColumnOrder(columnOrderArr))
     } catch (e) {
         console.log(e.response?.data?.message);
-    }
+    } 
 }
 
 export function* handlePostStatus(action) {
