@@ -5,8 +5,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
 import { ModalWindowContext } from "../../App";
 import { addStatusQuery } from "../../Store/reducers/dndSlice";
-import { ModalWindowContext } from "../../App"
-import { addStatus } from "../../Store/reducers/dndSlice"
 
 type Inputs = {
     name: string

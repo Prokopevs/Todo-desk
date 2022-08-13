@@ -19,6 +19,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
     
     // console.log(lineArrays)
     // console.log(columnId)
+    console.log(column.name)
     return (
         <Droppable droppableId={column.id}>
             {(provided) => (
@@ -26,7 +27,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
                     <li className="col-md-4 block">
                         {columnId !== 0 && lineArrays["firstArray"].includes(columnId) && <Line />}
                         <div className="block__status-inner">
-                            <h1 className="block__status_name">{column.title}</h1>
+                            <h1 className="block__status_name">{column.name}</h1>
                             <button
                                 className="block__minus"
                                 onClick={() => dispatch(deleteStatus(column.id))}

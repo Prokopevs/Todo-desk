@@ -92,7 +92,7 @@ export const dndSlice = createSlice({
             // -------------------------- //
             if(action.payload) {
                 let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "1,2"
-                let taskIdsArr = taskIdsNumbers.split(',') //["1","2"]
+                let taskIdsArr = taskIdsNumbers!.split(',') //["1","2"]
                     
                 taskIdsArr.splice(state.result.source.index!, 1) //["2"]
                 taskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) //["2","1"]
@@ -114,7 +114,7 @@ export const dndSlice = createSlice({
             // -------------------------- //
             if(action.payload) {
                 let startTaskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "1,2"
-                let startTaskIdsArr = startTaskIdsNumbers.split(',') //["1","2"]
+                let startTaskIdsArr = startTaskIdsNumbers!.split(',') //["1","2"]
                 startTaskIdsArr.splice(state.result.source.index!, 1) // удалили элемент, который тянули в LS
                 if (startTaskIdsArr.length === 0) {
                     localStorage.removeItem(`${state.start.id}`)
@@ -184,6 +184,7 @@ export const dndSlice = createSlice({
         },
         setInitialData: (state) => {
             state.data = initialData
+        },
         setLineArray: (state, action: PayloadAction<number>) => {
             let arr: number[] = []
             for(let i=1; i<=action.payload; i++) {
@@ -196,5 +197,5 @@ export const dndSlice = createSlice({
 })
 
 
-export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addTaskQuery, addStatus, changeTaskContent, deleteStatus, setLineArray, addStatusQuery,changeTaskContent, setInitialData } = dndSlice.actions
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addTaskQuery, addStatus, changeTaskContent, deleteStatus, setLineArray, addStatusQuery, setInitialData } = dndSlice.actions
 export default dndSlice.reducer
