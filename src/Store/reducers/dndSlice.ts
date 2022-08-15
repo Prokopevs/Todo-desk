@@ -195,14 +195,26 @@ export const dndSlice = createSlice({
         },
         addStatusQuery: (state, action: PayloadAction<IAddStatus>) => {},
         addStatus: (state, action: PayloadAction<IAddStatus>) => {
-            const {id, name, priority} = action.payload
-            const newColumnValue = {
+            if (action.payload.isAuth) {
+                const {id, name, priority} = action.payload
+                const newColumnValue = {
                 id: String(id), //4
                 name: name,
                 taskIds: [],
+                }
+                state.data.columns[`${id}`] = newColumnValue // добавили а объект новое свойство
+                state.data.columnOrder.splice(Number(priority), 0, `${id}`)
+            } else {
+                const lastColumnItem = Object.keys(state.data.columns)[Object.keys(state.data.columns).length - 1] // "3"
+                const newIndexToColumn = lastColumnItem ? Number(lastColumnItem) + 1 : 1 // 4
+                const newColumnValue = {
+                    id: String(newIndexToColumn), //"4"
+                    name: action.payload.name,
+                    taskIds: [],
+                    }
+                state.data.columns[String(newIndexToColumn)] = newColumnValue // добавили а объект новое свойство
+                state.data.columnOrder.splice(Number(action.payload.priority) - 1, 0, String(newIndexToColumn))
             }
-            state.data.columns[`${id}`] = newColumnValue // добавили а объект новое свойство
-            state.data.columnOrder.splice(Number(priority), 0, `${id}`)
         },
         changeTaskContentQuery: (state, action: PayloadAction<IChangeTaskContent>) => {},
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {

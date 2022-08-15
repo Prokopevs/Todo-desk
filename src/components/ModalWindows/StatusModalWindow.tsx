@@ -9,6 +9,7 @@ import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dn
 type Inputs = {
     name: string
     priority: string
+    isAuth: boolean
 }
 
 const StatusModalWindow = () => {
@@ -21,6 +22,7 @@ const StatusModalWindow = () => {
     const columnOrderLength = data.columnOrder.length
     const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        data["isAuth"] = isAuth
         if(isAuth) {
             dispatch(addStatusQuery(data))
         } else {
