@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import PriorityButtons from "../PriorityButtons"
-import { addTaskQuery } from "../../Store/reducers/dndSlice";
+import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App";
 import priorityArray from "../../data/Desk/priorityArray"
 
@@ -11,6 +11,7 @@ interface Inputs {
     content: string
     priority: number
     status_id: string
+    isAuth: boolean
 }
 
 const TaskModalWindow = () => {
@@ -18,7 +19,9 @@ const TaskModalWindow = () => {
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const [changePrioprity, setChangePrioprity] = React.useState(false)
     const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
-    const { data } = useAppSelector((state) => state.dndSlice)
+    const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
+    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
     const firstItemOfColumnOrder = data.columnOrder[0]
 
     const {
@@ -30,14 +33,26 @@ const TaskModalWindow = () => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data["priority"] = priority
         data["status_id"] = firstItemOfColumnOrder
-        dispatch(addTaskQuery(data))
-        setModalTaskActive(false)
-        reset()
+        data["isAuth"] = isAuth
+        if (isAuth) {
+            dispatch(addTaskQuery(data))
+        } else {
+            dispatch(addTask(data))
+            closeTaskWindow()
+        }
     }
+
+    React.useEffect(() => {
+        if(queryFlag) {
+            closeTaskWindow()
+            dispatch(setQueryFlag(false))
+        }
+    }, [queryFlag])
+
     const closeTaskWindow = () => {
         setModalTaskActive(false)
-        setTimeout(() => reset(), 150);
-        setTimeout(() => setChangePrioprity(false), 150);
+        setTimeout(() => reset(), 200);
+        setTimeout(() => setChangePrioprity(false), 200);
     }
 
     return (
@@ -101,7 +116,7 @@ const TaskModalWindow = () => {
                             <div className="block__line block__line-form"></div>
                             <button
                                 type="submit"
-                                disabled={changePrioprity}
+                                disabled={changePrioprity || queryLoading}
                                 className="block__button submit big mb"
                             >
                                 Add

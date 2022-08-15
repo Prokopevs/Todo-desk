@@ -11,6 +11,7 @@ import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
 import { IStatusObj } from '../../models/Status/IStatusObj';
 import { stringify } from 'querystring';
 import { ITasksObj } from '../../models/Task/ITasksObj';
+import { IDeleteStatus } from '../../models/Status/IDeleteStatus';
 interface DndState {
     data: {
         tasks: ITasks,
@@ -25,6 +26,7 @@ interface DndState {
         firstArray: number[]
         secondArray: number[]
     }
+    queryFlag: boolean
 }
   
 const initialState: DndState = {
@@ -54,7 +56,8 @@ const initialState: DndState = {
     lineArrays: {
         firstArray: [],
         secondArray: [],
-    }
+    },
+    queryFlag: false
 }
 
 export const dndSlice = createSlice({
@@ -91,13 +94,14 @@ export const dndSlice = createSlice({
 
             // -------------------------- //
             if(action.payload) {
-                let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "1,2"
-                let taskIdsArr = taskIdsNumbers!.split(',') //["1","2"]
+                let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
+                let taskIdsArr = JSON.parse(taskIdsNumbers) //["1","2"]
+                console.log(taskIdsArr)
                     
                 taskIdsArr.splice(state.result.source.index!, 1) //["2"]
                 taskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) //["2","1"]
-                localStorage.setItem(`${state.start.id}`, `${taskIdsArr.join(",")}`)
-        }
+                localStorage.setItem(`${state.start.id}`, JSON.stringify(taskIdsArr))
+            }
         },
         reorderTaskInDifferentStatus: (state, action: PayloadAction<boolean>) => {
             const startTaskIds = Array.from(state.start.taskIds) // массив с тасками в стартовом статусе taskIds: ["0", "1"]
@@ -113,24 +117,19 @@ export const dndSlice = createSlice({
 
             // -------------------------- //
             if(action.payload) {
-                let startTaskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "1,2"
-                let startTaskIdsArr = startTaskIdsNumbers!.split(',') //["1","2"]
+                let startTaskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
+                let startTaskIdsArr = JSON.parse(startTaskIdsNumbers) //["1","2"]
                 startTaskIdsArr.splice(state.result.source.index!, 1) // удалили элемент, который тянули в LS
                 if (startTaskIdsArr.length === 0) {
                     localStorage.removeItem(`${state.start.id}`)
                 } else {
-                    localStorage.setItem(`${state.start.id}`, `${startTaskIdsArr.join(",")}`)
+                    localStorage.setItem(`${state.start.id}`, JSON.stringify(startTaskIdsArr))
                 }
 
-                let finishTaskIdsNumbers = localStorage.getItem(`${state.finish.id}`) // "1,2"
-                let finishTaskIdsArr
-                    if(finishTaskIdsNumbers) {
-                        finishTaskIdsArr = finishTaskIdsNumbers.split(',') //["1","2"]
-                    } else {
-                        finishTaskIdsArr = []
-                    }
+                let finishTaskIdsNumbers = localStorage.getItem(`${state.finish.id}`) // "["1,2"]"
+                let finishTaskIdsArr = finishTaskIdsNumbers ? JSON.parse(finishTaskIdsNumbers) : []
                 finishTaskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили элемент в новое место
-                localStorage.setItem(`${state.finish.id}`, `${finishTaskIdsArr.join(",")}`)
+                localStorage.setItem(`${state.finish.id}`, JSON.stringify(finishTaskIdsArr))
             }
         },
         setOpenPriorityСolumn: (state, action: PayloadAction<string>) => {
@@ -141,19 +140,40 @@ export const dndSlice = createSlice({
             const task = state.data.tasks[action.payload.id]
             task.priority = action.payload.index
         },
+        deleteTaskQuery: (state, action: PayloadAction<IDeleteTask>) => {},
         deleteTask: (state, action: PayloadAction<IDeleteTask>) => { 
+            console.log(action.payload)
             const deleteArr = state.data.columns[action.payload.column.id].taskIds // массив где произойдёт удаление таски
             const index = deleteArr.indexOf(action.payload.id) // индекс удаляемого элемента в массиве
             deleteArr.splice(index, 1) 
-    
             delete state.data.tasks[action.payload.id] 
+
+            if (action.payload.isAuth) {
+                let stringArr = localStorage.getItem(`${action.payload.column.id}`) // "["1,2"]"
+                let deleteArr = JSON.parse(stringArr) // ["1","2"]
+                const index = deleteArr.indexOf(action.payload.id) // индекс удаляемого элемента в массиве
+                deleteArr.splice(index, 1)
+                if(deleteArr.length == 0) {
+                    localStorage.removeItem(`${action.payload.column.id}`)
+                } else {
+                    localStorage.setItem(`${action.payload.column.id}`, JSON.stringify(deleteArr))
+                }
+            }
+        },
+        deleteStatusQuery: (state, action: PayloadAction<IDeleteStatus>) => {},
+        deleteStatus: (state, action: PayloadAction<IDeleteStatus>) => { 
+            state.data.columnOrder.splice(state.data.columnOrder.indexOf(action.payload.column.id), 1)
+            delete state.data.columns[action.payload.column.id]
+
+            if (action.payload.isAuth) {
+                let stringArr = localStorage.getItem(`${action.payload.column.id}`) // "["1,2"]"
+                
+                if(stringArr) {
+                    localStorage.removeItem(`${action.payload.column.id}`)
+                }
+            }
         },
         addTaskQuery: (state, action: PayloadAction<IAddTask>) => {},
-        deleteStatus: (state, action: PayloadAction<string>) => { 
-            state.data.columnOrder.splice(state.data.columnOrder.indexOf(action.payload), 1)
-
-            delete state.data.columns[action.payload]
-        },
         addTask: (state, action: PayloadAction<IAddTask>) => {
             const { content, priority, status_id, id } = action.payload
             const newTaskValue = { 
@@ -165,8 +185,13 @@ export const dndSlice = createSlice({
             state.data.tasks[`${id}`] = newTaskValue
             state.data.columns[`${status_id}`].taskIds.push(String(id))
             
-            let taskIdsNumbers = localStorage.getItem(`${status_id}`)
-            localStorage.setItem(`${status_id}`, `${taskIdsNumbers ? `${taskIdsNumbers},` : ""}${id}`)
+            if(action.payload.isAuth) {
+                let taskIdsArr = localStorage.getItem(`${status_id}`)
+                const parsedTaskIdsArr = taskIdsArr ? JSON.parse(taskIdsArr) : []
+                parsedTaskIdsArr.splice(parsedTaskIdsArr.length, 0, String(id))
+                const data = JSON.stringify(parsedTaskIdsArr)
+                localStorage.setItem(`${status_id}`, data)
+            }
         },
         addStatusQuery: (state, action: PayloadAction<IAddStatus>) => {},
         addStatus: (state, action: PayloadAction<IAddStatus>) => {
@@ -179,6 +204,7 @@ export const dndSlice = createSlice({
             state.data.columns[`${id}`] = newColumnValue // добавили а объект новое свойство
             state.data.columnOrder.splice(Number(priority), 0, `${id}`)
         },
+        changeTaskContentQuery: (state, action: PayloadAction<IChangeTaskContent>) => {},
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
             state.data.tasks[action.payload.id].content = action.payload.text
         },
@@ -193,9 +219,13 @@ export const dndSlice = createSlice({
             state.lineArrays["firstArray"] = arr
             state.lineArrays["secondArray"] = arr.map((item) => item + 1)
         },
+        setQueryFlag: (state, action: PayloadAction<boolean>) => {
+            state.queryFlag = action.payload
+        },
     }
 })
 
 
-export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, addTask, addTaskQuery, addStatus, changeTaskContent, deleteStatus, setLineArray, addStatusQuery, setInitialData } = dndSlice.actions
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag } = dndSlice.actions
+
 export default dndSlice.reducer

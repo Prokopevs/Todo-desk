@@ -3,4 +3,5 @@ export interface IAddTask {
     priority: number
     content: string
     status_id: string
+    isAuth: boolean
 }

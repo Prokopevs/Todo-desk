@@ -19,6 +19,7 @@ const Desk = () => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
     const [changesActive, setChangesActive] = useSessionStorage("SelectChanges", false)
     const data = useAppSelector((state) => state.dndSlice.data)
+    const columnsLength = Object.keys(data.columns).length
     console.log(data)
 
     const onDragEnd = (result) => {
@@ -56,21 +57,28 @@ const Desk = () => {
             <div className="row margin">
                 <div className="col-12 desk">
                     <ul className="row row-padding">
-                        {data.columnOrder.map((columnId) => {
-                            const column = data.columns[columnId] // id: 'column-1' name: 'To do', taskIds: ['0', '1']
-                            const tasks = column.taskIds.map(
-                                (taskId) => data.tasks[taskId]
-                            )
-
-                            return (
-                                <Status
-                                    key={column.id}
-                                    column={column}
-                                    tasks={tasks}
-                                    priorityArray={priorityArray}             
-                                />
-                            )
-                        })}
+                        {columnsLength ? (
+                            data.columnOrder.map((columnId) => {
+                                const column = data.columns[columnId] // id: 'column-1' name: 'To do', taskIds: ['0', '1']
+                                const tasks = column.taskIds.map(
+                                    (taskId) => data.tasks[taskId]
+                                )
+                                return (
+                                    <Status
+                                        key={column.id}
+                                        column={column}
+                                        tasks={tasks}
+                                        priorityArray={priorityArray}
+                                    />
+                                )
+                            })
+                        ) : (
+                            <div className="demo__center">
+                                <p className="demo__text">
+                                    Click on plus to add status
+                                </p>
+                            </div>
+                        )}
                     </ul>
                     {!isAuth && (
                         <p className="demo__description">

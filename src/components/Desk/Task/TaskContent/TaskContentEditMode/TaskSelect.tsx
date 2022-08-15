@@ -1,19 +1,30 @@
 import React from "react"
-import { useAppDispatch } from "../../../../../hooks/redux"
+import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux"
 import { ITasksContentEditMode } from "../../../../../models/ITasksContent"
 import { container, vector } from "../../../../../pictures"
-import { deleteTask } from "../../../../../Store/reducers/dndSlice"
+import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dndSlice"
+import { setDeleteClick } from "../../../../../Store/reducers/editModeSlice"
 
 const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, column }) => {
     const dispatch = useAppDispatch()
+    const { isOpen } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
+    const { queryLoading, onDeleteClick } = useAppSelector((state) => state.editModeSlice)
+    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
 
     const deleteTaskFunc = (id: string) => {
+        dispatch(setDeleteClick(true))
         if (column !== undefined) {
             const obj = {
                 id: id,
                 column: column,
+                isAuth: isAuth
             }
-            dispatch(deleteTask(obj))
+            if (isAuth) {
+                dispatch(deleteTaskQuery(obj)) 
+            } else {
+                dispatch(deleteTask(obj))
+                dispatch(setDeleteClick(false))
+            }
         }
     }
 
@@ -26,6 +37,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                         <button
                             className="block__content_selection_button delete"
                             onClick={() => deleteTaskFunc(task.id)}
+                            disabled={onDeleteClick}
                         >
                             <img
                                 className="block__content_selection_img delete"
@@ -38,7 +50,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                         <button
                             className="block__content_selection_button apply"
                             type="submit"
-                            disabled={!isValid}
+                            disabled={!isValid || isOpen || queryLoading}
                         >
                             <img
                                 className="block__content_selection_img apply"

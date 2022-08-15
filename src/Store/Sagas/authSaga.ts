@@ -3,12 +3,12 @@ import AuthService from "../../services/AuthService";
 import { checkAuthService } from '../../services/CheckAuthService';
 import { setAuth, setLoading, setUser } from '../reducers/authorizationSlice';
 import { handleGetStatus } from './statusSaga';
-import { handleGetTask } from './taskSaga';
+import { handleDeleteTask, handleGetTask } from './taskSaga';
 
 export function* handleData() {
     yield all([
         fork(handleGetStatus),
-        fork(handleGetTask),
+        fork(handleGetTask)
     ])
 }
 
@@ -45,6 +45,7 @@ export function* handleCheckAuth() {
         const response = yield call(checkAuthService)
         yield put(setUser(response.data))
         yield put(setAuth(true))
+        // localStorage.removeItem("6")
         yield handleData()
     } catch (e) {
         console.log(e.response?.data?.message);

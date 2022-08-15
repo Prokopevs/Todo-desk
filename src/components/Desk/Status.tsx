@@ -3,7 +3,7 @@ import Tasks from "./Tasks"
 import { Droppable } from "react-beautiful-dnd"
 import { IStatus } from "../../models/IStatus"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { deleteStatus, setLineArray } from "../../Store/reducers/dndSlice"
+import { deleteStatus, deleteStatusQuery, setLineArray } from "../../Store/reducers/dndSlice"
 import Line from "./Line"
 
 const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) => {
@@ -11,15 +11,20 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
     const columnId = Number(column.id)
     const lineArrays = useAppSelector((state) => state.dndSlice.lineArrays)
     const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
+    const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
     
     React.useEffect(() => {
         dispatch(setLineArray(Object.keys(columnOrder).length))
-        // console.log("Status")
     }, [column])
-    
-    // console.log(lineArrays)
-    // console.log(columnId)
-    console.log(column.name)
+
+    const handleDelete = () => {
+        const obj = {
+            column: column,
+            isAuth: isAuth
+        }
+        isAuth ? dispatch(deleteStatusQuery(obj)) : dispatch(deleteStatus(obj))
+    }
+
     return (
         <Droppable droppableId={column.id}>
             {(provided) => (
@@ -27,10 +32,12 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
                     <li className="col-md-4 block">
                         {columnId !== 0 && lineArrays["firstArray"].includes(columnId) && <Line />}
                         <div className="block__status-inner">
-                            <h1 className="block__status_name">{column.name}</h1>
+                            <div className="block__wrapper">
+                                <h1 className="block__status_name">{column.name}</h1>
+                            </div>
                             <button
                                 className="block__minus"
-                                onClick={() => dispatch(deleteStatus(column.id))}
+                                onClick={() => handleDelete()}
                             >
                                 <div className="block__minus-line"></div>
                             </button>
