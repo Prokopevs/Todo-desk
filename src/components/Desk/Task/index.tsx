@@ -39,7 +39,8 @@ const Task: React.FC<ITasksProps> = React.memo(
                         }
                     >
                         <div className={editMode ? `` : `pretty__line ${color}`}></div>
-                        <div className="block__content_text_area">
+
+                        <div className={editMode ? "block__content_text_area editMode" : "block__content_text_area"}>
                             <TasksContent
                                 task={task}
                                 editMode={editMode}

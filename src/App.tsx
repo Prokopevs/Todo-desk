@@ -1,7 +1,7 @@
 import React from "react"
 import DashBoard from "./pages/DashBoard"
 import LoginForm from "./pages/LoginForm"
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import RegisterForm from "./pages/RegisterForm"
 import Errors from "./pages/Errors"
 import { useAppSelector, useAppDispatch } from "./hooks/redux"

@@ -1,10 +1,7 @@
 import React from "react"
 import { Draggable } from "react-beautiful-dnd"
 import { ITasksProps } from "../../models/ITasksProps"
-import TasksContent from "./Task/TaskContent/index"
-import { pen } from "../../pictures"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { setEditArray } from "../../Store/reducers/editModeSlice"
+import { useAppSelector } from "../../hooks/redux"
 import Task from "./Task"
 
 const Tasks: React.FC<ITasksProps> = React.memo(

@@ -16,6 +16,13 @@
     margin-bottom: 8px;
 }
 
+@media (max-width: 1399px) {
+    .block__line-task {
+    margin-top: 17px;
+    margin-bottom: 6px;
+    }
+}
+
 .block__line-task-mt {
     margin-top: 0px;
 }
@@ -24,7 +31,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0;
+    margin: 23px 0 8px 0;
+}
+
+@media (max-width: 1399px) {
+    .block__priority {
+        margin: 6px 0 8px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__priority {
+        margin: 0 0 8px 0;
+    }
 }
 
 li:first-child {
@@ -66,6 +85,20 @@ li:first-child {
     width: 80%;
 }
 
+@media (max-width: 1399px) {
+    .block__button.task {
+        height: 27px;  
+        margin: 9px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.task {
+        margin: 9px 0;
+        height: 25px; 
+    }
+}
+
 .block__button.submit {
     background-color: #7AD58E;
     box-shadow: -1px 1px 2px rgba(104, 183, 122, 0.2), 1px -1px 2px rgba(104, 183, 122, 0.2), -1px -1px 2px rgba(128, 223, 149, 0.9), 1px 1px 3px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
@@ -95,6 +128,22 @@ li:first-child {
     font-size: 28px;
     color: #fff;
     text-decoration: none !important;
+}
+
+@media (max-width: 1399px) {
+    .block__button.demo {
+        width: 180px;
+        height: 48px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.demo {
+        width: 165px;
+        height: 44px;
+        font-size: 24px;
+    }
 }
 
 .block__button.mr1 {
@@ -168,4 +217,10 @@ li:first-child {
     font-size: 16px;
 
     color: #E1E1E1;
+}
+
+@media (max-width: 1199px) {
+    .block__button_text {
+        font-size: 15px;
+    }
 }

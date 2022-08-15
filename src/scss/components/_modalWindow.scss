@@ -36,6 +36,18 @@
     margin-bottom: 8px;
 }
 
+@media (max-width: 1399px) {
+    .modalWindow__button.task {
+        margin-bottom: 7px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .modalWindow__button.task {
+        margin-bottom: 6px;
+    }
+}
+
 .modalWindow_content {
     position: relative;
     width: 430px;
