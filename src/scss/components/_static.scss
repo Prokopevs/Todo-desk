@@ -6,6 +6,18 @@
     margin: 20px 0 -25px 0;
 }
 
+@media (max-width: 991px) {
+    .demo {
+        margin: 15px 0 -25px 0;
+    }
+}
+
+@media (max-width: 415px) {
+    .demo {
+        margin: 15px 0 -30px 0;
+    }
+}
+
 .demo__description {
     font-family: 'Roboto';
     font-style: normal;
@@ -26,6 +38,20 @@
 @media (max-width: 1199px) {
     .demo__description {
         font-size: 21.5px;
+    }
+}
+
+@media (max-width: 991px) {
+    .demo__description {
+        font-size: 19px;
+        margin: -20px 50px 20px 50px
+    }
+}
+
+@media (max-width: 415px) {
+    .demo__description {
+        font-size: 19px;
+        margin: -20px 50px 20px 28px
     }
 }
 
@@ -62,5 +88,37 @@
         width: 220px;
         height: 48px;
         font-size: 27px;
+    }
+}
+
+@media (max-width: 991px) {
+    .static {
+        width: 190px;
+        height: 40px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .static {
+        width: 220px;
+        height: 44px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 460px) {
+    .static {
+        width: 200px;
+        height: 38px;
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 415px) {
+    .static {
+        width: 180px;
+        height: 37px;
+        font-size: 21px;
     }
 }

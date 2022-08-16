@@ -27,7 +27,7 @@ const TaskPriority: React.FC<ITasksContentEditMode> = ({ task, editMode, priorit
                                         dispatch(setOpenPriorityСolumn(task.id))
                                     }
                                 >
-                                    <p className="block__button_text">
+                                    <p className="block__button_text bottom">
                                         {priorityArray[task.priority].description}
                                     </p>
                                 </button>
