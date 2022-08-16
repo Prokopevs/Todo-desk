@@ -105,10 +105,10 @@ const TaskModalWindow = () => {
                             ) : (
                                 <div className="modalWindow__button">
                                     <button
-                                        className={`block__button ${priorityArray[priority].color} big mr1`}
+                                        className={`block__button ${priorityArray[priority - 1].color} big mr1`}
                                         onClick={() => setChangePrioprity(true)}
                                     >
-                                        {priorityArray[priority].description}
+                                        {priorityArray[priority - 1].description}
                                     </button>
                                 </div>
                             )}

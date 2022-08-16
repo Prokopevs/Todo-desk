@@ -17,7 +17,7 @@ const PriorityButtons = ({ setChangePrioprity }) => {
                 <li className="modalWindow__priority" key={index}>
                     <button
                         className={`block__button ${item.color} big mr1`}
-                        onClick={() => changePrioprity(index)}
+                        onClick={() => changePrioprity(item.index)}
                     >
                         {item.description}
                     </button>

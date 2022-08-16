@@ -3,19 +3,18 @@ import { ITasksContent } from "../../../../models/ITasksContent"
 import TextareaAutosize from "react-textarea-autosize"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux"
-import { changeTaskContent, changeTaskContentQuery, setQueryFlag } from "../../../../Store/reducers/dndSlice"
+import { changeTaskContent, changeTaskContentQuery } from "../../../../Store/reducers/dndSlice"
 import TasksContentEditMode from "./TaskContentEditMode"
-import { takeEditArray } from "../../../../Store/reducers/editModeSlice"
+import { deleteTaskInEditArray, deleteTaskInSuccessArray } from "../../../../Store/reducers/editModeSlice"
 
 interface Inputs {
     id: string
-    text: string
+    content: string
     priority: number
     status_id: string
 }
 
 const TasksContent: React.FC<ITasksContent> = ({
-    
     task,
     editMode,
     priorityArray,
@@ -23,8 +22,8 @@ const TasksContent: React.FC<ITasksContent> = ({
     setEditMod,
 }) => {
     const { priority } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
-    const { queryFlag } = useAppSelector((state) => state.dndSlice)
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector((state) => state.editModeSlice)
     const dispatch = useAppDispatch()
 
     const moveCaretAtEnd = (e) => {
@@ -40,27 +39,31 @@ const TasksContent: React.FC<ITasksContent> = ({
     } = useForm<Inputs>({ mode: "onChange" })
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        data["id"] = task.id // add if(isDirty, isValid)
+        data["id"] = task.id 
         data["priority"] = priority
-        data["status_id"] = column.id
+        data["status_id"] = column.id   
         if(isAuth) {
-            dispatch(changeTaskContentQuery(data))
+            if(prevTaskObj[task.id].priority !== priority  || prevTaskObj[task.id].content !== data.content) {
+                dispatch(changeTaskContentQuery(data))
+            } else {
+                handleClose()
+            }
         } else {
             dispatch(changeTaskContent(data))
             handleClose()
-        }
+        }      
     }
 
     React.useEffect(() => {
-        if(queryFlag) {
+        if(successTasksAfterSagaRequest.includes(task.id)) {
             handleClose()
-            dispatch(setQueryFlag(false))
+            dispatch(deleteTaskInSuccessArray(task.id))
         }
-    }, [queryFlag])
+    }, [successTasksAfterSagaRequest])
 
     const handleClose = () => {
         setEditMod(false)
-        dispatch(takeEditArray(task.id))
+        dispatch(deleteTaskInEditArray(task.id)) // удалить таску из (массива с тасками) которые редактируются
     }
 
     return (
@@ -76,7 +79,7 @@ const TasksContent: React.FC<ITasksContent> = ({
                     autoFocus
                     onFocus={moveCaretAtEnd}
                     autoComplete="off"
-                    {...register("text", {
+                    {...register("content", {
                         required: "cannot be empty",
                     })}
                 />
@@ -85,8 +88,8 @@ const TasksContent: React.FC<ITasksContent> = ({
             )}
 
             <div className="error__message">
-                {errors?.text && (
-                    <p className="error__message_text tasks">{errors?.text?.message}</p>
+                {errors?.content && (
+                    <p className="error__message_text tasks">{errors?.content?.message}</p>
                 )}
             </div>
 

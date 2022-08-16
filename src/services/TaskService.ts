@@ -14,8 +14,8 @@ export const postTaskService = async (id, content, priority, status_id) => {
     return response
 };
 
-export const putTaskService = async (text, id, priority, status_id) => {
-    const response = await $api.put<IPutTask>('/tasks/task', {text, id, priority, status_id})
+export const putTaskService = async (content, id, priority, status_id) => {
+    const response = await $api.put<IPutTask>('/tasks/task', {content, id, priority, status_id})
     return response
 };
 

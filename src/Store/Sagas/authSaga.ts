@@ -45,7 +45,6 @@ export function* handleCheckAuth() {
         const response = yield call(checkAuthService)
         yield put(setUser(response.data))
         yield put(setAuth(true))
-        // localStorage.removeItem("6")
         yield handleData()
     } catch (e) {
         console.log(e.response?.data?.message);

@@ -3,16 +3,14 @@ import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux"
 import { ITasksContentEditMode } from "../../../../../models/ITasksContent"
 import { container, vector } from "../../../../../pictures"
 import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dndSlice"
-import { setDeleteClick } from "../../../../../Store/reducers/editModeSlice"
 
 const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, column }) => {
     const dispatch = useAppDispatch()
     const { isOpen } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
-    const { queryLoading, onDeleteClick } = useAppSelector((state) => state.editModeSlice)
+    const { opasityButtons } = useAppSelector((state) => state.editModeSlice)
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
 
     const deleteTaskFunc = (id: string) => {
-        dispatch(setDeleteClick(true))
         if (column !== undefined) {
             const obj = {
                 id: id,
@@ -23,7 +21,6 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                 dispatch(deleteTaskQuery(obj)) 
             } else {
                 dispatch(deleteTask(obj))
-                dispatch(setDeleteClick(false))
             }
         }
     }
@@ -37,7 +34,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                         <button
                             className="block__content_selection_button delete"
                             onClick={() => deleteTaskFunc(task.id)}
-                            disabled={onDeleteClick}
+                            disabled={opasityButtons["delete"].includes(task.id)}
                         >
                             <img
                                 className="block__content_selection_img delete"
@@ -50,7 +47,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                         <button
                             className="block__content_selection_button apply"
                             type="submit"
-                            disabled={!isValid || isOpen || queryLoading}
+                            disabled={!isValid || isOpen || opasityButtons["apply"].includes(task.id)}
                         >
                             <img
                                 className="block__content_selection_img apply"

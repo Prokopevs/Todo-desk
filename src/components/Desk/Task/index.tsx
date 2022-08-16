@@ -1,6 +1,6 @@
 import React from "react"
 import { pen } from "../../../pictures"
-import { setEditArray } from "../../../Store/reducers/editModeSlice"
+import { addTaskInEditArray } from "../../../Store/reducers/editModeSlice"
 import { useAppDispatch } from "../../../hooks/redux"
 import TasksContent from "./TaskContent"
 import { ITasksProps } from "../../../models/ITasksProps"
@@ -9,12 +9,12 @@ const Task: React.FC<ITasksProps> = React.memo(
     ({ task, index, priorityArray, column }) => {
         const dispatch = useAppDispatch()
 
-        const color = priorityArray[task.priority].color
+        const color = priorityArray[task.priority - 1].color
         const [editMode, setEditMod] = React.useState(false)
 
         const onEditClick = () => {
             setEditMod(true)
-            dispatch(setEditArray(task.id))
+            dispatch(addTaskInEditArray(task.id))
         }
 
         return (

@@ -9,7 +9,6 @@ import { IDeleteTask } from '../../models/dnd/IDeleteTask';
 import { IAddStatus } from '../../models/IAddStatus';
 import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
 import { IStatusObj } from '../../models/Status/IStatusObj';
-import { stringify } from 'querystring';
 import { ITasksObj } from '../../models/Task/ITasksObj';
 import { IDeleteStatus } from '../../models/Status/IDeleteStatus';
 interface DndState {
@@ -57,8 +56,9 @@ const initialState: DndState = {
         firstArray: [],
         secondArray: [],
     },
-    queryFlag: false
+    queryFlag: false,
 }
+
 
 export const dndSlice = createSlice({
     name: 'dnd',
@@ -142,7 +142,6 @@ export const dndSlice = createSlice({
         },
         deleteTaskQuery: (state, action: PayloadAction<IDeleteTask>) => {},
         deleteTask: (state, action: PayloadAction<IDeleteTask>) => { 
-            console.log(action.payload)
             const deleteArr = state.data.columns[action.payload.column.id].taskIds // массив где произойдёт удаление таски
             const index = deleteArr.indexOf(action.payload.id) // индекс удаляемого элемента в массиве
             deleteArr.splice(index, 1) 
@@ -162,35 +161,49 @@ export const dndSlice = createSlice({
         },
         deleteStatusQuery: (state, action: PayloadAction<IDeleteStatus>) => {},
         deleteStatus: (state, action: PayloadAction<IDeleteStatus>) => { 
-            state.data.columnOrder.splice(state.data.columnOrder.indexOf(action.payload.column.id), 1)
-            delete state.data.columns[action.payload.column.id]
-
             if (action.payload.isAuth) {
                 let stringArr = localStorage.getItem(`${action.payload.column.id}`) // "["1,2"]"
-                
                 if(stringArr) {
                     localStorage.removeItem(`${action.payload.column.id}`)
                 }
+            } else {  
+                const taskIdsArr = state.data.columns[action.payload.column.id].taskIds
+                for(let i=0; i<taskIdsArr.length; i++) {
+                    delete state.data.tasks[taskIdsArr[i]]
+                }
             }
+            state.data.columnOrder.splice(state.data.columnOrder.indexOf(action.payload.column.id), 1)
+            delete state.data.columns[action.payload.column.id]
         },
         addTaskQuery: (state, action: PayloadAction<IAddTask>) => {},
         addTask: (state, action: PayloadAction<IAddTask>) => {
-            const { content, priority, status_id, id } = action.payload
-            const newTaskValue = { 
-                id: String(id),
-                content: content, 
-                priority: priority, 
-                isOpen: false 
-            }
-            state.data.tasks[`${id}`] = newTaskValue
-            state.data.columns[`${status_id}`].taskIds.push(String(id))
-            
             if(action.payload.isAuth) {
+                const { content, priority, status_id, id } = action.payload
+                const newTaskValue = { 
+                    id: String(id),
+                    content: content, 
+                    priority: priority, 
+                    isOpen: false 
+                }
+                state.data.tasks[`${id}`] = newTaskValue
+                state.data.columns[`${status_id}`].taskIds.push(String(id))
+
                 let taskIdsArr = localStorage.getItem(`${status_id}`)
                 const parsedTaskIdsArr = taskIdsArr ? JSON.parse(taskIdsArr) : []
                 parsedTaskIdsArr.splice(parsedTaskIdsArr.length, 0, String(id))
                 const data = JSON.stringify(parsedTaskIdsArr)
                 localStorage.setItem(`${status_id}`, data)
+            } else {
+                const newTaskKey = Number(Object.keys(state.data.tasks)[Object.keys(state.data.tasks).length - 1]) + 1
+                console.log(newTaskKey)
+                const newTaskValue = { 
+                    id: String(newTaskKey),
+                    content: action.payload.content, 
+                    priority: action.payload.priority, 
+                    isOpen: false 
+                }
+                state.data.tasks[newTaskKey] = newTaskValue
+                state.data.columns[`${action.payload.status_id}`].taskIds.push(String(newTaskKey))
             }
         },
         addStatusQuery: (state, action: PayloadAction<IAddStatus>) => {},
@@ -198,9 +211,9 @@ export const dndSlice = createSlice({
             if (action.payload.isAuth) {
                 const {id, name, priority} = action.payload
                 const newColumnValue = {
-                id: String(id), //4
-                name: name,
-                taskIds: [],
+                    id: String(id), //4
+                    name: name,
+                    taskIds: [],
                 }
                 state.data.columns[`${id}`] = newColumnValue // добавили а объект новое свойство
                 state.data.columnOrder.splice(Number(priority), 0, `${id}`)
@@ -213,12 +226,12 @@ export const dndSlice = createSlice({
                     taskIds: [],
                     }
                 state.data.columns[String(newIndexToColumn)] = newColumnValue // добавили а объект новое свойство
-                state.data.columnOrder.splice(Number(action.payload.priority) - 1, 0, String(newIndexToColumn))
+                state.data.columnOrder.splice(Number(action.payload.priority), 0, String(newIndexToColumn))
             }
         },
         changeTaskContentQuery: (state, action: PayloadAction<IChangeTaskContent>) => {},
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
-            state.data.tasks[action.payload.id].content = action.payload.text
+            state.data.tasks[action.payload.id].content = action.payload.content
         },
         setInitialData: (state) => {
             state.data = initialData
@@ -233,11 +246,11 @@ export const dndSlice = createSlice({
         },
         setQueryFlag: (state, action: PayloadAction<boolean>) => {
             state.queryFlag = action.payload
-        },
+        }, 
     }
 })
 
 
-export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag } = dndSlice.actions
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag, } = dndSlice.actions
 
 export default dndSlice.reducer
