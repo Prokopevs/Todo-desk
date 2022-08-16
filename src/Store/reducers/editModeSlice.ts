@@ -46,7 +46,7 @@ export const editModeSlice = createSlice({
             state.successTasksAfterSagaRequest.push(action.payload)
         },
         deleteTaskInSuccessArray: (state, action: PayloadAction<string>) => {
-            // state.successTasksAfterSagaRequest.splice(state.successTasksAfterSagaRequest.indexOf(action.payload), 1)
+            state.successTasksAfterSagaRequest.splice(state.successTasksAfterSagaRequest.indexOf(action.payload), 1)
         },
         setPrevTaskObj: (state, action: PayloadAction<IPrevTask>) => {
             state.prevTaskObj = action.payload
