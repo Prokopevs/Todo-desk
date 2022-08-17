@@ -10,6 +10,7 @@ const DashBoard = () => {
 
     localStorage.removeItem("modal")
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { globalErrorMessage } = useAppSelector(state => state.errorMessageSlice)
     const navigate = useNavigate()
 
     React.useEffect(() => {
@@ -17,6 +18,14 @@ const DashBoard = () => {
             navigate('/demo')
         }
     }, [isAuth])
+
+    React.useEffect(() => {
+        if (globalErrorMessage) {
+            navigate("/errors")
+        }
+    }, [])
+
+    if(globalErrorMessage) {return<></>}
 
     if (isAuth) {
         return (

@@ -57,6 +57,14 @@ export const editModeSlice = createSlice({
             //  добавить логику при добавлении таски. В массив  prevTaskObj должен добавляться этот элемент 
             // добавить логику при удалении таски. 
         },
+        addTaskInPrevTaskObj:  (state, action: PayloadAction<IChangePrevTask>) => {
+            const { content, id, priority, status_id } = action.payload
+            const data = { id, priority, content }
+            state.prevTaskObj[id] = data
+        },
+        deleteTaskInPrevTaskObj:  (state, action: PayloadAction<string>) => {
+            delete state.prevTaskObj[action.payload]
+        },
         setOpasityButtons: (state, action: PayloadAction<ISetOpacity>) => {
             state.opasityButtons[action.payload.arrName].push(action.payload.id)
         },
@@ -66,5 +74,5 @@ export const editModeSlice = createSlice({
     }
 })
 
-export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInSuccessArray, setOpasityButtons, removeOpasityButtons, deleteTaskInSuccessArray } = editModeSlice.actions
+export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpasityButtons, removeOpasityButtons, deleteTaskInSuccessArray } = editModeSlice.actions
 export default editModeSlice.reducer

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { login, setRememberMe } from "../Store/reducers/authorizationSlice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { ILoginForm } from "../models/ILoginForm"
+import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 
 type Inputs = {
     password: string,
@@ -16,6 +17,7 @@ type Inputs = {
 const LoginForm = () => {
     const dispatch = useAppDispatch()
     const {isAuth, rememberMe} = useAppSelector(state => state.authorizationSlice)
+    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
     const [loginClick, setloginClick] = React.useState<boolean>(false)
 
     const {
@@ -25,6 +27,7 @@ const LoginForm = () => {
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        dispatch(deleteErrorInfo())
         data["rememberMe"] = rememberMe
         dispatch(login(data))
         setloginClick(true)
@@ -109,11 +112,12 @@ const LoginForm = () => {
                         <button type="submit" className="block__button submit big">
                             Login
                         </button>
+                        {errorInfo && <div className="error_info">{errorInfo}</div>}
                     </form>
                     <p className="login__form_new">New user?</p>
                     <p className="login__form_new login__form_new-mb">
                         You can create you account{" "}
-                        <Link to="/register" className="login__form_register">
+                        <Link to="/register" onClick={() => dispatch(deleteErrorInfo())} className="login__form_register">
                             now
                         </Link>
                     </p>

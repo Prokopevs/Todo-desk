@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga'
 import authorizationSlice from './reducers/authorizationSlice'
 import dndSlice from './reducers/dndSlice'
 import prioritySlice from './reducers/prioritySlice';
-import contentSlice from './reducers/contentSlice';
+import errorMessageSlice from './reducers/errorMessageSlice';
 import rootSaga from './Sagas';
 
 const saga = createSagaMiddleware()
@@ -15,6 +15,7 @@ export const store = configureStore({
         dndSlice,
         prioritySlice,
         editModeSlice,
+        errorMessageSlice,
     },
     middleware: [saga]
 })

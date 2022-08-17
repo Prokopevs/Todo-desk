@@ -3,6 +3,7 @@ import { takeEvery, put, call, fork } from 'redux-saga/effects';
 import { deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
 import { setQueryLoading } from '../reducers/editModeSlice';
+import { setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 
 export function* handleGetStatus() {
     try {
@@ -15,7 +16,7 @@ export function* handleGetStatus() {
         yield put(setStatuses(StatusObj))
         yield put(setColumnOrder(columnOrderArr))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        yield put(setGlobalErrorMessage(e.response?.data))
     } 
 }
 

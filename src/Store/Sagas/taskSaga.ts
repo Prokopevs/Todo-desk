@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { takeEvery, put, call, fork } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
 import { addTask, changeTaskContent, deleteTask, setQueryFlag, setTasks } from '../reducers/dndSlice';
-import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpasityButtons, removeOpasityButtons, deleteTaskInEditArray, addTaskInSuccessArray } from '../reducers/editModeSlice';
+import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpasityButtons, removeOpasityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj } from '../reducers/editModeSlice';
+import { setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 import { mapResponsePrevTasks, mapResponseTasks } from './sagaHelpers/taskHelper';
 
 export function* handleGetTask() {
@@ -13,7 +15,7 @@ export function* handleGetTask() {
         yield put(setTasks(taskObj))
         yield put(setPrevTaskObj(prevTaskObj))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        yield put(setGlobalErrorMessage(e.response?.data))
     } 
 }
 
@@ -24,9 +26,10 @@ export function* handlePostTask(action) {
         const response = yield call(postTaskService, 0, content, priority, 3)
         const data = {...action.payload, ...response.data}
         yield put(addTask(data))
-        yield put (setQueryFlag(true))
+        yield put(setQueryFlag(true))
+        yield put(addTaskInPrevTaskObj(data))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        console.log(e.response?.data?.message)
     } finally {
         yield put(setQueryLoading(false))
     }
@@ -40,10 +43,10 @@ export function* handlePutTask(action) {
     try {
         const response = yield call(putTaskService, content, Number(id), priority, Number(status_id))
         yield put(changeTaskContent(action.payload))
-        yield put (addTaskInSuccessArray(id))
-        yield put (changePrevTaskObj(action.payload))
+        yield put(addTaskInSuccessArray(id))
+        yield put(changePrevTaskObj(action.payload))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        console.log(e.response?.data?.message)
     } finally {
         yield put(removeOpasityButtons(obj))
     }
@@ -57,8 +60,9 @@ export function* handleDeleteTask(action) {
         const response = yield call(deleteTaskService, id)
         yield put(deleteTask(action.payload))
         yield put(deleteTaskInEditArray(id))
+        yield put(deleteTaskInPrevTaskObj(id))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        console.log(e.response?.data?.message)
     } finally {
         yield put(removeOpasityButtons(obj))
     } 
