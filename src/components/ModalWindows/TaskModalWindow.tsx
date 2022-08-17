@@ -3,8 +3,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import PriorityButtons from "../PriorityButtons"
-import { addTaskQuery } from "../../Store/reducers/dndSlice";
-import { ModalWindowContext } from "../../App";
+import { addTaskQuery } from "../../Store/reducers/dndSlice"
+import { ModalWindowContext } from "../../App"
 import priorityArray from "../../data/Desk/priorityArray"
 
 interface Inputs {
@@ -36,12 +36,17 @@ const TaskModalWindow = () => {
     }
     const closeTaskWindow = () => {
         setModalTaskActive(false)
-        setTimeout(() => reset(), 150);
-        setTimeout(() => setChangePrioprity(false), 150);
+        setTimeout(() => reset(), 150)
+        setTimeout(() => setChangePrioprity(false), 150)
     }
 
     return (
-        <CSSTransition in={modalTaskActive} timeout={150} classNames="my-node" unmountOnExit>
+        <CSSTransition
+            in={modalTaskActive}
+            timeout={150}
+            classNames="my-node"
+            unmountOnExit
+        >
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -79,7 +84,9 @@ const TaskModalWindow = () => {
                                 )}
                             </div>
 
-                            <p className="modalWindow__text-description">Priority</p>
+                            <p className="modalWindow__text-description second">
+                                Priority
+                            </p>
 
                             {changePrioprity ? (
                                 <ul>
@@ -93,7 +100,7 @@ const TaskModalWindow = () => {
                                         className={`block__button ${priorityArray[priority].color} big mr1`}
                                         onClick={() => setChangePrioprity(true)}
                                     >
-                                        {priorityArray[priority].description}
+                                        <div className="block__button-description">{priorityArray[priority].description}</div>
                                     </button>
                                 </div>
                             )}

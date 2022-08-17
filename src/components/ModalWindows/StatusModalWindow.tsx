@@ -59,8 +59,8 @@ const StatusModalWindow = () => {
                                     placeholder="Write status name here..."
                                     className={
                                         errors?.name
-                                            ? "form__input error-input"
-                                            : "form__input "
+                                            ? "form__input status error-input"
+                                            : "form__input status"
                                     }
                                     autoComplete="off"
                                     {...register("name", { required: "cannot be empty" })}
@@ -78,16 +78,16 @@ const StatusModalWindow = () => {
                             <div
                                 className={
                                     errors?.priority
-                                        ? "form__input_holder error-holder margin"
-                                        : "form__input_holder margin"
+                                        ? "form__input_holder error-holder margin-form"
+                                        : "form__input_holder margin-form"
                                 }
                             >
                                 <input
                                     placeholder={`Write status priority from 0 to ${columnOrderLength}`}
                                     className={
                                         errors?.priority
-                                            ? "form__input error-input"
-                                            : "form__input"
+                                            ? "form__input status error-input"
+                                            : "form__input status"
                                     }
                                     autoComplete="off"
                                     {...register("priority", {
@@ -117,7 +117,7 @@ const StatusModalWindow = () => {
 
                             <div className="block__line block__line-form"></div>
 
-                            <button type="submit" className="block__button submit big mb">
+                            <button type="submit" className="block__button submit big mb status-type">
                                 Submit
                             </button>
                         </form>

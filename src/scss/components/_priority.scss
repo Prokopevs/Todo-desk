@@ -10,6 +10,12 @@
     width: 100%;
 }
 
+@media (max-width: 991px) {
+    .block__line-form {
+        border-bottom: 3.5px solid #E0E0E0;
+    }
+}
+
 .block__line-task {
     width: 40%;
     margin-top: 20px;
@@ -152,6 +158,57 @@ li:first-child {
         }
     }
 }
+
+@media (max-width: 1399px) {
+    .block__button.submit {
+        height: 39px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.submit {
+        height: 38px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.submit {
+        height: 37px;
+        font-size: 16.5px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.submit {
+        height: 35px;
+        font-size: 16px;
+    }
+}
+
+.block__button-description {
+    position: relative;
+}
+
+@media (max-width: 991px) {
+    .block__button-description {
+        bottom: 1px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button-description {
+        bottom: 0;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button-description {
+        bottom: 0.5px;
+    }
+}
+
 .block__button.demo {
     width: 200px;
     height: 55px;
@@ -220,12 +277,82 @@ li:first-child {
     font-size: 17px;
 }
 
+@media (max-width: 1399px) {
+    .block__button.mr1 {
+        margin: 5px 0 10px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.mr1 {
+        height: 35px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.mr1 {
+        height: 34px;
+        font-size: 16.3px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.mr1 {
+        height: 32px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button.mr1 {
+        height: 31px;
+        font-size: 15px;
+    }
+}
+
 .block__button.mr2 {
     margin: 35px 0 55px 0;
 }
 
 .block__button.mb {
     margin-bottom: 35px;
+}
+
+@media (max-width: 1199px) {
+    .block__button.mb {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.mb {
+        margin: 22px 0 28px 0;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.mb {
+        margin: 18px 0 22px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.status-type {
+        height: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .block__button.status-type {
+        height: 36px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.status-type {
+        height: 34px;
+    }
 }
 
 .block__button.purple {
