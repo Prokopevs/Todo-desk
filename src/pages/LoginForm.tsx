@@ -106,7 +106,7 @@ const LoginForm = () => {
                             <p className="login__form_remember_text">Remember me</p>
                         </div>
 
-                        <button type="submit" className="block__button submit big">
+                        <button type="submit" className="block__button submit big login">
                             Login
                         </button>
                     </form>

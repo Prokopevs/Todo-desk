@@ -187,6 +187,28 @@ li:first-child {
     }
 }
 
+.block__button.login {
+    background-color: #7AD58E;
+}
+
+@media (max-width: 1199px) {
+    .block__button.login {
+        margin: 23px 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.login {
+        margin: 22px 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.login {
+        margin: 22px 0 20px 0;
+    }
+}
+
 .block__button-description {
     position: relative;
 }
