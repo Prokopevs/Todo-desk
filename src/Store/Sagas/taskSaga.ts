@@ -9,6 +9,7 @@ import { mapResponsePrevTasks, mapResponseTasks } from './sagaHelpers/taskHelper
 export function* handleGetTask() {
     try {
         const response = yield call(getTaskService)
+        // console.log(response.data)
         const arr = JSON.parse(JSON.stringify(response.data))
         const taskObj = mapResponseTasks(arr)
         const prevTaskObj = mapResponsePrevTasks(response.data)
@@ -41,7 +42,7 @@ export function* handlePutTask(action) {
     const obj = { arrName: "apply", id: id }
     yield put(setOpasityButtons(obj))
     try {
-        const response = yield call(putTaskService, content, Number(id), priority, Number(status_id))
+        const response = yield call(putTaskService, content, Number(id), priority, 0)
         yield put(changeTaskContent(action.payload))
         yield put(addTaskInSuccessArray(id))
         yield put(changePrevTaskObj(action.payload))

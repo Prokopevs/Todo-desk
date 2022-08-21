@@ -12,6 +12,9 @@ const SelectModal = ({ changesActive }) => {
     const columnsLength = Object.keys(data.columns).length
     const { width } = useWindowDimensions()
 
+    const selectPage = isAuth ? "selectChanges" : "selectChanges demo"
+    const selectPageAbsolute = isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"
+
     return (
         <CSSTransition
             in={changesActive}
@@ -19,7 +22,7 @@ const SelectModal = ({ changesActive }) => {
             classNames="my-node"
             unmountOnExit
         >
-            <div className={columLength > 3 || width! < 768 ? isAuth ? "selectChanges" : "selectChanges demo" : isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"}>
+            <div className={columLength > 3 || width! < 768 ? selectPage : selectPageAbsolute}>
                 {columnsLength !== 0 && <p className="selectChanges_task" onClick={() => setModalTaskActive(true)}>
                     Task
                 </p>}

@@ -42,10 +42,12 @@ export function* handleCheckAuth() {
     yield put(setLoading(true))
     try {
         const response = yield call(checkAuthService)
-        console.log(response.data)
         yield put(setUser(response.data))
         yield put(setAuth(true))
         yield handleData()
+        // const data = JSON.stringify(["96"])
+        // localStorage.setItem("40", data)
+        // localStorage.removeItem("51")
     } catch (e) {
         yield put(setGlobalErrorMessage(e.response?.data))
     } finally {

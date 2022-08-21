@@ -14,6 +14,9 @@ const AddTask: React.FC<IAddTaskProps> = ({ changesActive, setChangesActive }) =
 
     const columLength = data.columnOrder.length
     const addTaskRef = React.useRef<HTMLDivElement>(null)
+    
+    const selectPage = isAuth ? "addTask" : "addTask demo"
+    const selectPageAbsolute = isAuth ? "addTask-absolute" : "addTask-absolute demo"
 
     React.useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -32,15 +35,7 @@ const AddTask: React.FC<IAddTaskProps> = ({ changesActive, setChangesActive }) =
     return (
         <div
             ref={addTaskRef}
-            className={
-                columLength > 3 || width! < 768
-                    ? isAuth
-                        ? "addTask"
-                        : "addTask demo"
-                    : isAuth
-                    ? "addTask-absolute"
-                    : "addTask-absolute demo"
-            }
+            className={columLength > 3 || width! < 768 ?  selectPage : selectPageAbsolute}
             onClick={() => setChangesActive(!changesActive)}
         >
             <div

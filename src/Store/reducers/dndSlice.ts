@@ -96,7 +96,6 @@ export const dndSlice = createSlice({
             if(action.payload) {
                 let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
                 let taskIdsArr = JSON.parse(taskIdsNumbers!) //["1","2"]
-                console.log(taskIdsArr)
                     
                 taskIdsArr.splice(state.result.source.index!, 1) //["2"]
                 taskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) //["2","1"]
