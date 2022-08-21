@@ -37,7 +37,6 @@ export function* handlePostStatus(action) {
 
 export function* handleDeleteStatus(action) {
     const { column } = action.payload
-    console.log(action.payload)
     try {
         const response = yield call(deleteStatusService, column.id)
         yield put(deleteStatus(action.payload))

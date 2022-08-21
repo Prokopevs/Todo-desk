@@ -5,10 +5,10 @@ import { Routes, Route } from "react-router-dom"
 import RegisterForm from "./pages/RegisterForm"
 import Errors from "./pages/Errors"
 import { useAppSelector, useAppDispatch } from "./hooks/redux"
-import { checkAuth, setAuth, setLoading } from "./Store/reducers/authorizationSlice";
-import Demo from "./pages/Demo";
-import Home from "./pages/Home";
-import { useSessionStorage } from "./hooks/useSessionStorage";
+import { checkAuth, setAuth, setLoading } from "./Store/reducers/authorizationSlice"
+import Demo from "./pages/Demo"
+import Home from "./pages/Home"
+import { useSessionStorage } from "./hooks/useSessionStorage"
 
 export const ModalWindowContext = React.createContext(null) as any
 
@@ -53,7 +53,7 @@ const App = () => {
                     </Routes>
                 </ModalWindowContext.Provider>
             </div>
-        );
+        )
     }
     return <></>
 }

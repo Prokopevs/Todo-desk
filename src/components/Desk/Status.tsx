@@ -29,7 +29,7 @@ const Status: React.FC<IStatus> = React.memo(
         }
 
         return (
-            <Droppable droppableId={column.id}>
+            <Droppable droppableId={column!.id}>
                 {(provided) => (
                     <>
                         <li className="col-md-4 block">

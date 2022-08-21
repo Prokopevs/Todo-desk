@@ -4,8 +4,7 @@ import { useAppSelector } from "../hooks/redux"
 
 const Home = () => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
-    const { globalErrorMessage } = useAppSelector(state => state.errorMessageSlice)
-
+    const { globalErrorMessage } = useAppSelector((state) => state.errorMessageSlice)
     const navigate = useNavigate()
 
     React.useEffect(() => {

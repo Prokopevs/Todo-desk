@@ -35,7 +35,6 @@ export const errorMessageSlice = createSlice({
             state.errorTaskInfo[id] = data
         },
         deleteErrorTaskInfo: (state, action: PayloadAction<string>) => {
-            console.log(action.payload)
             delete state.errorTaskInfo[action.payload]
         },
     }

@@ -21,7 +21,6 @@ export function* handleGetTask() {
 
 export function* handlePostTask(action) {
     const { content, priority, status_id } = action.payload
-    console.log(status_id)
     yield put(setQueryLoading(true))
     try {
         const response = yield call(postTaskService, 0, content, priority, 3)

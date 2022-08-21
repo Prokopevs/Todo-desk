@@ -96,7 +96,6 @@ export const dndSlice = createSlice({
             if(action.payload) {
                 let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
                 let taskIdsArr = JSON.parse(taskIdsNumbers!) //["1","2"]
-                console.log(taskIdsArr)
                     
                 taskIdsArr.splice(state.result.source.index!, 1) //["2"]
                 taskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) //["2","1"]
@@ -195,7 +194,6 @@ export const dndSlice = createSlice({
                 localStorage.setItem(`${status_id}`, data)
             } else {
                 const newTaskKey = Number(Object.keys(state.data.tasks)[Object.keys(state.data.tasks).length - 1]) + 1
-                console.log(newTaskKey)
                 const newTaskValue = { 
                     id: String(newTaskKey),
                     content: action.payload.content, 

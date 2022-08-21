@@ -42,7 +42,6 @@ export function* handleCheckAuth() {
     yield put(setLoading(true))
     try {
         const response = yield call(checkAuthService)
-        console.log(response.data)
         yield put(setUser(response.data))
         yield put(setAuth(true))
         yield handleData()
