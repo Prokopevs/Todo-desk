@@ -443,14 +443,51 @@
     word-break: break-all;
 }
 
+@media (max-width: 991px) {
+    .error_info {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .error_info {
+        margin-top: -17px;
+    }
+}
+
+@media (max-width: 460px) {
+    .error_info {
+        font-size: 13px;
+        margin-top: -14px;
+    }
+}
+
 .error_info.register {
     margin-bottom: 40px;
     margin-top: -49px;
 }
 
+@media (max-width: 991px) {
+    .error_info.register {
+        margin-top: -51px;
+    }
+}
+
 .error_info.taskmodal {
     margin-bottom: 15px;
     margin-top: -30px;
+}
+
+@media (max-width: 1199px) {
+    .error_info.taskmodal {
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 460px) {
+    .error_info.taskmodal {
+        margin-top: -17px;
+    }
 }
 
 .error_info.task {

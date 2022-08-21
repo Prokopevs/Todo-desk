@@ -28,20 +28,6 @@
     margin-top: -30px;
 }
 
-@media (max-width: 767px) {
-    .addTask.demo {
-        width: 64px;
-        height: 64px;
-    }
-}
-
-@media (max-width: 460px) {
-    .addTask.demo {
-        width: 60px;
-        height: 60px;
-    }
-}
-
 .addTask-absolute {
     display: flex;
     align-items: center;
@@ -70,6 +56,11 @@
 }
 
 @media (max-width: 1399px) {
+    .addTask {
+        width: 65px;
+        height: 65px;
+    }
+
     .addTask-absolute.demo {
         bottom: 80px;
     }
@@ -81,6 +72,12 @@
 }
 
 @media (max-width: 1199px) {
+    .addTask {
+        width: 60px;
+        height: 60px;
+        bottom: 99px;
+    }
+
     .addTask-absolute.demo {
         right: 15px;
     }
@@ -92,13 +89,33 @@
 }
 
 @media (max-width: 991px) {
+    .addTask {
+        width: 56px;
+        height: 56px;
+    }
+
     .addTask-absolute.demo {
-        bottom: 90px;
+        bottom: 80px;
     }
 
     .addTask-absolute {
         width: 56px;
         height: 56px;
+    }
+}
+
+@media (max-width: 767px) {
+    .addTask {
+        width: 64px;
+        height: 64px;
+        bottom: 125px;
+    }
+}
+
+@media (max-width: 460px) {
+    .addTask {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -157,17 +174,24 @@
     }
 }
 
+@media (max-width: 1199px) {
+    .addTask__plus {
+        --size: 29px;
+        --heightLine: 3.4px;
+    }
+}
+
 @media (max-width: 991px) {
     .addTask__plus {
         --size: 27px;
-        --heightLine: 3.4px;
+        --heightLine: 3.2px;
     }
 }
 
 @media (max-width: 767px) {
     .addTask__plus {
         --size: 30px;
-        --heightLine: 3.6px;
+        --heightLine: 3.5px;
     }
 }
 
