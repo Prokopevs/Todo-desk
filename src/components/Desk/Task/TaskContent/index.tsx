@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../../hooks/redux"
 import { changeTaskContent, changeTaskContentQuery } from "../../../../Store/reducers/dndSlice"
 import TasksContentEditMode from "./TaskContentEditMode"
 import { deleteTaskInEditArray, deleteTaskInSuccessArray } from "../../../../Store/reducers/editModeSlice"
+import { deleteErrorTaskInfo } from "../../../../Store/reducers/errorMessageSlice"
 
 interface Inputs {
     id: string

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
 import { ModalWindowContext } from "../../App";
 import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice";
+import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice";
 
 type Inputs = {
     name: string
@@ -17,11 +18,13 @@ const StatusModalWindow = () => {
     const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
     const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
     const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
 
     const columnOrderLength = data.columnOrder.length
     const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        dispatch(deleteErrorInfo())
         data["isAuth"] = isAuth
         if(isAuth) {
             dispatch(addStatusQuery(data))
@@ -39,6 +42,7 @@ const StatusModalWindow = () => {
     }, [queryFlag])
 
     const closeStatusWindow = () => {
+        dispatch(deleteErrorInfo())
         setStatusActive(false)
         setTimeout(() => reset(), 200);
     }
@@ -121,6 +125,7 @@ const StatusModalWindow = () => {
                             <button type="submit" disabled={queryLoading} className="block__button submit big mb">
                                 Add
                             </button>
+                            {isAuth && errorInfo && <div className="error_info taskmodal">{errorInfo}</div>}   
                         </form>
                     </div>
 

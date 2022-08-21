@@ -23,7 +23,6 @@ export function* handleLogin(action) {
         yield handleCheckAuth()
     } catch (e) {
         yield put(setErrorInfo(e.response?.data?.errorInfo))
-        yield put(setAuth(false))
     }
 }
 
@@ -35,8 +34,7 @@ export function* handleRegistration(action) {
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
     } catch (e) {
-        console.log(e.response?.data?.message);
-        yield put(setAuth(false))
+        yield put(setErrorInfo(e.response?.data?.errorInfo))
     }
 }
 
@@ -44,12 +42,12 @@ export function* handleCheckAuth() {
     yield put(setLoading(true))
     try {
         const response = yield call(checkAuthService)
+        console.log(response.data)
         yield put(setUser(response.data))
         yield put(setAuth(true))
         yield handleData()
     } catch (e) {
         yield put(setGlobalErrorMessage(e.response?.data))
-        yield put(setAuth(false))
     } finally {
         yield put(setLoading(false))
     }

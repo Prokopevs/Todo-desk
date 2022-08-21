@@ -142,7 +142,23 @@
     margin-top: -18px;
     color: #EC7676;
     font-size: 15px;
+
+    word-break: break-all;
 }
+
+.error_info.register {
+    margin-bottom: 40px;
+    margin-top: -49px;
+}
+
+.error_info.taskmodal {
+    margin-bottom: 15px;
+    margin-top: -30px;
+}
+
+.error_info.task {
+    margin-top: 7px;
+} 
 
 /*----toggle_noActive---- */
 .css-stmgjb {

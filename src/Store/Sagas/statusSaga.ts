@@ -3,7 +3,7 @@ import { takeEvery, put, call, fork } from 'redux-saga/effects';
 import { deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
 import { setQueryLoading } from '../reducers/editModeSlice';
-import { setGlobalErrorMessage } from '../reducers/errorMessageSlice';
+import { setErrorInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 
 export function* handleGetStatus() {
     try {
@@ -29,7 +29,7 @@ export function* handlePostStatus(action) {
         yield put(addStatus(data))
         yield put (setQueryFlag(true))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        yield put(setErrorInfo(e.response?.data?.errorInfo))
     } finally {
         yield put(setQueryLoading(false))
     }

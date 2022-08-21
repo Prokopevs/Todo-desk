@@ -3,7 +3,7 @@ import { takeEvery, put, call, fork } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
 import { addTask, changeTaskContent, deleteTask, setQueryFlag, setTasks } from '../reducers/dndSlice';
 import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpasityButtons, removeOpasityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj } from '../reducers/editModeSlice';
-import { setGlobalErrorMessage } from '../reducers/errorMessageSlice';
+import { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 import { mapResponsePrevTasks, mapResponseTasks } from './sagaHelpers/taskHelper';
 
 export function* handleGetTask() {
@@ -21,6 +21,7 @@ export function* handleGetTask() {
 
 export function* handlePostTask(action) {
     const { content, priority, status_id } = action.payload
+    console.log(status_id)
     yield put(setQueryLoading(true))
     try {
         const response = yield call(postTaskService, 0, content, priority, 3)
@@ -29,7 +30,7 @@ export function* handlePostTask(action) {
         yield put(setQueryFlag(true))
         yield put(addTaskInPrevTaskObj(data))
     } catch (e) {
-        console.log(e.response?.data?.message)
+        yield put(setErrorInfo(e.response?.data?.errorInfo))
     } finally {
         yield put(setQueryLoading(false))
     }
@@ -37,7 +38,6 @@ export function* handlePostTask(action) {
 
 export function* handlePutTask(action) {
     const { content, id, priority, status_id } = action.payload
-    console.log(action.payload)
     const obj = { arrName: "apply", id: id }
     yield put(setOpasityButtons(obj))
     try {
@@ -45,8 +45,10 @@ export function* handlePutTask(action) {
         yield put(changeTaskContent(action.payload))
         yield put(addTaskInSuccessArray(id))
         yield put(changePrevTaskObj(action.payload))
+        yield put(deleteErrorTaskInfo(id))
     } catch (e) {
-        console.log(e.response?.data?.message)
+        const data = {id: id, message: e.response?.data?.errorInfo}
+        yield put(setErrorTaskInfo(data))
     } finally {
         yield put(removeOpasityButtons(obj))
     }

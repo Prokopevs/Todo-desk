@@ -6,6 +6,7 @@ import PriorityButtons from "../PriorityButtons"
 import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSlice";
 import { ModalWindowContext } from "../../App";
 import priorityArray from "../../data/Desk/priorityArray"
+import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
 
 interface Inputs {
     content: string
@@ -16,11 +17,12 @@ interface Inputs {
 
 const TaskModalWindow = () => {
     const dispatch = useAppDispatch()
-    const { priority } = useAppSelector((state) => state.prioritySlice)
     const [changePrioprity, setChangePrioprity] = React.useState(false)
     const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
+    const { priority } = useAppSelector((state) => state.prioritySlice)
     const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
     const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
     const firstItemOfColumnOrder = data.columnOrder[0]
 
@@ -31,6 +33,7 @@ const TaskModalWindow = () => {
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        dispatch(deleteErrorInfo())
         data["priority"] = priority
         data["status_id"] = firstItemOfColumnOrder
         data["isAuth"] = isAuth
@@ -50,6 +53,7 @@ const TaskModalWindow = () => {
     }, [queryFlag])
 
     const closeTaskWindow = () => {
+        dispatch(deleteErrorInfo())
         setModalTaskActive(false)
         setTimeout(() => reset(), 200);
         setTimeout(() => setChangePrioprity(false), 200);
@@ -121,6 +125,7 @@ const TaskModalWindow = () => {
                             >
                                 Add
                             </button>
+                            {isAuth && errorInfo && <div className="error_info taskmodal">{errorInfo}</div>}   
                         </form>
                     </div>
 
