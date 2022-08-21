@@ -16,6 +16,12 @@
     }
 }
 
+@media (max-width: 460px) {
+    .block__line-form {
+        border-bottom: 3px solid #E0E0E0;
+    }
+}
+
 .block__line-task {
     width: 40%;
     margin-top: 20px;
@@ -183,7 +189,13 @@ li:first-child {
 @media (max-width: 460px) {
     .block__button.submit {
         height: 35px;
-        font-size: 16px;
+    }
+}
+
+@media (max-width: 355px) {
+    .block__button.submit {
+        height: 31px;
+        font-size: 15px;
     }
 }
 
@@ -203,9 +215,21 @@ li:first-child {
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
     .block__button.login {
-        margin: 22px 0 20px 0;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.login {
+        margin: 19px 0
+    }
+}
+
+@media (max-width: 355px) {
+    .block__button.login {
+        margin: 18px 0;
     }
 }
 

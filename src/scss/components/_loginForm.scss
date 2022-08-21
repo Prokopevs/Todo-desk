@@ -32,6 +32,37 @@
 @media (max-width: 767px) {
     .form {
         width: 410px;
+        border-radius: 26px;
+    }
+}
+
+@media (max-width: 540px) {
+    .form {
+        width: 385px;
+    }
+}
+
+@media (max-width: 460px) {
+    .form {
+        width: 350px;
+    }
+}
+
+@media (max-width: 415px) {
+    .form {
+        width: 330px;
+    }
+}
+
+@media (max-width: 355px) {
+    .form {
+        width: 290px;
+    }
+}
+
+@media (max-width: 300px) {
+    .form {
+        width: 250px;
     }
 }
 
@@ -43,6 +74,12 @@
 @media (max-width: 991px) {
     .form__container {
         width: 75%;
+    }
+}
+
+@media (max-width: 460px) {
+    .form__container {
+        width: 79%;
     }
 }
 
@@ -94,6 +131,33 @@
     }
 }
 
+@media (max-width: 540px) {
+    .login__form_name {
+        font-size: 31px;
+        padding: 31px 0 26px;
+    }
+}
+
+@media (max-width: 460px) {
+    .login__form_name {
+        font-size: 30px;
+        padding: 30px 0 24px;
+    }
+}
+
+@media (max-width: 415px) {
+    .login__form_name {
+        font-size: 29px;
+    }
+}
+
+@media (max-width: 355px) {
+    .login__form_name {
+        font-size: 27px;
+        padding: 24px 0 20px;
+    }
+}
+
 .login__form_data_name {
     font-style: normal;
     font-weight: 500;
@@ -125,6 +189,20 @@
     }
 }
 
+@media (max-width: 540px) {
+    .login__form_data_name {
+        font-size: 17px;
+        margin: 16px 0 11px;
+    }
+}
+
+@media (max-width: 355px) {
+    .login__form_data_name {
+        font-size: 17px;
+        margin: 15px 0 11px;
+    }
+}
+
 .form__input_holder {
     background: #E0E0E0;
 
@@ -151,6 +229,18 @@
 @media (max-width: 767px) {
     .form__input_holder {
         padding: 5px;
+    }
+}
+
+@media (max-width: 540px) {
+    .form__input_holder {
+        padding: 4.5px;
+    }
+}
+
+@media (max-width: 460px) {
+    .form__input_holder {
+        padding: 4px;
     }
 }
 
@@ -200,12 +290,11 @@
         font-size: 17.5px;
         height: 44px;
     }
+
     .form__input::placeholder {
         font-size: 17.5px;
     }
-}
 
-@media (max-width: 1199px) {
     .form__input.status {
         height: 44px;
     }
@@ -216,20 +305,34 @@
         font-size: 16.5px;
         height: 42px;
     }
+
     .form__input::placeholder {
         font-size: 16.5px;
     }
-}
 
-@media (max-width: 991px) {
     .form__input.status {
         height: 40px;
     }
 }
 
 @media (max-width: 767px) {
+    .form__input {
+        height: 40px;
+    }
+
     .form__input.status {
         height: 38px;
+    }
+}
+
+@media (max-width: 355px) {
+    .form__input {
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .form__input::placeholder {
+        font-size: 15px;
     }
 }
 
@@ -265,6 +368,13 @@
 @media (max-width: 991px) {
     .error__message_text {
         margin-top: 3px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 460px) {
+    .error__message_text {
+        font-size: 13px;
     }
 }
 
@@ -323,6 +433,12 @@
     margin-top: 9px;
 }
 
+@media (max-width: 460px) {
+    .login__form_remember {
+        margin-top: 12px;
+    }
+}
+
 /*----toggle_noActive---- */
 .css-stmgjb {
     box-shadow: none !important;
@@ -360,6 +476,14 @@
     }
 }
 
+@media (max-width: 460px) {
+    .css-1mngnt6 {
+        border: 2.3px solid #E0E0E0 !important;
+        height: 20px !important;
+        width: 39px !important;
+    }
+}
+
 .css-1mngnt6::after {
     background: #E0E0E0 !important;
     box-shadow: -1px 1px 1px rgba(202, 202, 202, 0.2), 1px -1px 1px rgba(202, 202, 202, 0.2), -1px -1px 1px rgba(246, 246, 246, 0.9), 1px 1px 1.5px rgba(202, 202, 202, 0.9), inset 1px 1px 1px rgba(246, 246, 246, 0.3), inset -1px -1px 1px rgba(202, 202, 202, 0.5) !important;
@@ -382,15 +506,30 @@
 @media (max-width: 767px) {
     .css-1mngnt6::after {
         top: 2.5px !important;
-        left: 3px !important;
-        width: 15px !important;
-        height: 15px !important;
+        left: 2.5px !important;
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .css-1mngnt6::after {
+        top: 3px !important;
+        left: 2px !important;
+        width: 11px !important;
+        height: 11px !important;
+    }
+}
+
+@media (max-width: 415px) {
+    .css-1mngnt6::after {
+        top: 2.5px !important;
     }
 }
 
 .css-1mngnt6::before {
     background: #8A8383 !important;
-    top: 9.5px !important;
+    top: 9.3px !important;
     left: 9.5px !important;
     width: 4.5px !important;
     height: 4.5px !important;
@@ -407,10 +546,25 @@
 
 @media (max-width: 767px) {
     .css-1mngnt6::before {
-        top: 8px !important;
-        left: 8.5px !important;
+        top: 7.2px !important;
+        left: 7.5px !important;
         width: 3.5px !important;
         height: 3.5px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .css-1mngnt6::before {
+        top: 6.4px !important;
+        left: 5.2px !important;
+        width: 3.2px !important;
+        height: 3.2px !important;
+    }
+}
+
+@media (max-width: 415px) {
+    .css-1mngnt6::before {
+        top: 5.8px !important;
     }
 }
 /*--------------------- */
@@ -441,6 +595,14 @@
     }
 }
 
+@media (max-width: 460px) {
+    .css-hqpog9 {
+        border: 2.3px solid #E0E0E0 !important;
+        height: 20px !important;
+        width: 39px !important;
+    }
+}
+
 .css-hqpog9::after {
     background: #E0E0E0 !important;
     box-shadow: -1px 1px 1px rgba(202, 202, 202, 0.2), 1px -1px 1px rgba(202, 202, 202, 0.2), -1px -1px 1px rgba(246, 246, 246, 0.9), 1px 1px 1.5px rgba(202, 202, 202, 0.9), inset 1px 1px 1px rgba(246, 246, 246, 0.3), inset -1px -1px 1px rgba(202, 202, 202, 0.5) !important;
@@ -453,7 +615,7 @@
 
 @media (max-width: 1199px) {
     .css-hqpog9::after {
-        top: 2.5px !important;
+        top: 2px !important;
         left: 21px !important;
         width: 16px !important;
         height: 16px !important;
@@ -464,13 +626,28 @@
     .css-hqpog9::after {
         top: 2.5px !important;
         left: 21px !important;
-        width: 15px !important;
-        height: 15px !important;
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .css-hqpog9::after {
+        top: 3px !important;
+        left: 21.5px !important;
+        width: 11px !important;
+        height: 11px !important;
+    }
+}
+
+@media (max-width: 415px) {
+    .css-hqpog9::after {
+        top: 2.5px !important;
     }
 }
 
 .css-hqpog9::before {
-    top: 9.5px !important;
+    top: 9.3px !important;
     left: 26px !important;
     width: 4.5px !important;
     height: 4.5px !important;
@@ -490,10 +667,25 @@
 
 @media (max-width: 767px) {
     .css-hqpog9::before {
-        top: 8px !important;
-        left: 26.5px !important;
+        top: 7.2px !important;
+        left: 25.8px !important;
         width: 3.5px !important;
         height: 3.5px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .css-hqpog9::before {
+        top: 6.4px !important;
+        left: 25.3px !important;
+        width: 3.2px !important;
+        height: 3.2px !important;
+    }
+}
+
+@media (max-width: 415px) {
+    .css-hqpog9::before {
+        top: 5.8px !important;
     }
 }
 
@@ -520,6 +712,12 @@
     }
 }
 
+@media (max-width: 460px) {
+    .login__form_remember_text {
+        font-size: 13.1px;
+    }
+}
+
 .login__form_new {
     color: #8A8383;
     font-size: 15px;
@@ -538,6 +736,12 @@
 @media (max-width: 767px) {
     .login__form_new {
         font-size: 13.5px; 
+    }
+}
+
+@media (max-width: 460px) {
+    .login__form_new {
+        font-size: 13.1px; 
     }
 }
 
@@ -569,6 +773,24 @@
     }
 }
 
+@media (max-width: 540px) {
+    .login__form_new-mb {
+        margin-bottom: 36px;
+    }
+}
+
+@media (max-width: 415px) {
+    .login__form_new-mb {
+        margin-bottom: 34px;
+    }
+}
+
+@media (max-width: 355px) {
+    .login__form_new-mb {
+        margin-bottom: 28px;
+    }
+}
+
 .login__form_register {
     color: #8D8BF9;
     font-size: 15px;
@@ -585,6 +807,12 @@
 @media (max-width: 991px) {
     .login__form_register {
         font-size: 13.5px;
+    }
+}
+
+@media (max-width: 460px) {
+    .login__form_register {
+        font-size: 13.1px;
     }
 }
 
