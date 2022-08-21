@@ -2,6 +2,7 @@ import React from "react"
 import { CSSTransition } from "react-transition-group"
 import { ModalWindowContext } from "../App"
 import { useAppSelector } from "../hooks/redux"
+import useWindowDimensions from "../hooks/useWindowDimensions"
 
 const SelectModal = ({ changesActive }) => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
@@ -9,6 +10,7 @@ const SelectModal = ({ changesActive }) => {
     const { data } = useAppSelector((state) => state.dndSlice)
     const columLength = data.columnOrder.length
     const columnsLength = Object.keys(data.columns).length
+    const { width } = useWindowDimensions()
 
     return (
         <CSSTransition
@@ -17,7 +19,7 @@ const SelectModal = ({ changesActive }) => {
             classNames="my-node"
             unmountOnExit
         >
-            <div className={columLength > 3 ? isAuth ? "selectChanges" : "selectChanges demo" : isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"}>
+            <div className={columLength > 3 || width! < 768 ? isAuth ? "selectChanges" : "selectChanges demo" : isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"}>
                 {columnsLength !== 0 && <p className="selectChanges_task" onClick={() => setModalTaskActive(true)}>
                     Task
                 </p>}

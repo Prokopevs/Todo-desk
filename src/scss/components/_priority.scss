@@ -10,10 +10,43 @@
     width: 100%;
 }
 
+@media (max-width: 991px) {
+    .block__line-form {
+        border-bottom: 3.5px solid #E0E0E0;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__line-form {
+        border-bottom: 3px solid #E0E0E0;
+    }
+}
+
 .block__line-task {
     width: 40%;
     margin-top: 20px;
     margin-bottom: 8px;
+}
+
+@media (max-width: 1399px) {
+    .block__line-task {
+        margin-top: 17px;
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__line-task {
+        margin-top: 20px;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 767px) {
+    .block__line-task {
+        margin-top: 16px;
+        margin-bottom: 4px;
+    }
 }
 
 .block__line-task-mt {
@@ -24,7 +57,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0;
+    margin: 23px 0 8px 0;
+}
+
+@media (max-width: 1399px) {
+    .block__priority {
+        margin: 6px 0 8px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__priority {
+        margin: 0 0 8px 0;
+    }
 }
 
 li:first-child {
@@ -66,6 +111,41 @@ li:first-child {
     width: 80%;
 }
 
+@media (max-width: 1399px) {
+    .block__button.task {
+        height: 27px;  
+        margin: 9px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.task {
+        margin: 9px 0;
+        height: 25px; 
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.task {
+        margin: 9px 0;
+        height: 23px; 
+    }
+}
+
+@media (max-width: 767px) {
+    .block__button.task {
+        margin: 10px 0;
+        height: 32px;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button.task {
+        margin: 8px 0;
+        height: 30px;
+    }
+}
+
 .block__button.submit {
     background-color: #7AD58E;
     box-shadow: -1px 1px 2px rgba(104, 183, 122, 0.2), 1px -1px 2px rgba(104, 183, 122, 0.2), -1px -1px 2px rgba(128, 223, 149, 0.9), 1px 1px 3px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
@@ -84,6 +164,97 @@ li:first-child {
         }
     }
 }
+
+@media (max-width: 1399px) {
+    .block__button.submit {
+        height: 39px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.submit {
+        height: 38px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.submit {
+        height: 37px;
+        font-size: 16.5px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.submit {
+        height: 35px;
+    }
+}
+
+@media (max-width: 355px) {
+    .block__button.submit {
+        height: 31px;
+        font-size: 15px;
+    }
+}
+
+.block__button.login {
+    background-color: #7AD58E;
+}
+
+@media (max-width: 1199px) {
+    .block__button.login {
+        margin: 23px 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.login {
+        margin: 22px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .block__button.login {
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.login {
+        margin: 19px 0
+    }
+}
+
+@media (max-width: 355px) {
+    .block__button.login {
+        margin: 18px 0;
+    }
+}
+
+.block__button-description {
+    position: relative;
+}
+
+@media (max-width: 991px) {
+    .block__button-description {
+        bottom: 1px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button-description {
+        bottom: 0;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button-description {
+        bottom: 0.5px;
+    }
+}
+
 .block__button.demo {
     width: 200px;
     height: 55px;
@@ -97,11 +268,93 @@ li:first-child {
     text-decoration: none !important;
 }
 
+@media (max-width: 1399px) {
+    .block__button.demo {
+        width: 180px;
+        height: 48px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.demo {
+        width: 165px;
+        height: 44px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.demo {
+        width: 136px;
+        height: 36px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    .block__button.demo {
+        width: 155px;
+        height: 40px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.demo {
+        width: 140px;
+        height: 37px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button.demo {
+        width: 125px;
+        height: 35px;
+        font-size: 18px;
+    }
+}
+
 .block__button.mr1 {
     margin: 10px 0 15px;
     width: 92%;
     height: 37px;
     font-size: 17px;
+}
+
+@media (max-width: 1399px) {
+    .block__button.mr1 {
+        margin: 5px 0 10px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.mr1 {
+        height: 35px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.mr1 {
+        height: 34px;
+        font-size: 16.3px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.mr1 {
+        height: 32px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button.mr1 {
+        height: 31px;
+        font-size: 15px;
+    }
 }
 
 .block__button.mr2 {
@@ -110,6 +363,42 @@ li:first-child {
 
 .block__button.mb {
     margin-bottom: 35px;
+}
+
+@media (max-width: 1199px) {
+    .block__button.mb {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button.mb {
+        margin: 22px 0 28px 0;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.mb {
+        margin: 18px 0 22px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__button.status-type {
+        height: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .block__button.status-type {
+        height: 36px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block__button.status-type {
+        height: 34px;
+    }
 }
 
 .block__button.purple {
@@ -168,4 +457,33 @@ li:first-child {
     font-size: 16px;
 
     color: #E1E1E1;
+}
+
+// .block__button_text.bottom {
+//     position: relative;
+//     bottom: 1px;
+// }
+
+@media (max-width: 1199px) {
+    .block__button_text {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__button_text {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .block__button_text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 415px) {
+    .block__button_text {
+        font-size: 15px;
+    }
 }

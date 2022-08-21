@@ -60,7 +60,12 @@ const TaskModalWindow = () => {
     }
 
     return (
-        <CSSTransition in={modalTaskActive} timeout={150} classNames="my-node" unmountOnExit>
+        <CSSTransition
+            in={modalTaskActive}
+            timeout={150}
+            classNames="my-node"
+            unmountOnExit
+        >
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -98,7 +103,9 @@ const TaskModalWindow = () => {
                                 )}
                             </div>
 
-                            <p className="modalWindow__text-description">Priority</p>
+                            <p className="modalWindow__text-description second">
+                                Priority
+                            </p>
 
                             {changePrioprity ? (
                                 <ul>
@@ -112,7 +119,7 @@ const TaskModalWindow = () => {
                                         className={`block__button ${priorityArray[priority - 1].color} big mr1`}
                                         onClick={() => setChangePrioprity(true)}
                                     >
-                                        {priorityArray[priority - 1].description}
+                                        <div className="block__button-description">{priorityArray[priority - 1].description}</div>
                                     </button>
                                 </div>
                             )}

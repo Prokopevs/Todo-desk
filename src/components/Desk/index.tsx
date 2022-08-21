@@ -69,6 +69,7 @@ const Desk = () => {
                                         column={column}
                                         tasks={tasks}
                                         priorityArray={priorityArray}
+                                        index={index+1}
                                     />
                                 )
                             })
@@ -83,7 +84,7 @@ const Desk = () => {
                     {!isAuth && (
                         <p className="demo__description">
                             This is only a demo, all your work will not be saved. Log in
-                            to get full functionality
+                            to get full functionality.
                         </p>
                     )}
                 </div>

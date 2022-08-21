@@ -22,7 +22,12 @@ const StatusModalWindow = () => {
     const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
 
     const columnOrderLength = data.columnOrder.length
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>({mode: "onBlur"});
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["isAuth"] = isAuth
@@ -48,7 +53,12 @@ const StatusModalWindow = () => {
     }
 
     return (
-        <CSSTransition in={modalStatusActive} timeout={150} classNames="my-node" unmountOnExit>
+        <CSSTransition
+            in={modalStatusActive}
+            timeout={150}
+            classNames="my-node"
+            unmountOnExit
+        >
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -68,8 +78,8 @@ const StatusModalWindow = () => {
                                     placeholder="Write status name here..."
                                     className={
                                         errors?.name
-                                            ? "form__input error-input"
-                                            : "form__input "
+                                            ? "form__input status error-input"
+                                            : "form__input status"
                                     }
                                     autoComplete="off"
                                     {...register("name", { required: "cannot be empty" })}
@@ -87,23 +97,27 @@ const StatusModalWindow = () => {
                             <div
                                 className={
                                     errors?.priority
-                                        ? "form__input_holder error-holder margin"
-                                        : "form__input_holder margin"
+                                        ? "form__input_holder error-holder margin-form"
+                                        : "form__input_holder margin-form"
                                 }
                             >
                                 <input
                                     placeholder={`Write status priority from 0 to ${columnOrderLength}`}
-                                    className={errors?.priority ? "form__input error-input" : "form__input"}
+                                    className={
+                                        errors?.priority
+                                            ? "form__input status error-input"
+                                            : "form__input status"
+                                    }
                                     autoComplete="off"
                                     {...register("priority", {
                                         required: "cannot be empty",
                                         min: {
                                             value: 0,
-                                            message: "cannot be less than 0"
+                                            message: "cannot be less than 0",
                                         },
                                         max: {
                                             value: columnOrderLength,
-                                            message: `cannot be more than ${columnOrderLength}`
+                                            message: `cannot be more than ${columnOrderLength}`,
                                         },
                                         validate: {
                                             number: (value) =>
@@ -122,7 +136,7 @@ const StatusModalWindow = () => {
 
                             <div className="block__line block__line-form"></div>
 
-                            <button type="submit" disabled={queryLoading} className="block__button submit big mb">
+                            <button type="submit" disabled={queryLoading} className="block__button submit big mb status-type">
                                 Add
                             </button>
                             {isAuth && errorInfo && <div className="error_info taskmodal">{errorInfo}</div>}   

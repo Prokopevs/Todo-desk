@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { deleteStatus, deleteStatusQuery, setLineArray } from "../../Store/reducers/dndSlice"
 import Line from "./Line"
 
+
 const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) => {
     const dispatch = useAppDispatch()
     const columnId = Number(column.id)
@@ -30,7 +31,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
             {(provided) => (
                 <>
                     <li className="col-md-4 block">
-                        {columnId !== 0 && lineArrays["firstArray"].includes(columnId) && <Line />}
+                        <Line array={"firstArray"} index={index} />
                         <div className="block__status-inner">
                             <div className="block__wrapper">
                                 <h1 className="block__status_name">{column.name}</h1>
@@ -39,31 +40,24 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) 
                                 className="block__minus"
                                 onClick={() => handleDelete()}
                             >
-                                <div className="block__minus-line"></div>
-                            </button>
-                        </div>
-                        <div
-                            className="block__inner"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                        >
-                            {tasks.map((task, index) => (
-                                <Tasks
-                                    key={task.id}
-                                    task={task}
-                                    index={index}
-                                    priorityArray={priorityArray}
-                                    column={column}
-                                />
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                        {columnId !== 0 && lineArrays["secondArray"].includes(columnId) && <Line />}
-                    </li>
-                </>
-            )}
-        </Droppable>
-    )
-})
+                                {tasks.map((task, index) => (
+                                    <Tasks
+                                        key={task.id}
+                                        task={task}
+                                        index={index}
+                                        priorityArray={priorityArray}
+                                        column={column}
+                                    />
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                            <Line array={"secondArray"} index={index} />
+                        </li>
+                    </>
+                )}
+            </Droppable>
+        )
+    }
+)
 
 export default Status

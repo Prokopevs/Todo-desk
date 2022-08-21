@@ -36,6 +36,30 @@
     margin-bottom: 8px;
 }
 
+@media (max-width: 1399px) {
+    .modalWindow__button.task {
+        margin-bottom: 7px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .modalWindow__button.task {
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 991px) {
+    .modalWindow__button.task {
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalWindow__button.task {
+        margin-bottom: 6px;
+    }
+}
+
 .modalWindow_content {
     position: relative;
     width: 430px;
@@ -50,6 +74,42 @@
     flex-direction: column;
 }
 
+@media (max-width: 1399px) {
+    .modalWindow_content {
+        width: 410px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .modalWindow_content {
+        width: 395px;
+    }
+}
+
+@media (max-width: 991px) {
+    .modalWindow_content {
+        width: 370px;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalWindow_content {
+        width: 360px;
+    }
+}
+
+@media (max-width: 460px) {
+    .modalWindow_content {
+        width: 340px;
+    }
+}
+
+@media (max-width: 415px) {
+    .modalWindow_content {
+        width: 310px;
+    }
+}
+
 .modalWindow__text {
     font-style: normal;
     font-weight: 500;
@@ -57,6 +117,34 @@
     color: #8A8383;
 
     padding: 37px 0 27px;
+}
+
+@media (max-width: 1399px) {
+    .modalWindow__text {
+        font-size: 23px;
+        padding: 35px 0 25px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .modalWindow__text {
+        font-size: 21.5px;
+        padding: 31px 0 25px;
+    }
+}
+
+@media (max-width: 991px) {
+    .modalWindow__text {
+        font-size: 20.5px;
+        padding: 28px 0 23px;
+    }
+}
+
+@media (max-width: 415px) {
+    .modalWindow__text {
+        font-size: 20px;
+        padding: 25px 0 20px;
+    }
 }
 
 .modalWindow__text-description {
@@ -68,12 +156,53 @@
     margin: 22px 0 13px;
 }
 
+.modalWindow__text-description.second {
+    margin: 18px 0 4px;
+}
+
+@media (max-width: 1399px) {
+    .modalWindow__text-description  {
+        margin: 20px 0 13px;
+    }
+
+    .modalWindow__text-description.second {
+        margin: 18px 0 6px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .modalWindow__text-description  {
+        font-size: 19px;
+        margin: 20px 0 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .modalWindow__text-description  {
+        font-size: 18px;
+        margin: 20px 0 13px;
+    }
+}
+
+@media (max-width: 415px) {
+    .modalWindow__text-description  {
+        font-size: 17.5px;
+        margin: 20px 0 13px;
+    }
+}
+
 .close {
     position: absolute;
     top: 10px;
     right: 2px;
     width: 40px;
     height: 40px;
+}
+
+@media (max-width: 1199px) {
+    .close {
+        right: 0px;
+    }
 }
 
 :root {
@@ -101,6 +230,34 @@
 
     &:hover {
         --colorLine: #636161;
+    }
+}
+
+@media (max-width: 1399px) {
+    .close__button {
+        --size: 29px;
+        --heightLine: 3.3px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .close__button {
+        --size: 27px;
+        --heightLine: 3.2px;
+    }
+}
+
+@media (max-width: 991px) {
+    .close__button {
+        --size: 26px;
+        --heightLine: 3.1px;
+    }
+}
+
+@media (max-width: 415px) {
+    .close__button {
+        --size: 25px;
+        --heightLine: 3px;
     }
 }
 

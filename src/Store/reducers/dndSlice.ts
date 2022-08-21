@@ -84,7 +84,7 @@ export const dndSlice = createSlice({
         setFinish: (state, action: PayloadAction<IColumn>) => {
             state.finish = action.payload
         },
-        reorderTaskInOwnStatus: (state, action: PayloadAction<boolean>) => {
+        reorderTaskInOwnStatus: (state, action: PayloadAction<boolean | null>) => {
             const newTaskIds = Array.from(state.start.taskIds) // получили массив с тасками taskIds: ["0", "1"]
             newTaskIds.splice(state.result.source.index!, 1) // удалили элемент, который тянули
             newTaskIds.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили этот элемент в новое место
@@ -103,7 +103,7 @@ export const dndSlice = createSlice({
                 localStorage.setItem(`${state.start.id}`, JSON.stringify(taskIdsArr))
             }
         },
-        reorderTaskInDifferentStatus: (state, action: PayloadAction<boolean>) => {
+        reorderTaskInDifferentStatus: (state, action: PayloadAction<boolean | null>) => {
             const startTaskIds = Array.from(state.start.taskIds) // массив с тасками в стартовом статусе taskIds: ["0", "1"]
             startTaskIds.splice(state.result.source.index!, 1) // // удалили элемент, который тянули
 
