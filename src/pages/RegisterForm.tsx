@@ -4,6 +4,7 @@ import { registration } from "../Store/reducers/authorizationSlice"
 import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { IRegisterForm } from "../models/IRegisterForm"
+import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 
 type Inputs = {
     name: string
@@ -14,15 +15,18 @@ type Inputs = {
 const RegisterForm = () => {
     const [registerClick, setRegisterClick] = React.useState<boolean>(false)
     const isAuth = useAppSelector(state => state.authorizationSlice.isAuth)
+    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
     const dispatch = useAppDispatch()
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    React.useEffect(() => {
+        return() => {
+            dispatch(deleteErrorInfo())
+        }
+    }, [])
+
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        dispatch(deleteErrorInfo())
         dispatch(registration(data))
         setRegisterClick(true)
         reset()
@@ -131,6 +135,7 @@ const RegisterForm = () => {
                         <button type="submit" className="block__button submit big mr2">
                             Register
                         </button>
+                        {errorInfo && <div className="error_info register">{errorInfo}</div>}
                     </form>
                 </div>
             </div>

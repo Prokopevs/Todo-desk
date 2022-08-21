@@ -3,18 +3,23 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
-import { ModalWindowContext } from "../../App"
-import { addStatusQuery } from "../../Store/reducers/dndSlice"
+import { ModalWindowContext } from "../../App";
+import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice";
+import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice";
 
 type Inputs = {
     name: string
     priority: string
+    isAuth: boolean
 }
 
 const StatusModalWindow = () => {
     const dispatch = useAppDispatch()
     const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
-    const { data } = useAppSelector((state) => state.dndSlice)
+    const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
+    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
+    const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
 
     const columnOrderLength = data.columnOrder.length
     const {
@@ -24,13 +29,27 @@ const StatusModalWindow = () => {
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        dispatch(addStatusQuery(data))
-        setStatusActive(false)
-        reset()
+        dispatch(deleteErrorInfo())
+        data["isAuth"] = isAuth
+        if(isAuth) {
+            dispatch(addStatusQuery(data))
+        } else {
+            dispatch(addStatus(data))
+            closeStatusWindow()
+        }
     }
+
+    React.useEffect(() => {
+        if(queryFlag) {
+            closeStatusWindow()
+            dispatch(setQueryFlag(false))
+        }
+    }, [queryFlag])
+
     const closeStatusWindow = () => {
+        dispatch(deleteErrorInfo())
         setStatusActive(false)
-        setTimeout(() => reset(), 150)
+        setTimeout(() => reset(), 200);
     }
 
     return (
@@ -117,9 +136,10 @@ const StatusModalWindow = () => {
 
                             <div className="block__line block__line-form"></div>
 
-                            <button type="submit" className="block__button submit big mb status-type">
-                                Submit
+                            <button type="submit" disabled={queryLoading} className="block__button submit big mb status-type">
+                                Add
                             </button>
+                            {isAuth && errorInfo && <div className="error_info taskmodal">{errorInfo}</div>}   
                         </form>
                     </div>
 

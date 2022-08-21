@@ -3,39 +3,42 @@ import Tasks from "./Tasks"
 import { Droppable } from "react-beautiful-dnd"
 import { IStatus } from "../../models/IStatus"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { deleteStatus, setLineArray } from "../../Store/reducers/dndSlice"
+import { deleteStatus, deleteStatusQuery, setLineArray } from "../../Store/reducers/dndSlice"
 import Line from "./Line"
 
-const Status: React.FC<IStatus> = React.memo(
-    ({ column, tasks, priorityArray, index }) => {
-        const dispatch = useAppDispatch()
-        const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
 
-        React.useEffect(() => {
-            dispatch(setLineArray(Object.keys(columnOrder).length))
-        }, [column])
+const Status: React.FC<IStatus> = React.memo(({ column, tasks, priorityArray }) => {
+    const dispatch = useAppDispatch()
+    const columnId = Number(column.id)
+    const lineArrays = useAppSelector((state) => state.dndSlice.lineArrays)
+    const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
+    const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
+    
+    React.useEffect(() => {
+        dispatch(setLineArray(Object.keys(columnOrder).length))
+    }, [column])
 
-        return (
-            <Droppable droppableId={column.id}>
-                {(provided) => (
-                    <>
-                        <li className="col-md-4 block">
-                            <Line array={"firstArray"} index={index} />
-                            <div className="block__status-inner">
-                                <div className="block__wrapper">
-                                    <h1 className="block__status_name">{column.name}</h1>
-                                </div>
-                                <button
-                                    className="block__minus"
-                                    onClick={() => dispatch(deleteStatus(column.id))}
-                                >
-                                    <div className="block__minus-line"></div>
-                                </button>
+    const handleDelete = () => {
+        const obj = {
+            column: column,
+            isAuth: isAuth
+        }
+        isAuth ? dispatch(deleteStatusQuery(obj)) : dispatch(deleteStatus(obj))
+    }
+
+    return (
+        <Droppable droppableId={column.id}>
+            {(provided) => (
+                <>
+                    <li className="col-md-4 block">
+                        <Line array={"firstArray"} index={index} />
+                        <div className="block__status-inner">
+                            <div className="block__wrapper">
+                                <h1 className="block__status_name">{column.name}</h1>
                             </div>
-                            <div
-                                className="block__inner"
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
+                            <button
+                                className="block__minus"
+                                onClick={() => handleDelete()}
                             >
                                 {tasks.map((task, index) => (
                                     <Tasks

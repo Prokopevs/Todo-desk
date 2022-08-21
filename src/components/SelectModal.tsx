@@ -9,6 +9,7 @@ const SelectModal = ({ changesActive }) => {
     const { setModalTaskActive, setStatusActive } = React.useContext(ModalWindowContext)
     const { data } = useAppSelector((state) => state.dndSlice)
     const columLength = data.columnOrder.length
+    const columnsLength = Object.keys(data.columns).length
     const { width } = useWindowDimensions()
 
     return (
@@ -18,23 +19,10 @@ const SelectModal = ({ changesActive }) => {
             classNames="my-node"
             unmountOnExit
         >
-            <div
-                className={
-                    columLength > 3 || width! < 768
-                        ? isAuth
-                            ? "selectChanges"
-                            : "selectChanges demo"
-                        : isAuth
-                        ? "selectChanges-absolute"
-                        : "selectChanges-absolute demo"
-                }
-            >
-                <p
-                    className="selectChanges_task"
-                    onClick={() => setModalTaskActive(true)}
-                >
+            <div className={columLength > 3 || width! < 768 ? isAuth ? "selectChanges" : "selectChanges demo" : isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"}>
+                {columnsLength !== 0 && <p className="selectChanges_task" onClick={() => setModalTaskActive(true)}>
                     Task
-                </p>
+                </p>}
                 <p className="selectChanges_status" onClick={() => setStatusActive(true)}>
                     Status
                 </p>

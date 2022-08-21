@@ -1,7 +1,7 @@
 export interface ITask {
     id: string
     content: string
-    priority: number,
+    priority: number
     isOpen: boolean
 }
 

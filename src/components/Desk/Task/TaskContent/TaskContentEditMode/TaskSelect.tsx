@@ -1,19 +1,30 @@
 import React from "react"
-import { useAppDispatch } from "../../../../../hooks/redux"
+import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux"
 import { ITasksContentEditMode } from "../../../../../models/ITasksContent"
 import { container, vector } from "../../../../../pictures"
-import { deleteTask } from "../../../../../Store/reducers/dndSlice"
+import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dndSlice"
+import { deleteErrorTaskInfo } from "../../../../../Store/reducers/errorMessageSlice"
 
 const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, column }) => {
     const dispatch = useAppDispatch()
+    const { isOpen } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
+    const { opasityButtons } = useAppSelector((state) => state.editModeSlice)
+    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { errorTaskInfo } = useAppSelector(state => state.errorMessageSlice)
 
     const deleteTaskFunc = (id: string) => {
         if (column !== undefined) {
             const obj = {
                 id: id,
                 column: column,
+                isAuth: isAuth
             }
-            dispatch(deleteTask(obj))
+            if (isAuth) {
+                dispatch(deleteErrorTaskInfo(task.id))
+                dispatch(deleteTaskQuery(obj)) 
+            } else {
+                dispatch(deleteTask(obj))
+            }
         }
     }
 
@@ -26,6 +37,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                         <button
                             className="block__content_selection_button delete"
                             onClick={() => deleteTaskFunc(task.id)}
+                            disabled={opasityButtons["delete"].includes(task.id)}
                         >
                             <img
                                 className="block__content_selection_img delete"
@@ -38,7 +50,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                         <button
                             className="block__content_selection_button apply"
                             type="submit"
-                            disabled={!isValid}
+                            disabled={!isValid || isOpen || opasityButtons["apply"].includes(task.id)}
                         >
                             <img
                                 className="block__content_selection_img apply"
@@ -48,6 +60,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
                             <p className="block__content_selection_text">Apply</p>
                         </button>
                     </div>
+                    {isAuth && errorTaskInfo[task.id]?.message && <div className="error_info task">{errorTaskInfo[task.id]?.message}</div>}   
                 </>
             )}
         </>

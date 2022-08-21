@@ -2,13 +2,14 @@ import { takeEvery, put, call, fork, all } from 'redux-saga/effects';
 import AuthService from "../../services/AuthService";
 import { checkAuthService } from '../../services/CheckAuthService';
 import { setAuth, setLoading, setUser } from '../reducers/authorizationSlice';
+import { setErrorInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 import { handleGetStatus } from './statusSaga';
 import { handleGetTask } from './taskSaga';
 
 export function* handleData() {
     yield all([
         fork(handleGetStatus),
-        fork(handleGetTask),
+        fork(handleGetTask)
     ])
 }
 
@@ -21,8 +22,7 @@ export function* handleLogin(action) {
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
     } catch (e) {
-        console.log(e.response?.data?.message);
-        yield put(setAuth(false))
+        yield put(setErrorInfo(e.response?.data?.errorInfo))
     }
 }
 
@@ -34,8 +34,7 @@ export function* handleRegistration(action) {
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
     } catch (e) {
-        console.log(e.response?.data?.message);
-        yield put(setAuth(false))
+        yield put(setErrorInfo(e.response?.data?.errorInfo))
     }
 }
 
@@ -43,12 +42,12 @@ export function* handleCheckAuth() {
     yield put(setLoading(true))
     try {
         const response = yield call(checkAuthService)
+        console.log(response.data)
         yield put(setUser(response.data))
         yield put(setAuth(true))
         yield handleData()
     } catch (e) {
-        console.log(e.response?.data?.message);
-        yield put(setAuth(false))
+        yield put(setGlobalErrorMessage(e.response?.data))
     } finally {
         yield put(setLoading(false))
     }

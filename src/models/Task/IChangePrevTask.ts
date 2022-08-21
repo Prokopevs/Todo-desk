@@ -1,6 +1,6 @@
-export interface IChangeTaskContent {
+export interface IChangePrevTask {
+    content: string
     id: string
-    content: string 
     priority: number
     status_id: string
 }

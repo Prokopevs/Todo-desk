@@ -433,6 +433,30 @@
     margin-top: 9px;
 }
 
+.error_info {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -18px;
+    color: #EC7676;
+    font-size: 15px;
+
+    word-break: break-all;
+}
+
+.error_info.register {
+    margin-bottom: 40px;
+    margin-top: -49px;
+}
+
+.error_info.taskmodal {
+    margin-bottom: 15px;
+    margin-top: -30px;
+}
+
+.error_info.task {
+    margin-top: 7px;
+} 
+
 @media (max-width: 460px) {
     .login__form_remember {
         margin-top: 12px;

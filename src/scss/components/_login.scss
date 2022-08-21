@@ -9,13 +9,29 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 12px 0 12px;
+    transition: box-shadow .3s linear;
+
+    &:hover {
+        box-shadow: 1px 1px 2px rgba(223, 222, 222, 0.3), -1px -1px 2px rgba(189, 189, 189, 0.5), inset -5px 5px 10px rgba(188, 187, 187, 0.2), inset 5px -5px 10px rgba(187, 187, 187, 0.2), inset -5px -5px 10px rgba(224, 224, 224, 0.9), inset 5px 5px 13px rgba(182, 180, 180, 0.9);
+    }
 }
 
 .login__user_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    object-fit: cover;
+    background-color: #7AD58E;
+    box-shadow: -1px 1px 2px rgba(104, 183, 122, 0.2), 1px -1px 2px rgba(104, 183, 122, 0.2), -1px -1px 2px rgba(128, 223, 149, 0.9), 1px 1px 3px rgba(104, 183, 122, 0.9), inset 1px 1px 2px rgba(128, 223, 149, 0.3), inset -1px -1px 2px rgba(104, 183, 122, 0.5);
+}
+
+.login__user_leter {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .login__icon {

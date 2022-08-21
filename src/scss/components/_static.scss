@@ -29,6 +29,22 @@
     margin: -20px 0 30px 50px
 }
 
+
+.demo__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72.4vh;
+}
+
+.demo__text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 24px;
+    color: #B9ADAD;
+
 @media (max-width: 1399px) {
     .demo__description {
         font-size: 24px;

@@ -4,10 +4,18 @@ import { useAppSelector } from "../hooks/redux"
 
 const Home = () => {
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { globalErrorMessage } = useAppSelector(state => state.errorMessageSlice)
+
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        if (isAuth) {
+        if (globalErrorMessage) {
+            navigate("/errors")
+        }
+    }, [])
+
+    React.useEffect(() => {
+        if (isAuth && !globalErrorMessage) {
             navigate("/dashboard")
         }
         if (!isAuth) {
@@ -15,7 +23,7 @@ const Home = () => {
         }
     }, [isAuth])
 
-    return <div></div>
+    return <></>
 }
 
 export default Home
