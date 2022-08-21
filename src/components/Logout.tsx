@@ -1,11 +1,10 @@
 import React from "react"
-import { login, corgi } from "../pictures"
+import { login } from "../pictures"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
 import { IUser } from "../models/IUser"
 import { useNavigate } from "react-router-dom"
 import { setInitialData } from "../Store/reducers/dndSlice"
-import { useSelector } from "react-redux"
 
 const Logout = () => {
     const dispatch = useAppDispatch()

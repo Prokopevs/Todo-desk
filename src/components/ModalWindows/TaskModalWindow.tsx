@@ -3,8 +3,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import PriorityButtons from "../PriorityButtons"
-import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSlice";
-import { ModalWindowContext } from "../../App";
+import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
+import { ModalWindowContext } from "../../App"
 import priorityArray from "../../data/Desk/priorityArray"
 import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
 
@@ -22,7 +22,7 @@ const TaskModalWindow = () => {
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
     const { isAuth } = useAppSelector((state) => state.authorizationSlice)
-    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
+    const { errorInfo } = useAppSelector((state) => state.errorMessageSlice)
     const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
     const firstItemOfColumnOrder = data.columnOrder[0]
 
@@ -36,7 +36,7 @@ const TaskModalWindow = () => {
         dispatch(deleteErrorInfo())
         data["priority"] = priority
         data["status_id"] = firstItemOfColumnOrder
-        data["isAuth"] = isAuth
+        data["isAuth"] = isAuth!
         if (isAuth) {
             dispatch(addTaskQuery(data))
         } else {
@@ -46,7 +46,7 @@ const TaskModalWindow = () => {
     }
 
     React.useEffect(() => {
-        if(queryFlag) {
+        if (queryFlag) {
             closeTaskWindow()
             dispatch(setQueryFlag(false))
         }
@@ -55,8 +55,8 @@ const TaskModalWindow = () => {
     const closeTaskWindow = () => {
         dispatch(deleteErrorInfo())
         setModalTaskActive(false)
-        setTimeout(() => reset(), 200);
-        setTimeout(() => setChangePrioprity(false), 200);
+        setTimeout(() => reset(), 200)
+        setTimeout(() => setChangePrioprity(false), 200)
     }
 
     return (
@@ -116,10 +116,14 @@ const TaskModalWindow = () => {
                             ) : (
                                 <div className="modalWindow__button">
                                     <button
-                                        className={`block__button ${priorityArray[priority - 1].color} big mr1`}
+                                        className={`block__button ${
+                                            priorityArray[priority - 1].color
+                                        } big mr1`}
                                         onClick={() => setChangePrioprity(true)}
                                     >
-                                        <div className="block__button-description">{priorityArray[priority - 1].description}</div>
+                                        <div className="block__button-description">
+                                            {priorityArray[priority - 1].description}
+                                        </div>
                                     </button>
                                 </div>
                             )}
@@ -132,7 +136,9 @@ const TaskModalWindow = () => {
                             >
                                 Add
                             </button>
-                            {isAuth && errorInfo && <div className="error_info taskmodal">{errorInfo}</div>}   
+                            {isAuth && errorInfo && (
+                                <div className="error_info taskmodal">{errorInfo}</div>
+                            )}
                         </form>
                     </div>
 

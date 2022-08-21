@@ -17,7 +17,7 @@ const TaskSelect:React.FC<ITasksContentEditMode> = ({ task, editMode, isValid, c
             const obj = {
                 id: id,
                 column: column,
-                isAuth: isAuth
+                isAuth: isAuth!
             }
             if (isAuth) {
                 dispatch(deleteErrorTaskInfo(task.id))

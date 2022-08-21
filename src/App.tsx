@@ -43,14 +43,14 @@ const App = () => {
         return (
             <div className={modalTaskActive || modalStatusActive ? "container modal-open" : "container"}>
                 <ModalWindowContext.Provider value={{modalTaskActive, setModalTaskActive, modalStatusActive, setStatusActive}}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/demo" element={<Demo />} />
-                    <Route path="/dashboard" element={<DashBoard />} />
-                    <Route path="/login" element={<LoginForm />} />
-                    <Route path="/register" element={<RegisterForm />} />
-                    <Route path="errors" element={<Errors />} />
-                </Routes>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/demo" element={<Demo />} />
+                        <Route path="/dashboard" element={<DashBoard />} />
+                        <Route path="/login" element={<LoginForm />} />
+                        <Route path="/register" element={<RegisterForm />} />
+                        <Route path="errors" element={<Errors />} />
+                    </Routes>
                 </ModalWindowContext.Provider>
             </div>
         );

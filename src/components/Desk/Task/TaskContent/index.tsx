@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "../../../../hooks/redux"
 import { changeTaskContent, changeTaskContentQuery } from "../../../../Store/reducers/dndSlice"
 import TasksContentEditMode from "./TaskContentEditMode"
 import { deleteTaskInEditArray, deleteTaskInSuccessArray } from "../../../../Store/reducers/editModeSlice"
-import { deleteErrorTaskInfo } from "../../../../Store/reducers/errorMessageSlice"
 
 interface Inputs {
     id: string
@@ -42,7 +41,7 @@ const TasksContent: React.FC<ITasksContent> = ({
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         data["id"] = task.id 
         data["priority"] = priority
-        data["status_id"] = column.id   
+        data["status_id"] = column!.id   
         if(isAuth) {
             if(prevTaskObj[task.id].priority !== priority  || prevTaskObj[task.id].content !== data.content) {
                 dispatch(changeTaskContentQuery(data))

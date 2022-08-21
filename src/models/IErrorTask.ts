@@ -1,8 +1,4 @@
-export interface IErrorTask {
+export interface IErrorTasks {
     id: string
     message: string
-}
-
-export interface IErrorTasks {
-    [K: string]: IErrorTask
 }

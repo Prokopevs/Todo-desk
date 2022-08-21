@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { registration } from "../Store/reducers/authorizationSlice"
 import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
-import { IRegisterForm } from "../models/IRegisterForm"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 
 type Inputs = {

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { login, setRememberMe } from "../Store/reducers/authorizationSlice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
-import { ILoginForm } from "../models/ILoginForm"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 
 type Inputs = {

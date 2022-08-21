@@ -1,5 +1,4 @@
 import React from "react"
-import { ModalWindowContext } from "../App"
 import { useAppSelector } from "../hooks/redux"
 import useWindowDimensions from "../hooks/useWindowDimensions"
 import { IAddTaskProps } from "../models/IAddTaskProps"

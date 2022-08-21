@@ -1,3 +1,5 @@
+import { IPrevTask } from "../../../models/Task/IPrevTask";
+
 export const mapResponseTasks = (arr) => {
     let taskObj = {};
         for (let i = 0; i < arr.length; ++i) {
@@ -12,7 +14,7 @@ export const mapResponseTasks = (arr) => {
 }
 
 export const mapResponsePrevTasks = (arr) => {
-    let prevTaskObj = {};
+    let prevTaskObj:any = {};
         for (let i = 0; i < arr.length; ++i) {
             if (arr[i] !== undefined) {
                 prevTaskObj[arr[i].id] = arr[i]; // '2' = {id: 2, content: 'do something ', priority: 3, status_id: 6}

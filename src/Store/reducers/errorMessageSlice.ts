@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IErrorTask, IErrorTasks } from '../../models/IErrorTask'
+import { IErrorTasks } from '../../models/IErrorTask'
 
 interface errorMessageState {
     globalErrorMessage: string
@@ -11,8 +11,8 @@ const initialState: errorMessageState = {
     globalErrorMessage: "",
     errorInfo: "",
     errorTaskInfo: {
-        id: null,
-        message: null
+        id: "",
+        message: ""
     }
 }
 
@@ -26,10 +26,10 @@ export const errorMessageSlice = createSlice({
         setErrorInfo: (state, action: PayloadAction<string>) => {
             state.errorInfo = action.payload
         },
-        deleteErrorInfo: (state, action: PayloadAction<string>) => {
+        deleteErrorInfo: (state) => {
             state.errorInfo = ""
         },
-        setErrorTaskInfo: (state, action: PayloadAction<IErrorTask>) => {
+        setErrorTaskInfo: (state, action: PayloadAction<IErrorTasks>) => {
             const { id, message } = action.payload
             const data = { id, message }
             state.errorTaskInfo[id] = data

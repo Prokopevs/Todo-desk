@@ -18,9 +18,9 @@ const initialState: editModeState = {
     editArray: [], // для отключения dragable
     queryLoading: false,
     prevTaskObj: {
-        id: null,
+        id: "",
         priority: null,
-        content: null
+        content: ""
     },
     successTasksAfterSagaRequest: [],    // для того чтобы закрыть окно редактирования после успешного запроса на сервер
     opasityButtons: {

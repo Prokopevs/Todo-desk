@@ -58,7 +58,7 @@ const Desk = () => {
                 <div className="col-12 desk">
                     <ul className="row row-padding">
                         {columnsLength ? (
-                            data.columnOrder.map((columnId) => {
+                            data.columnOrder.map((columnId, index) => {
                                 const column = data.columns[columnId] // id: 'column-1' name: 'To do', taskIds: ['0', '1']
                                 const tasks = column.taskIds.map(
                                     (taskId) => data.tasks[taskId]

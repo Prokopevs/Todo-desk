@@ -95,7 +95,7 @@ export const dndSlice = createSlice({
             // -------------------------- //
             if(action.payload) {
                 let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
-                let taskIdsArr = JSON.parse(taskIdsNumbers) //["1","2"]
+                let taskIdsArr = JSON.parse(taskIdsNumbers!) //["1","2"]
                 console.log(taskIdsArr)
                     
                 taskIdsArr.splice(state.result.source.index!, 1) //["2"]
@@ -118,7 +118,7 @@ export const dndSlice = createSlice({
             // -------------------------- //
             if(action.payload) {
                 let startTaskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
-                let startTaskIdsArr = JSON.parse(startTaskIdsNumbers) //["1","2"]
+                let startTaskIdsArr = JSON.parse(startTaskIdsNumbers!) //["1","2"]
                 startTaskIdsArr.splice(state.result.source.index!, 1) // удалили элемент, который тянули в LS
                 if (startTaskIdsArr.length === 0) {
                     localStorage.removeItem(`${state.start.id}`)
@@ -149,7 +149,7 @@ export const dndSlice = createSlice({
 
             if (action.payload.isAuth) {
                 let stringArr = localStorage.getItem(`${action.payload.column.id}`) // "["1,2"]"
-                let deleteArr = JSON.parse(stringArr) // ["1","2"]
+                let deleteArr = JSON.parse(stringArr!) // ["1","2"]
                 const index = deleteArr.indexOf(action.payload.id) // индекс удаляемого элемента в массиве
                 deleteArr.splice(index, 1)
                 if(deleteArr.length == 0) {

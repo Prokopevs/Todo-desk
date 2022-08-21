@@ -1,5 +1,5 @@
 import { mapColumnOrder, mapResponseStatus } from './sagaHelpers/statusHelper';
-import { takeEvery, put, call, fork } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import { deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
 import { setQueryLoading } from '../reducers/editModeSlice';

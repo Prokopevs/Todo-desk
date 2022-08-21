@@ -30,7 +30,7 @@ const StatusModalWindow = () => {
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
-        data["isAuth"] = isAuth
+        data["isAuth"] = isAuth!
         if(isAuth) {
             dispatch(addStatusQuery(data))
         } else {
