@@ -1,7 +1,7 @@
 import React from "react"
 import { useAppSelector } from "../hooks/redux"
 import useWindowDimensions from "../hooks/useWindowDimensions"
-import { IAddTaskProps } from "../models/IAddTaskProps"
+import { IAddTaskProps } from "../models/dnd/IAddTaskProps"
 
 type addTaskClick = MouseEvent & {
     path: Node[]

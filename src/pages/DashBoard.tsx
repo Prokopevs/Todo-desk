@@ -34,8 +34,8 @@ const DashBoard = () => {
             <div>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>DashBoard</title>
-                    <meta name="DashBoard" content="DashBoard desk" />
+                    <title>Task Tracker</title>
+                    <meta name="Task Tracker" content="DashBoard" />
                 </Helmet>
                 <Logout />
                 <Desk />

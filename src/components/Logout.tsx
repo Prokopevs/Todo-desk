@@ -2,7 +2,7 @@ import React from "react"
 import { login } from "../pictures"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
-import { IUser } from "../models/IUser"
+import { IUser } from "../models/Auth/IUser"
 import { useNavigate } from "react-router-dom"
 import { setInitialData } from "../Store/reducers/dndSlice"
 

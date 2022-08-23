@@ -1,4 +1,4 @@
-import { IColumn } from "./dnd/IData"
+import { IColumn } from "../dnd/IData"
 export interface ITasksContent {
     task: any
     editMode: boolean
@@ -9,7 +9,6 @@ export interface ITasksContent {
 
 export interface ITasksContentEditMode {
     task: any
-    editMode: boolean
     priorityArray?: any
     isValid?:boolean
     column?: IColumn

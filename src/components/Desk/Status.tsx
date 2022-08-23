@@ -1,7 +1,7 @@
 import React from "react"
 import Tasks from "./Tasks"
 import { Droppable } from "react-beautiful-dnd"
-import { IStatus } from "../../models/IStatus"
+import { IStatus } from "../../models/dnd/IStatus"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import {
     deleteStatus,
