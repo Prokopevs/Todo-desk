@@ -84,7 +84,6 @@ const TasksContent: React.FC<ITasksContent> = ({
                         animate={{ height: "auto" }}
                         exit={{ height: 0 }}
                         style={{ overflow: "hidden" }}
-                        // transition={{ duration: 2 }}
                     >
                         <TextareaAutosize
                             className={
