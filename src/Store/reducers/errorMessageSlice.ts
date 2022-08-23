@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IErrorTasks } from '../../models/IErrorTask'
+import { IErrorTasks } from '../../models/Errors/IErrorTask'
 
 interface errorMessageState {
     globalErrorMessage: string

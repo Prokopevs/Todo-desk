@@ -1,4 +1,4 @@
-import { ISetOpacity } from './../../models/ISetOpacity';
+import { ISetOpacity } from '../../models/EditMode/ISetOpacity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IChangePrevTask } from '../../models/Task/IChangePrevTask'
 import { IPrevTask } from '../../models/Task/IPrevTask'

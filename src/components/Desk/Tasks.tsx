@@ -1,6 +1,6 @@
 import React from "react"
 import { Draggable } from "react-beautiful-dnd"
-import { ITasksProps } from "../../models/ITasksProps"
+import { ITasksProps } from "../../models/Task/ITasksProps"
 import { useAppSelector } from "../../hooks/redux"
 import Task from "./Task"
 import { selectEditMode } from "../../Store/selectors";

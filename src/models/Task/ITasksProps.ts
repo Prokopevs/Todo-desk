@@ -1,4 +1,4 @@
-import { IColumn } from "./dnd/IData"
+import { IColumn } from "../dnd/IData"
 interface IPriority {
     color: string
     description: string

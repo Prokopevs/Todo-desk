@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {IUser} from "../../models/IUser";
+import {IUser} from "../../models/Auth/IUser";
 import { ILogin } from '../../models/Auth/ILogin';
 import { IRegistration } from '../../models/Auth/IRegistration';
 

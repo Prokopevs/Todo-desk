@@ -22,8 +22,8 @@ const Demo = () => {
             <div>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>Demo</title>
-                    <meta name="Demo" content="Demo Mode" />
+                    <title>Task Tracker</title>
+                    <meta name="Task Tracker" content="Demo Mode" />
                 </Helmet>
                 <div className="demo">
                     <div className="static">Demo mode</div>

@@ -3,7 +3,8 @@ import { pen } from "../../../pictures"
 import { addTaskInEditArray } from "../../../Store/reducers/editModeSlice"
 import { useAppDispatch } from "../../../hooks/redux"
 import TasksContent from "./TaskContent"
-import { ITasksProps } from "../../../models/ITasksProps"
+import { ITasksProps } from "../../../models/Task/ITasksProps"
+import { motion, AnimatePresence } from "framer-motion"
 
 const Task: React.FC<ITasksProps> = React.memo(
     ({ task, index, priorityArray, column }) => {
@@ -38,9 +39,19 @@ const Task: React.FC<ITasksProps> = React.memo(
                             editMode ? "block__content editMode" : "block__content"
                         }
                     >
-                        <div className={editMode ? `` : `pretty__line ${color}`}></div>
+                        {!editMode && (
+                            <div
+                                className={editMode ? `` : `pretty__line ${color}`}
+                            ></div>
+                        )}
 
-                        <div className={editMode ? "block__content_text_area editMode" : "block__content_text_area"}>
+                        <div
+                            className={
+                                editMode
+                                    ? "block__content_text_area editMode"
+                                    : "block__content_text_area"
+                            }
+                        >
                             <TasksContent
                                 task={task}
                                 editMode={editMode}

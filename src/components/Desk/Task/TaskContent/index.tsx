@@ -1,12 +1,17 @@
 import React from "react"
-import { ITasksContent } from "../../../../models/ITasksContent"
+import { ITasksContent } from "../../../../models/Task/ITasksContent"
 import TextareaAutosize from "react-textarea-autosize"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux"
-import { changeTaskContent, changeTaskContentQuery } from "../../../../Store/reducers/dndSlice"
+import {
+    changeTaskContent,
+    changeTaskContentQuery,
+} from "../../../../Store/reducers/dndSlice"
 import TasksContentEditMode from "./TaskContentEditMode"
 import { deleteTaskInEditArray, deleteTaskInSuccessArray } from "../../../../Store/reducers/editModeSlice"
-import { selectAuthorization } from "../../../../Store/selectors"
+import { selectAuthorization, selectEditMode } from "../../../../Store/selectors"
+import { motion, AnimatePresence } from "framer-motion"
+
 
 interface Inputs {
     id: string
@@ -24,7 +29,7 @@ const TasksContent: React.FC<ITasksContent> = ({
 }) => {
     const { priority } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
     const { isAuth } = useAppSelector(selectAuthorization)
-    const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector((state) => state.editModeSlice)
+    const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector(selectEditMode)
     const dispatch = useAppDispatch()
 
     const moveCaretAtEnd = (e) => {
@@ -40,11 +45,14 @@ const TasksContent: React.FC<ITasksContent> = ({
     } = useForm<Inputs>({ mode: "onChange" })
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        data["id"] = task.id 
+        data["id"] = task.id
         data["priority"] = priority
-        data["status_id"] = column!.id   
-        if(isAuth) {
-            if(prevTaskObj[task.id].priority !== priority  || prevTaskObj[task.id].content !== data.content) {
+        data["status_id"] = column!.id
+        if (isAuth) {
+            if (
+                prevTaskObj[task.id].priority !== priority ||
+                prevTaskObj[task.id].content !== data.content
+            ) {
                 dispatch(changeTaskContentQuery(data))
             } else {
                 handleClose()
@@ -52,11 +60,11 @@ const TasksContent: React.FC<ITasksContent> = ({
         } else {
             dispatch(changeTaskContent(data))
             handleClose()
-        }      
+        }
     }
 
     React.useEffect(() => {
-        if(successTasksAfterSagaRequest.includes(task.id)) {
+        if (successTasksAfterSagaRequest.includes(task.id)) {
             handleClose()
             dispatch(deleteTaskInSuccessArray(task.id))
         }
@@ -69,38 +77,60 @@ const TasksContent: React.FC<ITasksContent> = ({
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            {editMode ? (
-                <TextareaAutosize
-                    className={
-                        editMode
-                            ? "block__content_input editMode"
-                            : "block__content_input"
-                    }
-                    defaultValue={task.content}
-                    autoFocus
-                    onFocus={moveCaretAtEnd}
-                    autoComplete="off"
-                    {...register("content", {
-                        required: "cannot be empty",
-                    })}
-                />
-            ) : (
-                <p className="block__content_text">{task.content}</p>
-            )}
+            <AnimatePresence>
+                {editMode ? (
+                    <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                        style={{ overflow: "hidden" }}
+                        // transition={{ duration: 2 }}
+                    >
+                        <TextareaAutosize
+                            className={
+                                editMode
+                                    ? "block__content_input editMode"
+                                    : "block__content_input"
+                            }
+                            defaultValue={task.content}
+                            autoFocus
+                            onFocus={moveCaretAtEnd}
+                            autoComplete="off"
+                            {...register("content", {
+                                required: "cannot be empty",
+                            })}
+                        />
+                    </motion.div>
+                ) : (
+                    <p className="block__content_text">{task.content}</p>
+                )}
+            </AnimatePresence>
 
             <div className="error__message">
                 {errors?.content && (
-                    <p className="error__message_text tasks">{errors?.content?.message}</p>
+                    <p className="error__message_text tasks">
+                        {errors?.content?.message}
+                    </p>
                 )}
             </div>
 
-            <TasksContentEditMode
-                task={task}
-                editMode={editMode}
-                priorityArray={priorityArray}
-                isValid={isValid}
-                column={column}
-            />
+            <AnimatePresence>
+                {editMode && (
+                    <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                        style={{ overflow: "hidden" }}
+                    >
+                        <TasksContentEditMode
+                            task={task}
+                            priorityArray={priorityArray}
+                            isValid={isValid}
+                            column={column}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </form>
     )
 }
