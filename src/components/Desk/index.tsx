@@ -22,6 +22,8 @@ const Desk = () => {
     const { data } = useAppSelector(selectDnd)
     const columnsLength = Object.keys(data.columns).length
 
+    console.log(data)
+
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result
         dispatch(setResult(result))
