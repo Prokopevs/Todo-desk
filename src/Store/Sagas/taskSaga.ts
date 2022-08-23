@@ -41,7 +41,7 @@ export function* handlePutTask(action) {
     const obj = { arrName: "apply", id: id }
     yield put(setOpasityButtons(obj))
     try {
-        const response = yield call(putTaskService, content, Number(id), priority, 0)
+        const response = yield call(putTaskService, content, Number(id), priority, Number(status_id))
         yield put(changeTaskContent(action.payload))
         yield put(addTaskInSuccessArray(id))
         yield put(changePrevTaskObj(action.payload))
