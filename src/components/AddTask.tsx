@@ -2,14 +2,15 @@ import React from "react"
 import { useAppSelector } from "../hooks/redux"
 import useWindowDimensions from "../hooks/useWindowDimensions"
 import { IAddTaskProps } from "../models/IAddTaskProps"
+import { selectDnd, selectAuthorization } from "../Store/selectors"
 
 type addTaskClick = MouseEvent & {
     path: Node[]
 }
 
 const AddTask: React.FC<IAddTaskProps> = ({ changesActive, setChangesActive }) => {
-    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
-    const { data } = useAppSelector((state) => state.dndSlice)
+    const { isAuth } = useAppSelector(selectAuthorization)
+    const { data } = useAppSelector(selectDnd)
     const { width } = useWindowDimensions()
 
     const columLength = data.columnOrder.length

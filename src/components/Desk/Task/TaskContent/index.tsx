@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../../hooks/redux"
 import { changeTaskContent, changeTaskContentQuery } from "../../../../Store/reducers/dndSlice"
 import TasksContentEditMode from "./TaskContentEditMode"
 import { deleteTaskInEditArray, deleteTaskInSuccessArray } from "../../../../Store/reducers/editModeSlice"
+import { selectAuthorization } from "../../../../Store/selectors"
 
 interface Inputs {
     id: string
@@ -22,7 +23,7 @@ const TasksContent: React.FC<ITasksContent> = ({
     setEditMod,
 }) => {
     const { priority } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
-    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { isAuth } = useAppSelector(selectAuthorization)
     const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector((state) => state.editModeSlice)
     const dispatch = useAppDispatch()
 

@@ -3,10 +3,11 @@ import { Draggable } from "react-beautiful-dnd"
 import { ITasksProps } from "../../models/ITasksProps"
 import { useAppSelector } from "../../hooks/redux"
 import Task from "./Task"
+import { selectEditMode } from "../../Store/selectors";
 
 const Tasks: React.FC<ITasksProps> = React.memo(
     ({ task, index, priorityArray, column }) => {
-        const { editArray } = useAppSelector((state) => state.editModeSlice)
+        const { editArray } = useAppSelector(selectEditMode)
 
         return (
             <>

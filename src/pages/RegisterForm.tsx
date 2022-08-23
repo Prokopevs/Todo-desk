@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { Helmet } from "react-helmet"
+import { selectAuthorization, selectError } from "../Store/selectors"
 
 type Inputs = {
     name: string
@@ -14,8 +15,8 @@ type Inputs = {
 
 const RegisterForm = () => {
     const [registerClick, setRegisterClick] = React.useState<boolean>(false)
-    const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
-    const { errorInfo } = useAppSelector((state) => state.errorMessageSlice)
+    const isAuth = useAppSelector(selectAuthorization)
+    const { errorInfo } = useAppSelector(selectError)
     const dispatch = useAppDispatch()
 
     React.useEffect(() => {

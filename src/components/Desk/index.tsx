@@ -13,12 +13,13 @@ import {
     setResult,
     setStart,
 } from "../../Store/reducers/dndSlice"
+import { selectDnd, selectAuthorization } from "../../Store/selectors"
 
 const Desk = () => {
     const dispatch = useAppDispatch()
-    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { isAuth } = useAppSelector(selectAuthorization)
     const [changesActive, setChangesActive] = useSessionStorage("SelectChanges", false)
-    const data = useAppSelector((state) => state.dndSlice.data)
+    const { data } = useAppSelector(selectDnd)
     const columnsLength = Object.keys(data.columns).length
 
     const onDragEnd = (result) => {

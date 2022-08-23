@@ -6,10 +6,11 @@ import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
 import { Helmet } from "react-helmet"
+import { selectAuthorization } from "../Store/selectors"
 
 const DashBoard = () => {
     localStorage.removeItem("modal")
-    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
+    const { isAuth } = useAppSelector(selectAuthorization)
     const { globalErrorMessage } = useAppSelector((state) => state.errorMessageSlice)
     const navigate = useNavigate()
 

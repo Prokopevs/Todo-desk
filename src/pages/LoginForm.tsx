@@ -7,6 +7,7 @@ import { login, setRememberMe } from "../Store/reducers/authorizationSlice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { Helmet } from "react-helmet"
+import { selectError, selectAuthorization } from "../Store/selectors";
 
 type Inputs = {
     password: string
@@ -16,8 +17,8 @@ type Inputs = {
 
 const LoginForm = () => {
     const dispatch = useAppDispatch()
-    const { isAuth, rememberMe } = useAppSelector((state) => state.authorizationSlice)
-    const { errorInfo } = useAppSelector((state) => state.errorMessageSlice)
+    const { isAuth, rememberMe } = useAppSelector(selectAuthorization)
+    const { errorInfo } = useAppSelector(selectError)
     const [loginClick, setloginClick] = React.useState<boolean>(false)
 
     React.useEffect(() => {

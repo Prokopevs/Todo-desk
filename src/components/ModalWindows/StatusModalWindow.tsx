@@ -4,8 +4,9 @@ import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
 import { ModalWindowContext } from "../../App";
-import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice";
-import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice";
+import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
+import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
+import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../../Store/selectors"
 
 type Inputs = {
     name: string
@@ -16,10 +17,10 @@ type Inputs = {
 const StatusModalWindow = () => {
     const dispatch = useAppDispatch()
     const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
-    const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
-    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
-    const { errorInfo } = useAppSelector(state => state.errorMessageSlice)
-    const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
+    const { data, queryFlag } = useAppSelector(selectDnd)
+    const { isAuth } = useAppSelector(selectAuthorization)
+    const { errorInfo } = useAppSelector(selectError)
+    const { queryLoading } = useAppSelector(selectEditMode)
 
     const columnOrderLength = data.columnOrder.length
     const {

@@ -9,12 +9,13 @@ import {
     setLineArray,
 } from "../../Store/reducers/dndSlice"
 import Line from "./Line"
+import { selectAuthorization } from "../../Store/selectors"
 
 const Status: React.FC<IStatus> = React.memo(
     ({ column, tasks, priorityArray, index }) => {
         const dispatch = useAppDispatch()
         const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
-        const isAuth = useAppSelector((state) => state.authorizationSlice.isAuth)
+        const isAuth = useAppSelector(selectAuthorization)
 
         React.useEffect(() => {
             dispatch(setLineArray(Object.keys(columnOrder).length))

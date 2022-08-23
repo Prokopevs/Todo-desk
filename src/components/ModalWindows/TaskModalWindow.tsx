@@ -7,6 +7,7 @@ import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSli
 import { ModalWindowContext } from "../../App"
 import priorityArray from "../../data/Desk/priorityArray"
 import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
+import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../../Store/selectors"
 
 interface Inputs {
     content: string
@@ -20,10 +21,10 @@ const TaskModalWindow = () => {
     const [changePrioprity, setChangePrioprity] = React.useState(false)
     const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
     const { priority } = useAppSelector((state) => state.prioritySlice)
-    const { data, queryFlag } = useAppSelector((state) => state.dndSlice)
-    const { isAuth } = useAppSelector((state) => state.authorizationSlice)
-    const { errorInfo } = useAppSelector((state) => state.errorMessageSlice)
-    const queryLoading = useAppSelector((state) => state.editModeSlice.queryLoading)
+    const { data, queryFlag } = useAppSelector(selectDnd)
+    const { isAuth } = useAppSelector(selectAuthorization)
+    const { errorInfo } = useAppSelector(selectError)
+    const { queryLoading } = useAppSelector(selectEditMode)
     const firstItemOfColumnOrder = data.columnOrder[0]
 
     const {
