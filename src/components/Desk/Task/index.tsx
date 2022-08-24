@@ -4,13 +4,11 @@ import { addTaskInEditArray } from "../../../Store/reducers/editModeSlice"
 import { useAppDispatch } from "../../../hooks/redux"
 import TasksContent from "./TaskContent"
 import { ITasksProps } from "../../../models/Task/ITasksProps"
-import { motion, AnimatePresence } from "framer-motion"
 
 const Task: React.FC<ITasksProps> = React.memo(
-    ({ task, index, priorityArray, column }) => {
+    ({ task, priorityArray, column }) => {
         const dispatch = useAppDispatch()
 
-        const color = priorityArray[task.priority - 1].color
         const [editMode, setEditMod] = React.useState(false)
 
         const onEditClick = () => {
@@ -39,12 +37,6 @@ const Task: React.FC<ITasksProps> = React.memo(
                             editMode ? "block__content editMode" : "block__content"
                         }
                     >
-                        {!editMode && (
-                            <div
-                                className={editMode ? `` : `pretty__line ${color}`}
-                            ></div>
-                        )}
-
                         <div
                             className={
                                 editMode

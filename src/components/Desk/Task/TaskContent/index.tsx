@@ -31,6 +31,7 @@ const TasksContent: React.FC<ITasksContent> = ({
     const { isAuth } = useAppSelector(selectAuthorization)
     const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector(selectEditMode)
     const dispatch = useAppDispatch()
+    const color = priorityArray[task.priority - 1].color
 
     const moveCaretAtEnd = (e) => {
         let temp_value = e.target.value
@@ -41,7 +42,7 @@ const TasksContent: React.FC<ITasksContent> = ({
     const {
         register,
         handleSubmit,
-        formState: { errors, isDirty, isValid },
+        formState: { errors, isValid },
     } = useForm<Inputs>({ mode: "onChange" })
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -101,7 +102,10 @@ const TasksContent: React.FC<ITasksContent> = ({
                         />
                     </motion.div>
                 ) : (
-                    <p className="block__content_text">{task.content}</p>
+                    <div className="task__content" >
+                        <div className={`pretty__line ${color}`}></div>
+                        <p className="block__content_text">{task.content}</p>
+                    </div>
                 )}
             </AnimatePresence>
 

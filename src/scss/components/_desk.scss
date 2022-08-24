@@ -443,33 +443,36 @@
         margin: -24px 0 0 1.1px;
     }
 }
+.task__content {
+    display: flex;
+}
 
 .block__content {
     display: flex;
-    margin: 15px 15px 10px 9px;
+    margin: 15px 15px 14px 9px;
 }
 
 @media (max-width: 1399px) {
     .block__content {
-        margin: 13px 13px 8px 13px;
+        margin: 13px 13px 12px 13px;
     }
 }
 
 @media (max-width: 991px) {
     .block__content {
-        margin: 10px 10px 5px 10px;
+        margin: 10px 10px 9px 10px;
     }
 }
 
 @media (max-width: 767px) {
     .block__content {
-        margin: 13px 13px 8px 13px;
+        margin: 13px 13px 12px 13px;
     }
 }
 
 @media (max-width: 460px) {
     .block__content {
-        margin: 12px 12px 7px 12px;
+        margin: 12px 12px 11px 12px;
     }
 }
 
@@ -514,13 +517,20 @@
     font-size: 17px;
     line-height: 24px;
     word-break: break-all;
-
+    width: 95.1%;
     color: #8A8383;
 }
 
 @media (max-width: 1399px) {
     .block__content_text {
         font-size: 16px;
+        width: 94.8%;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__content_text {
+        width: 94%;
     }
 }
 
@@ -528,6 +538,7 @@
     .block__content_text {
         font-size: 15px;
         line-height: 1.5;
+        width: 93.5%;
     }
 }
 
@@ -535,6 +546,7 @@
     .block__content_text {
         font-size: 17px;
         line-height: none;
+        width: 96.5%;
     }
 }
 
@@ -542,6 +554,7 @@
     .block__content_text {
         font-size: 16.5px;
         line-height: none;
+        width: 96%;
     }
 }
 
@@ -588,40 +601,51 @@
 }
 
 .pre_pretty__line {
-    // width: 11px;
     height: 100%;
 }
 
 .pretty__line {
-    width: 13px;
+    width: 4.9%;
     min-height: 24px;
     margin-right: 7px;
     border-radius: 20.5px;
 }
 
+.pretty__line.active {
+    opacity: 0;
+    transition: opacity 3s;
+    display: none;
+}
+
 @media (max-width: 1399px) {
     .pretty__line {
-        width: 12px;
+        width: 5.2%;
+    }
+}
+
+@media (max-width: 1199px) {
+    .pretty__line {
+        width: 6%;
     }
 }
 
 @media (max-width: 991px) {
     .pretty__line {
-        width: 10.5px;
+        width: 6.5%;
         margin: 3px 5px 3px 0;
     }
 }
 
 @media (max-width: 767px) {
     .pretty__line {
-        width: 12px;
+        width: 3.5%;
         margin: 0 7px 0 0;
     }
 }
 
 @media (max-width: 460px) {
     .pretty__line {
-        width: 11px;
+        width: 4%;
         margin: 0 6px 0 0;
     }
 }

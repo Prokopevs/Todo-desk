@@ -1,14 +1,14 @@
 import { ISetOpacity } from '../../models/EditMode/ISetOpacity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IChangePrevTask } from '../../models/Task/IChangePrevTask'
-import { IPrevTask } from '../../models/Task/IPrevTask'
+import { IPrevTask, ITask } from '../../models/Task/IPrevTask'
 
 interface editModeState {
     editArray: string[]
     queryLoading: boolean
     prevTaskObj: IPrevTask
     successTasksAfterSagaRequest: string[]
-    opasityButtons: {
+    opacityButtons: {
         delete: string[]
         apply: string[]
     }
@@ -18,12 +18,10 @@ const initialState: editModeState = {
     editArray: [], // для отключения dragable
     queryLoading: false,
     prevTaskObj: {
-        id: "",
-        priority: null,
-        content: ""
+        "": { id: "", priority: null, content: ""}
     },
     successTasksAfterSagaRequest: [],    // для того чтобы закрыть окно редактирования после успешного запроса на сервер
-    opasityButtons: {
+    opacityButtons: {
         delete: [],
         apply: []
     }
@@ -54,8 +52,6 @@ export const editModeSlice = createSlice({
         changePrevTaskObj: (state, action: PayloadAction<IChangePrevTask>) => {
             state.prevTaskObj[action.payload.id].content = action.payload.content
             state.prevTaskObj[action.payload.id].priority = action.payload.priority 
-            //  добавить логику при добавлении таски. В массив  prevTaskObj должен добавляться этот элемент 
-            // добавить логику при удалении таски. 
         },
         addTaskInPrevTaskObj:  (state, action: PayloadAction<IChangePrevTask>) => {
             const { content, id, priority, status_id } = action.payload
@@ -65,14 +61,14 @@ export const editModeSlice = createSlice({
         deleteTaskInPrevTaskObj:  (state, action: PayloadAction<string>) => {
             delete state.prevTaskObj[action.payload]
         },
-        setOpasityButtons: (state, action: PayloadAction<ISetOpacity>) => {
-            state.opasityButtons[action.payload.arrName].push(action.payload.id)
+        setOpacityButtons: (state, action: PayloadAction<ISetOpacity>) => {
+            state.opacityButtons[action.payload.arrName].push(action.payload.id)
         },
-        removeOpasityButtons: (state, action: PayloadAction<ISetOpacity>) => {
-            state.opasityButtons[action.payload.arrName] = []
+        removeOpacityButtons: (state, action: PayloadAction<ISetOpacity>) => {
+            state.opacityButtons[action.payload.arrName] = []
         },
     }
 })
 
-export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpasityButtons, removeOpasityButtons, deleteTaskInSuccessArray } = editModeSlice.actions
+export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray } = editModeSlice.actions
 export default editModeSlice.reducer

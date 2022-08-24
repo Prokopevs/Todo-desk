@@ -9,7 +9,7 @@ import { selectAuthorization, selectError } from "../../../../../Store/selectors
 const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) => {
     const dispatch = useAppDispatch()
     const { isOpen } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
-    const { opasityButtons } = useAppSelector((state) => state.editModeSlice)
+    const { opacityButtons } = useAppSelector((state) => state.editModeSlice)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorTaskInfo } = useAppSelector(selectError)
 
@@ -36,7 +36,7 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                 <button
                     className="block__content_selection_button delete"
                     onClick={() => deleteTaskFunc(task.id)}
-                    disabled={opasityButtons["delete"].includes(task.id)}
+                    disabled={opacityButtons["delete"].includes(task.id)}
                 >
                     <img
                         className="block__content_selection_img delete"
@@ -50,7 +50,7 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                     className="block__content_selection_button apply"
                     type="submit"
                     disabled={
-                        !isValid || isOpen || opasityButtons["apply"].includes(task.id)
+                        !isValid || isOpen || opacityButtons["apply"].includes(task.id)
                     }
                 >
                     <img
