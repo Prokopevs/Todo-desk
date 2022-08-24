@@ -1,12 +1,10 @@
 import editModeSlice, { deleteTaskInEditArray, setOpacityButtons } from "../reducers/editModeSlice"
 
 const initialState = {
-    editArray: [], 
+    editArray: [], // для отключения dragable
     queryLoading: false,
     prevTaskObj: {
-        id: "",
-        priority: null,
-        content: ""
+        "": { id: "", priority: null, content: ""}
     },
     successTasksAfterSagaRequest: [],   
     opacityButtons: {
@@ -27,9 +25,7 @@ describe("editModeSlice", () => {
         editArray: [], 
         queryLoading: false,
         prevTaskObj: {
-            id: "",
-            priority: null,
-            content: ""
+            "": { id: "", priority: null, content: ""}
         },
         successTasksAfterSagaRequest: [],   
         opacityButtons: {
@@ -49,9 +45,7 @@ describe("editModeSlice", () => {
         editArray: [], 
         queryLoading: false,
         prevTaskObj: {
-            id: "",
-            priority: null,
-            content: ""
+            "": { id: "", priority: null, content: ""}
         },
         successTasksAfterSagaRequest: [],   
         opacityButtons: {
