@@ -15,7 +15,7 @@ const Status: React.FC<IStatus> = React.memo(
     ({ column, tasks, priorityArray, index }) => {
         const dispatch = useAppDispatch()
         const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
-        const isAuth = useAppSelector(selectAuthorization)
+        const { isAuth } = useAppSelector(selectAuthorization)
 
         React.useEffect(() => {
             dispatch(setLineArray(Object.keys(columnOrder).length))

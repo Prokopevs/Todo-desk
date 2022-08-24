@@ -15,7 +15,7 @@ type Inputs = {
 
 const RegisterForm = () => {
     const [registerClick, setRegisterClick] = React.useState<boolean>(false)
-    const isAuth = useAppSelector(selectAuthorization)
+    const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const dispatch = useAppDispatch()
 

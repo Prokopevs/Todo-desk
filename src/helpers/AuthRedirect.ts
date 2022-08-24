@@ -4,7 +4,7 @@ import { useAppSelector } from "../hooks/redux"
 import { selectAuthorization } from "../Store/selectors"
 
 export let AuthRedirect = (click, setClick) => {
-    const isAuth = useAppSelector(selectAuthorization)
+    const { isAuth } = useAppSelector(selectAuthorization)
     const navigate = useNavigate()
 
     React.useEffect(() => {
