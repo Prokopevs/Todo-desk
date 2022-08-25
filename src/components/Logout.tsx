@@ -25,7 +25,7 @@ const Logout = () => {
             <div className="col-12 d-flex justify-content-center">
                 <div className="login">
                     <div className="login__user_img">
-                        <p className="login__user_leter">{name[0].toUpperCase()}</p>
+                        <p className="login__user_letter" >{name && name[0]?.toUpperCase()}</p>
                     </div>
                     <img
                         className="login__icon"

@@ -1,32 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Logout should create Logout component 1`] = `
+exports[`EditMode click event EditMode click event 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="row"
+        class="block__collapse"
+        data-testid="hover-div"
+      >
+        <button
+          class="block__inner-editPan"
+          data-testid="toggle-btn"
+        >
+          <img
+            alt=""
+            class="block__inner-editPan-img"
+            src="edit.png"
+          />
+        </button>
+      </div>
+      <div
+        class="block__inner_content"
       >
         <div
-          class="col-12 d-flex justify-content-center"
+          class="block__content"
         >
           <div
-            class="login"
+            class="block__content_text_area"
           >
-            <div
-              class="login__user_img"
-            >
-              <p
-                class="login__user_letter"
+            <form>
+              <div
+                class="task__content"
+              >
+                <div
+                  class="pretty__line undefined"
+                />
+                <p
+                  class="block__content_text"
+                />
+              </div>
+              <div
+                class="error__message"
               />
-            </div>
-            <img
-              alt=""
-              class="login__icon"
-              role="button"
-              src="login.png"
-            />
+            </form>
           </div>
         </div>
       </div>
@@ -34,27 +51,44 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="row"
+      class="block__collapse"
+      data-testid="hover-div"
+    >
+      <button
+        class="block__inner-editPan"
+        data-testid="toggle-btn"
+      >
+        <img
+          alt=""
+          class="block__inner-editPan-img"
+          src="edit.png"
+        />
+      </button>
+    </div>
+    <div
+      class="block__inner_content"
     >
       <div
-        class="col-12 d-flex justify-content-center"
+        class="block__content"
       >
         <div
-          class="login"
+          class="block__content_text_area"
         >
-          <div
-            class="login__user_img"
-          >
-            <p
-              class="login__user_letter"
+          <form>
+            <div
+              class="task__content"
+            >
+              <div
+                class="pretty__line undefined"
+              />
+              <p
+                class="block__content_text"
+              />
+            </div>
+            <div
+              class="error__message"
             />
-          </div>
-          <img
-            alt=""
-            class="login__icon"
-            role="button"
-            src="login.png"
-          />
+          </form>
         </div>
       </div>
     </div>

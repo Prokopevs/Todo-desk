@@ -61,7 +61,7 @@ const Desk = () => {
                     <ul className="row row-padding">
                         {columnsLength ? (
                             data.columnOrder.map((columnId, index) => {
-                                const column = data.columns[columnId] // id: 'column-1' name: 'To do', taskIds: ['0', '1']
+                                const column = data.columns[columnId] // id: '1' name: 'To do', taskIds: ['0', '1']
                                 const tasks = column.taskIds.map(
                                     (taskId) => data.tasks[taskId]
                                 )

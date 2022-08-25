@@ -15,4 +15,5 @@ export interface ITasksProps {
     index?: number
     priorityArray: IPriorityArray
     column: IColumn
+    hover?: string
 }

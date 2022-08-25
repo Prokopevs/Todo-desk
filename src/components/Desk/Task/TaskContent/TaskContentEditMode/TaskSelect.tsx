@@ -36,7 +36,7 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                 <button
                     className="block__content_selection_button delete"
                     onClick={() => deleteTaskFunc(task.id)}
-                    disabled={opacityButtons["delete"].includes(task.id)}
+                    disabled={opacityButtons && opacityButtons["delete"].includes(task.id)}
                 >
                     <img
                         className="block__content_selection_img delete"

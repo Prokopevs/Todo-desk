@@ -1,63 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Logout should create Logout component 1`] = `
+exports[`PriorityButtons should create PriorityButtons component 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="row"
+        role="priority"
+      />
+      <li
+        class="modalWindow__priority"
       >
-        <div
-          class="col-12 d-flex justify-content-center"
+        <button
+          class="block__button purple big mr1"
         >
-          <div
-            class="login"
-          >
-            <div
-              class="login__user_img"
-            >
-              <p
-                class="login__user_letter"
-              />
-            </div>
-            <img
-              alt=""
-              class="login__icon"
-              role="button"
-              src="login.png"
-            />
-          </div>
-        </div>
-      </div>
+          Very High
+        </button>
+      </li>
+      <li
+        class="modalWindow__priority"
+      >
+        <button
+          class="block__button red big mr1"
+        >
+          High
+        </button>
+      </li>
+      <li
+        class="modalWindow__priority"
+      >
+        <button
+          class="block__button green big mr1"
+        >
+          Normal
+        </button>
+      </li>
+      <li
+        class="modalWindow__priority"
+      >
+        <button
+          class="block__button blue big mr1"
+        >
+          Low
+        </button>
+      </li>
+      <li
+        class="modalWindow__priority"
+      >
+        <button
+          class="block__button lightblue big mr1"
+        >
+          Very Low
+        </button>
+      </li>
     </div>
   </body>,
   "container": <div>
     <div
-      class="row"
+      role="priority"
+    />
+    <li
+      class="modalWindow__priority"
     >
-      <div
-        class="col-12 d-flex justify-content-center"
+      <button
+        class="block__button purple big mr1"
       >
-        <div
-          class="login"
-        >
-          <div
-            class="login__user_img"
-          >
-            <p
-              class="login__user_letter"
-            />
-          </div>
-          <img
-            alt=""
-            class="login__icon"
-            role="button"
-            src="login.png"
-          />
-        </div>
-      </div>
-    </div>
+        Very High
+      </button>
+    </li>
+    <li
+      class="modalWindow__priority"
+    >
+      <button
+        class="block__button red big mr1"
+      >
+        High
+      </button>
+    </li>
+    <li
+      class="modalWindow__priority"
+    >
+      <button
+        class="block__button green big mr1"
+      >
+        Normal
+      </button>
+    </li>
+    <li
+      class="modalWindow__priority"
+    >
+      <button
+        class="block__button blue big mr1"
+      >
+        Low
+      </button>
+    </li>
+    <li
+      class="modalWindow__priority"
+    >
+      <button
+        class="block__button lightblue big mr1"
+      >
+        Very Low
+      </button>
+    </li>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
