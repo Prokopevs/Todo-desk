@@ -4,12 +4,12 @@ import { ITasksContentEditMode } from "../../../../../models/Task/ITasksContent"
 import { container, vector } from "../../../../../pictures"
 import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dndSlice"
 import { deleteErrorTaskInfo } from "../../../../../Store/reducers/errorMessageSlice"
-import { selectAuthorization, selectError } from "../../../../../Store/selectors"
+import { selectAuthorization, selectEditMode, selectError } from "../../../../../Store/selectors"
 
 const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) => {
     const dispatch = useAppDispatch()
     const { isOpen } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
-    const { opacityButtons } = useAppSelector((state) => state.editModeSlice)
+    const { opacityButtons } = useAppSelector(selectEditMode)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorTaskInfo } = useAppSelector(selectError)
 

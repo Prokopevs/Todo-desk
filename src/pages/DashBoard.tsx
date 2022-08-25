@@ -5,13 +5,13 @@ import Logout from "../components/Logout"
 import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
-import { Helmet } from "react-helmet"
-import { selectAuthorization } from "../Store/selectors"
+import { selectAuthorization, selectError } from "../Store/selectors"
+import HelmetComponent from "../components/HelmetComponent"
 
 const DashBoard = () => {
     localStorage.removeItem("modal")
     const { isAuth } = useAppSelector(selectAuthorization)
-    const { globalErrorMessage } = useAppSelector((state) => state.errorMessageSlice)
+    const { globalErrorMessage } = useAppSelector(selectError)
     const navigate = useNavigate()
 
     React.useEffect(() => {
@@ -33,11 +33,7 @@ const DashBoard = () => {
     if (isAuth) {
         return (
             <div>
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>Task Tracker</title>
-                    <meta name="Task Tracker" content="DashBoard" />
-                </Helmet>
+                <HelmetComponent title={"Task Tracker"} content={"DashBoard"} />
                 <Logout />
                 <Desk />
                 <TaskModalWindow />

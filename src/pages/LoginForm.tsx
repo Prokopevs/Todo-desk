@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { login, setRememberMe } from "../Store/reducers/authorizationSlice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
-import { Helmet } from "react-helmet"
 import { selectError, selectAuthorization } from "../Store/selectors";
+import HelmetComponent from "../components/HelmetComponent"
 
 type Inputs = {
     password: string
@@ -46,11 +46,7 @@ const LoginForm = () => {
     if (isAuth === false) {
         return (
             <>
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>Login</title>
-                    <meta name="Login" content="LoginFrom" />
-                </Helmet>
+                <HelmetComponent title={"Login"} content={"LoginFrom"} />
                 <div className="form position-absolute top-50 start-50 translate-middle">
                     <div className="form__container">
                         <p className="login__form_name text-center">Login</p>

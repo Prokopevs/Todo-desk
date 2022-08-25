@@ -4,8 +4,8 @@ import { registration } from "../Store/reducers/authorizationSlice"
 import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
-import { Helmet } from "react-helmet"
 import { selectAuthorization, selectError } from "../Store/selectors"
+import HelmetComponent from "../components/HelmetComponent"
 
 type Inputs = {
     name: string
@@ -44,11 +44,7 @@ const RegisterForm = () => {
     if (isAuth === false) {
         return (
             <>
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>Register</title>
-                    <meta name="Register" content="RegisterFrom" />
-                </Helmet>
+                <HelmetComponent title={"Register"} content={"RegisterFrom"} />
                 <div className="form position-absolute top-50 start-50 translate-middle">
                     <div className="form__container">
                         <p className="register__form_name text-center">Register</p>

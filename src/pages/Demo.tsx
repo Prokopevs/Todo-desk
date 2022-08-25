@@ -4,8 +4,8 @@ import Desk from "../components/Desk"
 import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
-import { Helmet } from "react-helmet"
 import { selectAuthorization } from "../Store/selectors"
+import HelmetComponent from "../components/HelmetComponent"
 
 const Demo = () => {
     const { isAuth } = useAppSelector(selectAuthorization)
@@ -20,11 +20,7 @@ const Demo = () => {
     if (!isAuth) {
         return (
             <div>
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>Task Tracker</title>
-                    <meta name="Task Tracker" content="Demo Mode" />
-                </Helmet>
+                <HelmetComponent title={"Task Tracker"} content={"Demo Mode"} />
                 <div className="demo">
                     <div className="static">Demo mode</div>
                     <Link to="/login" style={{ textDecoration: "none" }}>

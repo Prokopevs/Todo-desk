@@ -32,6 +32,7 @@ const Logout = () => {
                         src={String(login)}
                         alt=""
                         onClick={() => logout()}
+                        role="button"
                     ></img>
                 </div>
             </div>
