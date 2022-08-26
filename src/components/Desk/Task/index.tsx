@@ -6,7 +6,7 @@ import TasksContent from "./TaskContent"
 import { ITasksProps } from "../../../models/Task/ITasksProps"
 
 const Task: React.FC<ITasksProps> = React.memo(
-    ({ task, priorityArray, column }) => {
+    ({ task, priorityArray, column, hover }) => {
         const dispatch = useAppDispatch()
 
         const [editMode, setEditMod] = React.useState(false)
@@ -18,18 +18,23 @@ const Task: React.FC<ITasksProps> = React.memo(
 
         return (
             <>
-                <button
-                    className={
-                        editMode ? "block__inner-editPan active" : "block__inner-editPan"
-                    }
-                    onClick={onEditClick}
-                >
-                    <img
-                        className="block__inner-editPan-img"
-                        src={String(pen)}
-                        alt=""
-                    ></img>
-                </button>
+                <div className={task.id === hover ? "block__visible" : "block__collapse"} data-testid="hover-div">
+                    <button
+                        className={
+                            editMode
+                                ? "block__inner-editPan active"
+                                : "block__inner-editPan"
+                        }
+                        onClick={onEditClick}
+                        data-testid="toggle-btn"
+                    >
+                        <img
+                            className="block__inner-editPan-img"
+                            src={String(pen)}
+                            alt=""
+                        ></img>
+                    </button>
+                </div>
 
                 <div className="block__inner_content">
                     <div

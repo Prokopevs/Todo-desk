@@ -20,7 +20,7 @@ const Priority: React.FC<IPriorityProps> = ({ priorityArray, task }) => {
             <div className="block__line block__line-task"></div>
             <ul className="block__priority">
                 <li
-                    className={`block__button task ${priorityArray[task.priority - 1].color}`}
+                    className={`block__button task ${priorityArray[task.priority - 1]?.color}`}
                     onClick={() => dispatch(setOpenPriorityСolumn(task.id))}
                 >
                     <p className="block__button_text">

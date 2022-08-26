@@ -19,12 +19,12 @@ const TaskPriority: React.FC<ITasksContentEditMode> = ({ task, priorityArray }) 
                     <div className="modalWindow__button task">
                         <button
                             className={`block__button task ${
-                                priorityArray[task.priority - 1].color
+                                priorityArray[task.priority - 1]?.color
                             }`}
                             onClick={() => dispatch(setOpenPriorityСolumn(task.id))}
                         >
                             <p className="block__button_text">
-                                {priorityArray[task.priority - 1].description}
+                                {priorityArray[task.priority - 1]?.description}
                             </p>
                         </button>
                     </div>

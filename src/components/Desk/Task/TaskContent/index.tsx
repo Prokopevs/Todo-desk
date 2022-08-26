@@ -8,10 +8,12 @@ import {
     changeTaskContentQuery,
 } from "../../../../Store/reducers/dndSlice"
 import TasksContentEditMode from "./TaskContentEditMode"
-import { deleteTaskInEditArray, deleteTaskInSuccessArray } from "../../../../Store/reducers/editModeSlice"
+import {
+    deleteTaskInEditArray,
+    deleteTaskInSuccessArray,
+} from "../../../../Store/reducers/editModeSlice"
 import { selectAuthorization, selectEditMode } from "../../../../Store/selectors"
 import { motion, AnimatePresence } from "framer-motion"
-
 
 interface Inputs {
     id: string
@@ -31,7 +33,7 @@ const TasksContent: React.FC<ITasksContent> = ({
     const { isAuth } = useAppSelector(selectAuthorization)
     const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector(selectEditMode)
     const dispatch = useAppDispatch()
-    const color = priorityArray[task.priority - 1].color
+    const color = priorityArray[task.priority - 1]?.color
 
     const moveCaretAtEnd = (e) => {
         let temp_value = e.target.value
@@ -65,7 +67,7 @@ const TasksContent: React.FC<ITasksContent> = ({
     }
 
     React.useEffect(() => {
-        if (successTasksAfterSagaRequest.includes(task.id)) {
+        if (successTasksAfterSagaRequest?.includes(task.id)) {
             handleClose()
             dispatch(deleteTaskInSuccessArray(task.id))
         }
@@ -80,29 +82,31 @@ const TasksContent: React.FC<ITasksContent> = ({
         <form onSubmit={handleSubmit(onSubmit)}>
             <AnimatePresence>
                 {editMode ? (
-                    <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: "auto" }}
-                        exit={{ height: 0 }}
-                        style={{ overflow: "hidden" }}
-                    >
-                        <TextareaAutosize
-                            className={
-                                editMode
-                                    ? "block__content_input editMode"
-                                    : "block__content_input"
-                            }
-                            defaultValue={task.content}
-                            autoFocus
-                            onFocus={moveCaretAtEnd}
-                            autoComplete="off"
-                            {...register("content", {
-                                required: "cannot be empty",
-                            })}
-                        />
-                    </motion.div>
+                    <div role="textarea">
+                        <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: "auto" }}
+                            exit={{ height: 0 }}
+                            style={{ overflow: "hidden" }}
+                        >
+                            <TextareaAutosize
+                                className={
+                                    editMode
+                                        ? "block__content_input editMode"
+                                        : "block__content_input"
+                                }
+                                defaultValue={task.content}
+                                autoFocus
+                                onFocus={moveCaretAtEnd}
+                                autoComplete="off"
+                                {...register("content", {
+                                    required: "cannot be empty",
+                                })}
+                            />
+                        </motion.div>
+                    </div>
                 ) : (
-                    <div className="task__content" >
+                    <div className="task__content">
                         <div className={`pretty__line ${color}`}></div>
                         <p className="block__content_text">{task.content}</p>
                     </div>

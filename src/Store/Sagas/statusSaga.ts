@@ -17,7 +17,7 @@ export function* handleGetStatus() {
         yield put(setStatuses(StatusObj))
         yield put(setColumnOrder(columnOrderArr))
     } catch (e) {
-        // yield put(setGlobalErrorMessage(e.response?.data))
+        yield put(setGlobalErrorMessage(e.response?.data))
     } 
 }
 

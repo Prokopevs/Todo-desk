@@ -18,7 +18,7 @@ interface Inputs {
 
 const TaskModalWindow = () => {
     const dispatch = useAppDispatch()
-    const [changePrioprity, setChangePrioprity] = React.useState(false)
+    const [changePriority, setChangePriority] = React.useState(false)
     const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const { data, queryFlag } = useAppSelector(selectDnd)
@@ -57,7 +57,7 @@ const TaskModalWindow = () => {
         dispatch(deleteErrorInfo())
         setModalTaskActive(false)
         setTimeout(() => reset(), 200)
-        setTimeout(() => setChangePrioprity(false), 200)
+        setTimeout(() => setChangePriority(false), 200)
     }
 
     return (
@@ -108,10 +108,10 @@ const TaskModalWindow = () => {
                                 Priority
                             </p>
 
-                            {changePrioprity ? (
+                            {changePriority ? (
                                 <ul>
                                     <PriorityButtons
-                                        setChangePrioprity={setChangePrioprity}
+                                        setChangePriority={setChangePriority}
                                     />
                                 </ul>
                             ) : (
@@ -120,7 +120,7 @@ const TaskModalWindow = () => {
                                         className={`block__button ${
                                             priorityArray[priority - 1].color
                                         } big mr1`}
-                                        onClick={() => setChangePrioprity(true)}
+                                        onClick={() => setChangePriority(true)}
                                     >
                                         <div className="block__button-description">
                                             {priorityArray[priority - 1].description}
@@ -132,7 +132,7 @@ const TaskModalWindow = () => {
                             <div className="block__line block__line-form"></div>
                             <button
                                 type="submit"
-                                disabled={changePrioprity || queryLoading}
+                                disabled={changePriority || queryLoading}
                                 className="block__button submit big mb"
                             >
                                 Add

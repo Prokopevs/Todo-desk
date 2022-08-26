@@ -8,6 +8,16 @@ import { selectEditMode } from "../../Store/selectors";
 const Tasks: React.FC<ITasksProps> = React.memo(
     ({ task, index, priorityArray, column }) => {
         const { editArray } = useAppSelector(selectEditMode)
+        const [hover, setHover] = React.useState("")
+        console.log(column)
+
+        const handleMouseOver = (id: string) => {
+            setHover(id)
+        }
+
+        const handleMouseOut = (id: string) => {
+            setHover("")
+        }
 
         return (
             <>
@@ -19,8 +29,10 @@ const Tasks: React.FC<ITasksProps> = React.memo(
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
+                                onMouseOver={() => {handleMouseOver(task.id)}}
+                                onMouseOut={() => {handleMouseOut(task.id)}}
                             >
-                                <Task task={task} priorityArray={priorityArray} column={column}/>
+                                <Task task={task} priorityArray={priorityArray} column={column} hover={hover}/>
                             </div>
                         )}
                     </Draggable>

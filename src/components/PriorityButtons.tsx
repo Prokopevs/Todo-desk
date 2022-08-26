@@ -1,23 +1,25 @@
 import React from "react"
 import priorityArray from "../data/Desk/priorityArray"
 import { useAppDispatch } from "../hooks/redux"
+import { IPriorityButtons } from "../models/EditMode/IpriorityButtons"
 import { setPriority } from "../Store/reducers/prioritySlice"
 
-const PriorityButtons = ({ setChangePrioprity }) => {
+const PriorityButtons: React.FC<IPriorityButtons> = ({ setChangePriority }) => {
     const dispatch = useAppDispatch()
 
-    const changePrioprity = (index: number) => {
+    const changePriority = (index: number) => {
         dispatch(setPriority(index))
-        setChangePrioprity(false)
+        setChangePriority(false)
     }
 
     return (
         <>
+            <div role="priority"></div>
             {priorityArray.map((item, index) => (
                 <li className="modalWindow__priority" key={index}>
                     <button
                         className={`block__button ${item.color} big mr1`}
-                        onClick={() => changePrioprity(item.index)}
+                        onClick={() => changePriority(item.index)}
                     >
                         {item.description}
                     </button>
