@@ -4,13 +4,15 @@ import { deleteTaskService, getTaskService, postTaskService, putTaskService } fr
 import { addTask, changeTaskContent, deleteTask, setQueryFlag, setTasks } from '../reducers/dndSlice';
 import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpacityButtons, removeOpacityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj } from '../reducers/editModeSlice';
 import { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
-import { mapResponsePrevTasks, mapResponseTasks } from './sagaHelpers/taskHelper';
+import { mapResponseTasks } from './sagaHelpers/task/mapResponseTasks';
+import { mapResponsePrevTasks} from './sagaHelpers/task/mapResponsePrevTasks';
 
 export function* handleGetTask() {
     try {
         const response = yield call(getTaskService)
         // console.log(response.data)
         const arr = JSON.parse(JSON.stringify(response.data))
+        console.log(arr)
         const taskObj = mapResponseTasks(arr)
         const prevTaskObj = mapResponsePrevTasks(response.data)
         yield put(setTasks(taskObj))

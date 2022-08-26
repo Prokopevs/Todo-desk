@@ -65,5 +65,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@redux-saga/testing-utils": "^1.1.5",
+    "redux-saga-test-plan": "^4.0.5"
   }
 }

@@ -1,4 +1,5 @@
-import { mapColumnOrder, mapResponseStatus } from './sagaHelpers/statusHelper';
+import { mapResponseStatus } from './sagaHelpers/status/mapResponseStatus';
+import { mapColumnOrder } from './sagaHelpers/status/mapColumnOrder';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
@@ -16,7 +17,7 @@ export function* handleGetStatus() {
         yield put(setStatuses(StatusObj))
         yield put(setColumnOrder(columnOrderArr))
     } catch (e) {
-        yield put(setGlobalErrorMessage(e.response?.data))
+        // yield put(setGlobalErrorMessage(e.response?.data))
     } 
 }
 
