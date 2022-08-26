@@ -21,6 +21,7 @@ const TaskPriority: React.FC<ITasksContentEditMode> = ({ task, priorityArray }) 
                             className={`block__button task ${
                                 priorityArray[task.priority - 1]?.color
                             }`}
+                            data-testid="toggle-btn"
                             onClick={() => dispatch(setOpenPriorityСolumn(task.id))}
                         >
                             <p className="block__button_text">

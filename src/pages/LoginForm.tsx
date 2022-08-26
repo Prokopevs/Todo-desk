@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { login, setRememberMe } from "../Store/reducers/authorizationSlice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
-import { selectError, selectAuthorization } from "../Store/selectors";
+import { selectError, selectAuthorization } from "../Store/selectors"
 import HelmetComponent from "../components/HelmetComponent"
 
 type Inputs = {

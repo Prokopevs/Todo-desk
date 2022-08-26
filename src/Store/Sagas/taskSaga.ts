@@ -10,9 +10,7 @@ import { mapResponsePrevTasks} from './sagaHelpers/task/mapResponsePrevTasks';
 export function* handleGetTask() {
     try {
         const response = yield call(getTaskService)
-        // console.log(response.data)
         const arr = JSON.parse(JSON.stringify(response.data))
-        console.log(arr)
         const taskObj = mapResponseTasks(arr)
         const prevTaskObj = mapResponsePrevTasks(response.data)
         yield put(setTasks(taskObj))
