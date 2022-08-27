@@ -1,24 +1,25 @@
 import React from "react"
-import { login } from "../pictures"
+import { login, settings } from "../pictures"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
 import { IUser } from "../models/Auth/IUser"
 import { useNavigate } from "react-router-dom"
 import { setInitialData } from "../Store/reducers/dndSlice"
+import { selectAuthorization } from "../Store/selectors"
 
 const Logout = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { name } = useAppSelector(state => state.authorizationSlice.user)
 
-    const logout = () => {
-        localStorage.removeItem("token")
-        localStorage.removeItem("rememberMe")
-        dispatch(setAuth(false))
-        dispatch(setUser({} as IUser))
-        dispatch(setInitialData())
-        navigate("/")
-    }
+    // const logout = () => {
+    //     localStorage.removeItem("token")
+    //     localStorage.removeItem("rememberMe")
+    //     dispatch(setAuth(false))
+    //     dispatch(setUser({} as IUser))
+    //     dispatch(setInitialData())
+    //     navigate("/")
+    // }
 
     return (
         <div className="row">
@@ -29,9 +30,9 @@ const Logout = () => {
                     </div>
                     <img
                         className="login__icon"
-                        src={String(login)}
+                        src={String(settings)}
                         alt=""
-                        onClick={() => logout()}
+                        // onClick={() => logout()}
                         role="button"
                     ></img>
                 </div>

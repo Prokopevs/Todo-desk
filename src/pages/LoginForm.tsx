@@ -8,6 +8,8 @@ import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { selectError, selectAuthorization } from "../Store/selectors";
 import HelmetComponent from "../components/HelmetComponent"
+import { eye } from "../pictures"
+
 
 type Inputs = {
     password: string
@@ -20,6 +22,8 @@ const LoginForm = () => {
     const { isAuth, rememberMe } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const [loginClick, setloginClick] = React.useState<boolean>(false)
+
+    const [click, setClick] = React.useState(false)
 
     React.useEffect(() => {
         return () => {
@@ -76,6 +80,7 @@ const LoginForm = () => {
                                 ></input>
                             </div>
 
+
                             <div className="error__message">
                                 {errors?.email && (
                                     <p className="error__message_text">
@@ -94,16 +99,18 @@ const LoginForm = () => {
                             >
                                 <input
                                     placeholder="Your account password..."
-                                    type="password"
+                                    type={click ? "" : "password"}
                                     className={
                                         errors?.password
-                                            ? "form__input error-input"
-                                            : "form__input"
+                                            ? "form__input error-input password"
+                                            : "form__input password"
                                     }
                                     {...register("password", {
                                         required: "cannot be empty",
                                     })}
                                 ></input>
+
+                                <img className="password-control" onClick={() => setClick(!click)} src={String(eye)}></img>
                             </div>
 
                             <div className="error__message">

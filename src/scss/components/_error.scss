@@ -21,3 +21,23 @@
 
     margin-top: 40px;
 }
+
+@media (max-width: 1199px) {
+    .error__text {
+        font-size: 150px;
+    }
+    .error__text_decription {
+        font-size: 20px;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .error__text {
+        font-size: 120px;
+    }
+    .error__text_decription {
+        font-size: 17px;
+        margin-top: 13px;
+    }
+}

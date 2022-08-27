@@ -49,7 +49,11 @@ export function* handleCheckAuth() {
         // localStorage.setItem("40", data)
         // localStorage.removeItem("51")
     } catch (e) {
-        yield put(setGlobalErrorMessage(e.response?.data))
+        const errorObj = {
+            status: e.response?.status,
+            statusText: e.response?.statusText
+        }
+        yield put(setGlobalErrorMessage(errorObj))
     } finally {
         yield put(setLoading(false))
     }

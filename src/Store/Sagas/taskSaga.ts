@@ -12,13 +12,16 @@ export function* handleGetTask() {
         const response = yield call(getTaskService)
         // console.log(response.data)
         const arr = JSON.parse(JSON.stringify(response.data))
-        console.log(arr)
         const taskObj = mapResponseTasks(arr)
         const prevTaskObj = mapResponsePrevTasks(response.data)
         yield put(setTasks(taskObj))
         yield put(setPrevTaskObj(prevTaskObj))
     } catch (e) {
-        yield put(setGlobalErrorMessage(e.response?.data))
+        const errorObj = {
+            status: e.response?.status,
+            statusText: e.response?.statusText
+        }
+        yield put(setGlobalErrorMessage(errorObj))
     } 
 }
 

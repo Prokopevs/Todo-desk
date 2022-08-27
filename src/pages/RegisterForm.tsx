@@ -6,6 +6,7 @@ import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { selectAuthorization, selectError } from "../Store/selectors"
 import HelmetComponent from "../components/HelmetComponent"
+import { eye } from "../pictures"
 
 type Inputs = {
     name: string
@@ -18,6 +19,8 @@ const RegisterForm = () => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const dispatch = useAppDispatch()
+
+    const [click, setClick] = React.useState(false)
 
     React.useEffect(() => {
         document.title = "Register"
@@ -119,11 +122,11 @@ const RegisterForm = () => {
                             >
                                 <input
                                     placeholder="Your account password..."
-                                    type="text"
+                                    type={click ? "" : "password"}
                                     className={
                                         errors?.password
-                                            ? "form__input error-input"
-                                            : "form__input"
+                                            ? "form__input error-input password"
+                                            : "form__input password"
                                     }
                                     autoComplete="off"
                                     {...register("password", {
@@ -134,6 +137,7 @@ const RegisterForm = () => {
                                         },
                                     })}
                                 ></input>
+                                <img className="password-control" onClick={() => setClick(!click)} src={String(eye)}></img>
                             </div>
                             <div className="error__message">
                                 {errors?.password && (

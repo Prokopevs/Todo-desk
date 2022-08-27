@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IErrorGlobal } from '../../models/Errors/IErrorGlobal'
 import { IError, IErrorTasks } from '../../models/Errors/IErrorTask'
 
 interface errorMessageState {
@@ -19,8 +20,9 @@ export const errorMessageSlice = createSlice({
     name: 'error',
     initialState,
     reducers: {
-        setGlobalErrorMessage: (state, action: PayloadAction<string>) => {
-            state.globalErrorMessage = action.payload
+        setGlobalErrorMessage: (state, action: PayloadAction<IErrorGlobal>) => {
+            const data = action.payload.status + action.payload.statusText
+            state.globalErrorMessage = data
         },
         setErrorInfo: (state, action: PayloadAction<string>) => {
             state.errorInfo = action.payload
