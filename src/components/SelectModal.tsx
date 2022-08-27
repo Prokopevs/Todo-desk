@@ -9,9 +9,11 @@ const SelectModal = ({ changesActive }) => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const { setModalTaskActive, setStatusActive } = React.useContext(ModalWindowContext)
     const { data } = useAppSelector(selectDnd)
-    const columnsLength = Object.keys(data.columns).length
     const { width } = useWindowDimensions()
-
+    let columnsLength
+    if(data) {
+        columnsLength = Object.keys(data.columns).length
+    }
     const selectPage = isAuth ? "selectChanges" : "selectChanges demo"
     const selectPageAbsolute = isAuth ? "selectChanges-absolute" : "selectChanges-absolute demo"
 

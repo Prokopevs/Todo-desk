@@ -50,7 +50,7 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                     className="block__content_selection_button apply"
                     type="submit"
                     disabled={
-                        !isValid || isOpen || opacityButtons["apply"].includes(task.id)
+                        !isValid || isOpen || (opacityButtons && opacityButtons["apply"].includes(task.id))
                     }
                 >
                     <img

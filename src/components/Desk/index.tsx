@@ -20,9 +20,10 @@ const Desk = () => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const [changesActive, setChangesActive] = useSessionStorage("SelectChanges", false)
     const { data } = useAppSelector(selectDnd)
-    const columnsLength = Object.keys(data.columns).length
-
-    console.log(data)
+    let columnsLength
+    if(data) {
+        columnsLength = Object.keys(data.columns).length
+    }
 
     const onDragEnd = (result) => {
         const { destination, source, draggableId } = result

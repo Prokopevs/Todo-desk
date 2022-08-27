@@ -9,7 +9,6 @@ const Tasks: React.FC<ITasksProps> = React.memo(
     ({ task, index, priorityArray, column }) => {
         const { editArray } = useAppSelector(selectEditMode)
         const [hover, setHover] = React.useState("")
-        console.log(column)
 
         const handleMouseOver = (id: string) => {
             setHover(id)
@@ -21,7 +20,7 @@ const Tasks: React.FC<ITasksProps> = React.memo(
 
         return (
             <>
-                {!editArray.includes(task.id) ? (
+                {!editArray?.includes(task.id) ? (
                     <Draggable draggableId={task.id} index={index}>
                         {(provided) => (
                             <div
