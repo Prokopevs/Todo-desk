@@ -272,7 +272,7 @@
 	right: 20px;
 	display: inline-block;
 	width: 23px;
-	height: 16px;
+	height: 20px;
     cursor: pointer;
 }
 
@@ -316,7 +316,7 @@
 
     .password-control {
         width: 22px;
-	    height: 15px;
+	    height: 19px;
 	    top: 19px;
     }
 }
@@ -337,7 +337,7 @@
 
     .password-control {
         width: 21px;
-	    height: 14px;
+	    height: 17px;
 	    top: 18px;
     }
 }
@@ -352,7 +352,7 @@
     }
 
     .password-control {
-	    top: 16px;
+	    top: 17px;
     }
 }
 
@@ -363,8 +363,8 @@
 
     .password-control {
         width: 19px;
-	    height: 12px;
-	    top: 17px;
+	    height: 16px;
+	    top: 16px;
     }
 }
 
@@ -380,12 +380,10 @@
 
     .password-control {
         width: 18px;
-	    height: 11px;
+	    height: 15px;
 	    top: 16px;
     }
 }
-
-
 
 .form__input.error-input {
     background: #EC7676;

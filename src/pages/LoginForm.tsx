@@ -8,7 +8,7 @@ import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { selectError, selectAuthorization } from "../Store/selectors"
 import HelmetComponent from "../components/HelmetComponent"
-import { eye } from "../pictures"
+import Eye from "../components/Eye"
 
 
 type Inputs = {
@@ -109,8 +109,7 @@ const LoginForm = () => {
                                         required: "cannot be empty",
                                     })}
                                 ></input>
-
-                                <img className="password-control" onClick={() => setClick(!click)} src={String(eye)}></img>
+                                <Eye setClick={setClick} click={click}/>
                             </div>
 
                             <div className="error__message">

@@ -14,11 +14,11 @@ const DashBoard = () => {
     const { globalErrorMessage } = useAppSelector(selectError)
     const navigate = useNavigate()
 
-    React.useEffect(() => {
-        if (isAuth === false) {
-            navigate("/demo")
-        }
-    }, [isAuth])
+    // React.useEffect(() => {
+    //     if (isAuth === false) {
+    //         navigate("/demo")
+    //     }
+    // }, [isAuth])
 
     React.useEffect(() => {
         if (globalErrorMessage) {
@@ -30,7 +30,8 @@ const DashBoard = () => {
         return <></>
     }
 
-    if (isAuth) {
+    // isAuth
+    if (true) {
         return (
             <div>
                 <HelmetComponent title={"Task Tracker"} content={"DashBoard"} />

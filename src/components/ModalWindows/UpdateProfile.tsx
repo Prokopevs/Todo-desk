@@ -1,34 +1,31 @@
 import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { registration } from "../Store/reducers/authorizationSlice"
-import { useAppSelector, useAppDispatch } from "../hooks/redux"
-import { AuthRedirect } from "../helpers/AuthRedirect"
-import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
-import { selectAuthorization, selectError } from "../Store/selectors"
-import HelmetComponent from "../components/HelmetComponent"
-import { eye } from "../pictures"
-import Eye from "../components/Eye"
+import { CSSTransition } from "react-transition-group"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { IProfile } from "../../models/Generally/IProfile"
+import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
+import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
+import {
+    selectDnd,
+    selectError,
+    selectAuthorization,
+    selectEditMode,
+} from "../../Store/selectors"
+import Eye from "../Eye"
 
 type Inputs = {
-    name: string
     email: string
+    name: string
     password: string
 }
 
-const RegisterForm = () => {
-    const [registerClick, setRegisterClick] = React.useState<boolean>(false)
+const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActive }) => {
+    const dispatch = useAppDispatch()
+    const { data, queryFlag } = useAppSelector(selectDnd)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
-    const dispatch = useAppDispatch()
-
+    const { queryLoading } = useAppSelector(selectEditMode)
     const [click, setClick] = React.useState(false)
-
-    React.useEffect(() => {
-        document.title = "Register"
-        return () => {
-            dispatch(deleteErrorInfo())
-        }
-    }, [])
 
     const {
         register,
@@ -38,24 +35,44 @@ const RegisterForm = () => {
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
-        dispatch(registration(data))
-        setRegisterClick(true)
-        reset()
+        if (isAuth) {
+            // dispatch(addStatusQuery(data))
+        } else {
+            // dispatch(addStatus(data))
+            closeStatusWindow()
+        }
     }
 
-    AuthRedirect(registerClick, setRegisterClick)
+    React.useEffect(() => {
+        if (queryFlag) {
+            closeStatusWindow()
+            dispatch(setQueryFlag(false))
+        }
+    }, [queryFlag])
 
-    if (isAuth === false) {
-        return (
-            <>
-                <HelmetComponent title={"Register"} content={"RegisterFrom"} />
-                <div className="form position-absolute top-50 start-50 translate-middle">
-                    <div className="form__container">
-                        <p className="register__form_name text-center">Register</p>
+    const closeStatusWindow = () => {
+        dispatch(deleteErrorInfo())
+        setProfileActive(false)
+        setTimeout(() => reset(), 200)
+    }
+
+    return (
+        <CSSTransition
+            in={modalProfileActive}
+            timeout={150}
+            classNames="my-node"
+            unmountOnExit
+        >
+            <div className="modalWindow">
+                <div className="modalWindow_content">
+                    <div className="form_container form_container-modalWindow">
+                        <p className="modalWindow__text text-center profile">
+                            Update profile
+                        </p>
                         <div className="block__line block__line-form"></div>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <p className="login__form_data_name">Email</p>
+                            <p className="modalWindow__text-description">Email</p>
                             <div
                                 className={
                                     errors?.email
@@ -64,28 +81,25 @@ const RegisterForm = () => {
                                 }
                             >
                                 <input
-                                    placeholder="Your email..."
-                                    type="email"
+                                    placeholder="Write your email here..."
                                     className={
                                         errors?.email
-                                            ? "form__input error-input"
-                                            : "form__input"
+                                            ? "form__input status error-input"
+                                            : "form__input status"
                                     }
                                     autoComplete="off"
-                                    {...register("email", {
-                                        required: "cannot be empty",
-                                    })}
+                                    {...register("email", { required: "cannot be empty" })}
                                 ></input>
                             </div>
                             <div className="error__message">
-                                {errors?.email && (
+                                {errors?.name && (
                                     <p className="error__message_text">
-                                        {errors?.email?.message}
+                                        {errors?.name?.message}
                                     </p>
                                 )}
                             </div>
 
-                            <p className="login__form_data_name">Name</p>
+                            <p className="modalWindow__text-description">Name</p>
                             <div
                                 className={
                                     errors?.name
@@ -94,12 +108,11 @@ const RegisterForm = () => {
                                 }
                             >
                                 <input
-                                    placeholder="Your display name..."
-                                    type="text"
+                                    placeholder="Set a new user name..."
                                     className={
                                         errors?.name
-                                            ? "form__input error-input"
-                                            : "form__input"
+                                            ? "form__input status error-input"
+                                            : "form__input status"
                                     }
                                     autoComplete="off"
                                     {...register("name", { required: "cannot be empty" })}
@@ -150,20 +163,24 @@ const RegisterForm = () => {
 
                             <button
                                 type="submit"
-                                className="block__button submit big mr2"
+                                disabled={queryLoading}
+                                className="block__button submit big mb status-type"
                             >
-                                Register
+                                Add
                             </button>
-                            {errorInfo && (
-                                <div className="error_info register">{errorInfo}</div>
+                            {isAuth && errorInfo && (
+                                <div className="error_info taskmodal">{errorInfo}</div>
                             )}
                         </form>
                     </div>
+
+                    <div className="close" onClick={() => closeStatusWindow()}>
+                        <div className="close__button"></div>
+                    </div>
                 </div>
-            </>
-        )
-    }
-    return <></>
+            </div>
+        </CSSTransition>
+    )
 }
 
-export default RegisterForm
+export default UpdateProfile

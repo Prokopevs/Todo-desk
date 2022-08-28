@@ -4,6 +4,7 @@ const pen = require("../assets/img/edit.png")
 const vector = require("../assets/img/vector.png")
 const container = require("../assets/img/delete.png")
 const eye = require("../assets/img/eye.png")
+const eyeO = require("../assets/img/eyeO.png")
 const settings = require("../assets/img/settings.png")
 
-export { login, logout, pen, vector, container, eye, settings }
+export { login, logout, pen, vector, container, eye, settings, eyeO }
