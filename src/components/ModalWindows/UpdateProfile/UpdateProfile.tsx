@@ -28,6 +28,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
     const { errorInfo } = useAppSelector(selectError)
     const { queryLoading } = useAppSelector(selectEditMode)
     const [click, setClick] = React.useState(false)
+    const [timeLife, setTimeLife] = React.useState(false)
 
     const {
         register,
@@ -71,7 +72,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                         <p className="modalWindow__text text-center profile settings">
                             Update profile
                         </p>
-                        <div className="block__line block__line-form"></div>
+                        <div className="block__line block__line-form settings"></div>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <p className="modalWindow__text-description settings">Email</p>
@@ -93,7 +94,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     {...register("email", { required: "cannot be empty" })}
                                 ></input>
                             </div>
-                            <div className="error__message">
+                            <div className="error__message settings">
                                 {errors?.name && (
                                     <p className="error__message_text">
                                         {errors?.name?.message}
@@ -120,7 +121,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     {...register("name", { required: "cannot be empty" })}
                                 ></input>
                             </div>
-                            <div className="error__message">
+                            <div className="error__message settings">
                                 {errors?.name && (
                                     <p className="error__message_text">
                                         {errors?.name?.message}
@@ -128,7 +129,10 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 )}
                             </div>
 
-                            <p className="modalWindow__text-description settings">Password</p>
+                            <p className="modalWindow__text-description settings
+                            
+                            
+                            ">Password</p>
                             <div
                                 className={
                                     errors?.password
@@ -162,8 +166,10 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     </p>
                                 )}
                             </div>
-                            <TasksLife />
-                            <SelectButtons />
+
+                            <TasksLife timeLife={timeLife} setTimeLife={setTimeLife}/>
+                            {!timeLife && <SelectButtons />}
+
                         </form>
                     </div>
 

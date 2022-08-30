@@ -21,6 +21,15 @@
     align-items: center;
 }
 
+.tasksLife__inner.array {
+    width: 100%;
+    height: 124px;
+    align-items: initial;
+
+    padding: 10px 0 10px 10px;
+    margin-bottom: 25px;
+}
+
 .tasksLife__inner_information {
     display: flex;
     justify-content: center;
@@ -28,11 +37,30 @@
     width: 90%;
 }
 
+.tasksLife__inner_information.array {
+    align-items: center;
+    justify-content: normal;
+    flex-direction: column;
+    overflow: auto;
+}
+
 .tasksLife__inner_text {
     color: #8A8383;
-    font-size: 18px;
+    font-size: 17.5px;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
+
+    padding: 10px 0;
+}
+
+.tasksLife__inner_text.array {
+    padding: 10px 0 3px 0;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.tasksLife__inner_text.array:first-child {
+    padding-top: 4px;
 }
 
 .tasksLife__inner_width {
@@ -42,6 +70,10 @@
     margin-left: -30px;
 }
 
+.tasksLife__inner_width.array {
+    margin-left: -40px;
+}
+
 .tasksLife__inner_width.none {
     visibility: collapse;
 }
@@ -49,4 +81,24 @@
 .tasksLife__inner_img {
     height: 10px;
     width: 15px;
+}
+
+//--------------------------//
+.tasksLife__inner_information.array::-webkit-scrollbar {
+    width: 7px;
+}
+
+.tasksLife__inner_information.array::-webkit-scrollbar-track {
+    background: #d4d4d4;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+    border-radius: 8px;
+}
+
+.tasksLife__inner_information.array::-webkit-scrollbar-thumb {
+    background: #939393;
+    border-radius: 8px;
+}
+
+.tasksLife__inner_information.array::-webkit-scrollbar-thumb:hover {
+    background: #7c7c7c;
 }
