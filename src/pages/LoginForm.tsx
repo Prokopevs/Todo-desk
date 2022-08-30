@@ -7,9 +7,8 @@ import { login, setRememberMe } from "../Store/reducers/authorizationSlice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { selectError, selectAuthorization } from "../Store/selectors"
-import HelmetComponent from "../components/HelmetComponent"
 import Eye from "../components/Eye"
-
+import HelmetComponent from "../components/Helmet/HelmetComponent"
 
 type Inputs = {
     password: string
@@ -79,8 +78,6 @@ const LoginForm = () => {
                                     })}
                                 ></input>
                             </div>
-
-
                             <div className="error__message">
                                 {errors?.email && (
                                     <p className="error__message_text">

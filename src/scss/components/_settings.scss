@@ -1,0 +1,48 @@
+.block__content_selection.settings {
+    margin: 25px 4px 25px 4px;
+}
+
+.block__content_selection_button.settings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+
+    width: 45%;
+    height: 42px;
+    border-radius: 7px;
+    padding: 0 10px 1px 10px;
+}
+
+.block__content_selection_img.delete.settings {
+    width: 17px;
+    height: 17px;
+}
+
+.block__content_selection_img.apply.settings{
+    width: 19px;
+    height: 17px;
+}
+
+.block__content_selection_text.settings {
+    font-size: 18px;
+}
+
+.form__input_holder.settings {
+    margin-bottom: 0px;
+}
+
+.error__message.settings {
+    margin-top: 6px;
+}
+
+.modalWindow__text.settings {
+    padding: 32px 0 21px;
+    font-size: 32px;
+}
+
+.modalWindow__text-description.settings {
+    font-size: 18px;
+    margin: 21px 0 13px;
+}

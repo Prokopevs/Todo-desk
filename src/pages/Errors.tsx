@@ -1,8 +1,8 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import HelmetComponent from "../components/Helmet/HelmetComponent"
 import { useAppSelector } from "../hooks/redux"
 import { selectError } from "../Store/selectors"
-import HelmetComponent from "../components/HelmetComponent"
 
 const Errors = () => {
     const { globalErrorMessage } = useAppSelector(selectError)

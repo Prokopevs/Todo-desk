@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom"
 import { setInitialData } from "../Store/reducers/dndSlice"
 import { selectAuthorization } from "../Store/selectors"
 import { useSessionStorage } from "../hooks/useSessionStorage"
-import UpdateProfile from "./ModalWindows/UpdateProfile"
+import UpdateProfile from "./ModalWindows/UpdateProfile/UpdateProfile"
 
-const Logout = () => {
+
+const Settings = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { name } = useAppSelector(state => state.authorizationSlice.user)
@@ -46,4 +47,4 @@ const Logout = () => {
     )
 }
 
-export default Logout
+export default Settings

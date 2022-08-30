@@ -165,27 +165,27 @@
     color: #8A8383;
     font-family: 'Roboto', sans-serif;
 
-    margin: 22px 0 14px;
+    margin: 20px 0 15px;
 }
 
 @media (max-width: 1399px) {
     .login__form_data_name {
         font-size: 19.5px;
-        margin: 20px 0 13px;
+        margin: 19px 0 13px;
     }
 }
 
 @media (max-width: 1199px) {
     .login__form_data_name {
         font-size: 19px;
-        margin: 19px 0 13px;
+        margin: 18px 0 13px;
     }
 }
 
 @media (max-width: 991px) {
     .login__form_data_name {
         font-size: 18px;
-        margin: 18px 0 11px;
+        margin: 17px 0 11px;
     }
 }
 
@@ -271,8 +271,8 @@
 	top: 20px;
 	right: 20px;
 	display: inline-block;
-	width: 23px;
-	height: 20px;
+	width: 20px;
+	height: 17px;
     cursor: pointer;
 }
 
@@ -315,8 +315,8 @@
     }
 
     .password-control {
-        width: 22px;
-	    height: 19px;
+        width: 19px;
+	    height: 16px;
 	    top: 19px;
     }
 }
@@ -336,9 +336,9 @@
     }
 
     .password-control {
-        width: 21px;
-	    height: 17px;
-	    top: 18px;
+        width: 18px;
+	    height: 15px;
+	    top: 20px;
     }
 }
 
@@ -352,6 +352,8 @@
     }
 
     .password-control {
+        width: 17px;
+	    height: 14px;
 	    top: 17px;
     }
 }
@@ -362,8 +364,8 @@
     }
 
     .password-control {
-        width: 19px;
-	    height: 16px;
+        width: 17px;
+	    height: 14px;
 	    top: 16px;
     }
 }
@@ -379,8 +381,8 @@
     }
 
     .password-control {
-        width: 18px;
-	    height: 15px;
+        width: 16px;
+	    height: 13px;
 	    top: 16px;
     }
 }
