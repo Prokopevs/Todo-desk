@@ -1,12 +1,12 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import Desk from "../components/Desk"
-import Logout from "../components/Logout"
+import HelmetComponent from "../components/Helmet/HelmetComponent"
+import Settings from "../components/Settings"
 import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
 import { selectAuthorization, selectError } from "../Store/selectors"
-import HelmetComponent from "../components/HelmetComponent"
 
 const DashBoard = () => {
     localStorage.removeItem("modal")
@@ -14,11 +14,11 @@ const DashBoard = () => {
     const { globalErrorMessage } = useAppSelector(selectError)
     const navigate = useNavigate()
 
-    // React.useEffect(() => {
-    //     if (isAuth === false) {
-    //         navigate("/demo")
-    //     }
-    // }, [isAuth])
+    React.useEffect(() => {
+        if (isAuth === false) {
+            navigate("/demo")
+        }
+    }, [isAuth])
 
     React.useEffect(() => {
         if (globalErrorMessage) {
@@ -30,12 +30,11 @@ const DashBoard = () => {
         return <></>
     }
 
-    // isAuth
-    if (true) {
+    if (isAuth) {
         return (
             <div>
                 <HelmetComponent title={"Task Tracker"} content={"DashBoard"} />
-                <Logout />
+                <Settings />
                 <Desk />
                 <TaskModalWindow />
                 <StatusModalWindow />

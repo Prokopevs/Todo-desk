@@ -1,17 +1,19 @@
 import React from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
-import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { IProfile } from "../../models/Generally/IProfile"
-import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
-import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
+import { IProfile } from "../../../models/Generally/IProfile"
+import { addStatus, addStatusQuery, setQueryFlag } from "../../../Store/reducers/dndSlice"
+import { deleteErrorInfo } from "../../../Store/reducers/errorMessageSlice"
 import {
     selectDnd,
     selectError,
     selectAuthorization,
     selectEditMode,
-} from "../../Store/selectors"
-import Eye from "../Eye"
+} from "../../../Store/selectors"
+import Eye from "../../Eye"
+import SelectButtons from "./SelectButtons"
+import TasksLife from "./TasksLife"
 
 type Inputs = {
     email: string
@@ -26,6 +28,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
     const { errorInfo } = useAppSelector(selectError)
     const { queryLoading } = useAppSelector(selectEditMode)
     const [click, setClick] = React.useState(false)
+    const [timeLife, setTimeLife] = React.useState(false)
 
     const {
         register,
@@ -66,18 +69,18 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
-                        <p className="modalWindow__text text-center profile">
+                        <p className="modalWindow__text text-center profile settings">
                             Update profile
                         </p>
-                        <div className="block__line block__line-form"></div>
+                        <div className="block__line block__line-form settings"></div>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <p className="modalWindow__text-description">Email</p>
+                            <p className="modalWindow__text-description settings">Email</p>
                             <div
                                 className={
                                     errors?.email
-                                        ? "form__input_holder error-holder"
-                                        : "form__input_holder"
+                                        ? "form__input_holder error-holder settings"
+                                        : "form__input_holder settings"
                                 }
                             >
                                 <input
@@ -91,24 +94,24 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     {...register("email", { required: "cannot be empty" })}
                                 ></input>
                             </div>
-                            <div className="error__message">
+                            <div className="error__message settings">
                                 {errors?.name && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text settings">
                                         {errors?.name?.message}
                                     </p>
                                 )}
                             </div>
 
-                            <p className="modalWindow__text-description">Name</p>
+                            <p className="modalWindow__text-description settings">Name</p>
                             <div
                                 className={
                                     errors?.name
-                                        ? "form__input_holder error-holder"
-                                        : "form__input_holder"
+                                        ? "form__input_holder error-holder settings"
+                                        : "form__input_holder settings"
                                 }
                             >
                                 <input
-                                    placeholder="Set a new user name..."
+                                    placeholder="Set a new user name"
                                     className={
                                         errors?.name
                                             ? "form__input status error-input"
@@ -118,24 +121,27 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     {...register("name", { required: "cannot be empty" })}
                                 ></input>
                             </div>
-                            <div className="error__message">
+                            <div className="error__message settings">
                                 {errors?.name && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text settings">
                                         {errors?.name?.message}
                                     </p>
                                 )}
                             </div>
 
-                            <p className="login__form_data_name">Password</p>
+                            <p className="modalWindow__text-description settings
+                            
+                            
+                            ">Password</p>
                             <div
                                 className={
                                     errors?.password
-                                        ? "form__input_holder error-holder"
-                                        : "form__input_holder"
+                                        ? "form__input_holder error-holder settings"
+                                        : "form__input_holder settings"
                                 }
                             >
                                 <input
-                                    placeholder="Your account password..."
+                                    placeholder="Set a new password"
                                     type={click ? "" : "password"}
                                     className={
                                         errors?.password
@@ -153,24 +159,17 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 ></input>
                                 <Eye setClick={setClick} click={click}/>
                             </div>
-                            <div className="error__message">
+                            <div className="error__message settings">
                                 {errors?.password && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text settings">
                                         {errors?.password?.message}
                                     </p>
                                 )}
                             </div>
 
-                            <button
-                                type="submit"
-                                disabled={queryLoading}
-                                className="block__button submit big mb status-type"
-                            >
-                                Add
-                            </button>
-                            {isAuth && errorInfo && (
-                                <div className="error_info taskmodal">{errorInfo}</div>
-                            )}
+                            <TasksLife timeLife={timeLife} setTimeLife={setTimeLife}/>
+                            {!timeLife && <SelectButtons />}
+
                         </form>
                     </div>
 

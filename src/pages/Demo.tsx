@@ -1,11 +1,11 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Desk from "../components/Desk"
+import HelmetComponent from "../components/Helmet/HelmetComponent"
 import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
 import { selectAuthorization } from "../Store/selectors"
-import HelmetComponent from "../components/HelmetComponent"
 
 const Demo = () => {
     const { isAuth } = useAppSelector(selectAuthorization)
