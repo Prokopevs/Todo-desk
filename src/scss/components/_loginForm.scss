@@ -348,7 +348,7 @@
     }
 
     .form__input.status {
-        height: 38px;
+        height: 39px;
     }
 
     .password-control {
@@ -414,6 +414,12 @@
     .error__message_text {
         margin-top: 3px;
         font-size: 14px;
+    }
+}
+
+@media (max-width: 991px) {
+    .error__message_text.settings {
+        margin-top: -1px;
     }
 }
 

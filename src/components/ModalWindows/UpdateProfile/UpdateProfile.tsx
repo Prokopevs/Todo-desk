@@ -96,7 +96,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                             </div>
                             <div className="error__message settings">
                                 {errors?.name && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text settings">
                                         {errors?.name?.message}
                                     </p>
                                 )}
@@ -123,7 +123,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                             </div>
                             <div className="error__message settings">
                                 {errors?.name && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text settings">
                                         {errors?.name?.message}
                                     </p>
                                 )}
@@ -161,7 +161,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                             </div>
                             <div className="error__message settings">
                                 {errors?.password && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text settings">
                                         {errors?.password?.message}
                                     </p>
                                 )}
