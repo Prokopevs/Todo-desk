@@ -14,7 +14,7 @@ const Status: React.FC<IStatus> = React.memo(
         const dispatch = useAppDispatch()
         const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
         const [hover, setHover] = React.useState("")
-        const [changeName, setchangeName] = React.useState(false)
+        const [changeName, setChangeName] = React.useState(false)
 
         React.useEffect(() => {
             dispatch(setLineArray(Object.keys(columnOrder).length))
@@ -26,6 +26,24 @@ const Status: React.FC<IStatus> = React.memo(
 
         const handleMouseOut = (id: string) => {
             setHover("")
+        }
+
+        const [waitingClick, setWaitingClick] = React.useState(null)
+        const [lastClick, setLastClick] = React.useState(0)
+        const processClick = (e) => {
+            if (lastClick && e.timeStamp - lastClick < 250 && waitingClick) {
+                setLastClick(0)
+                clearTimeout(waitingClick)
+                setWaitingClick(null)
+                setChangeName(true)
+            } else {
+                setLastClick(e.timeStamp)
+                setWaitingClick(
+                    setTimeout(() => {
+                        setWaitingClick(null)
+                    }, 251)
+                )
+            }
         }
 
         return (
@@ -53,8 +71,10 @@ const Status: React.FC<IStatus> = React.memo(
 
                                         <div className="block__status-inner">
                                             <div className="block__wrapper">
-                                                <h1 className="block__status_name" 
-                                                    onDoubleClick={() => setchangeName(true)}>
+                                                <h1
+                                                    className="block__status_name"
+                                                    onClick={(e) => processClick(e)}
+                                                >
                                                     {column.name}
                                                 </h1>
                                             </div>
@@ -68,7 +88,10 @@ const Status: React.FC<IStatus> = React.memo(
                                         />
                                     </>
                                 ) : (
-                                    <EdditStatus column={column} setchangeName={setchangeName}/>
+                                    <EdditStatus
+                                        column={column}
+                                        setChangeName={setChangeName}
+                                    />
                                 )}
                             </div>
                             <div

@@ -9,14 +9,13 @@ const AddTask = () => {
     const { data } = useAppSelector(selectDnd)
     const { width } = useWindowDimensions()
     const columLength = data.columnOrder.length
-    const { setModalTaskActive, setStatusActive } = React.useContext(ModalWindowContext)
+    const { setModalTaskActive } = React.useContext(ModalWindowContext)
     
     const selectPage = isAuth ? "addTask" : "addTask demo"
     const selectPageAbsolute = isAuth ? "addTask-absolute" : "addTask-absolute demo"
 
     const handleClick = () => {
-        setStatusActive(true)
-
+        setModalTaskActive(true)
     }
 
     return (

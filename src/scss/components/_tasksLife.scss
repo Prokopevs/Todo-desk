@@ -125,28 +125,28 @@
 }
 
 .tasksLife__inner_text.array {
-    padding: 10px 0 3px 0;
+    padding: 10px 50px 3px 50px;
     margin-bottom: 7px;
     cursor: pointer;
 }
 
 @media (max-width: 1199px) {
     .tasksLife__inner_text.array {
-        padding: 7px 0 3px 0;
+        padding: 7px 50px 3px 50px;
         margin-bottom: 6px;
     }
 }
 
 @media (max-width: 991px) {
     .tasksLife__inner_text.array {
-        padding: 6px 0 3px 0;
+        padding: 6px 50px 3px 50px;
         margin-bottom: 6px;
     }
 }
 
 @media (max-width: 767px) {
     .tasksLife__inner_text.array {
-        padding: 6px 0 3px 0;
+        padding: 6px 50px 3px 50px;
         margin-bottom: 5px;
     }
 }

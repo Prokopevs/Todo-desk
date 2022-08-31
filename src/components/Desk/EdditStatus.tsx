@@ -2,16 +2,16 @@ import React from "react"
 import { cross2, vector } from "../../pictures"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { changeStatusNameQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
-import { selectAuthorization, selectDnd, selectEditMode, selectError } from "../../Store/selectors"
-import { deleteErrorInfo, deleteErrorInfoStatus } from "../../Store/reducers/errorMessageSlice"
+import { changeStatusName, changeStatusNameQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
+import { selectAuthorization, selectDnd, selectError } from "../../Store/selectors"
+import { deleteErrorInfoStatus } from "../../Store/reducers/errorMessageSlice"
 
 type Inputs = {
     id: string
     name: string
 }
 
-const EdditStatus = ({ column, setchangeName }) => {
+const EdditStatus = ({ column, setChangeName }) => {
     const dispatch = useAppDispatch()
     const { queryFlag } = useAppSelector(selectDnd)
     const { isAuth } = useAppSelector(selectAuthorization)
@@ -25,7 +25,12 @@ const EdditStatus = ({ column, setchangeName }) => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfoStatus())
         data["id"] = column.id
-        dispatch(changeStatusNameQuery(data))
+        if (isAuth) {
+            dispatch(changeStatusNameQuery(data))
+        } else {
+            dispatch(changeStatusName(data))
+            stopEditMode()
+        }
     }
 
     React.useEffect(() => {
@@ -37,7 +42,7 @@ const EdditStatus = ({ column, setchangeName }) => {
 
     const stopEditMode = () => {
         dispatch(deleteErrorInfoStatus())
-        setchangeName(false)
+        setChangeName(false)
     }
 
     return (

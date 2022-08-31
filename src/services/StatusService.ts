@@ -8,8 +8,8 @@ export const getStatusService = async () => {
     return response
 };
 
-export const postStatusService = async (id, name, priority) => {
-    const response = await $api.post<IStatusQuery>('/tasks/status', {id, name, priority})
+export const postStatusService = async (id, name, parentId) => {
+    const response = await $api.post<IStatusQuery>('/tasks/status', {id, name, parentId})
     return response
 };
 

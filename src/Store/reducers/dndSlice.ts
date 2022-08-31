@@ -235,7 +235,8 @@ export const dndSlice = createSlice({
         },
         changeStatusNameQuery: (state, action: PayloadAction<IChangeStatus>) => {},
         changeStatusName: (state, action: PayloadAction<IChangeStatus>) => { 
-
+            const {id, name} = action.payload
+            state.data.columns[id].name = name
         },
         changeTaskContentQuery: (state, action: PayloadAction<IChangeTaskContent>) => {},
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {

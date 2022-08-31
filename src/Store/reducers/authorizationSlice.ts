@@ -42,9 +42,12 @@ export const authorizationSlice = createSlice({
     setRememberMe: (state, action: PayloadAction<boolean>) => {
         state.rememberMe = action.payload
     },
+    setTtl: (state, action: PayloadAction<number>) => {
+        state.user.taskTtl = action.payload
+    },
   }
 })
 
-export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth } = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTtl } = authorizationSlice.actions
 
 export default authorizationSlice.reducer
