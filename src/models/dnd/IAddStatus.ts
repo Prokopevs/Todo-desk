@@ -1,6 +1,6 @@
 export interface IAddStatus {
     id?: number
     name: string
-    priority: string
+    parentId: number
     isAuth: boolean
 }

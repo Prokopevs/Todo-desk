@@ -16,6 +16,7 @@ const initialState: AuthorizationState = {
     email: "",
     emailConfirmed: false,
     name: "",
+    taskTtl: null
   },
   isAuth: false,
   isLoading: true,

@@ -404,6 +404,14 @@
     font-size: 15px;
 }
 
+.error__message_text.margin-top {
+     margin-top: -25px;   
+}
+
+.error__message_text.mt {
+    margin-top: 2px;
+}
+
 @media (max-width: 1199px) {
     .error__message_text {
         margin-top: 2px;

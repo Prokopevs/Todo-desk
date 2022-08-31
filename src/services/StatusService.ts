@@ -1,4 +1,5 @@
 import $api from "../http";
+import { IChangeStatus } from "../models/Status/IChangeStatus";
 import { IDelete } from "../models/Status/IDelete";
 import { IStatusQuery } from "../models/Status/IStatusQuery";
 
@@ -14,5 +15,10 @@ export const postStatusService = async (id, name, priority) => {
 
 export const deleteStatusService = async (id) => {
     const response = await $api.delete<IDelete>(`/tasks/status/${id}`)
+    return response
+};
+
+export const changeNameStatusService = async (id, name) => {
+    const response = await $api.put<IChangeStatus>('/tasks/status/name', {id, name})
     return response
 };

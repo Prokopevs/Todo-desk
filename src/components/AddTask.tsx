@@ -1,47 +1,30 @@
 import React from "react"
+import { ModalWindowContext } from "../App"
 import { useAppSelector } from "../hooks/redux"
 import useWindowDimensions from "../hooks/useWindowDimensions"
-import { IAddTaskProps } from "../models/dnd/IAddTaskProps"
 import { selectDnd, selectAuthorization } from "../Store/selectors"
 
-type addTaskClick = MouseEvent & {
-    path: Node[]
-}
-
-const AddTask: React.FC<IAddTaskProps> = ({ changesActive, setChangesActive }) => {
+const AddTask = () => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
     const { width } = useWindowDimensions()
-
     const columLength = data.columnOrder.length
-    const addTaskRef = React.useRef<HTMLDivElement>(null)
+    const { setModalTaskActive, setStatusActive } = React.useContext(ModalWindowContext)
     
     const selectPage = isAuth ? "addTask" : "addTask demo"
     const selectPageAbsolute = isAuth ? "addTask-absolute" : "addTask-absolute demo"
 
-    React.useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            const _event = event as addTaskClick
+    const handleClick = () => {
+        setStatusActive(true)
 
-            if (addTaskRef.current && !_event.path.includes(addTaskRef.current)) {
-                setChangesActive(false)
-            }
-        }
-
-        document.body.addEventListener("click", handleClickOutside)
-
-        return () => document.body.removeEventListener("click", handleClickOutside)
-    }, [])
+    }
 
     return (
         <div
-            ref={addTaskRef}
             className={columLength > 3 || width! < 768 ?  selectPage : selectPageAbsolute}
-            onClick={() => setChangesActive(!changesActive)}
+            onClick={() => handleClick()}
         >
-            <div
-                className={changesActive ? "addTask__plus change" : "addTask__plus"}
-            ></div>
+            <div className="addTask__plus"></div>
         </div>
     )
 }

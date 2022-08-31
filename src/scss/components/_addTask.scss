@@ -203,11 +203,3 @@
 .addTask__plus::after {
     transform: translate(-50%, -50%) rotate(-90deg);
 }
-
-.addTask__plus.change::before {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.addTask__plus.change::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
-}

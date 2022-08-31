@@ -1,3 +1,4 @@
+import { IChangeStatus } from './../../models/Status/IChangeStatus';
 import { IPriority } from './../../models/dnd/IPriority';
 import { IColumn } from './../../models/dnd/IData';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -26,6 +27,7 @@ interface DndState {
         secondArray: number[]
     }
     queryFlag: boolean
+    parentId: number | null
 }
   
 const initialState: DndState = {
@@ -57,6 +59,7 @@ const initialState: DndState = {
         secondArray: [],
     },
     queryFlag: false,
+    parentId: null
 }
 
 
@@ -163,6 +166,7 @@ export const dndSlice = createSlice({
             if (action.payload.isAuth) {
                 let stringArr = localStorage.getItem(`${action.payload.column.id}`) // "["1,2"]"
                 if(stringArr) {
+                    console.log("here")
                     localStorage.removeItem(`${action.payload.column.id}`)
                 }
             } else {  
@@ -207,25 +211,31 @@ export const dndSlice = createSlice({
         addStatusQuery: (state, action: PayloadAction<IAddStatus>) => {},
         addStatus: (state, action: PayloadAction<IAddStatus>) => {
             if (action.payload.isAuth) {
-                const {id, name, priority} = action.payload
+                const {id, name, parentId} = action.payload
                 const newColumnValue = {
                     id: String(id), //4
                     name: name,
                     taskIds: [],
                 }
                 state.data.columns[`${id}`] = newColumnValue // добавили а объект новое свойство
-                state.data.columnOrder.splice(Number(priority), 0, `${id}`)
+                const startIndex= state.data.columnOrder.indexOf(String(parentId))
+                state.data.columnOrder.splice(startIndex + 1, 0, `${id}`)
             } else {
-                const lastColumnItem = Object.keys(state.data.columns)[Object.keys(state.data.columns).length - 1] // "3"
-                const newIndexToColumn = lastColumnItem ? Number(lastColumnItem) + 1 : 1 // 4
+                const arrOfNumbers = state.data.columnOrder.map(item => Number(item)) // [1, 2, 3]
+                let newIndexToColumn = Math.max( ...arrOfNumbers ) + 1 // 3 + 1
                 const newColumnValue = {
                     id: String(newIndexToColumn), //"4"
                     name: action.payload.name,
                     taskIds: [],
                     }
-                state.data.columns[String(newIndexToColumn)] = newColumnValue // добавили а объект новое свойство
-                state.data.columnOrder.splice(Number(action.payload.priority), 0, String(newIndexToColumn))
+                state.data.columns[String(newIndexToColumn)] = newColumnValue // добавили в объект новое свойство
+                const startIndex= state.data.columnOrder.indexOf(String(action.payload.parentId))
+                state.data.columnOrder.splice(startIndex + 1, 0, String(newIndexToColumn))
             }
+        },
+        changeStatusNameQuery: (state, action: PayloadAction<IChangeStatus>) => {},
+        changeStatusName: (state, action: PayloadAction<IChangeStatus>) => { 
+
         },
         changeTaskContentQuery: (state, action: PayloadAction<IChangeTaskContent>) => {},
         changeTaskContent: (state, action: PayloadAction<IChangeTaskContent>) => {
@@ -245,10 +255,13 @@ export const dndSlice = createSlice({
         setQueryFlag: (state, action: PayloadAction<boolean>) => {
             state.queryFlag = action.payload
         }, 
+        setParentId: (state, action: PayloadAction<number>) => {
+            state.parentId = action.payload
+        }, 
     }
 })
 
 
-export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag, } = dndSlice.actions
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag, setParentId, changeStatusNameQuery, changeStatusName } = dndSlice.actions
 
 export default dndSlice.reducer

@@ -8,5 +8,6 @@ export const mapResponseTasks = (arr) => {
                 taskObj[arr[i].id]["isOpen"] = false // '2' = {id: 2, content: 'do something', priority: 3, isOpen: false}
             }
         }
+        console.log(taskObj)
     return taskObj
 }

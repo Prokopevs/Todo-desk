@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { takeEvery, put, call, fork } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
 import { addTask, changeTaskContent, deleteTask, setQueryFlag, setTasks } from '../reducers/dndSlice';
@@ -11,10 +10,12 @@ export function* handleGetTask() {
     try {
         const response = yield call(getTaskService)
         const arr = JSON.parse(JSON.stringify(response.data))
+        console.log(response.data)
         const taskObj = mapResponseTasks(arr)
         const prevTaskObj = mapResponsePrevTasks(response.data)
         yield put(setTasks(taskObj))
         yield put(setPrevTaskObj(prevTaskObj))
+        // localStorage.removeItem("55")
     } catch (e) {
         const errorObj = {
             status: e.response?.status,
@@ -26,9 +27,10 @@ export function* handleGetTask() {
 
 export function* handlePostTask(action) {
     const { content, priority, status_id } = action.payload
+    console.log(status_id)
     yield put(setQueryLoading(true))
     try {
-        const response = yield call(postTaskService, 0, content, priority, 3)
+        const response = yield call(postTaskService, content, 0, priority, Number(status_id))
         const data = {...action.payload, ...response.data}
         yield put(addTask(data))
         yield put(setQueryFlag(true))

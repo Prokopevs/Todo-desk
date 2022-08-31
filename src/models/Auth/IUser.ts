@@ -3,4 +3,5 @@ export interface IUser {
     email: string
     emailConfirmed: boolean
     name: string
+    taskTtl: number | null
 }

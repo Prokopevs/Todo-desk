@@ -10,14 +10,14 @@ import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../
 
 type Inputs = {
     name: string
-    priority: string
     isAuth: boolean
+    parentId: number
 }
 
 const StatusModalWindow = () => {
     const dispatch = useAppDispatch()
     const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
-    const { data, queryFlag } = useAppSelector(selectDnd)
+    const { data, queryFlag, parentId } = useAppSelector(selectDnd)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const { queryLoading } = useAppSelector(selectEditMode)
@@ -32,6 +32,7 @@ const StatusModalWindow = () => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["isAuth"] = isAuth!
+        data["parentId"] = parentId
         if(isAuth) {
             dispatch(addStatusQuery(data))
         } else {
@@ -71,8 +72,8 @@ const StatusModalWindow = () => {
                             <div
                                 className={
                                     errors?.name
-                                        ? "form__input_holder error-holder"
-                                        : "form__input_holder"
+                                        ? "form__input_holder error-holder margin-form"
+                                        : "form__input_holder margin-form"
                                 }
                             >
                                 <input
@@ -88,49 +89,8 @@ const StatusModalWindow = () => {
                             </div>
                             <div className="error__message">
                                 {errors?.name && (
-                                    <p className="error__message_text">
+                                    <p className="error__message_text margin-top">
                                         {errors?.name?.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <p className="modalWindow__text-description">Priority</p>
-                            <div
-                                className={
-                                    errors?.priority
-                                        ? "form__input_holder error-holder margin-form"
-                                        : "form__input_holder margin-form"
-                                }
-                            >
-                                <input
-                                    placeholder={`Write status priority from 0 to ${columnOrderLength}`}
-                                    className={
-                                        errors?.priority
-                                            ? "form__input status error-input"
-                                            : "form__input status"
-                                    }
-                                    autoComplete="off"
-                                    {...register("priority", {
-                                        required: "cannot be empty",
-                                        min: {
-                                            value: 0,
-                                            message: "cannot be less than 0",
-                                        },
-                                        max: {
-                                            value: columnOrderLength,
-                                            message: `cannot be more than ${columnOrderLength}`,
-                                        },
-                                        validate: {
-                                            number: (value) =>
-                                                /[0-9]/.test(value) || "must be a number",
-                                        },
-                                    })}
-                                ></input>
-                            </div>
-                            <div className="error__message">
-                                {errors?.priority && (
-                                    <p className="error__message_text top">
-                                        {errors?.priority?.message}
                                     </p>
                                 )}
                             </div>

@@ -5,12 +5,14 @@ import { IError, IErrorTasks } from '../../models/Errors/IErrorTask'
 interface errorMessageState {
     globalErrorMessage: string
     errorInfo: string
+    errorInfoStatusName: string
     errorTaskInfo: IErrorTasks
 }
 
 const initialState: errorMessageState = {
     globalErrorMessage: "",
     errorInfo: "",
+    errorInfoStatusName: "",
     errorTaskInfo: {
         "": {id: "", message: ""} 
     }
@@ -30,6 +32,12 @@ export const errorMessageSlice = createSlice({
         deleteErrorInfo: (state) => {
             state.errorInfo = ""
         },
+        setErrorInfoStatus: (state, action: PayloadAction<string>) => {
+            state.errorInfoStatusName = action.payload
+        },
+        deleteErrorInfoStatus: (state) => {
+            state.errorInfoStatusName = ""
+        },
         setErrorTaskInfo: (state, action: PayloadAction<IError>) => {
             const { id, message } = action.payload
             const data = { id, message }
@@ -41,5 +49,5 @@ export const errorMessageSlice = createSlice({
     }
 })
 
-export const { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo } = errorMessageSlice.actions
+export const { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo, setErrorInfoStatus, deleteErrorInfoStatus } = errorMessageSlice.actions
 export default errorMessageSlice.reducer

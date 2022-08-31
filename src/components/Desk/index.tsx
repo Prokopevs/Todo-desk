@@ -3,8 +3,6 @@ import AddTask from "../AddTask"
 import Status from "./Status"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import SelectModal from "../SelectModal"
-import { useSessionStorage } from "../../hooks/useSessionStorage"
 import priorityArray from "../../data/Desk/priorityArray"
 import {
     reorderTaskInDifferentStatus,
@@ -18,7 +16,6 @@ import { selectDnd, selectAuthorization } from "../../Store/selectors"
 const Desk = () => {
     const dispatch = useAppDispatch()
     const { isAuth } = useAppSelector(selectAuthorization)
-    const [changesActive, setChangesActive] = useSessionStorage("SelectChanges", false)
     const { data } = useAppSelector(selectDnd)
     let columnsLength
     if(data) {
@@ -91,11 +88,7 @@ const Desk = () => {
                         </p>
                     )}
                 </div>
-                <SelectModal changesActive={changesActive} />
-                <AddTask
-                    changesActive={changesActive}
-                    setChangesActive={setChangesActive}
-                />
+                <AddTask />
             </div>
         </DragDropContext>
     )
