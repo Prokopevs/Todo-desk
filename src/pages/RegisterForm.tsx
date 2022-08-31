@@ -5,8 +5,8 @@ import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessageSlice"
 import { selectAuthorization, selectError } from "../Store/selectors"
-import HelmetComponent from "../components/HelmetComponent"
-import { eye } from "../pictures"
+import Eye from "../components/Eye"
+import HelmetComponent from "../components/Helmet/HelmetComponent"
 
 type Inputs = {
     name: string
@@ -137,7 +137,7 @@ const RegisterForm = () => {
                                         },
                                     })}
                                 ></input>
-                                <img className="password-control" onClick={() => setClick(!click)} src={String(eye)}></img>
+                                <Eye setClick={setClick} click={click}/>
                             </div>
                             <div className="error__message">
                                 {errors?.password && (
