@@ -62,7 +62,17 @@
     width: 32px;
     height: 32px;
     cursor: pointer;
+    transition: transform .2s linear;
+
 }
+
+.login__icon:hover{
+    transform: rotate(30deg);
+}
+.login__icon:hover >*{
+    transform: rotate(-30deg);
+}
+
 
 @media (max-width: 1199px) {
     .login__icon {

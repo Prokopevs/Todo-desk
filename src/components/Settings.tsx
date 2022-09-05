@@ -16,14 +16,14 @@ const Settings = () => {
     const { name } = useAppSelector(state => state.authorizationSlice.user)
     const [modalProfileActive, setProfileActive] = useSessionStorage("ProfileModal", false);
 
-    // const logout = () => {
-    //     localStorage.removeItem("token")
-    //     localStorage.removeItem("rememberMe")
-    //     dispatch(setAuth(false))
-    //     dispatch(setUser({} as IUser))
-    //     dispatch(setInitialData())
-    //     navigate("/")
-    // }
+    const logout = () => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("rememberMe")
+        dispatch(setAuth(false))
+        dispatch(setUser({} as IUser))
+        dispatch(setInitialData())
+        navigate("/")
+    }
 
     return (
         <div className="row">
@@ -36,8 +36,8 @@ const Settings = () => {
                         className="login__icon"
                         src={String(settings)}
                         alt=""
-                        // onClick={() => logout()}
-                        onClick={() => setProfileActive(true)}
+                        onClick={() => logout()}
+                        // onClick={() => setProfileActive(true)}
                         role="button"
                     ></img>
                 </div>

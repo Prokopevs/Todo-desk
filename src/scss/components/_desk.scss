@@ -783,6 +783,10 @@
     height: 35px;
     border-radius: 10px;
     padding: 0 10px 1px 10px;
+
+    &:disabled {
+        opacity: 0.5;
+    }
 }
 
 @media (max-width: 1399px) {

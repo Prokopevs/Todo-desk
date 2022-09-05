@@ -1,16 +1,18 @@
 import React from "react"
+import { useAppSelector } from "../../../hooks/redux"
 import { cross, vector } from "../../../pictures"
+import { selectEditMode, selectError } from "../../../Store/selectors"
 
-const SelectButtons = () => {
+const SelectButtons = ({ closeStatusWindow }) => {
+    const { queryLoading } = useAppSelector(selectEditMode)
+    const { errorInfo } = useAppSelector(selectError)
+
     return (
         <>
             <div className="block__content_selection settings">
-                <button
+                <div
                     className="block__content_selection_button delete settings"
-                    // onClick={() => deleteTaskFunc(task.id)}
-                    // disabled={
-                    //     opacityButtons && opacityButtons["delete"].includes(task.id)
-                    // }
+                    onClick={() => closeStatusWindow()}
                 >
                     <img
                         className="block__content_selection_img delete settings"
@@ -18,16 +20,12 @@ const SelectButtons = () => {
                         alt=""
                     ></img>
                     <p className="block__content_selection_text settings">Discard</p>
-                </button>
+                </div>
 
                 <button
                     className="block__content_selection_button apply settings"
                     type="submit"
-                    // disabled={
-                    //     !isValid ||
-                    //     isOpen ||
-                    //     (opacityButtons && opacityButtons["apply"].includes(task.id))
-                    // }
+                    disabled={queryLoading}
                 >
                     <img
                         className="block__content_selection_img apply settings"
@@ -37,9 +35,7 @@ const SelectButtons = () => {
                     <p className="block__content_selection_text settings">Apply</p>
                 </button>
             </div>
-            {/* {isAuth && errorTaskInfo[task.id]?.message && (
-                <div className="error_info task">{errorTaskInfo[task.id]?.message}</div>
-            )} */}
+            {errorInfo && <div className="error_info">{errorInfo}</div>}   
         </>
     )
 }

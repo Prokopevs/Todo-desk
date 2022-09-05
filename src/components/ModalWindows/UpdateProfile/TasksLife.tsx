@@ -29,7 +29,7 @@ const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
 
                 {!timeLife ? (
                     <div className="tasksLife__inner_information">
-                        <p className="tasksLife__inner_text">{formatter.format(user.taskTtl)}</p>
+                        <p className="tasksLife__inner_text">{formatter.format(user.taskTTL)}</p>
                     </div>
                 ) : (
                     <div className="tasksLife__inner_information array">

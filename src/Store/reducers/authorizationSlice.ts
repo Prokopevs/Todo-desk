@@ -1,3 +1,4 @@
+import { ISettings } from './../../models/Auth/ISettings';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {IUser} from "../../models/Auth/IUser";
 import { ILogin } from '../../models/Auth/ILogin';
@@ -16,7 +17,7 @@ const initialState: AuthorizationState = {
     email: "",
     emailConfirmed: false,
     name: "",
-    taskTtl: null
+    taskTTL: null
   },
   isAuth: false,
   isLoading: true,
@@ -35,6 +36,7 @@ export const authorizationSlice = createSlice({
     },
     setUser: (state, action: PayloadAction<IUser>) => {
         state.user = action.payload
+        state.user.taskTTL = action.payload.taskTtl
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
         state.isLoading = action.payload
@@ -43,11 +45,19 @@ export const authorizationSlice = createSlice({
         state.rememberMe = action.payload
     },
     setTtl: (state, action: PayloadAction<number>) => {
-        state.user.taskTtl = action.payload
+        state.user.taskTTL = action.payload
+        console.log(action.payload)
+    },
+    setSettingsQuery: (state, action: PayloadAction<ISettings>) => {},
+    setSettings: (state, action: PayloadAction<ISettings>) => {
+        const {email, name, taskTTL} = action.payload
+        state.user.email = email
+        state.user.name = name
+        state.user.taskTTL = taskTTL
     },
   }
 })
 
-export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTtl } = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTtl, setSettingsQuery, setSettings } = authorizationSlice.actions
 
 export default authorizationSlice.reducer

@@ -33,6 +33,7 @@
 .demo__center {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 72.4vh;
 }
@@ -45,6 +46,7 @@
     line-height: 1.3;
     text-align: center;
     color: #B9ADAD;
+    margin-bottom: 23px;
 }
 
 @media (max-width: 1199px) {

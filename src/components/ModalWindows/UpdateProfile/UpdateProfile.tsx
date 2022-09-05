@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { IProfile } from "../../../models/Generally/IProfile"
+import { setSettingsQuery } from "../../../Store/reducers/authorizationSlice"
 import { addStatus, addStatusQuery, setQueryFlag } from "../../../Store/reducers/dndSlice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessageSlice"
 import {
@@ -19,14 +20,14 @@ type Inputs = {
     email: string
     name: string
     password: string
+    taskTTL: number
+    emailConfirmed: boolean
 }
 
 const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActive }) => {
     const dispatch = useAppDispatch()
-    const { data, queryFlag } = useAppSelector(selectDnd)
-    const { isAuth } = useAppSelector(selectAuthorization)
-    const { errorInfo } = useAppSelector(selectError)
-    const { queryLoading } = useAppSelector(selectEditMode)
+    const { queryFlag } = useAppSelector(selectDnd)
+    const { user } = useAppSelector(selectAuthorization)
     const [click, setClick] = React.useState(false)
     const [timeLife, setTimeLife] = React.useState(false)
 
@@ -35,15 +36,13 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
-        if (isAuth) {
-            // dispatch(addStatusQuery(data))
-        } else {
-            // dispatch(addStatus(data))
-            closeStatusWindow()
-        }
+        data["taskTTL"] = user.taskTTL
+        data["emailConfirmed"] = true
+        dispatch(setSettingsQuery(data))
+        closeStatusWindow()
     }
 
     React.useEffect(() => {
@@ -95,9 +94,9 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 ></input>
                             </div>
                             <div className="error__message settings">
-                                {errors?.name && (
+                                {errors?.email && (
                                     <p className="error__message_text settings">
-                                        {errors?.name?.message}
+                                        {errors?.email?.message}
                                     </p>
                                 )}
                             </div>
@@ -129,10 +128,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 )}
                             </div>
 
-                            <p className="modalWindow__text-description settings
-                            
-                            
-                            ">Password</p>
+                            <p className="modalWindow__text-description settings">Password</p>
                             <div
                                 className={
                                     errors?.password
@@ -168,7 +164,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                             </div>
 
                             <TasksLife timeLife={timeLife} setTimeLife={setTimeLife}/>
-                            {!timeLife && <SelectButtons />}
+                            {!timeLife && <SelectButtons closeStatusWindow={closeStatusWindow}/>}
 
                         </form>
                     </div>
