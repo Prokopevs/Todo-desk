@@ -7,7 +7,8 @@ import { setLineArray } from "../../Store/reducers/dndSlice"
 import Line from "./Line"
 import ButtonPlus from "../Buttons/ButtonPlus"
 import ButtonMinus from "../Buttons/ButtonMinus"
-import EdditStatus from "./EdditStatus"
+import EditStatus from "./EditStatus"
+
 
 const Status: React.FC<IStatus> = React.memo(
     ({ column, tasks, priorityArray, index }) => {
@@ -28,7 +29,7 @@ const Status: React.FC<IStatus> = React.memo(
             setHover("")
         }
 
-        const [waitingClick, setWaitingClick] = React.useState(null)
+        const [waitingClick, setWaitingClick] = React.useState<null | NodeJS.Timeout>(null)
         const [lastClick, setLastClick] = React.useState(0)
         const processClick = (e) => {
             if (lastClick && e.timeStamp - lastClick < 250 && waitingClick) {
@@ -88,7 +89,7 @@ const Status: React.FC<IStatus> = React.memo(
                                         />
                                     </>
                                 ) : (
-                                    <EdditStatus
+                                    <EditStatus
                                         column={column}
                                         setChangeName={setChangeName}
                                     />
