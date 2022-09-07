@@ -1,21 +1,22 @@
 import React from "react"
-import { ModalWindowContext } from "../App"
+
 import { useAppSelector } from "../hooks/redux"
 import useWindowDimensions from "../hooks/useWindowDimensions"
+import { IModalTask } from "../models/EditMode/IStorage"
 import { selectDnd, selectAuthorization } from "../Store/selectors"
 
-const AddTask = () => {
+
+const AddTask: React.FC<IModalTask> = ({ setMTA }) => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
     const { width } = useWindowDimensions()
     const columLength = data.columnOrder.length
-    const { setModalTaskActive } = React.useContext(ModalWindowContext)
     
     const selectPage = isAuth ? "addTask" : "addTask demo"
     const selectPageAbsolute = isAuth ? "addTask-absolute" : "addTask-absolute demo"
 
     const handleClick = () => {
-        setModalTaskActive(true)
+        setMTA(true)
     }
 
     return (

@@ -12,8 +12,9 @@ import {
     setStart,
 } from "../../Store/reducers/dndSlice"
 import { selectDnd, selectAuthorization } from "../../Store/selectors"
+import { IStorage } from "../../models/EditMode/IStorage"
 
-const Desk = () => {
+const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
     const dispatch = useAppDispatch()
     const { isAuth } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
@@ -70,6 +71,7 @@ const Desk = () => {
                                         tasks={tasks}
                                         priorityArray={priorityArray}
                                         index={index + 1}
+                                        setMSA={setMSA}
                                     />
                                 )
                             })
@@ -134,7 +136,7 @@ const Desk = () => {
                         </p>
                     )}
                 </div>
-                <AddTask />
+                <AddTask setMTA={setMTA}/>
             </div>
         </DragDropContext>
     )

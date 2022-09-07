@@ -4,10 +4,10 @@ import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import PriorityButtons from "../PriorityButtons"
 import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
-import { ModalWindowContext } from "../../App"
 import priorityArray from "../../data/Desk/priorityArray"
 import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
 import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../../Store/selectors"
+import { IModalTask, IStorage } from "../../models/EditMode/IStorage"
 
 interface Inputs {
     content: string
@@ -16,10 +16,9 @@ interface Inputs {
     isAuth: boolean
 }
 
-const TaskModalWindow = () => {
+const TaskModalWindow: React.FC<IModalTask> = ({ modalTA, setMTA }) => {
     const dispatch = useAppDispatch()
     const [changePriority, setChangePriority] = React.useState(false)
-    const { modalTaskActive, setModalTaskActive } = React.useContext(ModalWindowContext)
     const { priority } = useAppSelector((state) => state.prioritySlice)
     const { data, queryFlag } = useAppSelector(selectDnd)
     const { isAuth } = useAppSelector(selectAuthorization)
@@ -55,14 +54,14 @@ const TaskModalWindow = () => {
 
     const closeTaskWindow = () => {
         dispatch(deleteErrorInfo())
-        setModalTaskActive(false)
+        setMTA(false)
         setTimeout(() => reset(), 200)
         setTimeout(() => setChangePriority(false), 200)
     }
 
     return (
         <CSSTransition
-            in={modalTaskActive}
+            in={modalTA}
             timeout={150}
             classNames="my-node"
             unmountOnExit

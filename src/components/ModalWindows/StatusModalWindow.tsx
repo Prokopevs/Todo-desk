@@ -3,10 +3,10 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
-import { ModalWindowContext } from "../../App";
 import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
 import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
 import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../../Store/selectors"
+import { IModalStatus } from "../../models/EditMode/IStorage";
 
 type Inputs = {
     name: string
@@ -14,9 +14,8 @@ type Inputs = {
     parentId: number
 }
 
-const StatusModalWindow = () => {
+const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
     const dispatch = useAppDispatch()
-    const { modalStatusActive, setStatusActive } = React.useContext(ModalWindowContext)
     const { data, queryFlag, parentId } = useAppSelector(selectDnd)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
@@ -50,13 +49,13 @@ const StatusModalWindow = () => {
 
     const closeStatusWindow = () => {
         dispatch(deleteErrorInfo())
-        setStatusActive(false)
+        setMSA(false)
         setTimeout(() => reset(), 200);
     }
 
     return (
         <CSSTransition
-            in={modalStatusActive}
+            in={modalSA}
             timeout={150}
             classNames="my-node"
             unmountOnExit

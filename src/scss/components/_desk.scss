@@ -9,19 +9,31 @@
 }
 
 .margin {
-    margin: 50px 10px 0;
+    margin: 40px 10px 0;
     position: relative;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
     .margin {
-        margin: 40px 10px 0;
+        margin: 30px 10px 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .margin {
+        margin: 25px 10px 0;
+    }
+}
+
+@media (max-width: 415px) {
+    .margin {
+        margin: 20px 10px 0;
     }
 }
 
 @media (max-height: 800px) {
     .margin {
-        margin: 32px 10px 0;
+        margin: 20px 10px 0;
     }
 }
 
@@ -112,18 +124,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    &:hover {
-        .block__status_name {
-            margin: 0px 10px 25px 0px;
-        }
-
-        @media (max-width: 1399px) {
-            .block__status_name {
-                margin: 0px 10px 21px 0px;
-            }
-        }
-    }
 }
 
 .block__edit_center {
@@ -151,15 +151,15 @@
 
 @media (max-width: 1399px) {
     .block__plus {
-        margin-bottom: 21px;
+        margin-bottom: 20px;
     }
 }
 
 @media (max-width: 991px) {
     .block__plus {
-        width: 17px;
-        height: 17px;
-        margin-bottom: 17px;
+        width: 16px;
+        height: 16px;
+        margin-bottom: 22px;
     }
 }
 
@@ -231,7 +231,7 @@
     width: 20px;
     height: 20px;
     background-color: #F45252;
-    margin: 0 5px 25px 0;
+    margin: 0 5px 22px 0;
     border-radius: 50%;
     cursor: pointer;
     border: none;
@@ -252,15 +252,15 @@
     .block__minus {
         width: 19px;
         height: 19px;
-        margin-bottom: 21px;
+        margin-bottom: 20px;
     }
 }
 
 @media (max-width: 991px) {
     .block__minus {
-        width: 17px;
-        height: 17px;
-        margin-bottom: 17px;
+        width: 16px;
+        height: 16px;
+        margin-bottom: 22px;
     }
 }
 
@@ -295,8 +295,8 @@
 
 @media (max-width: 991px) {
     .block__minus-line {
-        width: 7px;
-        height: 2.2px;
+        width: 6px;
+        height: 1.8px;
     }
 }
 
@@ -410,6 +410,14 @@
 .block__visible {
     opacity: 1;
     transition: opacity 0.2s
+}
+
+.button__visible {
+    display: block;
+}
+
+.button__none {
+    display: none;
 }
 
 @media (max-width: 1399px) {

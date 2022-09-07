@@ -7,8 +7,9 @@ import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
 import { selectAuthorization, selectError } from "../Store/selectors"
+import { IStorage } from "../models/EditMode/IStorage"
 
-const DashBoard = () => {
+const DashBoard: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => {
     localStorage.removeItem("modal")
     const { isAuth } = useAppSelector(selectAuthorization)
     const { globalErrorMessage } = useAppSelector(selectError)
@@ -35,9 +36,9 @@ const DashBoard = () => {
             <div>
                 <HelmetComponent title={"Task Tracker"} content={"DashBoard"} />
                 <Settings />
-                <Desk />
-                <TaskModalWindow />
-                <StatusModalWindow />
+                <Desk setMTA={setMTA} setMSA={setMSA}/>
+                <TaskModalWindow modalTA={modalTA} setMTA={setMTA}/>
+                <StatusModalWindow modalSA={modalSA} setMSA={setMSA}/>
             </div>
         )
     }
