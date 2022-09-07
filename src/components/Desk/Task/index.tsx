@@ -4,6 +4,7 @@ import { addTaskInEditArray } from "../../../Store/reducers/editModeSlice"
 import { useAppDispatch } from "../../../hooks/redux"
 import TasksContent from "./TaskContent"
 import { ITasksProps } from "../../../models/Task/ITasksProps"
+import { deleteErrorTaskInfo } from "../../../Store/reducers/errorMessageSlice"
 
 const Task: React.FC<ITasksProps> = React.memo(
     ({ task, priorityArray, column, hover }) => {
@@ -12,8 +13,9 @@ const Task: React.FC<ITasksProps> = React.memo(
         const [editMode, setEditMod] = React.useState(false)
 
         const onEditClick = () => {
+            deleteErrorTaskInfo(task.id)
             setEditMod(true)
-            dispatch(addTaskInEditArray(task.id))
+            dispatch(deleteErrorTaskInfo(task.id))
         }
 
         return (

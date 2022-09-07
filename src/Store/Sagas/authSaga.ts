@@ -24,7 +24,7 @@ export function* handleLogin(action) {
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
     } catch (e) {
-        yield put(setErrorInfo(e.response?.data?.errorInfo))
+        yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
     }
 }
 
@@ -36,7 +36,7 @@ export function* handleRegistration(action) {
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
     } catch (e) {
-        yield put(setErrorInfo(e.response?.data?.errorInfo))
+        yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
     }
 }
 

@@ -61,9 +61,6 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                     <p className="block__content_selection_text">Apply</p>
                 </button>
             </div>
-            {isAuth && errorTaskInfo[task.id]?.message && (
-                <div className="error_info task">{errorTaskInfo[task.id]?.message}</div>
-            )}
         </>
     )
 }

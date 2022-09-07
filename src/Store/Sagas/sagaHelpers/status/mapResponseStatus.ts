@@ -11,5 +11,6 @@ export const mapResponseStatus = (arr) => {
                 StatusObj[arr[i].id]["taskIds"] = newTaskIdsArr //"3" = {id: '3', name: 'Progress2', taskIds:["1","2"]}
             }
         }
+        console.log(StatusObj)
     return StatusObj
 }

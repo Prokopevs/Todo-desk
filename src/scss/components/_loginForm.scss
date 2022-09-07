@@ -502,9 +502,36 @@
     word-break: break-all;
 }
 
+.error_info.status {
+    font-size: 14px;
+    margin-right: 10px;
+    position: absolute;
+    right: 25px;
+    bottom: -2px;
+}
+
+.error_info.tasks {
+    font-size: 14px;
+    margin-left: 30px;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 1199px) {
+    .error_info.status {
+        right: 20px;
+        bottom: -4px;
+    }
+}
+
 @media (max-width: 991px) {
     .error_info {
         font-size: 14px;
+    }
+
+    .error_info.status {
+        margin-left: 20px;
+        right: 4px;
+        bottom: -28px;
     }
 }
 
@@ -512,12 +539,26 @@
     .error_info {
         margin-top: -17px;
     }
+
+    .error_info.status {
+        margin-left: 0;
+        right: 15px;
+        bottom: -10px;
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 460px) {
     .error_info {
         font-size: 13px;
         margin-top: -14px;
+    }
+
+    .error_info.status {
+        margin-left: 20px;
+        right: 15px;
+        bottom: -17px;
+        font-size: 12px;
     }
 }
 

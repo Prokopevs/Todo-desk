@@ -3,11 +3,13 @@ import { Draggable } from "react-beautiful-dnd"
 import { ITasksProps } from "../../models/Task/ITasksProps"
 import { useAppSelector } from "../../hooks/redux"
 import Task from "./Task"
-import { selectEditMode } from "../../Store/selectors"
+import { selectAuthorization, selectEditMode, selectError } from "../../Store/selectors"
 
 const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) => {
     const { editArray } = useAppSelector(selectEditMode)
     const [hover, setHover] = React.useState("")
+    const { errorTaskInfo } = useAppSelector(selectError)
+    const { isAuth } = useAppSelector(selectAuthorization)
 
     const handleMouseOver = (id: string) => {
         setHover(id)
@@ -24,7 +26,7 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
             isDragDisabled={editArray?.includes(task.id)}
         >
             {(provided) => (
-                <div
+                <div 
                     className="block__inner_todo"
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -42,6 +44,9 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
                         column={column}
                         hover={hover}
                     />
+                    {isAuth && errorTaskInfo[task.id]?.message && (
+                    <div className="error_info tasks">{errorTaskInfo[task.id]?.message}</div>
+                    )}
                 </div>
             )}
         </Draggable>

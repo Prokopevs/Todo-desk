@@ -7,6 +7,7 @@ interface errorMessageState {
     errorInfo: string
     errorInfoStatusName: string
     errorTaskInfo: IErrorTasks
+    errorStatusInfo: IErrorTasks
 }
 
 const initialState: errorMessageState = {
@@ -14,6 +15,9 @@ const initialState: errorMessageState = {
     errorInfo: "",
     errorInfoStatusName: "",
     errorTaskInfo: {
+        "": {id: "", message: ""} 
+    },
+    errorStatusInfo: {
         "": {id: "", message: ""} 
     }
 }
@@ -46,8 +50,16 @@ export const errorMessageSlice = createSlice({
         deleteErrorTaskInfo: (state, action: PayloadAction<string>) => {
             delete state.errorTaskInfo[action.payload]
         },
+        setErrorStatusInfo: (state, action: PayloadAction<IError>) => {
+            const { id, message } = action.payload
+            const data = { id, message }
+            state.errorStatusInfo[id] = data
+        },
+        deleteErrorStatusInfo: (state, action: PayloadAction<string>) => {
+            delete state.errorStatusInfo[action.payload]
+        },
     }
 })
 
-export const { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo, setErrorInfoStatus, deleteErrorInfoStatus } = errorMessageSlice.actions
+export const { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo, setErrorInfoStatus, deleteErrorInfoStatus, setErrorStatusInfo, deleteErrorStatusInfo } = errorMessageSlice.actions
 export default errorMessageSlice.reducer

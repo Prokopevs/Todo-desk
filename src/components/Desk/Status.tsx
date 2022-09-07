@@ -8,7 +8,7 @@ import Line from "./Line"
 import ButtonPlus from "../Buttons/ButtonPlus"
 import ButtonMinus from "../Buttons/ButtonMinus"
 import EditStatus from "./EditStatus"
-
+import { selectAuthorization, selectError } from "../../Store/selectors"
 
 const Status: React.FC<IStatus> = React.memo(
     ({ column, tasks, priorityArray, index }) => {
@@ -16,6 +16,8 @@ const Status: React.FC<IStatus> = React.memo(
         const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
         const [hover, setHover] = React.useState("")
         const [changeName, setChangeName] = React.useState(false)
+        const { errorStatusInfo } = useAppSelector(selectError)
+        const { isAuth } = useAppSelector(selectAuthorization)
 
         React.useEffect(() => {
             dispatch(setLineArray(Object.keys(columnOrder).length))
@@ -29,7 +31,9 @@ const Status: React.FC<IStatus> = React.memo(
             setHover("")
         }
 
-        const [waitingClick, setWaitingClick] = React.useState<null | NodeJS.Timeout>(null)
+        const [waitingClick, setWaitingClick] = React.useState<null | NodeJS.Timeout>(
+            null
+        )
         const [lastClick, setLastClick] = React.useState(0)
         const processClick = (e) => {
             if (lastClick && e.timeStamp - lastClick < 250 && waitingClick) {
@@ -112,6 +116,11 @@ const Status: React.FC<IStatus> = React.memo(
                                 {provided.placeholder}
                             </div>
                             <Line array={"secondArray"} index={index} />
+                            {isAuth && errorStatusInfo[column.id]?.message && (
+                                <div className="error_info status">
+                                    {errorStatusInfo[column.id]?.message}
+                                </div>
+                            )}
                         </li>
                     </>
                 )}

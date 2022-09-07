@@ -4,7 +4,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import { changeNameStatusService, deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, changeStatusName, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
 import { setQueryLoading } from '../reducers/editModeSlice';
-import { setErrorInfo, setErrorInfoStatus, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
+import { deleteErrorStatusInfo, setErrorInfo, setErrorInfoStatus, setErrorStatusInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 
 export function* handleGetStatus() {
     try {
@@ -26,7 +26,6 @@ export function* handleGetStatus() {
 
 export function* handlePostStatus(action) {
     const {name, parentId} = action.payload
-    console.log(parentId)
     yield put(setQueryLoading(true))
     try {
         const response = yield call(postStatusService, 0, name, Number(parentId))
@@ -34,7 +33,7 @@ export function* handlePostStatus(action) {
         yield put(addStatus(data))
         yield put (setQueryFlag(true))
     } catch (e) {
-        yield put(setErrorInfo(e.response?.data?.errorInfo))
+        yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
     } finally {
         yield put(setQueryLoading(false))
     }
@@ -42,24 +41,24 @@ export function* handlePostStatus(action) {
 
 export function* handleDeleteStatus(action) {
     const { column } = action.payload
-    console.log(column.id)
     try {
         const response = yield call(deleteStatusService, column.id)
         yield put(deleteStatus(action.payload))
+        yield put(deleteErrorStatusInfo(column.id))
     } catch (e) {
-        console.log(e.response?.data?.message);
+        const data = {id: column.id, message: e.response?.data?.errorInfo || e.message}
+        yield put(setErrorStatusInfo(data))
     } 
 }
 
 export function* handleChangeName(action) {
     const { id, name } = action.payload
-    console.log(action.payload)
     try {
         const response = yield call(changeNameStatusService, Number(id), name)
         yield put (changeStatusName(action.payload))
         yield put (setQueryFlag(true))
     } catch (e) {
-        yield put(setErrorInfoStatus(e.response?.data?.errorInfo))
+        yield put(setErrorInfoStatus(e.response?.data?.errorInfo || e.message))
     } 
 }
 

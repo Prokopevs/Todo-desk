@@ -14,6 +14,7 @@ import {
 } from "../../../../Store/reducers/editModeSlice"
 import { selectAuthorization, selectEditMode } from "../../../../Store/selectors"
 import { motion, AnimatePresence } from "framer-motion"
+import { deleteErrorTaskInfo } from "../../../../Store/reducers/errorMessageSlice"
 
 interface Inputs {
     id: string
@@ -52,6 +53,7 @@ const TasksContent: React.FC<ITasksContent> = ({
         data["priority"] = priority
         data["status_id"] = column!.id
         if (isAuth) {
+            dispatch(deleteErrorTaskInfo(task.id))
             if (
                 prevTaskObj[task.id].priority !== priority ||
                 prevTaskObj[task.id].content !== data.content

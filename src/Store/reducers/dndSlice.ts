@@ -94,7 +94,6 @@ export const dndSlice = createSlice({
 
             const Status = state.data.columns[state.start.id] // Status (столбец где произошло изменение) 
             Status.taskIds = newTaskIds // заменили старый массив на новый 
-
             // -------------------------- //
             if(action.payload) {
                 let taskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
@@ -105,10 +104,10 @@ export const dndSlice = createSlice({
                 localStorage.setItem(`${state.start.id}`, JSON.stringify(taskIdsArr))
             }
         },
-        reorderTaskInDifferentStatus: (state, action: PayloadAction<boolean | null>) => {
+        reorderTaskInDifferentStatus: (state) => {
             const startTaskIds = Array.from(state.start.taskIds) // массив с тасками в стартовом статусе taskIds: ["0", "1"]
-            startTaskIds.splice(state.result.source.index!, 1) // // удалили элемент, который тянули
-
+            startTaskIds.splice(state.result.source.index!, 1) // удалили элемент, который тянули
+            
             const finishTaskIds = Array.from(state.finish.taskIds) // массив с тасками в конечном статусе taskIds: ["0", "1"]
             finishTaskIds.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили элемент в новое место
 
@@ -116,23 +115,21 @@ export const dndSlice = createSlice({
             const finishStatus = state.data.columns[state.finish.id] // Status (столбец куда вставили таску)
             startStatus.taskIds = startTaskIds // заменили старый массив на новый 
             finishStatus.taskIds = finishTaskIds // заменили старый массив на новый 
-
-            // -------------------------- //
-            if(action.payload) {
-                let startTaskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
-                let startTaskIdsArr = JSON.parse(startTaskIdsNumbers!) //["1","2"]
-                startTaskIdsArr.splice(state.result.source.index!, 1) // удалили элемент, который тянули в LS
-                if (startTaskIdsArr.length === 0) {
-                    localStorage.removeItem(`${state.start.id}`)
-                } else {
-                    localStorage.setItem(`${state.start.id}`, JSON.stringify(startTaskIdsArr))
-                }
-
-                let finishTaskIdsNumbers = localStorage.getItem(`${state.finish.id}`) // "["1,2"]"
-                let finishTaskIdsArr = finishTaskIdsNumbers ? JSON.parse(finishTaskIdsNumbers) : []
-                finishTaskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили элемент в новое место
-                localStorage.setItem(`${state.finish.id}`, JSON.stringify(finishTaskIdsArr))
+        },
+        reorderTaskInStorage: (state) => {
+            let startTaskIdsNumbers = localStorage.getItem(`${state.start.id}`) // "["1,2"]"
+            let startTaskIdsArr = JSON.parse(startTaskIdsNumbers!) //["1","2"]
+            startTaskIdsArr.splice(state.result.source.index!, 1) // удалили элемент, который тянули в LS
+            if (startTaskIdsArr.length === 0) {
+                localStorage.removeItem(`${state.start.id}`)
+            } else {
+                localStorage.setItem(`${state.start.id}`, JSON.stringify(startTaskIdsArr))
             }
+
+            let finishTaskIdsNumbers = localStorage.getItem(`${state.finish.id}`) // "["1,2"]"
+            let finishTaskIdsArr = finishTaskIdsNumbers ? JSON.parse(finishTaskIdsNumbers) : []
+            finishTaskIdsArr.splice(state.result.destination.index!, 0, state.result.draggableId) // вставили элемент в новое место
+            localStorage.setItem(`${state.finish.id}`, JSON.stringify(finishTaskIdsArr))
         },
         setOpenPriorityСolumn: (state, action: PayloadAction<string>) => {
             const task = state.data.tasks[action.payload]
@@ -263,6 +260,6 @@ export const dndSlice = createSlice({
 })
 
 
-export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag, setParentId, changeStatusNameQuery, changeStatusName } = dndSlice.actions
+export const { setStatuses, setColumnOrder, setResult, setTasks, setStart, setFinish, reorderTaskInOwnStatus, reorderTaskInDifferentStatus, setOpenPriorityСolumn, onChangePriority, deleteTask, deleteTaskQuery, addTask, addTaskQuery, addStatus, changeTaskContent, changeTaskContentQuery, deleteStatus, deleteStatusQuery, setLineArray, addStatusQuery, setInitialData, setQueryFlag, setParentId, changeStatusNameQuery, changeStatusName, reorderTaskInStorage } = dndSlice.actions
 
 export default dndSlice.reducer

@@ -874,6 +874,10 @@
     height: 12px;
 }
 
+.task__main {
+    position: relative;
+}
+
 @media (max-width: 1399px) {
     .block__content_selection_img.delete {
         width: 10.5px;

@@ -23,7 +23,6 @@ const EditStatus = ({ column, setChangeName }) => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {

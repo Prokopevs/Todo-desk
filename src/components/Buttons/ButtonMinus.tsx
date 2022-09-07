@@ -1,7 +1,8 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { deleteStatus, deleteStatusQuery } from '../../Store/reducers/dndSlice'
-import { selectAuthorization } from '../../Store/selectors'
+import { deleteErrorStatusInfo } from '../../Store/reducers/errorMessageSlice'
+import { selectAuthorization, selectError } from '../../Store/selectors'
 
 const ButtonMinus = ({ column, hover }) => {
     const dispatch = useAppDispatch()
@@ -13,6 +14,10 @@ const ButtonMinus = ({ column, hover }) => {
             isAuth: isAuth,
         }
         isAuth ? dispatch(deleteStatusQuery(obj)) : dispatch(deleteStatus(obj))
+
+        setTimeout(() => {
+            dispatch(deleteErrorStatusInfo(column.id))
+        }, 7000)
     }
 
   return (
