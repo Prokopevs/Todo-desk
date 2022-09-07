@@ -7,8 +7,9 @@ import priorityArray from "../../data/Desk/priorityArray"
 import { selectDnd, selectAuthorization } from "../../Store/selectors"
 import Button from "../Button"
 import { onDragEnd } from "./onDragEnd"
+import { IStorage } from "../../models/EditMode/IStorage"
 
-const Desk = () => {
+const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
     const dispatch = useAppDispatch()
     const { isAuth } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
@@ -39,6 +40,7 @@ const Desk = () => {
                                         tasks={tasks}
                                         priorityArray={priorityArray}
                                         index={index + 1}
+                                        setMSA={setMSA}
                                     />
                                 )
                             })
@@ -47,7 +49,7 @@ const Desk = () => {
                                 <p className="demo__text">
                                     Click on button to add status
                                 </p>
-                                <Button />
+                                <Button setMSA={setMSA}/>
                             </div>
                         )}
                     </ul>
@@ -58,7 +60,7 @@ const Desk = () => {
                         </p>
                     )}
                 </div>
-                <AddTask />
+                <AddTask setMTA={setMTA}/>
             </div>
         </DragDropContext>
     )

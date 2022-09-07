@@ -3,4 +3,5 @@ export interface IStatus {
     tasks: any
     priorityArray: any
     index: number
+    setMSA: (...arg: boolean[]) => void
 };

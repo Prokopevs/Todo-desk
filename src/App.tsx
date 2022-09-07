@@ -4,15 +4,13 @@ import { checkAuth, setAuth, setLoading } from "./Store/reducers/authorizationSl
 import { useSessionStorage } from "./hooks/useSessionStorage"
 import AppRouter from "./components/Router/AppRouter"
 
-export const ModalWindowContext = React.createContext(null) as any
-
 const App = () => {
     const dispatch = useAppDispatch()
-    const { isLoading } = useAppSelector(state => state.authorizationSlice)
+    const { isLoading } = useAppSelector((state) => state.authorizationSlice)
 
-    const [modalTaskActive, setModalTaskActive] = useSessionStorage("TaskModal", false);
-    const [modalStatusActive, setStatusActive] = useSessionStorage("StatusModal", false);
-    
+    const [modalTA, setMTA] = useSessionStorage("TaskModal", false)
+    const [modalSA, setMSA] = useSessionStorage("StatusModal", false)
+
     const rememberMe = localStorage.getItem("rememberMe")
     const token = localStorage.getItem("token")
     const checkReboot = sessionStorage.getItem("checkReboot")
@@ -35,10 +33,13 @@ const App = () => {
 
     if (!isLoading) {
         return (
-            <div className={modalTaskActive || modalStatusActive ? "container modal-open" : "container"}>
-                <ModalWindowContext.Provider value={{modalTaskActive, setModalTaskActive, modalStatusActive, setStatusActive}}>
-                    <AppRouter />
-                </ModalWindowContext.Provider>
+            <div className={modalTA || modalSA ? "container modal-open" : "container"}>
+                <AppRouter
+                    modalTA={modalTA}
+                    setMTA={setMTA}
+                    modalSA={modalSA}
+                    setMSA={setMSA}
+                />
             </div>
         )
     }

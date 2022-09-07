@@ -55,20 +55,18 @@ const EditStatus = ({ column, setChangeName }) => {
                     <button
                         className="edit__inner_btn red"
                         onClick={() => stopEditMode()}
+                        type="button"
                     >
                         <img className="edit__photo" src={String(cross2)}></img>
                     </button>
 
-                    {/* <div className="edit__inner_block_input"> */}
-                        <input
-                            className="edit__inner_input"
-                            autoComplete="off"
-                            defaultValue={column.name}
-                            autoFocus
-                            
-                            {...register("name", { required: "cannot be empty" })}
-                        ></input>
-                    {/* </div> */}
+                    <input
+                        className="edit__inner_input"
+                        autoComplete="off"
+                        defaultValue={column.name}
+                        autoFocus
+                        {...register("name", { required: "cannot be empty" })}
+                    ></input>
 
                     <button type="submit" className="edit__inner_btn">
                         <img className="edit__photo" src={String(vector)}></img>

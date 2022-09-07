@@ -9,12 +9,15 @@ import ButtonPlus from "../Buttons/ButtonPlus"
 import ButtonMinus from "../Buttons/ButtonMinus"
 import EditStatus from "./EditStatus"
 import { selectAuthorization, selectError } from "../../Store/selectors"
+import { setSelectedStatus } from "../../Store/reducers/editModeSlice"
+import { selectEditMode } from "../../Store/selectors"
 
 const Status: React.FC<IStatus> = React.memo(
-    ({ column, tasks, priorityArray, index }) => {
+    ({ column, tasks, priorityArray, index, setMSA }) => {
         const dispatch = useAppDispatch()
         const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
-        const [hover, setHover] = React.useState("")
+        const { selectedStatus } = useAppSelector(selectEditMode)
+
         const [changeName, setChangeName] = React.useState(false)
         const { errorStatusInfo } = useAppSelector(selectError)
         const { isAuth } = useAppSelector(selectAuthorization)
@@ -23,19 +26,11 @@ const Status: React.FC<IStatus> = React.memo(
             dispatch(setLineArray(Object.keys(columnOrder).length))
         }, [column])
 
-        const handleMouseOver = (id: string) => {
-            setHover(id)
-        }
-
-        const handleMouseOut = (id: string) => {
-            setHover("")
-        }
-
         const [waitingClick, setWaitingClick] = React.useState<null | NodeJS.Timeout>(
             null
         )
         const [lastClick, setLastClick] = React.useState(0)
-        const processClick = (e) => {
+        const processClick = (e: React.MouseEvent<HTMLHeadingElement>, id: string) => {
             if (lastClick && e.timeStamp - lastClick < 250 && waitingClick) {
                 setLastClick(0)
                 clearTimeout(waitingClick)
@@ -48,6 +43,11 @@ const Status: React.FC<IStatus> = React.memo(
                         setWaitingClick(null)
                     }, 251)
                 )
+                if (selectedStatus === id) {
+                    dispatch(setSelectedStatus(null))
+                } else {
+                    dispatch(setSelectedStatus(id))
+                }
             }
         }
 
@@ -58,38 +58,48 @@ const Status: React.FC<IStatus> = React.memo(
                         <li className="col-md-4 block">
                             <Line array={"firstArray"} index={index} />
                             <div
-                                className={"block__edit"}
-                                onMouseOver={() => {
-                                    handleMouseOver(column.id)
-                                }}
-                                onMouseOut={() => {
-                                    handleMouseOut(column.id)
-                                }}
+                                className={
+                                    selectedStatus === column.id
+                                        ? "block__edit"
+                                        : "block__edit_center"
+                                }
                             >
                                 {!changeName ? (
                                     <>
                                         <ButtonPlus
                                             position={"left"}
-                                            hover={hover}
                                             column={column}
+                                            setMSA={setMSA}
                                         />
 
-                                        <div className="block__status-inner">
+                                        <div
+                                            className={
+                                                selectedStatus === column.id
+                                                    ? "block__status-inner active"
+                                                    : "block__status-inner"
+                                            }
+                                        >
                                             <div className="block__wrapper">
                                                 <h1
-                                                    className="block__status_name"
-                                                    onClick={(e) => processClick(e)}
+                                                    className={
+                                                        selectedStatus === column.id
+                                                            ? "block__status_name active"
+                                                            : "block__status_name"
+                                                    }
+                                                    onClick={(e) =>
+                                                        processClick(e, column.id)
+                                                    }
                                                 >
                                                     {column.name}
                                                 </h1>
+                                                <ButtonMinus column={column} />
                                             </div>
-                                            <ButtonMinus column={column} hover={hover} />
                                         </div>
 
                                         <ButtonPlus
                                             position={"right"}
-                                            hover={hover}
                                             column={column}
+                                            setMSA={setMSA}
                                         />
                                     </>
                                 ) : (

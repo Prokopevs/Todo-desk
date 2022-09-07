@@ -5,9 +5,10 @@ import HelmetComponent from "../components/Helmet/HelmetComponent"
 import StatusModalWindow from "../components/ModalWindows/StatusModalWindow"
 import TaskModalWindow from "../components/ModalWindows/TaskModalWindow"
 import { useAppSelector } from "../hooks/redux"
+import { IStorage } from "../models/EditMode/IStorage"
 import { selectAuthorization } from "../Store/selectors"
 
-const Demo = () => {
+const Demo: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const navigate = useNavigate()
 
@@ -27,9 +28,9 @@ const Demo = () => {
                         <button className="block__button submit big demo">Login</button>
                     </Link>
                 </div>
-                <Desk />
-                <TaskModalWindow />
-                <StatusModalWindow />
+                <Desk setMTA={setMTA} setMSA={setMSA}/>
+                <TaskModalWindow modalTA={modalTA} setMTA={setMTA} />
+                <StatusModalWindow modalSA={modalSA} setMSA={setMSA}/>
             </div>
         )
     }

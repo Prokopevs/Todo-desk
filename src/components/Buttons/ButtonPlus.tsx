@@ -1,13 +1,13 @@
 import React from "react"
-import { ModalWindowContext } from "../../App"
+
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { setParentId } from "../../Store/reducers/dndSlice"
-import { selectDnd } from "../../Store/selectors"
+import { selectDnd, selectEditMode } from "../../Store/selectors"
 
-const ButtonPlus = ({ position, hover, column }) => {
+const ButtonPlus = ({ position, column, setMSA }) => {
     const dispatch = useAppDispatch()
-    const { setStatusActive } = React.useContext(ModalWindowContext)
     const { data } = useAppSelector(selectDnd)
+    const { selectedStatus } = useAppSelector(selectEditMode)
     const columnOrder = data.columnOrder
 
     const handleAddStatus = () => {
@@ -21,11 +21,11 @@ const ButtonPlus = ({ position, hover, column }) => {
                 dispatch(setParentId(column.id))
             }
         }
-        setStatusActive(true)
+        setMSA(true)
     }
 
     return (
-        <div className={hover ? "block__visible" : "block__collapse"}>
+        <div className={column.id === selectedStatus ? "button__visible" : "button__none"}>
             <button
                 className={`block__plus ${position}`}
                 onClick={() => handleAddStatus()}

@@ -1,9 +1,7 @@
 import React from "react"
-import { ModalWindowContext } from "../App"
+import { IModalStatus } from "../models/EditMode/IStorage"
 
-
-const Button = () => {
-    const { setStatusActive } = React.useContext(ModalWindowContext)
+const Button: React.FC<IModalStatus> = ({ setMSA }) => {
 
     return (
         <>
@@ -32,7 +30,7 @@ const Button = () => {
 
             <button id="gooey-button" >
                 Click me
-                <span className="bubbles" onClick={() => setStatusActive(true)}>
+                <span className="bubbles" onClick={() => setMSA(true)}>
                     <span className="bubble"></span>
                     <span className="bubble"></span>
                     <span className="bubble"></span>

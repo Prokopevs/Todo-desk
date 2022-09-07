@@ -1,7 +1,7 @@
 import { ISetOpacity } from '../../models/EditMode/ISetOpacity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IChangePrevTask } from '../../models/Task/IChangePrevTask'
-import { IPrevTask, ITask } from '../../models/Task/IPrevTask'
+import { IPrevTask} from '../../models/Task/IPrevTask'
 
 interface editModeState {
     editArray: string[]
@@ -12,6 +12,7 @@ interface editModeState {
         delete: string[]
         apply: string[]
     }
+    selectedStatus: string | null
 }
 
 const initialState: editModeState = {
@@ -24,7 +25,8 @@ const initialState: editModeState = {
     opacityButtons: {
         delete: [],
         apply: []
-    }
+    },
+    selectedStatus: ""
 }
 
 export const editModeSlice = createSlice({
@@ -67,8 +69,11 @@ export const editModeSlice = createSlice({
         removeOpacityButtons: (state, action: PayloadAction<ISetOpacity>) => {
             state.opacityButtons[action.payload.arrName] = []
         },
+        setSelectedStatus: (state, action: PayloadAction<string | null>) => {
+            state.selectedStatus = action.payload
+        },
     }
 })
 
-export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray } = editModeSlice.actions
+export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray, setSelectedStatus } = editModeSlice.actions
 export default editModeSlice.reducer

@@ -2,22 +2,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.block__status-inner.active {
+    width: 80%;
 }
 
 .block__wrapper {
-    max-width: 303px;
-    white-space: nowrap
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    white-space: nowrap;
 }
 
 .block__status_name {
-    margin: 0px 10px 25px 35px;
+    margin: 0px 4px 25px 4px;
     padding-bottom: 2px;
     font-family: 'Roboto';
     font-weight: 500;
     font-size: 41px;
+
     color: #8A8383;
     overflow: hidden; /* Обрезаем содержимое */
     transition: margin .1s linear;
+    cursor: pointer;
+}
+
+.block__status_name.active {
+    margin: 0px 4px 25px 4px;
+}
+
+@media (max-width: 1399px) {
+    .block__status_name.active {
+        margin: 0px 4px 21px 4px;
+    }
 }
 
 @media (max-width: 1399px) {
@@ -27,7 +47,7 @@
 
     .block__status_name {
         font-size: 35px;
-        margin: 0px 10px 21px 35px;
+        margin: 0px 4px 21px 35px;
     }
 }
 
@@ -49,7 +69,7 @@
 
     .block__status_name {
         font-size: 26px;
-        margin: 0px 10px 22px 0px;
+        margin: 0px 4px 22px 0px;
     }
 }
 
@@ -60,7 +80,7 @@
 
     .block__status_name {
         font-size: 34px;
-        margin: 0px 10px 22px 0px;
+        margin: 0px 4px 22px 0px;
     }
 }
 
@@ -71,7 +91,7 @@
 
     .block__status_name {
         font-size: 32px;
-        margin: 0px 10px 16px 0px;
+        margin: 0px 4px 16px 0px;
     }
 }
 
@@ -82,7 +102,7 @@
 
     .block__status_name {
         font-size: 31px;
-        margin: 0px 10px 16px 0px;
+        margin: 0px 4px 16px 0px;
     }
 }
 
@@ -148,7 +168,7 @@
 
 @media (max-width: 1399px) {
     .edit__inner_input {
-        font-size: 34px;
+        font-size: 33.5px;
     }
 }
 
