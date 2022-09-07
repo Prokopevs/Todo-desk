@@ -19,6 +19,12 @@
     }
 }
 
+@media (max-height: 800px) {
+    .margin {
+        margin: 32px 10px 0;
+    }
+}
+
 .block {
     padding: 25px 28px 16px 28px;
     position: relative;

@@ -18,6 +18,13 @@
     }
 }
 
+@media (max-height: 800px) {
+    .demo {
+        margin: 0 0 -30px 0;
+    }
+}
+
+
 .demo__description {
     font-family: 'Roboto';
     font-style: normal;
@@ -27,6 +34,12 @@
     color: #B9ADAD;
 
     margin: -20px 0 30px 50px
+}
+
+@media (max-height: 800px) {
+    .demo__description {
+        margin: -28px 0 23px 50px
+    }
 }
 
 
