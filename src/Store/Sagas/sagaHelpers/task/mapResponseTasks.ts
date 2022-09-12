@@ -8,10 +8,13 @@ export const mapResponseTasks = (arr) => {
                 taskObj[arr[i].id].id = String(taskObj[arr[i].id].id) // '2' = {id: 2, content: 'do something', priority: 3}
                 taskObj[arr[i].id]["isOpen"] = false // '2' = {id: 2, content: 'do something', priority: 3, isOpen: false}
 
-                // allTasks[arr[i].status_id] = [arr[i].id]
+                if (allTasks[arr[i].status_id]) {
+                    const newArr = [...allTasks[arr[i].status_id], ...[arr[i].id]]
+                    allTasks[arr[i].status_id] = newArr // 86: ["56", "57"]
+                } else {
+                    allTasks[arr[i].status_id] = [arr[i].id] // 86: ["56"]
+                }
             }
         }
-        console.log(allTasks)
-        console.log(taskObj)
-    return taskObj
+    return [taskObj, allTasks]
 }

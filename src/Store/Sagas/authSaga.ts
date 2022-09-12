@@ -9,10 +9,8 @@ import { handleGetStatus } from './statusSaga';
 import { handleGetTask } from './taskSaga';
 
 export function* handleData() {
-    yield all([
-        fork(handleGetStatus),
-        fork(handleGetTask)
-    ])
+    yield call(handleGetTask) 
+    yield call(handleGetStatus)
 }
 
 export function* handleLogin(action) {

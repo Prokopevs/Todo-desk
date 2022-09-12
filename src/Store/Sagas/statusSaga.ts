@@ -1,6 +1,7 @@
+import { selectEditMode } from './../selectors/index';
 import { mapResponseStatus } from './sagaHelpers/status/mapResponseStatus';
 import { mapColumnOrder } from './sagaHelpers/status/mapColumnOrder';
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { changeNameStatusService, deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, changeStatusName, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
 import { setQueryLoading } from '../reducers/editModeSlice';
@@ -10,7 +11,8 @@ export function* handleGetStatus() {
     try {
         const response = yield call(getStatusService)
         const arr = JSON.parse(JSON.stringify(response.data))
-        const StatusObj = mapResponseStatus(arr)
+        const { tasksInLS } = yield select(selectEditMode)
+        const StatusObj = mapResponseStatus(arr, tasksInLS)
         const columnOrderArr = mapColumnOrder(response)
 
         yield put(setStatuses(StatusObj))
