@@ -1,8 +1,8 @@
-import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { deleteStatus, deleteStatusQuery } from '../../Store/reducers/dndSlice'
-import { deleteErrorStatusInfo } from '../../Store/reducers/errorMessageSlice'
-import { selectAuthorization, selectEditMode } from '../../Store/selectors'
+import React from "react"
+import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { deleteStatus, deleteStatusQuery } from "../../Store/reducers/dndSlice"
+import { deleteErrorStatusInfo } from "../../Store/reducers/errorMessageSlice"
+import { selectAuthorization, selectEditMode } from "../../Store/selectors"
 
 const ButtonMinus = ({ column }) => {
     const dispatch = useAppDispatch()
@@ -22,7 +22,9 @@ const ButtonMinus = ({ column }) => {
     }
 
     return (
-        <div className={column.id === selectedStatus ? "button__visible" : "button__none"}>
+        <div
+            className={column.id === selectedStatus ? "button__visible" : "button__none"}
+        >
             <button className="block__minus" onClick={() => handleDelete()}>
                 <div className="block__minus-line"></div>
             </button>

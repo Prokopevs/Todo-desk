@@ -2,11 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 95%;
 }
 
 .block__status-inner.active {
-    width: 80%;
+    width: 85%;
 }
 
 .block__wrapper {
@@ -18,8 +18,7 @@
 }
 
 .block__status_name {
-    margin: 0px 4px 25px 4px;
-    padding-bottom: 2px;
+    padding-bottom: 7px;
     font-family: 'Roboto';
     font-weight: 500;
     font-size: 41px;
@@ -31,42 +30,28 @@
 }
 
 .block__status_name.active {
-    margin: 0px 4px 25px 4px;
+    padding: 0 10px 7px 4px;
 }
-
+//////////////////////////////////////////////////////////////
 @media (max-width: 1399px) {
-    .block__status_name.active {
-        margin: 0px 4px 21px 4px;
-    }
-}
-
-@media (max-width: 1399px) {
-    .block__wrapper {
-        max-width: 246px;
-    }
-
     .block__status_name {
         font-size: 35px;
-        margin: 0px 4px 21px 35px;
+        padding-bottom: 6px;
+    }
+
+    .block__status_name.active {
+        padding: 0 8px 6px 4px;
     }
 }
 
-
 @media (max-width: 1199px) {
-    .block__wrapper {
-        max-width: 205px;
-    }
-
     .block__status_name {
         font-size: 32px;
+        padding-bottom: 6px;
     }
 }
 
 @media (max-width: 991px) {
-    .block__wrapper {
-        max-width: 140px;
-    }
-
     .block__status_name {
         font-size: 26px;
         margin: 0px 4px 22px 0px;
@@ -74,10 +59,6 @@
 }
 
 @media (max-width: 767px) {
-    .block__wrapper {
-        max-width: 290px
-    }
-
     .block__status_name {
         font-size: 34px;
         margin: 0px 4px 22px 0px;
@@ -85,10 +66,6 @@
 }
 
 @media (max-width: 460px) {
-    .block__wrapper {
-        max-width: 250px
-    }
-
     .block__status_name {
         font-size: 32px;
         margin: 0px 4px 16px 0px;
@@ -96,26 +73,17 @@
 }
 
 @media (max-width: 415px) {
-    .block__wrapper {
-        max-width: 200px
-    }
-
     .block__status_name {
         font-size: 31px;
         margin: 0px 4px 16px 0px;
     }
 }
-
-@media (max-width: 355px) {
-    .block__wrapper {
-        max-width: 150px
-    }
-}
+//////////////////////////////////////////////////////////////////////
 
 .block__status_edit {
     width: 100%;
     height: 54px;
-    margin: -7px 0 21px 0;
+    margin: -7px 0 1px 0;
     padding: 2px;
 
     background: linear-gradient(135deg, #E4E4E4 0%, #CECECE 100%);
@@ -126,10 +94,17 @@
 @media (max-width: 1399px) {
     .block__status_edit {
         height: 50px;
-        margin: -8px 0 16px 0;
+        margin: -9px 0 0 0;
     }
 }
 
+@media (max-width: 1199px) {
+    .block__status_edit {
+        height: 45px;
+        margin-top: -7px;
+    }
+}
+/////////////////////////////////////////////////////////////////
 .edit__inner {
     width: 100%;
     height: 100%;
@@ -144,7 +119,7 @@
 .edit__inner_input {
     width: 100%;
     height: 100%;
-    padding: 4px 3px 2px 3px;
+    padding: 3px 3px 2px 3px;
 
     background: #E0E0E0;
     box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5), inset -3px 3px 6px rgba(202, 202, 202, 0.2), inset 3px -3px 6px rgba(202, 202, 202, 0.2), inset -3px -3px 6px rgba(246, 246, 246, 0.9), inset 3px 3px 8px rgba(202, 202, 202, 0.9);
@@ -158,7 +133,7 @@
     box-sizing: border-box;
 
     font-weight: 500;
-    font-size: 40px;
+    font-size: 41px;
     color: #8A8383;
     text-align: center;
     font-family: 'Roboto';
@@ -168,7 +143,14 @@
 
 @media (max-width: 1399px) {
     .edit__inner_input {
-        font-size: 33.5px;
+        font-size: 35px;
+        padding: 4px 3px 2px 3px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .edit__inner_input {
+        font-size: 32px;
     }
 }
 
