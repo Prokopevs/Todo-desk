@@ -2655,6 +2655,13 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zattoo/use-double-click@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@zattoo/use-double-click/-/use-double-click-1.2.0.tgz#36f91bd9c793ed491b30d00e7a9e577adb45d91a"
+  integrity sha512-ArRw8SDCgYFvxc4Vpm2JIk1TuWBSUm0cYFqUfgRokz9lgW9m39NZAoeKMu3n3Mp3eKaBMXBrZhTWHUt+vYD87w==
+  dependencies:
+    react ">=16.8.0"
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
@@ -8579,7 +8586,7 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^18.2.0:
+react@>=16.8.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

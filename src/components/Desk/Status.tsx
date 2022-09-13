@@ -52,6 +52,33 @@ const Status: React.FC<IStatus> = React.memo(
             }
         }
 
+        // let clicks: number[] = []
+        // let timeout
+
+        // function singleClick(event) {
+        //     console.log("single click")
+        // }
+
+        // function doubleClick(event) {
+        //     console.log("doubleClick")
+        // }
+
+        // function clickHandler(event) {
+        //     event.preventDefault()
+        //     clicks.push(new Date().getTime())
+        //     window.clearTimeout(timeout)
+        //     timeout = window.setTimeout(() => {
+        //         if (
+        //             clicks.length > 1 &&
+        //             clicks[clicks.length - 1] - clicks[clicks.length - 2] < 250
+        //         ) {
+        //             doubleClick(event.target)
+        //         } else {
+        //             singleClick(event.target)
+        //         }
+        //     }, 250)
+        // }
+
         return (
             <Droppable droppableId={column!.id}>
                 {(provided) => (
