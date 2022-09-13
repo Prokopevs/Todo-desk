@@ -5,6 +5,9 @@ import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpacityButtons, 
 import { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
 import { mapResponseTasks } from './sagaHelpers/task/mapResponseTasks';
 import { mapResponsePrevTasks} from './sagaHelpers/task/mapResponsePrevTasks';
+import { IAddTask } from '../../models/dnd/IAddTask';
+import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
+import { IDeleteTask } from '../../models/dnd/IDeleteTask';
 
 export function* handleGetTask() {
     try {
@@ -26,7 +29,7 @@ export function* handleGetTask() {
 }
 
 export function* handlePostTask(action) {
-    const { content, priority, status_id } = action.payload
+    const { content, priority, status_id }: IAddTask = action.payload
     yield put(setQueryLoading(true))
     try {
         const response = yield call(postTaskService, content, 0, priority, Number(status_id))
@@ -42,7 +45,7 @@ export function* handlePostTask(action) {
 }
 
 export function* handlePutTask(action) {
-    const { content, id, priority, status_id } = action.payload
+    const { content, id, priority, status_id }: IChangeTaskContent = action.payload
     const obj = { arrName: "apply", id: id }
     yield put(setOpacityButtons(obj))
     try {
@@ -74,7 +77,7 @@ export function* handleReorderTask() {
 }
 
 export function* handleDeleteTask(action) {
-    const { id } = action.payload
+    const { id }: IDeleteTask = action.payload
     const obj = { arrName: "delete", id: id }
     yield put(setOpacityButtons(obj))
     try {

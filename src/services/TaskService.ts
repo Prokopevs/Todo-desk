@@ -9,17 +9,17 @@ export const getTaskService = async () => {
     return response
 };
 
-export const postTaskService = async (content, id, priority, status_id) => {
+export const postTaskService = async (content:string, id:number, priority:number, status_id:number) => {
     const response = await $api.post<IPostTask>('/tasks/task', {content, id, priority, status_id})
     return response
 };
 
-export const putTaskService = async (content, id, priority, status_id) => {
+export const putTaskService = async (content: string, id:number, priority:number, status_id:number) => {
     const response = await $api.put<IPutTask>('/tasks/task', {content, id, priority, status_id})
     return response
 };
 
-export const deleteTaskService = async (id) => {
+export const deleteTaskService = async (id:string) => {
     const response = await $api.delete<IDeleteTaskQuery>(`/tasks/task/${id}`)
     return response
 };

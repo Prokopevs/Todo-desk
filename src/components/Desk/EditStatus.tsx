@@ -7,8 +7,9 @@ import {
     changeStatusNameQuery,
     setQueryFlag,
 } from "../../Store/reducers/dndSlice"
-import { selectAuthorization, selectDnd, selectError } from "../../Store/selectors"
-import { deleteErrorInfoStatus } from "../../Store/reducers/errorMessageSlice"
+import { selectAuthorization, selectDnd, selectEditMode, selectError } from "../../Store/selectors"
+import { deleteErrorStatusName } from "../../Store/reducers/errorMessageSlice"
+import { deleteItemInEditStatus } from "../../Store/reducers/editModeSlice"
 
 type Inputs = {
     id: string
@@ -17,7 +18,7 @@ type Inputs = {
 
 const EditStatus = ({ column, setChangeName }) => {
     const dispatch = useAppDispatch()
-    const { queryFlag } = useAppSelector(selectDnd)
+    const { editStatus } = useAppSelector(selectEditMode)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfoStatusName } = useAppSelector(selectError)
     const {
@@ -26,7 +27,7 @@ const EditStatus = ({ column, setChangeName }) => {
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        dispatch(deleteErrorInfoStatus())
+        dispatch(deleteErrorStatusName(column.id))
         data["id"] = column.id
         if (isAuth) {
             dispatch(changeStatusNameQuery(data))
@@ -37,14 +38,14 @@ const EditStatus = ({ column, setChangeName }) => {
     }
 
     React.useEffect(() => {
-        if (queryFlag) {
+        if (editStatus.includes(column.id)) {
             stopEditMode()
-            dispatch(setQueryFlag(false))
+            dispatch(deleteItemInEditStatus(column.id))
         }
-    }, [queryFlag])
+    }, [editStatus])
 
     const stopEditMode = () => {
-        dispatch(deleteErrorInfoStatus())
+        dispatch(deleteErrorStatusName(column.id))
         setChangeName(false)
     }
 
@@ -76,10 +77,8 @@ const EditStatus = ({ column, setChangeName }) => {
                     {errors?.name && (
                         <p className="error__message_text mt">{errors?.name?.message}</p>
                     )}
-                    {isAuth && errorInfoStatusName && (
-                        <div className="error__message_text mt">
-                            {errorInfoStatusName}
-                        </div>
+                    {isAuth && errorInfoStatusName[column.id]?.message && (
+                    <div className="error__message_text mt">{errorInfoStatusName[column.id]?.message}</div>
                     )}
                 </div>
             </div>

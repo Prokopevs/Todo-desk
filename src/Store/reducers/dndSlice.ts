@@ -59,7 +59,7 @@ const initialState: DndState = {
         secondArray: [],
     },
     queryFlag: false,
-    parentId: null
+    parentId: null 
 }
 
 

@@ -5,7 +5,7 @@ import { IError, IErrorTasks } from '../../models/Errors/IErrorTask'
 interface errorMessageState {
     globalErrorMessage: string
     errorInfo: string
-    errorInfoStatusName: string
+    errorInfoStatusName: IErrorTasks
     errorTaskInfo: IErrorTasks
     errorStatusInfo: IErrorTasks
 }
@@ -13,7 +13,9 @@ interface errorMessageState {
 const initialState: errorMessageState = {
     globalErrorMessage: "",
     errorInfo: "",
-    errorInfoStatusName: "",
+    errorInfoStatusName: {
+        "": {id: "", message: ""} 
+    },
     errorTaskInfo: {
         "": {id: "", message: ""} 
     },
@@ -36,11 +38,13 @@ export const errorMessageSlice = createSlice({
         deleteErrorInfo: (state) => {
             state.errorInfo = ""
         },
-        setErrorInfoStatus: (state, action: PayloadAction<string>) => {
-            state.errorInfoStatusName = action.payload
+        setErrorStatusName: (state, action: PayloadAction<IError>) => {
+            const { id, message } = action.payload
+            const data = { id, message }
+            state.errorInfoStatusName[id] = data
         },
-        deleteErrorInfoStatus: (state) => {
-            state.errorInfoStatusName = ""
+        deleteErrorStatusName: (state, action: PayloadAction<string>) => {
+            delete state.errorInfoStatusName[action.payload]
         },
         setErrorTaskInfo: (state, action: PayloadAction<IError>) => {
             const { id, message } = action.payload
@@ -61,5 +65,5 @@ export const errorMessageSlice = createSlice({
     }
 })
 
-export const { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo, setErrorInfoStatus, deleteErrorInfoStatus, setErrorStatusInfo, deleteErrorStatusInfo } = errorMessageSlice.actions
+export const { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo, setErrorStatusName, deleteErrorStatusName, setErrorStatusInfo, deleteErrorStatusInfo } = errorMessageSlice.actions
 export default errorMessageSlice.reducer

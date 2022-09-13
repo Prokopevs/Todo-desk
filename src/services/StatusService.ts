@@ -8,17 +8,17 @@ export const getStatusService = async () => {
     return response
 };
 
-export const postStatusService = async (id, name, parentId) => {
+export const postStatusService = async (id:number, name:string, parentId:number) => {
     const response = await $api.post<IStatusQuery>('/tasks/status', {id, name, parentId})
     return response
 };
 
-export const deleteStatusService = async (id) => {
+export const deleteStatusService = async (id:string) => {
     const response = await $api.delete<IDelete>(`/tasks/status/${id}`)
     return response
 };
 
-export const changeNameStatusService = async (id, name) => {
+export const changeNameStatusService = async (id:number, name:string) => {
     const response = await $api.put<IChangeStatus>('/tasks/status/name', {id, name})
     return response
 };

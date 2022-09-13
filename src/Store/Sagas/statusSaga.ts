@@ -4,8 +4,11 @@ import { mapColumnOrder } from './sagaHelpers/status/mapColumnOrder';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { changeNameStatusService, deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
 import { addStatus, changeStatusName, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
-import { setQueryLoading } from '../reducers/editModeSlice';
-import { deleteErrorStatusInfo, setErrorInfo, setErrorInfoStatus, setErrorStatusInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
+import { addItemInEditStatus, setQueryLoading } from '../reducers/editModeSlice';
+import { deleteErrorStatusInfo, setErrorInfo, setErrorStatusName, setErrorStatusInfo, setGlobalErrorMessage, deleteErrorStatusName } from '../reducers/errorMessageSlice';
+import { IChangeStatus } from '../../models/Status/IChangeStatus';
+import { IDeleteStatus } from '../../models/Status/IDeleteStatus';
+import { IAddStatus } from '../../models/dnd/IAddStatus';
 
 export function* handleGetStatus() {
     try {
@@ -27,10 +30,10 @@ export function* handleGetStatus() {
 }
 
 export function* handlePostStatus(action) {
-    const {name, parentId} = action.payload
+    const {name, parentId}: IAddStatus = action.payload
     yield put(setQueryLoading(true))
     try {
-        const response = yield call(postStatusService, 0, name, Number(parentId))
+        const response = yield call(postStatusService, 0, name, parentId)
         const data = {...action.payload, ...response.data}
         yield put(addStatus(data))
         yield put (setQueryFlag(true))
@@ -42,7 +45,7 @@ export function* handlePostStatus(action) {
 }
 
 export function* handleDeleteStatus(action) {
-    const { column } = action.payload
+    const { column }: IDeleteStatus = action.payload
     try {
         const response = yield call(deleteStatusService, column.id)
         yield put(deleteStatus(action.payload))
@@ -54,13 +57,15 @@ export function* handleDeleteStatus(action) {
 }
 
 export function* handleChangeName(action) {
-    const { id, name } = action.payload
+    const { id, name }:IChangeStatus = action.payload
     try {
         const response = yield call(changeNameStatusService, Number(id), name)
-        yield put (changeStatusName(action.payload))
-        yield put (setQueryFlag(true))
+        yield put(changeStatusName(action.payload))
+        yield put(addItemInEditStatus(id))
+        yield put(deleteErrorStatusName(id))
     } catch (e) {
-        yield put(setErrorInfoStatus(e.response?.data?.errorInfo || e.message))
+        const data = {id: id, message: e.response?.data?.errorInfo || e.message}
+        yield put(setErrorStatusName(data))
     } 
 }
 

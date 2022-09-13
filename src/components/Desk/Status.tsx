@@ -36,6 +36,7 @@ const Status: React.FC<IStatus> = React.memo(
                 clearTimeout(waitingClick)
                 setWaitingClick(null)
                 setChangeName(true)
+                dispatch(setSelectedStatus(null))
             } else {
                 setLastClick(e.timeStamp)
                 setWaitingClick(

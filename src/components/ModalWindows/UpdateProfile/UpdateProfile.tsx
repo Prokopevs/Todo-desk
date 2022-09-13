@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { IProfile } from "../../../models/Generally/IProfile"
 import { setSettingsQuery } from "../../../Store/reducers/authorizationSlice"
-import { addStatus, addStatusQuery, setQueryFlag } from "../../../Store/reducers/dndSlice"
+import { setQueryFlag } from "../../../Store/reducers/dndSlice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessageSlice"
 import {
     selectDnd,

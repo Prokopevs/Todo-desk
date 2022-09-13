@@ -15,6 +15,7 @@ interface editModeState {
     }
     selectedStatus: string | null
     tasksInLS: ITasksInLS
+    editStatus: string[]
 }
 
 const initialState: editModeState = {
@@ -31,7 +32,8 @@ const initialState: editModeState = {
     selectedStatus: "",
     tasksInLS: {
         "": []
-    }
+    },
+    editStatus: []
 }
 
 export const editModeSlice = createSlice({
@@ -80,8 +82,14 @@ export const editModeSlice = createSlice({
         setTasksInLS: (state, action: PayloadAction<ITasksInLS>) => {
             state.tasksInLS = action.payload
         },
+        addItemInEditStatus: (state, action: PayloadAction<string>) => {
+            state.editStatus.push(action.payload)
+        },
+        deleteItemInEditStatus: (state, action: PayloadAction<string>) => {
+            state.editStatus.splice(state.editStatus.indexOf(action.payload), 1)
+        },
     }
 })
 
-export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray, setSelectedStatus, setTasksInLS } = editModeSlice.actions
+export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray, setSelectedStatus, setTasksInLS, addItemInEditStatus, deleteItemInEditStatus } = editModeSlice.actions
 export default editModeSlice.reducer

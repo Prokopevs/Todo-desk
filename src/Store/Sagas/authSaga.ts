@@ -1,4 +1,6 @@
 import { takeEvery, put, call, fork, all } from 'redux-saga/effects';
+import { ILogin } from '../../models/Auth/ILogin';
+import { IRegistration } from '../../models/Auth/IRegistration';
 import AuthService from "../../services/AuthService";
 import { checkAuthService, setSettingsService } from '../../services/CheckAuthService';
 import { setAuth, setLoading, setSettings, setUser } from '../reducers/authorizationSlice';
@@ -14,11 +16,11 @@ export function* handleData() {
 }
 
 export function* handleLogin(action) {
-    const { email, password, rememberMe } = action.payload
+    const { email, password, rememberMe }: ILogin = action.payload
     try {
         const response = yield call(() => AuthService.login(email, password))
         localStorage.setItem('token', response.data.accessToken)
-        localStorage.setItem('rememberMe', rememberMe)
+        localStorage.setItem('rememberMe', JSON.stringify(rememberMe))
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
     } catch (e) {
@@ -27,7 +29,7 @@ export function* handleLogin(action) {
 }
 
 export function* handleRegistration(action) {
-    const { email, name, password } = action.payload
+    const { email, name, password }: IRegistration = action.payload
     try {
         const response = yield call(() => AuthService.registration(email, name, password))
         localStorage.setItem('token', response.data.accessToken)
@@ -45,9 +47,6 @@ export function* handleCheckAuth() {
         yield put(setUser(response.data))
         yield put(setAuth(true))
         yield handleData()
-        // const data = JSON.stringify(["96"])
-        // localStorage.setItem("40", data)
-        // localStorage.removeItem("51")
     } catch (e) {
         yield put(setAuth(false))
     } finally {
