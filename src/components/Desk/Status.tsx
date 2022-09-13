@@ -26,58 +26,37 @@ const Status: React.FC<IStatus> = React.memo(
             dispatch(setLineArray(Object.keys(columnOrder).length))
         }, [column])
 
-        const [waitingClick, setWaitingClick] = React.useState<null | NodeJS.Timeout>(
-            null
-        )
-        const [lastClick, setLastClick] = React.useState(0)
-        const processClick = (e: React.MouseEvent<HTMLHeadingElement>, id: string) => {
-            if (lastClick && e.timeStamp - lastClick < 250 && waitingClick) {
-                setLastClick(0)
-                clearTimeout(waitingClick)
-                setWaitingClick(null)
-                setChangeName(true)
+        let clicks: number[] = []
+        let timeout
+
+        function singleClick(id) {
+            if (selectedStatus === id) {
                 dispatch(setSelectedStatus(null))
             } else {
-                setLastClick(e.timeStamp)
-                setWaitingClick(
-                    setTimeout(() => {
-                        setWaitingClick(null)
-                    }, 251)
-                )
-                if (selectedStatus === id) {
-                    dispatch(setSelectedStatus(null))
-                } else {
-                    dispatch(setSelectedStatus(id))
-                }
+                dispatch(setSelectedStatus(id))
             }
         }
 
-        // let clicks: number[] = []
-        // let timeout
+        function doubleClick() {
+            setChangeName(true)
+            dispatch(setSelectedStatus(null))
+        }
 
-        // function singleClick(event) {
-        //     console.log("single click")
-        // }
-
-        // function doubleClick(event) {
-        //     console.log("doubleClick")
-        // }
-
-        // function clickHandler(event) {
-        //     event.preventDefault()
-        //     clicks.push(new Date().getTime())
-        //     window.clearTimeout(timeout)
-        //     timeout = window.setTimeout(() => {
-        //         if (
-        //             clicks.length > 1 &&
-        //             clicks[clicks.length - 1] - clicks[clicks.length - 2] < 250
-        //         ) {
-        //             doubleClick(event.target)
-        //         } else {
-        //             singleClick(event.target)
-        //         }
-        //     }, 250)
-        // }
+        function clickHandler(event: React.MouseEvent<HTMLHeadingElement>, id: string) {
+            event.preventDefault()
+            clicks.push(new Date().getTime())
+            window.clearTimeout(timeout)
+            timeout = window.setTimeout(() => {
+                if (
+                    clicks.length > 1 &&
+                    clicks[clicks.length - 1] - clicks[clicks.length - 2] < 190
+                ) {
+                    doubleClick()
+                } else {
+                    singleClick(id)
+                }
+            }, 190)
+        }
 
         return (
             <Droppable droppableId={column!.id}>
@@ -115,7 +94,7 @@ const Status: React.FC<IStatus> = React.memo(
                                                             : "block__status_name"
                                                     }
                                                     onClick={(e) =>
-                                                        processClick(e, column.id)
+                                                        clickHandler(e, column.id)
                                                     }
                                                 >
                                                     {column.name}
