@@ -47,35 +47,30 @@
 @media (max-width: 1199px) {
     .block__status_name {
         font-size: 32px;
-        padding-bottom: 6px;
     }
 }
 
 @media (max-width: 991px) {
     .block__status_name {
         font-size: 26px;
-        margin: 0px 4px 22px 0px;
     }
 }
 
 @media (max-width: 767px) {
     .block__status_name {
         font-size: 34px;
-        margin: 0px 4px 22px 0px;
     }
 }
 
 @media (max-width: 460px) {
     .block__status_name {
         font-size: 32px;
-        margin: 0px 4px 16px 0px;
     }
 }
 
 @media (max-width: 415px) {
     .block__status_name {
         font-size: 31px;
-        margin: 0px 4px 16px 0px;
     }
 }
 //////////////////////////////////////////////////////////////////////
@@ -102,6 +97,13 @@
     .block__status_edit {
         height: 45px;
         margin-top: -7px;
+    }
+}
+
+@media (max-width: 991px) {
+    .block__status_edit {
+        height: 37px;
+        margin: -7px 0 2px 0;
     }
 }
 /////////////////////////////////////////////////////////////////
@@ -154,12 +156,33 @@
     }
 }
 
+@media (max-width: 991px) {
+    .edit__inner_input {
+        font-size: 26px;
+    }
+}
+
+////////////////////////////////////////////////
+
 .edit__inner_btn {
     padding: 9px;
     margin: 5px;
     cursor: pointer;
     border: none;
     background: #80E095;
+}
+
+@media (max-width: 1199px) {
+    .edit__inner_btn {
+        padding: 6px;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 991px) {
+    .edit__inner_btn {
+        margin: 2px;
+    }
 }
 
 .edit__inner_btn.red {
@@ -171,6 +194,20 @@
     height: 14px;
 }
 
+@media (max-width: 1199px) {
+    .edit__photo {
+        width: 14px;
+        height: 12px;
+    }
+}
+
+@media (max-width: 991px) {
+    .edit__photo {
+        width: 11px;
+        height: 11px;
+    }
+}
+////////////////////////////////////////////////////
 .edit__inner_content {
     display: flex;
     justify-content: center;

@@ -1,6 +1,7 @@
 import React from "react"
 
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { plus } from "../../pictures"
 import { setParentId } from "../../Store/reducers/dndSlice"
 import { selectDnd, selectEditMode } from "../../Store/selectors"
 
@@ -11,10 +12,10 @@ const ButtonPlus = ({ position, column, setMSA }) => {
     const columnOrder = data.columnOrder
 
     const handleAddStatus = () => {
-        if(column.id === columnOrder[0] && position === "left") {
+        if (column.id === columnOrder[0] && position === "left") {
             dispatch(setParentId(0))
         } else {
-            if(position === "left") {
+            if (position === "left") {
                 const NewIndex = columnOrder.indexOf(column.id) - 1
                 dispatch(setParentId(columnOrder[NewIndex]))
             } else {
@@ -25,12 +26,14 @@ const ButtonPlus = ({ position, column, setMSA }) => {
     }
 
     return (
-        <div className={column.id === selectedStatus ? "button__visible" : "button__none"}>
+        <div
+            className={column.id === selectedStatus ? "button__visible" : "button__none"}
+        >
             <button
                 className={`block__plus ${position}`}
                 onClick={() => handleAddStatus()}
             >
-                <div className="block__plus-line"></div>
+                <img className="block__plus-img" src={String(plus)}></img>
             </button>
         </div>
     )

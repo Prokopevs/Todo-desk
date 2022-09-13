@@ -1,5 +1,6 @@
 import React from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { minus } from "../../pictures"
 import { deleteStatus, deleteStatusQuery } from "../../Store/reducers/dndSlice"
 import { deleteErrorStatusInfo } from "../../Store/reducers/errorMessageSlice"
 import { selectAuthorization, selectEditMode } from "../../Store/selectors"
@@ -26,7 +27,7 @@ const ButtonMinus = ({ column }) => {
             className={column.id === selectedStatus ? "button__visible" : "button__none"}
         >
             <button className="block__minus" onClick={() => handleDelete()}>
-                <div className="block__minus-line"></div>
+                <img className="block__minus-img" src={String(minus)}></img>
             </button>
         </div>
     )

@@ -10,6 +10,8 @@ const cross2 = require("../assets/img/cross2.png")
 const cross = require("../assets/img/cross.png")
 const down = require("../assets/img/down.png")
 const up = require("../assets/img/up.png")
+const plus = require("../assets/img/plus.png")
+const minus = require("../assets/img/minus.png")
 
-export { login, logout, pen, vector, container, eye, settings, eyeO, cross, cross2, down, up }
+export { login, logout, pen, vector, container, eye, settings, eyeO, cross, cross2, down, up, plus, minus }
 

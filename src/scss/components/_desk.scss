@@ -50,7 +50,7 @@
 
 @media (max-width: 991px) {
     .block {
-        padding: 28px 16px 1px 16px;
+        padding: 20px 16px 1px 16px;
     }
 }
 
@@ -201,37 +201,31 @@
     margin-right: 1px;
 }
 
-.block__plus-line {
-    position: relative;
-    width: 10px;
-    height: 2px;;
-    background-color: #fff;
-    border-radius: 3px;
-  }
+.block__plus-img {
+    width: 12px;
+    height: 12px;
+}
 
-  .block__plus-line::before {
-    content: "";
-    position:absolute;
-    background:#fff;
+@media (max-width: 1399px) {
+    .block__plus-img {
+        width: 11px;
+        height: 11px;
+    }
+}
 
-    left:50%;
-    top:4px;
-    bottom:4px;
-    width:2px;
-    transform:translateX(-50%);
-  }
-  
-  .block__plus-line::after {
-    content: "";
-    position:absolute;
-    background:#fff;
+@media (max-width: 1199px) {
+    .block__plus-img {
+        width: 10px;
+        height: 10px;
+    }
+}
 
-    top:50%;
-    left:4px;
-    right:4px;
-    height:10px;
-    transform:translateY(-50%);
-  }
+@media (max-width: 991px) {
+    .block__plus-img {
+        width: 9px;
+        height: 9px;
+    }
+}
 
 .block__minus {
     width: 20px;
@@ -241,7 +235,7 @@
     cursor: pointer;
     border: none;
     padding: 0;
-    margin-left: 5px;
+    margin: 0 3px 0 5px;
 
     display: flex;
     align-items: center;
@@ -268,6 +262,7 @@
     .block__minus {
         width: 16px;
         height: 16px;
+        margin: 0 3px;
     }
 }
 
@@ -285,30 +280,29 @@
     }
 }
 
-.block__minus-line {
-    width: 10px;
+.block__minus-img {
+    width: 12px;
     height: 2px;
-    background-color: #fff;
-    border-radius: 2px;
 }
 
 @media (max-width: 1399px) {
-    .block__minus-line {
-        width: 9px;
+    .block__minus-img {
+        width: 11px;
+        height: 2.5px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .block__minus-img {
+        width: 10px;
+        height: 2.5px;
     }
 }
 
 @media (max-width: 991px) {
-    .block__minus-line {
-        width: 6px;
-        height: 1.8px;
-    }
-}
-
-@media (max-width: 767px) {
-    .block__minus-line {
+    .block__minus-img {
         width: 9px;
-        height: 2.4px;
+        height: 2px;
     }
 }
 
@@ -422,6 +416,12 @@
 
 .button__visible {
     display: block;
+}
+
+@media (max-width: 991px) {
+    .button__visible {
+        margin-bottom: 4px;
+    }
 }
 
 .button__none {
