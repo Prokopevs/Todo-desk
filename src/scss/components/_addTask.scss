@@ -12,7 +12,7 @@
 
     position: sticky;
     left: 100vw;
-    bottom: 90px;
+    bottom: 12vh;
     cursor: pointer;
     margin-right: 15px;
     margin-top: -10px;
@@ -50,17 +50,16 @@
 }
 
 .addTask-absolute.demo {
-    bottom: 75px;
+    bottom: 50px;
 }
+
+
 
 @media (max-width: 1399px) {
     .addTask {
         width: 65px;
         height: 65px;
-    }
-
-    .addTask-absolute.demo {
-        bottom: 80px;
+        bottom: 17vh;
     }
 
     .addTask-absolute {
@@ -73,11 +72,11 @@
     .addTask {
         width: 60px;
         height: 60px;
-        bottom: 99px;
+        bottom: 19vh;
     }
 
     .addTask-absolute.demo {
-        right: 15px;
+        bottom: 45px;
     }
 
     .addTask-absolute {
@@ -90,10 +89,11 @@
     .addTask {
         width: 56px;
         height: 56px;
+        bottom: 20vh;
     }
 
     .addTask-absolute.demo {
-        bottom: 80px;
+        bottom: 55px;
     }
 
     .addTask-absolute {
@@ -106,7 +106,7 @@
     .addTask {
         width: 64px;
         height: 64px;
-        bottom: 125px;
+        bottom: 5vh;
     }
 }
 
@@ -114,6 +114,22 @@
     .addTask {
         width: 60px;
         height: 60px;
+    }
+}
+
+@media (max-width: 415px) {
+    .addTask {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+@media (max-height: 800px) {
+    .addTask-absolute {
+        right: 1px;
+    }
+    .addTask-absolute.demo {
+        bottom: 2px;
     }
 }
 
