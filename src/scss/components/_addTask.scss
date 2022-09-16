@@ -24,7 +24,7 @@
 
 .addTask.demo {
     margin-right: 15px;
-    margin-top: -30px;
+    margin-top: -37px;
 }
 
 .addTask-absolute {
@@ -41,7 +41,7 @@
     cursor: pointer;
 
     position: absolute;
-    right: 18px;
+    right: 20px;
     bottom: 16px;
 
     &:hover {
@@ -52,8 +52,6 @@
 .addTask-absolute.demo {
     bottom: 50px;
 }
-
-
 
 @media (max-width: 1399px) {
     .addTask {
@@ -82,6 +80,7 @@
     .addTask-absolute {
         width: 60px;
         height: 60px;
+        right: 13px;
     }
 }
 
@@ -99,6 +98,7 @@
     .addTask-absolute {
         width: 56px;
         height: 56px;
+        right: 10px;
     }
 }
 
@@ -130,6 +130,24 @@
     }
     .addTask-absolute.demo {
         bottom: 2px;
+    }
+}
+
+@media (max-height: 800px) {
+    @media (max-width: 1199px) {
+        .addTask-absolute {
+            right: -8px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .addTask-absolute {
+            right: -10px;
+        }
+
+        .addTask-absolute.demo {
+            bottom: 32px;
+        }
     }
 }
 
