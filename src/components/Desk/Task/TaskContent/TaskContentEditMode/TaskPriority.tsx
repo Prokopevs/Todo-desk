@@ -1,7 +1,7 @@
 import React from "react"
 import { useAppDispatch } from "../../../../../hooks/redux"
 import { ITasksContentEditMode } from "../../../../../models/Task/ITasksContent"
-import { setOpenPriorityСolumn } from "../../../../../Store/reducers/dndSlice"
+import { setOpenPriorityСolumn } from "../../../../../Store/reducers/dnd/slice"
 import Priority from "./Priority"
 
 const TaskPriority: React.FC<ITasksContentEditMode> = ({ task, priorityArray }) => {

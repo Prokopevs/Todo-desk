@@ -3,10 +3,10 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import PriorityButtons from "../PriorityButtons"
-import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
+import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dnd/slice"
 import priorityArray from "../../data/Desk/priorityArray"
-import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
-import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../../Store/selectors"
+import { deleteErrorInfo } from "../../Store/reducers/errorMessage/slice"
+import { selectDnd, selectError, selectEditMode, selectAuthorization } from "../../Store/selectors"
 import { IModalTask, IStorage } from "../../models/EditMode/IStorage"
 
 interface Inputs {

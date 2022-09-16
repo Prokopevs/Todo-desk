@@ -1,8 +1,8 @@
 import React from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { minus } from "../../pictures"
-import { deleteStatus, deleteStatusQuery } from "../../Store/reducers/dndSlice"
-import { deleteErrorStatusInfo } from "../../Store/reducers/errorMessageSlice"
+import { deleteStatus, deleteStatusQuery } from "../../Store/reducers/dnd/slice"
+import { deleteErrorStatusInfo } from "../../Store/reducers/errorMessage/slice"
 import { selectAuthorization, selectEditMode } from "../../Store/selectors"
 
 const ButtonMinus = ({ column }) => {

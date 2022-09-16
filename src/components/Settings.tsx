@@ -1,13 +1,12 @@
 import React from "react"
 import { login, settings } from "../pictures"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
-import { setAuth, setUser } from "../Store/reducers/authorizationSlice"
-import { IUser } from "../models/Auth/IUser"
+import { setAuth, setUser } from "../Store/reducers/authorization/slice"
 import { useNavigate } from "react-router-dom"
-import { setInitialData } from "../Store/reducers/dndSlice"
-import { selectAuthorization } from "../Store/selectors"
+import { setInitialData } from "../Store/reducers/dnd/slice"
 import { useSessionStorage } from "../hooks/useSessionStorage"
 import UpdateProfile from "./ModalWindows/UpdateProfile/UpdateProfile"
+import { IUser } from "../Store/reducers/authorization/types"
 
 
 const Settings = () => {

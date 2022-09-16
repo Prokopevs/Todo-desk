@@ -2,8 +2,8 @@ import React from "react"
 import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux"
 import { ITasksContentEditMode } from "../../../../../models/Task/ITasksContent"
 import { container, vector } from "../../../../../pictures"
-import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dndSlice"
-import { deleteErrorTaskInfo } from "../../../../../Store/reducers/errorMessageSlice"
+import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dnd/slice"
+import { deleteErrorTaskInfo } from "../../../../../Store/reducers/errorMessage/slice"
 import { selectAuthorization, selectEditMode, selectError } from "../../../../../Store/selectors"
 
 const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) => {

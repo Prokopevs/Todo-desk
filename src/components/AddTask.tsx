@@ -3,7 +3,7 @@ import React from "react"
 import { useAppSelector } from "../hooks/redux"
 import useWindowDimensions from "../hooks/useWindowDimensions"
 import { IModalTask } from "../models/EditMode/IStorage"
-import { selectDnd, selectAuthorization } from "../Store/selectors"
+import { selectAuthorization, selectDnd } from "../Store/selectors"
 
 
 const AddTask: React.FC<IModalTask> = ({ setMTA }) => {

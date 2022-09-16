@@ -1,13 +1,11 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
-import { addTask, changeTaskContent, deleteTask, reorderTaskInStorage, setQueryFlag, setTasks } from '../reducers/dndSlice';
-import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpacityButtons, removeOpacityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, setTasksInLS } from '../reducers/editModeSlice';
-import { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
+import { addTask, changeTaskContent, deleteTask, reorderTaskInStorage, setQueryFlag, setTasks } from '../reducers/dnd/slice';
+import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpacityButtons, removeOpacityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, setTasksInLS } from '../reducers/editMode/slice';
+import { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from '../reducers/errorMessage/slice';
 import { mapResponseTasks } from './sagaHelpers/task/mapResponseTasks';
 import { mapResponsePrevTasks} from './sagaHelpers/task/mapResponsePrevTasks';
-import { IAddTask } from '../../models/dnd/IAddTask';
-import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
-import { IDeleteTask } from '../../models/dnd/IDeleteTask';
+import { IAddTask, IChangeTaskContent, IDeleteTask } from '../reducers/dnd/types';
 
 export function* handleGetTask() {
     try {

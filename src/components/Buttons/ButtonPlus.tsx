@@ -3,8 +3,8 @@ import React from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { IButtonPlus } from "../../models/Status/IButtonPlus"
 import { plus } from "../../pictures"
-import { setParentId } from "../../Store/reducers/dndSlice"
-import { setSelectedStatus } from "../../Store/reducers/editModeSlice"
+import { setParentId } from "../../Store/reducers/dnd/slice"
+import { setSelectedStatus } from "../../Store/reducers/editMode/slice"
 import { selectDnd, selectEditMode } from "../../Store/selectors"
 
 const ButtonPlus:React.FC<IButtonPlus> = ({ position, column, setMSA }) => {

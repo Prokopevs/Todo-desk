@@ -1,7 +1,7 @@
 import React from "react"
 import { useAppDispatch } from "../../../../../hooks/redux"
 import { IPriorityProps } from "../../../../../models/EditMode/IPriorityProps"
-import { onChangePriority, setOpenPriorityСolumn } from "../../../../../Store/reducers/dndSlice"
+import { onChangePriority, setOpenPriorityСolumn } from "../../../../../Store/reducers/dnd/slice"
 
 const Priority: React.FC<IPriorityProps> = ({ priorityArray, task }) => {
     const dispatch = useAppDispatch()

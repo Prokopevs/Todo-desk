@@ -1,10 +1,10 @@
-import editModeSlice from './reducers/editModeSlice';
+import editModeSlice from './reducers/editMode/slice';
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import authorizationSlice from './reducers/authorizationSlice'
-import dndSlice from './reducers/dndSlice'
-import prioritySlice from './reducers/prioritySlice';
-import errorMessageSlice from './reducers/errorMessageSlice';
+import authorizationSlice from './reducers/authorization/slice'
+import dndSlice from './reducers/dnd/slice'
+import prioritySlice from './reducers/priority/slice';
+import errorMessageSlice from './reducers/errorMessage/slice';
 import rootSaga from './Sagas';
 
 const saga = createSagaMiddleware()

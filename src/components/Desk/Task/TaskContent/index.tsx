@@ -6,15 +6,15 @@ import { useAppDispatch, useAppSelector } from "../../../../hooks/redux"
 import {
     changeTaskContent,
     changeTaskContentQuery,
-} from "../../../../Store/reducers/dndSlice"
+} from "../../../../Store/reducers/dnd/slice"
 import TasksContentEditMode from "./TaskContentEditMode"
 import {
     deleteTaskInEditArray,
     deleteTaskInSuccessArray,
-} from "../../../../Store/reducers/editModeSlice"
+} from "../../../../Store/reducers/editMode/slice"
 import { selectAuthorization, selectEditMode } from "../../../../Store/selectors"
 import { motion, AnimatePresence } from "framer-motion"
-import { deleteErrorTaskInfo } from "../../../../Store/reducers/errorMessageSlice"
+import { deleteErrorTaskInfo } from "../../../../Store/reducers/errorMessage/slice"
 
 interface Inputs {
     id: string

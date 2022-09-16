@@ -1,8 +1,5 @@
-import { ISettings } from './../../models/Auth/ISettings';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {IUser} from "../../models/Auth/IUser";
-import { ILogin } from '../../models/Auth/ILogin';
-import { IRegistration } from '../../models/Auth/IRegistration';
+import { ILogin, IRegistration, ISettings, IUser } from './types';
 
 interface AuthorizationState {
   user: IUser,

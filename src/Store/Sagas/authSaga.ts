@@ -1,12 +1,11 @@
 import { takeEvery, put, call, fork, all } from 'redux-saga/effects';
-import { ILogin } from '../../models/Auth/ILogin';
-import { IRegistration } from '../../models/Auth/IRegistration';
 import AuthService from "../../services/AuthService";
 import { checkAuthService, setSettingsService } from '../../services/CheckAuthService';
-import { setAuth, setLoading, setSettings, setUser } from '../reducers/authorizationSlice';
-import { setQueryFlag } from '../reducers/dndSlice';
-import { setQueryLoading } from '../reducers/editModeSlice';
-import { setErrorInfo, setGlobalErrorMessage } from '../reducers/errorMessageSlice';
+import { setAuth, setLoading, setSettings, setUser } from '../reducers/authorization/slice';
+import { ILogin, IRegistration } from '../reducers/authorization/types';
+import { setQueryFlag } from '../reducers/dnd/slice';
+import { setQueryLoading } from '../reducers/editMode/slice';
+import { setErrorInfo, setGlobalErrorMessage } from '../reducers/errorMessage/slice';
 import { handleGetStatus } from './statusSaga';
 import { handleGetTask } from './taskSaga';
 
