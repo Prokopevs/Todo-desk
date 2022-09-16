@@ -1,3 +1,7 @@
+export interface IErrorGlobal {
+    status: number
+    statusText: string
+}
 
 export interface IError {
     id: string

@@ -3,9 +3,9 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
-import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dndSlice"
-import { deleteErrorInfo } from "../../Store/reducers/errorMessageSlice"
-import { selectDnd, selectError, selectAuthorization, selectEditMode } from "../../Store/selectors"
+import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dnd/slice"
+import { deleteErrorInfo } from "../../Store/reducers/errorMessage/slice"
+import { selectDnd, selectError, selectEditMode, selectAuthorization } from "../../Store/selectors"
 import { IModalStatus } from "../../models/EditMode/IStorage";
 
 type Inputs = {

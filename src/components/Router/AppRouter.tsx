@@ -1,18 +1,19 @@
-import React from "react"
+import React, { Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 import { IStorage } from "../../models/EditMode/IStorage"
 import DashBoard from "../../pages/DashBoard"
 import Demo from "../../pages/Demo"
-import Errors from "../../pages/Errors"
 import Home from "../../pages/Home"
-import LoginForm from "../../pages/LoginForm"
-import RegisterForm from "../../pages/RegisterForm"
+
+const Errors = React.lazy(() => import("../../pages/Errors"));
+const LoginForm = React.lazy(() => import("../../pages/LoginForm"));
+const RegisterForm = React.lazy(() => import("../../pages/RegisterForm"));
 
 const AppRouter: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home />}/>
                 <Route
                     path="/demo"
                     element={
@@ -35,9 +36,21 @@ const AppRouter: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => 
                         />
                     }
                 />
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/register" element={<RegisterForm />} />
-                <Route path="errors" element={<Errors />} />
+                <Route path="/login" element={
+                    <Suspense fallback={<div></div>}>
+                        <LoginForm />
+                    </Suspense>     
+                } />
+                <Route path="/register" element={
+                    <Suspense fallback={<div></div>}>
+                        <RegisterForm />
+                    </Suspense>
+                } />
+                <Route path="errors" element={
+                    <Suspense fallback={<div></div>}>
+                        <Errors />
+                    </Suspense>
+                } />
             </Routes>
         </>
     )

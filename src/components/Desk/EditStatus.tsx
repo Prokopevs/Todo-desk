@@ -6,10 +6,10 @@ import {
     changeStatusName,
     changeStatusNameQuery,
     setQueryFlag,
-} from "../../Store/reducers/dndSlice"
+} from "../../Store/reducers/dnd/slice"
 import { selectAuthorization, selectDnd, selectEditMode, selectError } from "../../Store/selectors"
-import { deleteErrorStatusName } from "../../Store/reducers/errorMessageSlice"
-import { deleteItemInEditStatus } from "../../Store/reducers/editModeSlice"
+import { deleteErrorStatusName } from "../../Store/reducers/errorMessage/slice"
+import { deleteItemInEditStatus } from "../../Store/reducers/editMode/slice"
 
 type Inputs = {
     id: string

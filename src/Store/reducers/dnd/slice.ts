@@ -1,17 +1,7 @@
-import { IChangeStatus } from './../../models/Status/IChangeStatus';
-import { IPriority } from './../../models/dnd/IPriority';
-import { IColumn } from './../../models/dnd/IData';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import initialData from "../../components/Desk/initial-data";
-import { IColumns, ITasks } from "../../models/dnd/IData";
-import { IAddTask } from '../../models/dnd/IAddTask';
-import { IResult } from "../../models/dnd/IResult";
-import { IDeleteTask } from '../../models/dnd/IDeleteTask';
-import { IAddStatus } from '../../models/dnd/IAddStatus';
-import { IChangeTaskContent } from '../../models/dnd/IChangeTaskContent';
-import { IStatusObj } from '../../models/Status/IStatusObj';
-import { ITasksObj } from '../../models/Task/ITasksObj';
-import { IDeleteStatus } from '../../models/Status/IDeleteStatus';
+import initialData from "../../../components/Desk/initial-data";
+import { IAddStatus, IAddTask, IChangeStatus, IChangeTaskContent, IColumn, IColumns, 
+        IDeleteStatus, IDeleteTask, IPriority, IResult, IStatusObj, ITasks, ITasksObj } from './types';
 interface DndState {
     data: {
         tasks: ITasks,

@@ -1,6 +1,6 @@
 import React from "react"
 import { useAppSelector, useAppDispatch } from "./hooks/redux"
-import { checkAuth, setAuth, setLoading } from "./Store/reducers/authorizationSlice"
+import { checkAuth, setAuth, setLoading } from "./Store/reducers/authorization/slice"
 import { useSessionStorage } from "./hooks/useSessionStorage"
 import AppRouter from "./components/Router/AppRouter"
 

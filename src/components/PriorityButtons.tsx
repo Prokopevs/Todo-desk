@@ -2,7 +2,7 @@ import React from "react"
 import priorityArray from "../data/Desk/priorityArray"
 import { useAppDispatch } from "../hooks/redux"
 import { IPriorityButtons } from "../models/EditMode/IPriorityButtons"
-import { setPriority } from "../Store/reducers/prioritySlice"
+import { setPriority } from "../Store/reducers/priority/slice"
 
 const PriorityButtons: React.FC<IPriorityButtons> = ({ setChangePriority }) => {
     const dispatch = useAppDispatch()

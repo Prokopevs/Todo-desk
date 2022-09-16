@@ -1,10 +1,9 @@
 import React from "react"
 import { pen } from "../../../pictures"
-import { addTaskInEditArray } from "../../../Store/reducers/editModeSlice"
 import { useAppDispatch } from "../../../hooks/redux"
 import TasksContent from "./TaskContent"
 import { ITasksProps } from "../../../models/Task/ITasksProps"
-import { deleteErrorTaskInfo } from "../../../Store/reducers/errorMessageSlice"
+import { deleteErrorTaskInfo } from "../../../Store/reducers/errorMessage/slice"
 
 const Task: React.FC<ITasksProps> = React.memo(
     ({ task, priorityArray, column, hover }) => {

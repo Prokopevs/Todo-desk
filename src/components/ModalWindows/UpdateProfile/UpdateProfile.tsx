@@ -3,14 +3,14 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { IProfile } from "../../../models/Generally/IProfile"
-import { setSettingsQuery } from "../../../Store/reducers/authorizationSlice"
-import { setQueryFlag } from "../../../Store/reducers/dndSlice"
-import { deleteErrorInfo } from "../../../Store/reducers/errorMessageSlice"
+import { setSettingsQuery } from "../../../Store/reducers/authorization/slice"
+import { setQueryFlag } from "../../../Store/reducers/dnd/slice"
+import { deleteErrorInfo } from "../../../Store/reducers/errorMessage/slice"
 import {
     selectDnd,
     selectError,
-    selectAuthorization,
     selectEditMode,
+    selectAuthorization,
 } from "../../../Store/selectors"
 import Eye from "../../Eye"
 import SelectButtons from "./SelectButtons"

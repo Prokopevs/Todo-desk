@@ -1,4 +1,4 @@
-import { reorderTaskInDifferentStatus, reorderTaskInOwnStatus, setFinish, setResult, setStart } from "../../Store/reducers/dndSlice"
+import { reorderTaskInDifferentStatus, reorderTaskInOwnStatus, setFinish, setResult, setStart } from "../../Store/reducers/dnd/slice"
 
 export const onDragEnd = (result, dispatch, data, isAuth) => {
     const { destination, source, draggableId } = result

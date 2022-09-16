@@ -3,12 +3,10 @@ import { mapResponseStatus } from './sagaHelpers/status/mapResponseStatus';
 import { mapColumnOrder } from './sagaHelpers/status/mapColumnOrder';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { changeNameStatusService, deleteStatusService, getStatusService, postStatusService } from '../../services/StatusService';
-import { addStatus, changeStatusName, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dndSlice';
-import { addItemInEditStatus, setQueryLoading } from '../reducers/editModeSlice';
-import { deleteErrorStatusInfo, setErrorInfo, setErrorStatusName, setErrorStatusInfo, setGlobalErrorMessage, deleteErrorStatusName } from '../reducers/errorMessageSlice';
-import { IChangeStatus } from '../../models/Status/IChangeStatus';
-import { IDeleteStatus } from '../../models/Status/IDeleteStatus';
-import { IAddStatus } from '../../models/dnd/IAddStatus';
+import { addStatus, changeStatusName, deleteStatus, setColumnOrder, setQueryFlag, setStatuses } from '../reducers/dnd/slice';
+import { addItemInEditStatus, setQueryLoading } from '../reducers/editMode/slice';
+import { deleteErrorStatusInfo, setErrorInfo, setErrorStatusName, setErrorStatusInfo, setGlobalErrorMessage, deleteErrorStatusName } from '../reducers/errorMessage/slice';
+import { IAddStatus, IChangeStatus, IDeleteStatus } from '../reducers/dnd/types';
 
 export function* handleGetStatus() {
     try {

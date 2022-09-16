@@ -1,8 +1,6 @@
-import { ISetOpacity } from '../../models/EditMode/ISetOpacity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IChangePrevTask } from '../../models/Task/IChangePrevTask'
-import { IPrevTask} from '../../models/Task/IPrevTask'
-import { ITasksInLS } from '../../models/Task/ITasksInLS';
+import { IChangePrevTask, IPrevTask, ISetOpacity, ITasksInLS } from './types'
+
 
 interface editModeState {
     editArray: string[]

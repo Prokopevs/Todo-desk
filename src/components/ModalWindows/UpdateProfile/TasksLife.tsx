@@ -1,9 +1,9 @@
 import React from "react"
 import { ITasksLife } from "../../../models/Task/ITasksLife"
 import { down, up } from "../../../pictures"
-import { selectAuthorization } from "../../../Store/selectors"
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
-import { setTtl } from "../../../Store/reducers/authorizationSlice"
+import { setTtl } from "../../../Store/reducers/authorization/slice"
+import { selectAuthorization } from "../../../Store/selectors"
 
 const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
     const dispatch = useAppDispatch()
