@@ -16,7 +16,7 @@ type Inputs = {
     rememberMe: boolean
 }
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
     const dispatch = useAppDispatch()
     const { isAuth, rememberMe } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)

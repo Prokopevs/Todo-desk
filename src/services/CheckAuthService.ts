@@ -1,6 +1,5 @@
 import $api from "../http";
-import { ISettings } from "../models/Auth/ISettings";
-import { IUser } from "../models/Auth/IUser";
+import { ISettings, IUser } from "../Store/reducers/authorization/types";
 
 export const checkAuthService = async () => {
     const response = await $api.get<IUser>('/auth/me')

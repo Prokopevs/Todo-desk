@@ -4,7 +4,7 @@ import HelmetComponent from "../components/Helmet/HelmetComponent"
 import { useAppSelector } from "../hooks/redux"
 import { selectError } from "../Store/selectors"
 
-const Errors = () => {
+const Errors: React.FC = () => {
     const { globalErrorMessage } = useAppSelector(selectError)
     const navigate = useNavigate()
 

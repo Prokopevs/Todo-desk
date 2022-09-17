@@ -28,9 +28,9 @@ const Demo: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => {
                         <button className="block__button submit big demo">Login</button>
                     </Link>
                 </div>
-                <Desk setMTA={setMTA} setMSA={setMSA}/>
+                <Desk setMTA={setMTA} setMSA={setMSA} />
                 <TaskModalWindow modalTA={modalTA} setMTA={setMTA} />
-                <StatusModalWindow modalSA={modalSA} setMSA={setMSA}/>
+                <StatusModalWindow modalSA={modalSA} setMSA={setMSA} />
             </div>
         )
     }
