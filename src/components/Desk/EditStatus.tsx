@@ -2,12 +2,8 @@ import React from "react"
 import { cross2, vector } from "../../pictures"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import {
-    changeStatusName,
-    changeStatusNameQuery,
-    setQueryFlag,
-} from "../../Store/reducers/dnd/slice"
-import { selectAuthorization, selectDnd, selectEditMode, selectError } from "../../Store/selectors"
+import { changeStatusName, changeStatusNameQuery } from "../../Store/reducers/dnd/slice"
+import { selectAuthorization, selectEditMode, selectError } from "../../Store/selectors"
 import { deleteErrorStatusName } from "../../Store/reducers/errorMessage/slice"
 import { deleteItemInEditStatus } from "../../Store/reducers/editMode/slice"
 import { IEditStatus } from "../../models/EditMode/IEditStatus"
@@ -79,7 +75,9 @@ const EditStatus: React.FC<IEditStatus> = ({ column, setChangeName }) => {
                         <p className="error__message_text mt">{errors?.name?.message}</p>
                     )}
                     {isAuth && errorInfoStatusName[column.id]?.message && (
-                    <div className="error__message_text mt">{errorInfoStatusName[column.id]?.message}</div>
+                        <div className="error__message_text mt">
+                            {errorInfoStatusName[column.id]?.message}
+                        </div>
                     )}
                 </div>
             </div>

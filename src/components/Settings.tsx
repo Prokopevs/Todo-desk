@@ -8,12 +8,14 @@ import { useSessionStorage } from "../hooks/useSessionStorage"
 import UpdateProfile from "./ModalWindows/UpdateProfile/UpdateProfile"
 import { IUser } from "../Store/reducers/authorization/types"
 
-
 const Settings = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const { name } = useAppSelector(state => state.authorizationSlice.user)
-    const [modalProfileActive, setProfileActive] = useSessionStorage("ProfileModal", false);
+    const { name } = useAppSelector((state) => state.authorizationSlice.user)
+    const [modalProfileActive, setProfileActive] = useSessionStorage(
+        "ProfileModal",
+        false
+    )
 
     const logout = () => {
         localStorage.removeItem("token")
@@ -29,7 +31,9 @@ const Settings = () => {
             <div className="col-12 d-flex justify-content-center">
                 <div className="login">
                     <div className="login__user_img">
-                        <p className="login__user_letter" >{name && name[0]?.toUpperCase()}</p>
+                        <p className="login__user_letter">
+                            {name && name[0]?.toUpperCase()}
+                        </p>
                     </div>
                     <img
                         className="login__icon"
@@ -40,7 +44,10 @@ const Settings = () => {
                         role="button"
                     ></img>
                 </div>
-                <UpdateProfile modalProfileActive={modalProfileActive} setProfileActive={setProfileActive}/>
+                <UpdateProfile
+                    modalProfileActive={modalProfileActive}
+                    setProfileActive={setProfileActive}
+                />
             </div>
         </div>
     )

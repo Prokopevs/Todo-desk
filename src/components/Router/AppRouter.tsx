@@ -5,15 +5,15 @@ import DashBoard from "../../pages/DashBoard"
 import Demo from "../../pages/Demo"
 import Home from "../../pages/Home"
 
-const Errors = React.lazy(() => import("../../pages/Errors"));
-const LoginForm = React.lazy(() => import("../../pages/LoginForm"));
-const RegisterForm = React.lazy(() => import("../../pages/RegisterForm"));
+const Errors = React.lazy(() => import("../../pages/Errors"))
+const LoginForm = React.lazy(() => import("../../pages/LoginForm"))
+const RegisterForm = React.lazy(() => import("../../pages/RegisterForm"))
 
 const AppRouter: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home />}/>
+                <Route path="/" element={<Home />} />
                 <Route
                     path="/demo"
                     element={
@@ -36,21 +36,30 @@ const AppRouter: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => 
                         />
                     }
                 />
-                <Route path="/login" element={
-                    <Suspense fallback={<div></div>}>
-                        <LoginForm />
-                    </Suspense>     
-                } />
-                <Route path="/register" element={
-                    <Suspense fallback={<div></div>}>
-                        <RegisterForm />
-                    </Suspense>
-                } />
-                <Route path="errors" element={
-                    <Suspense fallback={<div></div>}>
-                        <Errors />
-                    </Suspense>
-                } />
+                <Route
+                    path="/login"
+                    element={
+                        <Suspense fallback={<div></div>}>
+                            <LoginForm />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="/register"
+                    element={
+                        <Suspense fallback={<div></div>}>
+                            <RegisterForm />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="errors"
+                    element={
+                        <Suspense fallback={<div></div>}>
+                            <Errors />
+                        </Suspense>
+                    }
+                />
             </Routes>
         </>
     )

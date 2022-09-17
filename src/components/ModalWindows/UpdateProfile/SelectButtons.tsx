@@ -35,7 +35,7 @@ const SelectButtons = ({ closeStatusWindow }) => {
                     <p className="block__content_selection_text settings">Apply</p>
                 </button>
             </div>
-            {errorInfo && <div className="error_info">{errorInfo}</div>}   
+            {errorInfo && <div className="error_info">{errorInfo}</div>}
         </>
     )
 }

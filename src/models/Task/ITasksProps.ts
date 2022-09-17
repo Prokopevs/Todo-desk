@@ -1,4 +1,4 @@
-import { IColumn } from "../dnd/IData"
+import { IColumn, ITask } from "../../Store/reducers/dnd/types"
 interface IPriority {
     color: string
     description: string
@@ -6,14 +6,13 @@ interface IPriority {
 }
 
 export interface IPriorityArray {
-    filter(arg0: (item: any) => boolean)
+    filter(arg0: (item: IPriority) => boolean)
     [K: number]: IPriority
 }
 
 export interface ITasksProps {
-    task: any
+    task: ITask
     index?: number
-    priorityArray: IPriorityArray
     column: IColumn
     hover?: string
 }

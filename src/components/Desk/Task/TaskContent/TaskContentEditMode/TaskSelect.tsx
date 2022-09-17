@@ -4,14 +4,17 @@ import { ITasksContentEditMode } from "../../../../../models/Task/ITasksContent"
 import { container, vector } from "../../../../../pictures"
 import { deleteTaskQuery, deleteTask } from "../../../../../Store/reducers/dnd/slice"
 import { deleteErrorTaskInfo } from "../../../../../Store/reducers/errorMessage/slice"
-import { selectAuthorization, selectEditMode, selectError } from "../../../../../Store/selectors"
+import {
+    selectAuthorization,
+    selectEditMode,
+    selectError,
+} from "../../../../../Store/selectors"
 
 const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) => {
     const dispatch = useAppDispatch()
     const { isOpen } = useAppSelector((state) => state.dndSlice.data.tasks[task.id])
     const { opacityButtons } = useAppSelector(selectEditMode)
     const { isAuth } = useAppSelector(selectAuthorization)
-    const { errorTaskInfo } = useAppSelector(selectError)
 
     const deleteTaskFunc = (id: string) => {
         if (column !== undefined) {
@@ -36,7 +39,9 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                 <button
                     className="block__content_selection_button delete"
                     onClick={() => deleteTaskFunc(task.id)}
-                    disabled={opacityButtons && opacityButtons["delete"].includes(task.id)}
+                    disabled={
+                        opacityButtons && opacityButtons["delete"].includes(task.id)
+                    }
                 >
                     <img
                         className="block__content_selection_img delete"
@@ -50,7 +55,9 @@ const TaskSelect: React.FC<ITasksContentEditMode> = ({ task, isValid, column }) 
                     className="block__content_selection_button apply"
                     type="submit"
                     disabled={
-                        !isValid || isOpen || (opacityButtons && opacityButtons["apply"].includes(task.id))
+                        !isValid ||
+                        isOpen ||
+                        (opacityButtons && opacityButtons["apply"].includes(task.id))
                     }
                 >
                     <img

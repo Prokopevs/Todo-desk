@@ -153,7 +153,6 @@ export const dndSlice = createSlice({
             if (action.payload.isAuth) {
                 let stringArr = localStorage.getItem(`${action.payload.column.id}`) // "["1,2"]"
                 if(stringArr) {
-                    console.log("here")
                     localStorage.removeItem(`${action.payload.column.id}`)
                 }
             } else {  

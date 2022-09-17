@@ -1,7 +1,10 @@
 import React from "react"
 import { useAppDispatch } from "../../../../../hooks/redux"
 import { IPriorityProps } from "../../../../../models/EditMode/IPriorityProps"
-import { onChangePriority, setOpenPriorityСolumn } from "../../../../../Store/reducers/dnd/slice"
+import {
+    onChangePriority,
+    setOpenPriorityСolumn,
+} from "../../../../../Store/reducers/dnd/slice"
 
 const Priority: React.FC<IPriorityProps> = ({ priorityArray, task }) => {
     const dispatch = useAppDispatch()
@@ -20,7 +23,9 @@ const Priority: React.FC<IPriorityProps> = ({ priorityArray, task }) => {
             <div className="block__line block__line-task"></div>
             <ul className="block__priority">
                 <li
-                    className={`block__button task ${priorityArray[task.priority - 1]?.color}`}
+                    className={`block__button task ${
+                        priorityArray[task.priority - 1]?.color
+                    }`}
                     onClick={() => dispatch(setOpenPriorityСolumn(task.id))}
                 >
                     <p className="block__button_text">

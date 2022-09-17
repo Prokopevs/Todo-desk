@@ -5,8 +5,13 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 
 import { addStatus, addStatusQuery, setQueryFlag } from "../../Store/reducers/dnd/slice"
 import { deleteErrorInfo } from "../../Store/reducers/errorMessage/slice"
-import { selectDnd, selectError, selectEditMode, selectAuthorization } from "../../Store/selectors"
-import { IModalStatus } from "../../models/EditMode/IStorage";
+import {
+    selectDnd,
+    selectError,
+    selectEditMode,
+    selectAuthorization,
+} from "../../Store/selectors"
+import { IModalStatus } from "../../models/EditMode/IStorage"
 
 type Inputs = {
     name: string
@@ -21,7 +26,6 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
     const { errorInfo } = useAppSelector(selectError)
     const { queryLoading } = useAppSelector(selectEditMode)
 
-    const columnOrderLength = data.columnOrder.length
     const {
         register,
         handleSubmit,
@@ -32,7 +36,7 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
         dispatch(deleteErrorInfo())
         data["isAuth"] = isAuth!
         data["parentId"] = parentId
-        if(isAuth) {
+        if (isAuth) {
             dispatch(addStatusQuery(data))
         } else {
             dispatch(addStatus(data))
@@ -41,7 +45,7 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
     }
 
     React.useEffect(() => {
-        if(queryFlag) {
+        if (queryFlag) {
             closeStatusWindow()
             dispatch(setQueryFlag(false))
         }
@@ -50,16 +54,11 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
     const closeStatusWindow = () => {
         dispatch(deleteErrorInfo())
         setMSA(false)
-        setTimeout(() => reset(), 200);
+        setTimeout(() => reset(), 200)
     }
 
     return (
-        <CSSTransition
-            in={modalSA}
-            timeout={150}
-            classNames="my-node"
-            unmountOnExit
-        >
+        <CSSTransition in={modalSA} timeout={150} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">
@@ -96,10 +95,16 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
 
                             <div className="block__line block__line-form"></div>
 
-                            <button type="submit" disabled={queryLoading} className="block__button submit big mb status-type">
+                            <button
+                                type="submit"
+                                disabled={queryLoading}
+                                className="block__button submit big mb status-type"
+                            >
                                 Add
                             </button>
-                            {isAuth && errorInfo && <div className="error_info taskmodal">{errorInfo}</div>}   
+                            {isAuth && errorInfo && (
+                                <div className="error_info taskmodal">{errorInfo}</div>
+                            )}
                         </form>
                     </div>
 
