@@ -50,9 +50,6 @@ const EditStatus: React.FC<IEditStatus> = ({ column, setChangeName }) => {
         setChangeName(false)
     }
 
-    console.log("render")
-
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="block__status_edit">
