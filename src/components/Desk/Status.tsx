@@ -12,6 +12,7 @@ import { selectAuthorization, selectError } from "../../Store/selectors"
 import { setSelectedStatus } from "../../Store/reducers/editMode/slice"
 import { selectEditMode } from "../../Store/selectors"
 import LongPressable from "react-longpressable"
+import useLongPress from "../../hooks/useLongPress"
 
 const Status: React.FC<IStatus> = React.memo(
     ({ column, tasks, priorityArray, index, setMSA }) => {
@@ -32,13 +33,19 @@ const Status: React.FC<IStatus> = React.memo(
             dispatch(setSelectedStatus(null))
         }
 
-        const onShortPress = (id: string) => {
-            if (selectedStatus === id) {
+        const onClick = () => {
+            if (selectedStatus === column.id) {
                 dispatch(setSelectedStatus(null))
             } else {
-                dispatch(setSelectedStatus(id))
+                dispatch(setSelectedStatus(column.id))
             }
         }
+
+        const defaultOptions = {
+            shouldPreventDefault: true,
+            delay: 300,
+        }
+        const longPressEvent = useLongPress(onLongPress, onClick, defaultOptions)
 
         return (
             <Droppable droppableId={column!.id}>
@@ -69,21 +76,17 @@ const Status: React.FC<IStatus> = React.memo(
                                             }
                                         >
                                             <div className="block__wrapper">
-                                                <LongPressable
-                                                    onShortPress={() => onShortPress(column.id)}
-                                                    onLongPress={() => onLongPress()}
-                                                    longPressTime={300}
+                                                <h1
+                                                    className={
+                                                        selectedStatus === column.id
+                                                            ? "block__status_name active"
+                                                            : "block__status_name"
+                                                    }
+                                                    {...longPressEvent}
                                                 >
-                                                    <h1
-                                                        className={
-                                                            selectedStatus === column.id
-                                                                ? "block__status_name active"
-                                                                : "block__status_name"
-                                                        }
-                                                    >
-                                                        {column.name}
-                                                    </h1>
-                                                </LongPressable>
+                                                    {column.name}
+                                                </h1>
+
                                                 <ButtonMinus column={column} />
                                             </div>
                                         </div>
