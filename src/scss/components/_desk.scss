@@ -23,6 +23,15 @@
     .margin {
         margin: 25px 10px 0;
     }
+    .desk {
+        min-height: 73vh;
+    }
+}
+
+@media (max-width: 991px) {
+    .desk {
+        min-height: 71vh;
+    }
 }
 
 @media (max-width: 415px) {
@@ -71,6 +80,10 @@
     margin-bottom: 37px;
 }
 
+.row-padding.mg {
+    margin-bottom: 53px;
+}
+
 
 @media (max-width: 1399px) {
     .row-padding {
@@ -83,12 +96,23 @@
     .row-padding {
         padding: 0 20px;
     }
+    .row-padding.mg {
+        margin-bottom: 42px;
+    }
 }
 
+@media (max-width: 991px) {
+    .row-padding.mg {
+        margin-bottom: 37px;
+    }
+}
 
 @media (max-width: 767px) {
     .row-padding {
         padding: 0 30px;
+    }
+    .row-padding.mg {
+        margin-bottom: 42px;
     }
 }
 
@@ -101,6 +125,9 @@
 @media (max-width: 415px) {
     .row-padding {
         padding: 0 18px;
+    }
+    .row-padding.mg {
+        margin-bottom: 32px;
     }
 }
 

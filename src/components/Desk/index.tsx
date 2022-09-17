@@ -26,7 +26,7 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
         <DragDropContext onDragEnd={onDrag}>
             <div className="row margin">
                 <div className="col-12 desk">
-                    <ul className="row row-padding">
+                    <ul className={isAuth ? "row row-padding mg" : "row row-padding"}>
                         {columnsLength ? (
                             data.columnOrder.map((columnId, index) => {
                                 const column = data.columns[columnId] // id: '1' name: 'To do', taskIds: ['0', '1']

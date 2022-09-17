@@ -10,13 +10,14 @@ import {
 import { selectAuthorization, selectDnd, selectEditMode, selectError } from "../../Store/selectors"
 import { deleteErrorStatusName } from "../../Store/reducers/errorMessage/slice"
 import { deleteItemInEditStatus } from "../../Store/reducers/editMode/slice"
+import { IEditStatus } from "../../models/EditMode/IEditStatus"
 
 type Inputs = {
     id: string
     name: string
 }
 
-const EditStatus = ({ column, setChangeName }) => {
+const EditStatus: React.FC<IEditStatus> = ({ column, setChangeName }) => {
     const dispatch = useAppDispatch()
     const { editStatus } = useAppSelector(selectEditMode)
     const { isAuth } = useAppSelector(selectAuthorization)
@@ -48,6 +49,9 @@ const EditStatus = ({ column, setChangeName }) => {
         dispatch(deleteErrorStatusName(column.id))
         setChangeName(false)
     }
+
+    console.log("render")
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
