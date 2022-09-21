@@ -5,7 +5,6 @@ import { store } from "../../Store/store"
 import { MemoryRouter } from "react-router-dom"
 import * as reactHooks from "../../hooks/redux"
 import TasksContent from "../Desk/Task/TaskContent"
-import priorityArray from "../../data/Desk/priorityArray"
 
 jest.mock("../../hooks/redux")
 
@@ -32,7 +31,6 @@ describe("TaskContent", () => {
                     <TasksContent
                         task={taskObj}
                         editMode={true}
-                        priorityArray={priorityArray}
                         column={columnObj}
                         setEditMod={setEditMod}
                     />
