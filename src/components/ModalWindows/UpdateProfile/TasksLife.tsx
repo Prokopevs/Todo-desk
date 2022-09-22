@@ -28,7 +28,7 @@ const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
                 <div className="tasksLife__inner_width none"></div>
 
                 {!timeLife ? (
-                    <div className="tasksLife__inner_information">
+                    <div className="tasksLife__inner_information" onClick={() => setTimeLife(!timeLife)}>
                         <p className="tasksLife__inner_text">{formatter.format(user.taskTTL)}</p>
                     </div>
                 ) : (
