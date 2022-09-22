@@ -1,7 +1,8 @@
+import { IColumn, ITask } from "../../Store/reducers/dnd/types"
+
 export interface IStatus {
-    column?: any
-    tasks: any
-    priorityArray: any
+    column: IColumn
+    tasks: ITask[]
     index: number
     setMSA: (...arg: boolean[]) => void
 };

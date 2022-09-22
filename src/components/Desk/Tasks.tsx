@@ -5,7 +5,7 @@ import { useAppSelector } from "../../hooks/redux"
 import Task from "./Task"
 import { selectAuthorization, selectEditMode, selectError } from "../../Store/selectors"
 
-const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) => {
+const Tasks: React.FC<ITasksProps> = ({ task, index, column }) => {
     const { editArray } = useAppSelector(selectEditMode)
     const [hover, setHover] = React.useState("")
     const { errorTaskInfo } = useAppSelector(selectError)
@@ -26,7 +26,7 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
             isDragDisabled={editArray?.includes(task.id)}
         >
             {(provided) => (
-                <div 
+                <div
                     className="block__inner_todo"
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -38,14 +38,11 @@ const Tasks: React.FC<ITasksProps> = ({ task, index, priorityArray, column }) =>
                         handleMouseOut(task.id)
                     }}
                 >
-                    <Task
-                        task={task}
-                        priorityArray={priorityArray}
-                        column={column}
-                        hover={hover}
-                    />
+                    <Task task={task} column={column} hover={hover} />
                     {isAuth && errorTaskInfo[task.id]?.message && (
-                    <div className="error_info tasks">{errorTaskInfo[task.id]?.message}</div>
+                        <div className="error_info tasks">
+                            {errorTaskInfo[task.id]?.message}
+                        </div>
                     )}
                 </div>
             )}

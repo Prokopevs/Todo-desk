@@ -15,6 +15,7 @@ import {
 import { selectAuthorization, selectEditMode } from "../../../../Store/selectors"
 import { motion, AnimatePresence } from "framer-motion"
 import { deleteErrorTaskInfo } from "../../../../Store/reducers/errorMessage/slice"
+import priorityArray from "../../../../data/Desk/priorityArray"
 
 interface Inputs {
     id: string
@@ -26,7 +27,6 @@ interface Inputs {
 const TasksContent: React.FC<ITasksContent> = ({
     task,
     editMode,
-    priorityArray,
     column,
     setEditMod,
 }) => {
@@ -35,13 +35,11 @@ const TasksContent: React.FC<ITasksContent> = ({
     const { prevTaskObj, successTasksAfterSagaRequest } = useAppSelector(selectEditMode)
     const dispatch = useAppDispatch()
     const color = priorityArray[task.priority - 1]?.color
-
     const moveCaretAtEnd = (e) => {
         let temp_value = e.target.value
         e.target.value = ""
         e.target.value = temp_value
     }
-
     const {
         register,
         handleSubmit,
@@ -133,7 +131,6 @@ const TasksContent: React.FC<ITasksContent> = ({
                     >
                         <TasksContentEditMode
                             task={task}
-                            priorityArray={priorityArray}
                             isValid={isValid}
                             column={column}
                         />

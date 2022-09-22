@@ -1,9 +1,15 @@
-import errorMessageSlice, { setGlobalErrorMessage, setErrorInfo, deleteErrorInfo, setErrorTaskInfo, deleteErrorTaskInfo } from "../reducers/errorMessageSlice"
+import errorMessageSlice, { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from "../reducers/errorMessage/slice";
 
 const initialState = {
     globalErrorMessage: "",
     errorInfo: "",
+    errorInfoStatusName: {
+        "": {id: "", message: ""} 
+    },
     errorTaskInfo: {
+        "": {id: "", message: ""} 
+    },
+    errorStatusInfo: {
         "": {id: "", message: ""} 
     }
 }
@@ -16,11 +22,11 @@ describe("errorMessageSlice", () => {
   });
 
   it('should set globalErrorMessage with "setGlobalErrorMessage" action', () => {
-    const action = { type: setGlobalErrorMessage.type, payload: "error text"}
+    const action = { type: setGlobalErrorMessage.type, payload: {status: "error text", statusText: 404}}
     
     const result = errorMessageSlice(initialState, action)
 
-    expect(result.globalErrorMessage).toBe("error text")
+    expect(result.globalErrorMessage).toBe("error text404")
   });
 
   it('should set errorInfo with "setErrorInfo" action', () => {
@@ -43,8 +49,14 @@ describe("errorMessageSlice", () => {
     const initialState = {
         globalErrorMessage: "",
         errorInfo: "",
+        errorInfoStatusName: {
+            "": {id: "", message: ""} 
+        },
         errorTaskInfo: {
-            "1": {id: "1", message: "error ohh noo"} 
+            "1": {id: "1", message: "error"} 
+        },
+        errorStatusInfo: {
+            "": {id: "", message: ""} 
         }
     }
 

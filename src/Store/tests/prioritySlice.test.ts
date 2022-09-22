@@ -1,4 +1,4 @@
-import prioritySlice, { setPriority } from "../reducers/prioritySlice"
+import prioritySlice, { setPriority } from "../reducers/priority/slice";
 
 describe("prioritySlice", () => {
   it("should return state when passed an empty action", () => {

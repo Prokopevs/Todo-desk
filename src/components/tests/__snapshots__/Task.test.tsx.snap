@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="block__collapse"
+        class="block__visible"
         data-testid="hover-div"
       >
         <button
@@ -34,11 +34,13 @@ Object {
                 class="task__content"
               >
                 <div
-                  class="pretty__line undefined"
+                  class="pretty__line purple"
                 />
                 <p
                   class="block__content_text"
-                />
+                >
+                  Watch my favorite
+                </p>
               </div>
               <div
                 class="error__message"
@@ -51,7 +53,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="block__collapse"
+      class="block__visible"
       data-testid="hover-div"
     >
       <button
@@ -79,11 +81,13 @@ Object {
               class="task__content"
             >
               <div
-                class="pretty__line undefined"
+                class="pretty__line purple"
               />
               <p
                 class="block__content_text"
-              />
+              >
+                Watch my favorite
+              </p>
             </div>
             <div
               class="error__message"

@@ -3,7 +3,6 @@ import AddTask from "../AddTask"
 import Status from "./Status"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import priorityArray from "../../data/Desk/priorityArray"
 import { selectAuthorization, selectDnd } from "../../Store/selectors"
 import Button from "../Button"
 import { onDragEnd } from "./onDragEnd"
@@ -38,7 +37,6 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                                         key={column.id}
                                         column={column}
                                         tasks={tasks}
-                                        priorityArray={priorityArray}
                                         index={index + 1}
                                         setMSA={setMSA}
                                     />
@@ -49,7 +47,7 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                                 <p className="demo__text">
                                     Click on button to add status
                                 </p>
-                                <Button setMSA={setMSA}/>
+                                <Button setMSA={setMSA} />
                             </div>
                         )}
                     </ul>
@@ -60,7 +58,7 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                         </p>
                     )}
                 </div>
-                <AddTask setMTA={setMTA}/>
+                <AddTask setMTA={setMTA} />
             </div>
         </DragDropContext>
     )

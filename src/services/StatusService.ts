@@ -1,7 +1,7 @@
 import $api from "../http";
-import { IChangeStatus } from "../models/Status/IChangeStatus";
 import { IDelete } from "../models/Status/IDelete";
 import { IStatusQuery } from "../models/Status/IStatusQuery";
+import { IChangeStatus } from "../Store/reducers/dnd/types";
 
 export const getStatusService = async () => {
     const response = await $api.get<IStatusQuery>('/tasks/statuses')

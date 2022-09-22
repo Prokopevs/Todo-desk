@@ -9,16 +9,16 @@ interface AuthorizationState {
 }
 
 const initialState: AuthorizationState = {
-  user: {
-    id: null,
-    email: "",
-    emailConfirmed: false,
-    name: "",
-    taskTTL: null
-  },
-  isAuth: false,
-  isLoading: true,
-  rememberMe: false,
+    user: {
+        id: null,
+        email: "",
+        emailConfirmed: false,
+        name: "",
+        taskTTL: null
+    },
+    isAuth: false,
+    isLoading: true,
+    rememberMe: false,
 }
 
 export const authorizationSlice = createSlice({

@@ -6,7 +6,7 @@ interface IHelmet {
     content: string
 }
 
-const HelmetComponent: React.FC<IHelmet> = ({title, content}) => {
+const HelmetComponent: React.FC<IHelmet> = ({ title, content }) => {
     return (
         <>
             <Helmet>

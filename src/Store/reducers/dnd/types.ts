@@ -75,12 +75,6 @@ export interface ITasksObj {
     [K: string]: ITask
 }
 
-export interface IStatus {
-    id: string
-    name: string
-    taskIds: string[]
-}
-
 export interface IStatusObj {
-    [K: string]: IStatus
+    [K: string]: IColumn
 }

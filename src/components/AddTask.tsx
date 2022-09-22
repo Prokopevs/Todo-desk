@@ -5,13 +5,12 @@ import useWindowDimensions from "../hooks/useWindowDimensions"
 import { IModalTask } from "../models/EditMode/IStorage"
 import { selectAuthorization, selectDnd } from "../Store/selectors"
 
-
 const AddTask: React.FC<IModalTask> = ({ setMTA }) => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
     const { width } = useWindowDimensions()
     const columLength = data.columnOrder.length
-    
+
     const selectPage = isAuth ? "addTask" : "addTask demo"
     const selectPageAbsolute = isAuth ? "addTask-absolute" : "addTask-absolute demo"
 
@@ -21,7 +20,7 @@ const AddTask: React.FC<IModalTask> = ({ setMTA }) => {
 
     return (
         <div
-            className={columLength > 3 || width! < 768 ?  selectPage : selectPageAbsolute}
+            className={columLength > 3 || width! < 768 ? selectPage : selectPageAbsolute}
             onClick={() => handleClick()}
         >
             <div className="addTask__plus"></div>

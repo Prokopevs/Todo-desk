@@ -1,6 +1,5 @@
 import React from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
-import priorityArray from "../../data/Desk/priorityArray"
 import Task from "../Desk/Task"
 import { MemoryRouter } from "react-router-dom"
 import { Provider } from "react-redux"
@@ -13,6 +12,7 @@ const obj = {
     name: "Todo",
     taskIds: ["1"],
 }
+const taskObj = { id: "1", content: "Watch my favorite", priority: 1, isOpen: false }
 
 jest.mock("../../hooks/redux")
 
@@ -33,8 +33,7 @@ describe("EditMode click event", () => {
             <Provider store={store}>
                 <MemoryRouter>
                     <Task
-                        task={"1"}
-                        priorityArray={priorityArray}
+                        task={taskObj}
                         column={obj}
                         hover={"1"}
                     />

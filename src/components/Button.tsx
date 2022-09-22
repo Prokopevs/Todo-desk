@@ -2,10 +2,9 @@ import React from "react"
 import { IModalStatus } from "../models/EditMode/IStorage"
 
 const Button: React.FC<IModalStatus> = ({ setMSA }) => {
-
     return (
         <>
-            <svg className="svg" xmlns="http://www.w3.org/2000/svg" version="1.1" >
+            <svg className="svg" xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <defs>
                     <filter id="gooey">
                         <feGaussianBlur
@@ -28,7 +27,7 @@ const Button: React.FC<IModalStatus> = ({ setMSA }) => {
                 </defs>
             </svg>
 
-            <button id="gooey-button" >
+            <button id="gooey-button">
                 Click me
                 <span className="bubbles" onClick={() => setMSA(true)}>
                     <span className="bubble"></span>

@@ -1,15 +1,15 @@
-import { IColumn } from "../dnd/IData"
+import { IColumn, ITask } from "../../Store/reducers/dnd/types"
+import { IPriorityArray } from "./ITasksProps"
+
 export interface ITasksContent {
-    task: any
+    task: ITask
     editMode: boolean
-    priorityArray: any
     column?: IColumn
     setEditMod: (...args: boolean[]) => void
 }
 
 export interface ITasksContentEditMode {
-    task: any
-    priorityArray?: any
+    task: ITask
     isValid?:boolean
     column?: IColumn
 }

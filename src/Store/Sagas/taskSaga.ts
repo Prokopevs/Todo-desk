@@ -17,7 +17,6 @@ export function* handleGetTask() {
         yield put(setTasks(tasks[0]))
         yield put(setPrevTaskObj(prevTaskObj))
         yield put(setTasksInLS(tasks[1]))
-        // localStorage.removeItem("55")
     } catch (e) {
         const errorObj = {
             status: e.response?.status,

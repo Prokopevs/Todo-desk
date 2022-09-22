@@ -7,7 +7,6 @@ import { setInitialData } from "../Store/reducers/dnd/slice"
 import { useSessionStorage } from "../hooks/useSessionStorage"
 import UpdateProfile from "./ModalWindows/UpdateProfile/UpdateProfile"
 import { IUser } from "../Store/reducers/authorization/types"
-import { CSSTransition } from "react-transition-group"
 
 const Settings = () => {
     const dispatch = useAppDispatch()
@@ -39,7 +38,7 @@ const Settings = () => {
     return (
         <div className="row">
             <div className="col-12 d-flex justify-content-center">
-                <div className="login">
+                <div className="login"> 
                     <div
                         className="login__user_img"
                         onMouseOver={() => {

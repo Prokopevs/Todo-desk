@@ -14,7 +14,7 @@ type Inputs = {
     password: string
 }
 
-const RegisterForm = () => {
+const RegisterForm: React.FC = () => {
     const [registerClick, setRegisterClick] = React.useState<boolean>(false)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
@@ -137,7 +137,7 @@ const RegisterForm = () => {
                                         },
                                     })}
                                 ></input>
-                                <Eye setClick={setClick} click={click}/>
+                                <Eye setClick={setClick} click={click} />
                             </div>
                             <div className="error__message">
                                 {errors?.password && (

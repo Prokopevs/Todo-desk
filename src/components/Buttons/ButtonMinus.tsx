@@ -1,11 +1,12 @@
 import React from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
+import { IButtonMinus } from "../../models/Status/IButton"
 import { minus } from "../../pictures"
 import { deleteStatus, deleteStatusQuery } from "../../Store/reducers/dnd/slice"
 import { deleteErrorStatusInfo } from "../../Store/reducers/errorMessage/slice"
 import { selectAuthorization, selectEditMode } from "../../Store/selectors"
 
-const ButtonMinus = ({ column }) => {
+const ButtonMinus: React.FC<IButtonMinus> = ({ column }) => {
     const dispatch = useAppDispatch()
     const { isAuth } = useAppSelector(selectAuthorization)
     const { selectedStatus } = useAppSelector(selectEditMode)

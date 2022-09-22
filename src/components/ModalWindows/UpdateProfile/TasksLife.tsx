@@ -1,7 +1,7 @@
 import React from "react"
 import { ITasksLife } from "../../../models/Task/ITasksLife"
 import { down, up } from "../../../pictures"
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { setTtl } from "../../../Store/reducers/authorization/slice"
 import { selectAuthorization } from "../../../Store/selectors"
 
@@ -28,13 +28,24 @@ const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
                 <div className="tasksLife__inner_width none"></div>
 
                 {!timeLife ? (
-                    <div className="tasksLife__inner_information" onClick={() => setTimeLife(!timeLife)}>
-                        <p className="tasksLife__inner_text">{formatter.format(user.taskTTL)}</p>
+                    <div
+                        className="tasksLife__inner_information"
+                        onClick={() => setTimeLife(!timeLife)}
+                    >
+                        <p className="tasksLife__inner_text">
+                            {formatter.format(user.taskTTL)}
+                        </p>
                     </div>
                 ) : (
                     <div className="tasksLife__inner_information array">
                         {dayArray.map((item, index) => (
-                            <p key={index} className="tasksLife__inner_text array" onClick={() => handleClick(item)}>{formatter.format(item)}</p>
+                            <p
+                                key={index}
+                                className="tasksLife__inner_text array"
+                                onClick={() => handleClick(item)}
+                            >
+                                {formatter.format(item)}
+                            </p>
                         ))}
                     </div>
                 )}

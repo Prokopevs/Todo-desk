@@ -1,13 +1,12 @@
 import React from "react"
-
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { IButtonPlus } from "../../models/Status/IButtonPlus"
+import { IButtonPlus } from "../../models/Status/IButton"
 import { plus } from "../../pictures"
 import { setParentId } from "../../Store/reducers/dnd/slice"
 import { setSelectedStatus } from "../../Store/reducers/editMode/slice"
 import { selectDnd, selectEditMode } from "../../Store/selectors"
 
-const ButtonPlus:React.FC<IButtonPlus> = ({ position, column, setMSA }) => {
+const ButtonPlus: React.FC<IButtonPlus> = ({ position, column, setMSA }) => {
     const dispatch = useAppDispatch()
     const { data } = useAppSelector(selectDnd)
     const { selectedStatus } = useAppSelector(selectEditMode)

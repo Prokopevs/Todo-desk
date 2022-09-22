@@ -5,13 +5,12 @@ import TaskSelect from "./TaskSelect"
 
 const TasksContentEditMode: React.FC<ITasksContentEditMode> = ({
     task,
-    priorityArray,
     isValid,
-    column
+    column,
 }) => {
     return (
         <>
-            <TaskPriority task={task} priorityArray={priorityArray} />
+            <TaskPriority task={task} />
             <TaskSelect task={task} isValid={isValid} column={column} />
         </>
     )

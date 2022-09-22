@@ -8,8 +8,6 @@ import { setQueryFlag } from "../../../Store/reducers/dnd/slice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessage/slice"
 import {
     selectDnd,
-    selectError,
-    selectEditMode,
     selectAuthorization,
 } from "../../../Store/selectors"
 import Eye from "../../Eye"
@@ -73,7 +71,9 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                         <div className="block__line block__line-form settings"></div>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <p className="modalWindow__text-description settings">Email</p>
+                            <p className="modalWindow__text-description settings">
+                                Email
+                            </p>
                             <div
                                 className={
                                     errors?.email
@@ -90,7 +90,9 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                             : "form__input status"
                                     }
                                     autoComplete="off"
-                                    {...register("email", { required: "cannot be empty" })}
+                                    {...register("email", {
+                                        required: "cannot be empty",
+                                    })}
                                 ></input>
                             </div>
                             <div className="error__message settings">
@@ -128,7 +130,9 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 )}
                             </div>
 
-                            <p className="modalWindow__text-description settings">Password</p>
+                            <p className="modalWindow__text-description settings">
+                                Password
+                            </p>
                             <div
                                 className={
                                     errors?.password
@@ -153,7 +157,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                         },
                                     })}
                                 ></input>
-                                <Eye setClick={setClick} click={click}/>
+                                <Eye setClick={setClick} click={click} />
                             </div>
                             <div className="error__message settings">
                                 {errors?.password && (

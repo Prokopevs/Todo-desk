@@ -36,9 +36,9 @@ const DashBoard: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => 
             <div>
                 <HelmetComponent title={"Task Tracker"} content={"DashBoard"} />
                 <Settings />
-                <Desk setMTA={setMTA} setMSA={setMSA}/>
-                <TaskModalWindow modalTA={modalTA} setMTA={setMTA}/>
-                <StatusModalWindow modalSA={modalSA} setMSA={setMSA}/>
+                <Desk setMTA={setMTA} setMSA={setMSA} />
+                <TaskModalWindow modalTA={modalTA} setMTA={setMTA} />
+                <StatusModalWindow modalSA={modalSA} setMSA={setMSA} />
             </div>
         )
     }

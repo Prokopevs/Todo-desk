@@ -1,5 +1,7 @@
+import { IPrevTask } from "../../../reducers/editMode/types";
+
 export const mapResponsePrevTasks = (arr) => {
-    let prevTaskObj:any = {};
+    let prevTaskObj = {} as IPrevTask;
         for (let i = 0; i < arr.length; ++i) {
             if (arr[i] !== undefined) {
                 prevTaskObj[arr[i].id] = arr[i]; // '2' = {id: 2, content: 'do something ', priority: 3, status_id: 6}

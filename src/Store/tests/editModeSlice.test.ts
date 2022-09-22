@@ -1,4 +1,4 @@
-import editModeSlice, { deleteTaskInEditArray, setOpacityButtons } from "../reducers/editModeSlice"
+import editModeSlice, { deleteTaskInEditArray, setOpacityButtons } from "../reducers/editMode/slice";
 
 const initialState = {
     editArray: [], // для отключения dragable
@@ -6,11 +6,16 @@ const initialState = {
     prevTaskObj: {
         "": { id: "", priority: null, content: ""}
     },
-    successTasksAfterSagaRequest: [],   
+    successTasksAfterSagaRequest: [],  
     opacityButtons: {
         delete: [],
         apply: []
-    }
+    },
+    selectedStatus: "",
+    tasksInLS: {
+        "": []
+    },
+    editStatus: []
 }
 
 describe("editModeSlice", () => {
@@ -31,7 +36,12 @@ describe("editModeSlice", () => {
         opacityButtons: {
             delete: [],
             apply: []
-        }
+        },
+        selectedStatus: "",
+        tasksInLS: {
+            "": []
+        },
+        editStatus: []
     }
 
     const action = { type: deleteTaskInEditArray.type, payload: "2"}
@@ -51,7 +61,12 @@ describe("editModeSlice", () => {
         opacityButtons: {
             delete: ["1"],
             apply: []
-        }
+        },
+        selectedStatus: "",
+        tasksInLS: {
+            "": []
+        },
+        editStatus: []
     }
 
     const action = { type: setOpacityButtons.type, payload: { arrName: "delete", id: "2" }}

@@ -1,5 +1,6 @@
+
 import initialData from "../../components/Desk/initial-data";
-import dndSlice, { setStatuses } from "../reducers/dndSlice"
+import dndSlice, { setStatuses } from "../reducers/dnd/slice"
 
 const initialState = {
     data: initialData,
@@ -30,6 +31,7 @@ const initialState = {
         secondArray: [],
     },
     queryFlag: false,
+    parentId: null 
 }
 
 describe("dndSlice", () => {
