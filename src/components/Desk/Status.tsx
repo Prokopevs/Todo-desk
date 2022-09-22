@@ -17,6 +17,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, index, setMSA }) 
     const dispatch = useAppDispatch()
     const columnOrder = useAppSelector((state) => state.dndSlice.data.columnOrder)
     const { selectedStatus } = useAppSelector(selectEditMode)
+    const onLongPress = useLongPress()
 
     const [changeName, setChangeName] = React.useState(false)
     const { errorStatusInfo } = useAppSelector(selectError)
@@ -26,7 +27,7 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, index, setMSA }) 
         dispatch(setLineArray(Object.keys(columnOrder).length))
     }, [column])
 
-    const onLongPress = () => {
+    const LongPress = () => {
         setChangeName(true)
         dispatch(setSelectedStatus(null))
     }
@@ -38,12 +39,6 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, index, setMSA }) 
             dispatch(setSelectedStatus(column.id))
         }
     }
-
-    const defaultOptions = {
-        shouldPreventDefault: true,
-        delay: 300,
-    }
-    const longPressEvent = useLongPress(onLongPress, onClick, defaultOptions)
 
     return (
         <Droppable droppableId={column!.id}>
@@ -80,7 +75,8 @@ const Status: React.FC<IStatus> = React.memo(({ column, tasks, index, setMSA }) 
                                                         ? "block__status_name active"
                                                         : "block__status_name"
                                                 }
-                                                {...longPressEvent}
+                                                onClick={() => onClick()}
+                                                {...onLongPress(() => LongPress())}
                                             >
                                                 {column.name}
                                             </h1>
