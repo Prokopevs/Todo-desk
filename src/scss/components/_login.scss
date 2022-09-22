@@ -60,18 +60,11 @@
     }
 }
 
-.login__user_letter {
-    color: #8A8383;
-    font-size: 25px;
-    font-weight: 600;
-}
-
 .login__icon {
     width: 32px;
     height: 32px;
     cursor: pointer;
     transition: transform .2s linear;
-
 }
 
 .login__icon:hover{
@@ -87,4 +80,29 @@
         width: 31px;
         height: 31px;
     }
+}
+
+.logout-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20.5px;
+    height: 22.5px;
+    margin-left: 6px;
+    cursor: pointer;
+    padding: 11px;
+    box-sizing: content-box;
+}
+
+@media (max-width: 991px) {
+    .logout-img {
+        width: 19px;
+        height: 20px;
+    }
+}
+
+.login__user_letter {
+    color: #8A8383;
+    font-size: 25px;
+    font-weight: 600;
 }

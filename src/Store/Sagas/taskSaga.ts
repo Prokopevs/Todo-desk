@@ -1,3 +1,4 @@
+import { authorizationSlice } from './../reducers/authorization/slice';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
 import { addTask, changeTaskContent, deleteTask, reorderTaskInStorage, setQueryFlag, setTasks } from '../reducers/dnd/slice';
@@ -60,17 +61,20 @@ export function* handlePutTask(action) {
 }
 
 export function* handleReorderTask() {
-    const state = yield select((state) => state.dndSlice)
-    const id = state.start.taskIds[state.result.source.index]
-    const status_id = state.finish.id
-    const { content, priority } = state.data.tasks[id]
-    try {
-        const response = yield call(putTaskService, content, Number(id), priority, Number(status_id))
-        yield put(reorderTaskInStorage())
-    } catch (e) {
-        const data = {id: id, message: e.response?.data?.errorInfo || e.message}
-        yield put(setErrorTaskInfo(data))
-    } 
+    const isAuth = yield select((state) => state.authorizationSlice.isAuth)
+    if(isAuth) {
+        const state = yield select((state) => state.dndSlice)
+        const id = state.start.taskIds[state.result.source.index]
+        const status_id = state.finish.id
+        const { content, priority } = state.data.tasks[id]
+        try {
+            const response = yield call(putTaskService, content, Number(id), priority, Number(status_id))
+            yield put(reorderTaskInStorage())
+        } catch (e) {
+            const data = {id: id, message: e.response?.data?.errorInfo || e.message}
+            yield put(setErrorTaskInfo(data))
+        } 
+    }
 }
 
 export function* handleDeleteTask(action) {

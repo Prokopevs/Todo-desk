@@ -40,7 +40,6 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
         data["taskTTL"] = user.taskTTL
         data["emailConfirmed"] = true
         dispatch(setSettingsQuery(data))
-        closeStatusWindow()
     }
 
     React.useEffect(() => {
@@ -84,6 +83,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                             >
                                 <input
                                     placeholder="Write your email here..."
+                                    type="email"
                                     className={
                                         errors?.email
                                             ? "form__input status error-input"
@@ -167,10 +167,8 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 )}
                             </div>
 
-                            <TasksLife timeLife={timeLife} setTimeLife={setTimeLife} />
-                            {!timeLife && (
-                                <SelectButtons closeStatusWindow={closeStatusWindow} />
-                            )}
+                            <TasksLife timeLife={timeLife} setTimeLife={setTimeLife}/>
+                            {!timeLife && <SelectButtons closeStatusWindow={closeStatusWindow}/>}
                         </form>
                     </div>
 

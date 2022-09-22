@@ -54,17 +54,16 @@ export function* handleCheckAuth() {
 }
 
 export function* handleSettings(action) {
-    console.log(action.payload)
-    // yield put(setQueryLoading(true))
-    // try {
-    //     const response = yield call(setSettingsService, action.payload)
-    //     yield put(setSettings(action.payload))
-    //     yield put (setQueryFlag(true))
-    // } catch (e) {
-    //     yield put(setErrorInfo(e.response?.data?.errorInfo))
-    // } finally {
-    //     yield put(setQueryLoading(false))
-    // }
+    yield put(setQueryLoading(true))
+    try {
+        const response = yield call(setSettingsService, action.payload)
+        yield put(setSettings(action.payload))
+        yield put (setQueryFlag(true))
+    } catch (e) {
+        yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
+    } finally {
+        yield put(setQueryLoading(false))
+    }
 }
 
 export function* authSaga() {
