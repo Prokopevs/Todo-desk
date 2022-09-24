@@ -12,7 +12,7 @@ const initialState = {
         apply: []
     },
     selectedStatus: "",
-    tasksInLS: {
+    tasksFromBC: {
         "": []
     },
     editStatus: []
@@ -38,7 +38,7 @@ describe("editModeSlice", () => {
             apply: []
         },
         selectedStatus: "",
-        tasksInLS: {
+        tasksFromBC: {
             "": []
         },
         editStatus: []
@@ -63,7 +63,7 @@ describe("editModeSlice", () => {
             apply: []
         },
         selectedStatus: "",
-        tasksInLS: {
+        tasksFromBC: {
             "": []
         },
         editStatus: []

@@ -25,7 +25,7 @@ Object {
               alt=""
               class="login__icon"
               role="button"
-              src="login.png"
+              src="settings.png"
             />
           </div>
         </div>
@@ -53,7 +53,7 @@ Object {
             alt=""
             class="login__icon"
             role="button"
-            src="login.png"
+            src="settings.png"
           />
         </div>
       </div>

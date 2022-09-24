@@ -8,9 +8,9 @@ export const mapResponseStatus = (arr, tasksFromBC) => {
 
                 let taskIdsArr = localStorage.getItem(`${arr[i].id}`) // "["1,2"]"
                 if (taskIdsArr && tasksFromBC[arr[i].id]) {
-                    const TasksLS = JSON.parse(taskIdsArr) // ["61", "60"]
+                    const TasksLS: string[] = JSON.parse(taskIdsArr) // ["61", "60"]
                     const arrOfTasksFromBC = tasksFromBC[arr[i].id] // ["60", "61"]
-                    const newArr = []
+                    const newArr: string[] = []
 
                     for (let j = 0; j < TasksLS.length; j++) {
                         if(arrOfTasksFromBC.includes(TasksLS[j])) {

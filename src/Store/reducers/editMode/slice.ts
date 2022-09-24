@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IChangePrevTask, IPrevTask, ISetOpacity, ITasksInLS } from './types'
-
+import { IChangePrevTask, IPrevTask, ISetOpacity, ITasksFromBC} from './types'
 
 interface editModeState {
     editArray: string[]
@@ -12,7 +11,7 @@ interface editModeState {
         apply: string[]
     }
     selectedStatus: string | null
-    tasksInLS: ITasksInLS
+    tasksFromBC: ITasksFromBC
     editStatus: string[]
 }
 
@@ -28,7 +27,7 @@ const initialState: editModeState = {
         apply: []
     },
     selectedStatus: "",
-    tasksInLS: {
+    tasksFromBC: {
         "": []
     },
     editStatus: []
@@ -77,8 +76,8 @@ export const editModeSlice = createSlice({
         setSelectedStatus: (state, action: PayloadAction<string | null>) => {
             state.selectedStatus = action.payload
         },
-        setTasksInLS: (state, action: PayloadAction<ITasksInLS>) => {
-            state.tasksInLS = action.payload
+        setTasksFromBC: (state, action: PayloadAction<ITasksFromBC>) => {
+            state.tasksFromBC = action.payload
         },
         addItemInEditStatus: (state, action: PayloadAction<string>) => {
             state.editStatus.push(action.payload)
@@ -89,5 +88,5 @@ export const editModeSlice = createSlice({
     }
 })
 
-export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray, setSelectedStatus, setTasksInLS, addItemInEditStatus, deleteItemInEditStatus } = editModeSlice.actions
+export const { addTaskInEditArray, deleteTaskInEditArray, setQueryLoading, setPrevTaskObj, changePrevTaskObj, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, addTaskInSuccessArray, setOpacityButtons, removeOpacityButtons, deleteTaskInSuccessArray, setSelectedStatus, setTasksFromBC, addItemInEditStatus, deleteItemInEditStatus } = editModeSlice.actions
 export default editModeSlice.reducer

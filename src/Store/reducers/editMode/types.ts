@@ -20,6 +20,6 @@ export interface IPrevTask {
     [K: string]: ITask
 }
 
-export interface ITasksInLS {
+export interface ITasksFromBC{
     [K: string]: string[]
 }

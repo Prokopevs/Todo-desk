@@ -2,7 +2,7 @@ import { authorizationSlice } from './../reducers/authorization/slice';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
 import { addTask, changeTaskContent, deleteTask, reorderTaskInStorage, setQueryFlag, setTasks } from '../reducers/dnd/slice';
-import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpacityButtons, removeOpacityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, setTasksInLS } from '../reducers/editMode/slice';
+import { setQueryLoading, setPrevTaskObj, changePrevTaskObj, setOpacityButtons, removeOpacityButtons, deleteTaskInEditArray, addTaskInSuccessArray, addTaskInPrevTaskObj, deleteTaskInPrevTaskObj, setTasksFromBC } from '../reducers/editMode/slice';
 import { deleteErrorTaskInfo, setErrorInfo, setErrorTaskInfo, setGlobalErrorMessage } from '../reducers/errorMessage/slice';
 import { mapResponseTasks } from './sagaHelpers/task/mapResponseTasks';
 import { mapResponsePrevTasks} from './sagaHelpers/task/mapResponsePrevTasks';
@@ -16,7 +16,7 @@ export function* handleGetTask() {
         const prevTaskObj = mapResponsePrevTasks(response.data)
         yield put(setTasks(tasks[0]))
         yield put(setPrevTaskObj(prevTaskObj))
-        yield put(setTasksInLS(tasks[1]))
+        yield put(setTasksFromBC(tasks[1]))
     } catch (e) {
         const errorObj = {
             status: e.response?.status,

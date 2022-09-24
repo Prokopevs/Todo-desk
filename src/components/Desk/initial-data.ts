@@ -16,12 +16,12 @@ const initialData = {
       "2": {
         id: "2",
         name: "In progress",
-        taskIds: ["4", "5"],
+        taskIds: ["3", "4", "5"],
       },
       "3": {
         id: "3",
         name: "Done",
-        taskIds: ["2", "3"],
+        taskIds: ["2"],
       },
     },
     columnOrder: ["1", "2", "3"]

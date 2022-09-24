@@ -15,13 +15,14 @@ describe(mapColumnOrder, () => {
 
 describe(mapResponseStatus, () => {
     const data = [{id: '97', name: 'To do', priority: 0}]
-    const result = {"97": {id: '97', name: 'To do', taskIds:[]}}
+    const result = {"97": {id: '97', name: 'To do', priority: 0, taskIds:[]}}
+    const tasksFromBC = {"97": ["1"]} 
     
     it("desent value to responseStatus", () => {
-        expect(mapResponseStatus(data)).toEqual(result)
+        expect(mapResponseStatus(data, tasksFromBC)).toEqual(result)
     })
 
     it("empty value to responseStatus", () => {
-        expect(mapResponseStatus([])).toEqual({})
+        expect(mapResponseStatus([], {})).toEqual({})
     })
 })

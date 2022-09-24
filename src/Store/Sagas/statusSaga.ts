@@ -12,8 +12,8 @@ export function* handleGetStatus() {
     try {
         const response = yield call(getStatusService)
         const arr = JSON.parse(JSON.stringify(response.data))
-        const { tasksInLS } = yield select(selectEditMode)
-        const StatusObj = mapResponseStatus(arr, tasksInLS)
+        const { tasksFromBC } = yield select(selectEditMode)
+        const StatusObj = mapResponseStatus(arr, tasksFromBC)
         const columnOrderArr = mapColumnOrder(response)
 
         yield put(setStatuses(StatusObj))
