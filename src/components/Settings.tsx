@@ -1,5 +1,5 @@
 import React from "react"
-import { logou, settings } from "../pictures"
+import { logoutImg, settings } from "../pictures"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { setAuth, setUser } from "../Store/reducers/authorization/slice"
 import { useNavigate } from "react-router-dom"
@@ -38,7 +38,7 @@ const Settings = () => {
     return (
         <div className="row">
             <div className="col-12 d-flex justify-content-center">
-                <div className="login"> 
+                <div className="login">
                     <div
                         className="login__user_img"
                         onMouseOver={() => {
@@ -53,7 +53,7 @@ const Settings = () => {
                             {active ? (
                                 name && name[0]?.toUpperCase()
                             ) : (
-                                <img className="logout-img" src={String(logou)}></img>
+                                <img className="logout-img" src={String(logoutImg)}></img>
                             )}
                         </p>
                     </div>

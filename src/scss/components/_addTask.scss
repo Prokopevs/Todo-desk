@@ -23,7 +23,7 @@
 }
 
 .addTask.demo {
-    margin-right: 15px;
+    margin-right: 20px;
     margin-top: -37px;
     bottom: 12vh;
 }
@@ -56,6 +56,7 @@
 
 @media (max-width: 1399px) {
     .addTask.demo {
+        margin-right: 15px;
         width: 65px;
         height: 65px;
         bottom: 17vh;
@@ -149,11 +150,22 @@
 }
 
 @media (max-height: 800px) {
-    .addTask-absolute {
-        
-    }
     .addTask-absolute.demo {
         bottom: 2px;
+        right: 0;
+    }
+
+    @media (max-width: 1199px) {
+        .addTask-absolute.demo {
+            right: -5px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .addTask-absolute.demo {
+            bottom: 32px;
+            right: -8px;
+        }
     }
 }
 
@@ -167,10 +179,6 @@
     @media (max-width: 991px) {
         .addTask-absolute {
             right: 7px;
-        }
-
-        .addTask-absolute.demo {
-            bottom: 32px;
         }
     }
 }

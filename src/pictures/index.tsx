@@ -1,5 +1,5 @@
 const login = require("../assets/img/login.png")
-const logou = require("../assets/img/logout.png")
+const logoutImg = require("../assets/img/logout.png")
 const pen = require("../assets/img/edit.png")
 const vector = require("../assets/img/vector.png")
 const container = require("../assets/img/delete.png")
@@ -13,5 +13,5 @@ const up = require("../assets/img/up.png")
 const plus = require("../assets/img/plus.png")
 const minus = require("../assets/img/minus.png")
 
-export { login, logou, pen, vector, container, eye, settings, eyeO, cross, cross2, down, up, plus, minus }
+export { login, logoutImg, pen, vector, container, eye, settings, eyeO, cross, cross2, down, up, plus, minus }
 

@@ -6,10 +6,7 @@ import { IProfile } from "../../../models/Generally/IProfile"
 import { setSettingsQuery } from "../../../Store/reducers/authorization/slice"
 import { setQueryFlag } from "../../../Store/reducers/dnd/slice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessage/slice"
-import {
-    selectDnd,
-    selectAuthorization,
-} from "../../../Store/selectors"
+import { selectDnd, selectAuthorization } from "../../../Store/selectors"
 import Eye from "../../Eye"
 import SelectButtons from "./SelectButtons"
 import TasksLife from "./TasksLife"
@@ -167,8 +164,10 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 )}
                             </div>
 
-                            <TasksLife timeLife={timeLife} setTimeLife={setTimeLife}/>
-                            {!timeLife && <SelectButtons closeStatusWindow={closeStatusWindow}/>}
+                            <TasksLife timeLife={timeLife} setTimeLife={setTimeLife} />
+                            {!timeLife && (
+                                <SelectButtons closeStatusWindow={closeStatusWindow} />
+                            )}
                         </form>
                     </div>
 

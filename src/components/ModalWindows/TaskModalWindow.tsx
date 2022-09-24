@@ -6,7 +6,12 @@ import PriorityButtons from "../PriorityButtons"
 import { addTask, addTaskQuery, setQueryFlag } from "../../Store/reducers/dnd/slice"
 import priorityArray from "../../data/Desk/priorityArray"
 import { deleteErrorInfo } from "../../Store/reducers/errorMessage/slice"
-import { selectDnd, selectError, selectEditMode, selectAuthorization } from "../../Store/selectors"
+import {
+    selectDnd,
+    selectError,
+    selectEditMode,
+    selectAuthorization,
+} from "../../Store/selectors"
 import { IModalTask, IStorage } from "../../models/EditMode/IStorage"
 
 interface Inputs {
@@ -60,12 +65,7 @@ const TaskModalWindow: React.FC<IModalTask> = ({ modalTA, setMTA }) => {
     }
 
     return (
-        <CSSTransition
-            in={modalTA}
-            timeout={150}
-            classNames="my-node"
-            unmountOnExit
-        >
+        <CSSTransition in={modalTA} timeout={150} classNames="my-node" unmountOnExit>
             <div className="modalWindow">
                 <div className="modalWindow_content">
                     <div className="form_container form_container-modalWindow">

@@ -1,4 +1,3 @@
-import { authorizationSlice } from './../reducers/authorization/slice';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { deleteTaskService, getTaskService, postTaskService, putTaskService } from '../../services/TaskService';
 import { addTask, changeTaskContent, deleteTask, reorderTaskInStorage, setQueryFlag, setTasks } from '../reducers/dnd/slice';
