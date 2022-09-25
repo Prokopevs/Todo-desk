@@ -530,6 +530,7 @@
 @media (max-width: 991px) {
     .error_info {
         font-size: 14px;
+        margin-top: -17px;
     }
 
     .error_info.status {
@@ -541,7 +542,7 @@
 
 @media (max-width: 767px) {
     .error_info {
-        margin-top: -17px;
+        margin-top: -16px;
     }
 
     .error_info.status {
@@ -571,9 +572,33 @@
     margin-top: -49px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
     .error_info.register {
-        margin-top: -51px;
+        margin-top: -40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .error_info.register {
+        margin-top: -38px;
+    }
+}
+
+@media (max-width: 540px) {
+    .error_info.register {
+        margin-top: -34px;
+    }
+}
+
+@media (max-width: 460px) {
+    .error_info.register {
+        margin-top: -32px;
+    }
+}
+
+@media (max-width: 415px) {
+    .error_info.register {
+        margin-top: -30px;
     }
 }
 

@@ -2,7 +2,7 @@ import React from "react"
 import { ITasksLife } from "../../../models/Task/ITasksLife"
 import { down, up } from "../../../pictures"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
-import { setTtl } from "../../../Store/reducers/authorization/slice"
+import { setTTL } from "../../../Store/reducers/authorization/slice"
 import { selectAuthorization } from "../../../Store/selectors"
 
 const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
@@ -17,7 +17,7 @@ const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
     })
 
     const handleClick = (item: number) => {
-        dispatch(setTtl(item))
+        dispatch(setTTL(item))
         setTimeLife(false)
     }
 

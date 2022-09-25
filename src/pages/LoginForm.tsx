@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
     const dispatch = useAppDispatch()
     const { isAuth, rememberMe } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
-    const [loginClick, setloginClick] = React.useState<boolean>(false)
+    const [loginClick, setLoginClick] = React.useState<boolean>(false)
 
     const [click, setClick] = React.useState(false)
 
@@ -40,11 +40,10 @@ const LoginForm: React.FC = () => {
         dispatch(deleteErrorInfo())
         data["rememberMe"] = rememberMe
         dispatch(login(data))
-        setloginClick(true)
-        reset()
+        setLoginClick(true)
     }
 
-    AuthRedirect(loginClick, setloginClick)
+    AuthRedirect(loginClick, setLoginClick)
 
     if (isAuth === false) {
         return (

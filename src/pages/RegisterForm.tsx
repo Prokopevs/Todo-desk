@@ -39,7 +39,6 @@ const RegisterForm: React.FC = () => {
         dispatch(deleteErrorInfo())
         dispatch(registration(data))
         setRegisterClick(true)
-        reset()
     }
 
     AuthRedirect(registerClick, setRegisterClick)
