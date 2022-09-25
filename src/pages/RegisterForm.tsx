@@ -4,7 +4,7 @@ import { registration } from "../Store/reducers/authorization/slice"
 import { useAppSelector, useAppDispatch } from "../hooks/redux"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessage/slice"
-import { selectAuthorization, selectError } from "../Store/selectors"
+import { selectAuthorization, selectEditMode, selectError } from "../Store/selectors"
 import Eye from "../components/Eye"
 import HelmetComponent from "../components/Helmet/HelmetComponent"
 
@@ -19,6 +19,7 @@ const RegisterForm: React.FC = () => {
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const dispatch = useAppDispatch()
+    const { queryLoading } = useAppSelector(selectEditMode)
 
     const [click, setClick] = React.useState(false)
 
@@ -32,7 +33,6 @@ const RegisterForm: React.FC = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -149,6 +149,7 @@ const RegisterForm: React.FC = () => {
                             <button
                                 type="submit"
                                 className="block__button submit big mr2"
+                                disabled={queryLoading}
                             >
                                 Register
                             </button>

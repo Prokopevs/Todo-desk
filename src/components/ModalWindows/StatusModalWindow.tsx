@@ -21,7 +21,7 @@ type Inputs = {
 
 const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
     const dispatch = useAppDispatch()
-    const { data, queryFlag, parentId } = useAppSelector(selectDnd)
+    const { queryFlag, parentId } = useAppSelector(selectDnd)
     const { isAuth } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const { queryLoading } = useAppSelector(selectEditMode)

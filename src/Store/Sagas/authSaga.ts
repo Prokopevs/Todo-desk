@@ -16,6 +16,7 @@ export function* handleData() {
 
 export function* handleLogin(action) {
     const { email, password, rememberMe }: ILogin = action.payload
+    yield put(setQueryLoading(true))
     try {
         const response = yield call(() => AuthService.login(email, password))
         localStorage.setItem('token', response.data.accessToken)
@@ -24,11 +25,14 @@ export function* handleLogin(action) {
         yield handleCheckAuth()
     } catch (e) {
         yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
+    } finally {
+        yield put(setQueryLoading(false))
     }
 }
 
 export function* handleRegistration(action) {
     const { email, name, password }: IRegistration = action.payload
+    yield put(setQueryLoading(true))
     try {
         const response = yield call(() => AuthService.registration(email, name, password))
         localStorage.setItem('token', response.data.accessToken)
@@ -36,6 +40,8 @@ export function* handleRegistration(action) {
         yield handleCheckAuth()
     } catch (e) {
         yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
+    } finally {
+        yield put(setQueryLoading(false))
     }
 }
 

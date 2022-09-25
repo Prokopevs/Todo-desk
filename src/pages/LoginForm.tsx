@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { login, setRememberMe } from "../Store/reducers/authorization/slice"
 import { AuthRedirect } from "../helpers/AuthRedirect"
 import { deleteErrorInfo } from "../Store/reducers/errorMessage/slice"
-import { selectAuthorization, selectError } from "../Store/selectors"
+import { selectAuthorization, selectEditMode, selectError } from "../Store/selectors"
 import Eye from "../components/Eye"
 import HelmetComponent from "../components/Helmet/HelmetComponent"
 
@@ -21,6 +21,7 @@ const LoginForm: React.FC = () => {
     const { isAuth, rememberMe } = useAppSelector(selectAuthorization)
     const { errorInfo } = useAppSelector(selectError)
     const [loginClick, setLoginClick] = React.useState<boolean>(false)
+    const { queryLoading } = useAppSelector(selectEditMode)
 
     const [click, setClick] = React.useState(false)
 
@@ -33,7 +34,6 @@ const LoginForm: React.FC = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm<Inputs>({ mode: "onBlur" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -127,6 +127,7 @@ const LoginForm: React.FC = () => {
                             <button
                                 type="submit"
                                 className="block__button submit big login"
+                                disabled={queryLoading}
                             >
                                 Login
                             </button>
