@@ -15,3 +15,8 @@ export const setConfirmEmailService = async ( token: string ) => {
     const response = await $api.get(`/confirm_email?token=${token}`)
     return response
 };
+
+export const setTTLService = async () => {
+    const response = await $api.get<number[]>('/auth/task_ttls')
+    return response
+};
