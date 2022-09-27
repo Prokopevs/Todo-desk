@@ -69,6 +69,6 @@ export const authorizationSlice = createSlice({
   }
 })
 
-export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTTL, setSettingsQuery, setSettings, confirmEmail, setConfirmEmail, setConfirmLoading, getTTLArray, setTTLArray} = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTTL, setSettingsQuery, setSettings, confirmEmail, setConfirmEmail, setConfirmLoading, getTTLArray, setTTLArray } = authorizationSlice.actions
 
 export default authorizationSlice.reducer
