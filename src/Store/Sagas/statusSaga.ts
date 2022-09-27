@@ -29,6 +29,7 @@ export function* handleGetStatus() {
 
 export function* handlePostStatus(action) {
     const {name, parentId}: IAddStatus = action.payload
+    console.log(parentId)
     yield put(setQueryLoading(true))
     try {
         const response = yield call(postStatusService, 0, name, parentId)

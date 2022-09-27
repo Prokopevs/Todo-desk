@@ -10,3 +10,8 @@ export const setSettingsService = async ({email, emailConfirmed, name, password,
     const response = await $api.put<ISettings>('/auth/me', {email, emailConfirmed, name, password, taskTTL})
     return response
 };
+
+export const setConfirmEmailService = async ( token: string ) => {
+    const response = await $api.get(`/confirm_email?token=${token}`)
+    return response
+};

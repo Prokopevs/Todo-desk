@@ -1,8 +1,8 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import AuthService from "../../services/AuthService";
-import { checkAuthService, setSettingsService } from '../../services/CheckAuthService';
-import { setAuth, setLoading, setSettings, setUser } from '../reducers/authorization/slice';
-import { ILogin, IRegistration } from '../reducers/authorization/types';
+import { checkAuthService, setConfirmEmailService, setSettingsService } from '../../services/CheckAuthService';
+import { setAuth, setConfirmEmail, setConfirmInfo, setLoading, setSettings, setUser } from '../reducers/authorization/slice';
+import { ILogin, IRegistration, ISettings } from '../reducers/authorization/types';
 import { setQueryFlag } from '../reducers/dnd/slice';
 import { setQueryLoading } from '../reducers/editMode/slice';
 import { setErrorInfo } from '../reducers/errorMessage/slice';
@@ -64,11 +64,21 @@ export function* handleSettings(action) {
     try {
         const response = yield call(setSettingsService, action.payload)
         yield put(setSettings(action.payload))
-        yield put (setQueryFlag(true))
+        yield put(setQueryFlag(true))
     } catch (e) {
         yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
     } finally {
         yield put(setQueryLoading(false))
+    }
+}
+
+export function* handleConfirmEmail(action) {
+    try {
+        const response = yield call(setConfirmEmailService, action.payload)
+        yield put(setConfirmEmail())
+        yield put(setConfirmInfo("ok"))
+    } catch (e) {
+        yield put(setConfirmInfo(e.response?.data?.errorInfo || e.message))
     }
 }
 
@@ -77,4 +87,5 @@ export function* authSaga() {
     yield takeEvery('authorization/login', handleLogin);
     yield takeEvery('authorization/registration', handleRegistration);
     yield takeEvery('authorization/setSettingsQuery', handleSettings);
+    yield takeEvery('authorization/confirmEmail', handleConfirmEmail);
 }

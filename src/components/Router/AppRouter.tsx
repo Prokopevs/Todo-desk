@@ -1,5 +1,5 @@
 import React, { Suspense } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useSearchParams } from "react-router-dom"
 import { IStorage } from "../../models/EditMode/IStorage"
 import DashBoard from "../../pages/DashBoard"
 import Demo from "../../pages/Demo"
@@ -8,8 +8,10 @@ import Home from "../../pages/Home"
 const Errors = React.lazy(() => import("../../pages/Errors"))
 const LoginForm = React.lazy(() => import("../../pages/LoginForm"))
 const RegisterForm = React.lazy(() => import("../../pages/RegisterForm"))
+const ConfirmEmail = React.lazy(() => import("../../pages/ConfirmEmail"))
 
 const AppRouter: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => {
+
     return (
         <>
             <Routes>
@@ -53,10 +55,18 @@ const AppRouter: React.FC<IStorage> = ({ modalTA, setMTA, modalSA, setMSA }) => 
                     }
                 />
                 <Route
-                    path="errors"
+                    path="/errors"
                     element={
                         <Suspense fallback={<div></div>}>
                             <Errors />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="/confirm_email"
+                    element={
+                        <Suspense fallback={<div></div>}>
+                            <ConfirmEmail />
                         </Suspense>
                     }
                 />
