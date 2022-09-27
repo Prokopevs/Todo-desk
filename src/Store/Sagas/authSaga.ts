@@ -1,7 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import AuthService from "../../services/AuthService";
 import { checkAuthService, setConfirmEmailService, setSettingsService } from '../../services/CheckAuthService';
-import { setAuth, setConfirmEmail, setConfirmInfo, setLoading, setSettings, setUser } from '../reducers/authorization/slice';
+import { setAuth, setConfirmEmail, setConfirmLoading, setLoading, setSettings, setUser } from '../reducers/authorization/slice';
 import { ILogin, IRegistration, ISettings } from '../reducers/authorization/types';
 import { setQueryFlag } from '../reducers/dnd/slice';
 import { setQueryLoading } from '../reducers/editMode/slice';
@@ -76,9 +76,10 @@ export function* handleConfirmEmail(action) {
     try {
         const response = yield call(setConfirmEmailService, action.payload)
         yield put(setConfirmEmail())
-        yield put(setConfirmInfo("ok"))
     } catch (e) {
-        yield put(setConfirmInfo(e.response?.data?.errorInfo || e.message))
+        yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
+    } finally {
+        yield put(setConfirmLoading(false))
     }
 }
 

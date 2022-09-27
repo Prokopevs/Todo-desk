@@ -6,7 +6,7 @@ interface AuthorizationState {
   isAuth: null | boolean,
   isLoading: boolean,
   rememberMe: boolean,
-  confirmInfo: string,
+  confirmLoading: boolean,
 }
 
 const initialState: AuthorizationState = {
@@ -20,7 +20,7 @@ const initialState: AuthorizationState = {
     isAuth: false,
     isLoading: true,
     rememberMe: false,
-    confirmInfo: "",
+    confirmLoading: true,
 }
 
 export const authorizationSlice = createSlice({
@@ -58,12 +58,12 @@ export const authorizationSlice = createSlice({
     setConfirmEmail: (state) => {
         state.user.emailConfirmed = true
     },
-    setConfirmInfo: (state, action: PayloadAction<string>) => {
-        state.confirmInfo = action.payload
+    setConfirmLoading: (state, action: PayloadAction<boolean>) => {
+        state.confirmLoading = action.payload
     },
   }
 })
 
-export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTTL, setSettingsQuery, setSettings, confirmEmail, setConfirmEmail, setConfirmInfo } = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTTL, setSettingsQuery, setSettings, confirmEmail, setConfirmEmail, setConfirmLoading} = authorizationSlice.actions
 
 export default authorizationSlice.reducer
