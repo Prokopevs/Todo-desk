@@ -1,7 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import AuthService from "../../services/AuthService";
-import { checkAuthService, setSettingsService } from '../../services/CheckAuthService';
-import { setAuth, setLoading, setSettings, setUser } from '../reducers/authorization/slice';
+import { checkAuthService, setSettingsService, setTTLService } from '../../services/CheckAuthService';
+import { setAuth, setLoading, setSettings, setTTLArray, setUser } from '../reducers/authorization/slice';
 import { ILogin, IRegistration } from '../reducers/authorization/types';
 import { setQueryFlag } from '../reducers/dnd/slice';
 import { setQueryLoading } from '../reducers/editMode/slice';
@@ -72,9 +72,19 @@ export function* handleSettings(action) {
     }
 }
 
+export function* handleGetTTLArr() {
+    try {
+        const response = yield call(setTTLService)
+        yield put(setTTLArray(response.data))
+    } catch (e) {
+        console.log(e.response?.data?.errorInfo || e.message)
+    } 
+}
+
 export function* authSaga() {
     yield takeEvery('authorization/checkAuth', handleCheckAuth);
     yield takeEvery('authorization/login', handleLogin);
     yield takeEvery('authorization/registration', handleRegistration);
     yield takeEvery('authorization/setSettingsQuery', handleSettings);
+    yield takeEvery('authorization/getTTLArray', handleGetTTLArr);
 }

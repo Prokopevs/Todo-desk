@@ -268,12 +268,14 @@
 
 .password-control {
 	position: absolute;
-	top: 20px;
+	top: 18px;
 	right: 20px;
 	display: inline-block;
 	width: 20px;
 	height: 17px;
     cursor: pointer;
+    box-sizing: content-box;
+    padding: 3px;
 }
 
 .form__input {
@@ -317,7 +319,7 @@
     .password-control {
         width: 19px;
 	    height: 16px;
-	    top: 19px;
+	    top: 17px;
     }
 }
 
@@ -338,7 +340,7 @@
     .password-control {
         width: 18px;
 	    height: 15px;
-	    top: 20px;
+	    top: 17px;
     }
 }
 
@@ -354,7 +356,7 @@
     .password-control {
         width: 17px;
 	    height: 14px;
-	    top: 17px;
+	    top: 15px;
     }
 }
 
@@ -366,7 +368,7 @@
     .password-control {
         width: 17px;
 	    height: 14px;
-	    top: 16px;
+	    top: 13.5px;
     }
 }
 
@@ -383,7 +385,7 @@
     .password-control {
         width: 16px;
 	    height: 13px;
-	    top: 16px;
+	    top: 12px;
     }
 }
 
@@ -412,9 +414,20 @@
     margin-top: 2px;
 }
 
+@media (max-width: 1399px) {
+    .error__message_text.mt {
+        font-size: 14px;
+        margin-top: 1px;
+    }
+}
+
 @media (max-width: 1199px) {
     .error__message_text {
         margin-top: 2px;
+    }
+    .error__message_text.mt {
+        font-size: 13px;
+        margin-top: 0.5px;
     }
 }
 
@@ -503,7 +516,7 @@
 }
 
 .error_info.margin-bot {
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .error_info.status {
@@ -511,19 +524,24 @@
     margin-right: 10px;
     position: absolute;
     right: 25px;
-    bottom: -2px;
+    bottom: -17px;
 }
 
 .error_info.tasks {
     font-size: 14px;
-    margin-left: 30px;
+    margin-right: 25px;
     margin-bottom: 4px;
+    margin-left: 20px;
 }
 
 @media (max-width: 1199px) {
     .error_info.status {
         right: 20px;
-        bottom: -4px;
+    }
+    .error_info.tasks {
+        font-size: 12px;
+        margin-right: 20px;
+        margin-bottom: 5px;
     }
 }
 
@@ -538,6 +556,13 @@
         right: 4px;
         bottom: -28px;
     }
+
+    .error_info.tasks {
+        font-size: 12px;
+        margin-right: 12px;
+        margin-bottom: 6px;
+        margin-top: -10px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -550,6 +575,13 @@
         right: 15px;
         bottom: -10px;
         font-size: 13px;
+    }
+
+    .error_info.tasks {
+        font-size: 14px;
+        margin-right: 12px;
+        margin-bottom: 6px;
+        
     }
 }
 

@@ -7,9 +7,9 @@ import { selectAuthorization } from "../../../Store/selectors"
 
 const TasksLife: React.FC<ITasksLife> = ({ timeLife, setTimeLife }) => {
     const dispatch = useAppDispatch()
-    const { user } = useAppSelector(selectAuthorization)
+    const { user, TTLArray } = useAppSelector(selectAuthorization)
 
-    const dayArray = [1, 2, 3, 5, 10, 30, 90, 180, 365]
+    const dayArray = TTLArray ? TTLArray : [1, 2, 3, 5, 10, 30, 90, 180, 365]
     const formatter = new Intl.NumberFormat("eng", {
         style: "unit",
         unit: "day",

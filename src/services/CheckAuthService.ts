@@ -10,3 +10,8 @@ export const setSettingsService = async ({email, emailConfirmed, name, password,
     const response = await $api.put<ISettings>('/auth/me', {email, emailConfirmed, name, password, taskTTL})
     return response
 };
+
+export const setTTLService = async () => {
+    const response = await $api.get<number[]>('/auth/task_ttls')
+    return response
+};

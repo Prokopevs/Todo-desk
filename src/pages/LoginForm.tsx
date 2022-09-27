@@ -71,7 +71,6 @@ const LoginForm: React.FC = () => {
                                             ? "form__input error-input"
                                             : "form__input"
                                     }
-                                    autoComplete="off"
                                     {...register("email", {
                                         required: "cannot be empty",
                                     })}

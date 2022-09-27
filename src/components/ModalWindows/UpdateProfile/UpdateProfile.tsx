@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { IProfile } from "../../../models/Generally/IProfile"
-import { setSettingsQuery } from "../../../Store/reducers/authorization/slice"
+import { getTTLArray, setSettingsQuery } from "../../../Store/reducers/authorization/slice"
 import { setQueryFlag } from "../../../Store/reducers/dnd/slice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessage/slice"
 import { selectDnd, selectAuthorization } from "../../../Store/selectors"
@@ -22,22 +22,21 @@ type Inputs = {
 const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActive }) => {
     const dispatch = useAppDispatch()
     const { queryFlag } = useAppSelector(selectDnd)
-    const { user } = useAppSelector(selectAuthorization)
+    const { user} = useAppSelector(selectAuthorization)
     const [click, setClick] = React.useState(false)
     const [timeLife, setTimeLife] = React.useState(false)
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<Inputs>({ mode: "onSubmit" })
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["taskTTL"] = user.taskTTL
         data["emailConfirmed"] = true
         dispatch(setSettingsQuery(data))
     }
+
+    React.useEffect(() => {
+        dispatch(getTTLArray())
+    }, [])
 
     React.useEffect(() => {
         if (queryFlag) {
@@ -163,7 +162,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     </p>
                                 )}
                             </div>
-
+                            
                             <TasksLife timeLife={timeLife} setTimeLife={setTimeLife} />
                             {!timeLife && (
                                 <SelectButtons closeStatusWindow={closeStatusWindow} />
