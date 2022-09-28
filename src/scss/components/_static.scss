@@ -199,3 +199,9 @@
     color: #8A8383;
     margin: 18px 15px 0 15px;
 }
+
+@media (max-width: 767px) {
+    .demo__email_confirmed {
+        margin: -30px 15px 0 15px;
+    }
+}
