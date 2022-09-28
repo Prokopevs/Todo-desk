@@ -6,6 +6,7 @@ interface AuthorizationState {
   isAuth: null | boolean,
   isLoading: boolean,
   rememberMe: boolean,
+  confirmLoading: boolean,
   TTLArray: number[],
 }
 
@@ -20,6 +21,7 @@ const initialState: AuthorizationState = {
     isAuth: false,
     isLoading: true,
     rememberMe: false,
+    confirmLoading: true,
     TTLArray: [],
 }
 
@@ -30,6 +32,7 @@ export const authorizationSlice = createSlice({
     login: (state, action: PayloadAction<ILogin>) => {},
     registration: (state, action: PayloadAction<IRegistration>) => {},
     checkAuth: (state) => {},
+    confirmEmail: (state, action: PayloadAction<string>) => {},
     setAuth: (state, action: PayloadAction<boolean>) => {
         state.isAuth = action.payload
     },
@@ -53,14 +56,19 @@ export const authorizationSlice = createSlice({
         state.user.name = name
         state.user.taskTTL = taskTTL
     },
-    getTTLArray: (state,) => {},
+    setConfirmEmail: (state) => {
+        state.user.emailConfirmed = true
+    },
+    setConfirmLoading: (state, action: PayloadAction<boolean>) => {
+        state.confirmLoading = action.payload
+    },
+    getTTLArray: (state) => {},
     setTTLArray: (state, action: PayloadAction<number[]>) => {
         state.TTLArray = action.payload
     },
   }
 })
 
-export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTTL, setSettingsQuery, setSettings,
-    getTTLArray, setTTLArray } = authorizationSlice.actions
+export const { setAuth, setUser, setLoading, setRememberMe, login, registration, checkAuth, setTTL, setSettingsQuery, setSettings, confirmEmail, setConfirmEmail, setConfirmLoading, getTTLArray, setTTLArray } = authorizationSlice.actions
 
 export default authorizationSlice.reducer

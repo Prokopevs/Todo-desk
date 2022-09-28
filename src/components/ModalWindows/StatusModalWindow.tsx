@@ -35,7 +35,7 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["isAuth"] = isAuth!
-        data["parentId"] = parentId
+        data["parentId"] = parentId ? parentId : 0
         if (isAuth) {
             dispatch(addStatusQuery(data))
         } else {
