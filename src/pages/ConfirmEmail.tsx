@@ -34,8 +34,7 @@ const ConfirmEmail = () => {
                     </div>
                 ) : (
                     <div className="confirm__email_text">
-                        You have successfully verified your email. Click
-                        <Link to="/">here</Link> to continue working.
+                        You have successfully verified your email. Click <Link to="/">here</Link> to continue working.
                     </div>
                 )}
             </div>

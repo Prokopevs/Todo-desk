@@ -56,8 +56,8 @@ export const authorizationSlice = createSlice({
         state.user.name = name
         state.user.taskTTL = taskTTL
     },
-    setConfirmEmail: (state) => {
-        state.user.emailConfirmed = true
+    setConfirmEmail: (state, action: PayloadAction<boolean>) => {
+        state.user.emailConfirmed = action.payload
     },
     setConfirmLoading: (state, action: PayloadAction<boolean>) => {
         state.confirmLoading = action.payload

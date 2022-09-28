@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { IProfile } from "../../../models/Generally/IProfile"
-import { getTTLArray, setSettingsQuery } from "../../../Store/reducers/authorization/slice"
+import { getTTLArray, setConfirmEmail, setSettingsQuery } from "../../../Store/reducers/authorization/slice"
 import { setQueryFlag } from "../../../Store/reducers/dnd/slice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessage/slice"
 import { selectDnd, selectAuthorization } from "../../../Store/selectors"
@@ -22,7 +22,7 @@ type Inputs = {
 const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActive }) => {
     const dispatch = useAppDispatch()
     const { queryFlag } = useAppSelector(selectDnd)
-    const { user} = useAppSelector(selectAuthorization)
+    const { user } = useAppSelector(selectAuthorization)
     const [click, setClick] = React.useState(false)
     const [timeLife, setTimeLife] = React.useState(false)
 
@@ -30,7 +30,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["taskTTL"] = user.taskTTL
-        data["emailConfirmed"] = true
+        data["emailConfirmed"] = user.emailConfirmed
         dispatch(setSettingsQuery(data))
     }
 
@@ -80,6 +80,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                 <input
                                     placeholder="Write your email here..."
                                     type="email"
+                                    defaultValue={user.email}
                                     className={
                                         errors?.email
                                             ? "form__input status error-input"
@@ -109,6 +110,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                             >
                                 <input
                                     placeholder="Set a new user name"
+                                    defaultValue={user.name}
                                     className={
                                         errors?.name
                                             ? "form__input status error-input"

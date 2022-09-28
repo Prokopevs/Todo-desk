@@ -1,4 +1,4 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, select } from 'redux-saga/effects';
 import AuthService from "../../services/AuthService";
 import { checkAuthService, setConfirmEmailService, setSettingsService, setTTLService } from '../../services/CheckAuthService';
 import { setAuth, setConfirmEmail, setConfirmLoading, setLoading, setSettings, setUser, setTTLArray } from '../reducers/authorization/slice';
@@ -35,6 +35,7 @@ export function* handleRegistration(action) {
     yield put(setQueryLoading(true))
     try {
         const response = yield call(() => AuthService.registration(email, name, password))
+        localStorage.clear()
         localStorage.setItem('token', response.data.accessToken)
         sessionStorage.setItem('checkReboot', "true")
         yield handleCheckAuth()
@@ -60,11 +61,18 @@ export function* handleCheckAuth() {
 }
 
 export function* handleSettings(action) {
+    const { email } = action.payload
+    const user = yield select((state) => state.authorizationSlice.user)
     yield put(setQueryLoading(true))
+    console.log(user)
     try {
         const response = yield call(setSettingsService, action.payload)
         yield put(setSettings(action.payload))
         yield put(setQueryFlag(true))
+        if(user.emailConfirmed && user.email !== email) {
+            console.log("here")
+            yield put(setConfirmEmail(false))
+        }
     } catch (e) {
         yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
     } finally {
@@ -75,7 +83,7 @@ export function* handleSettings(action) {
 export function* handleConfirmEmail(action) {
     try {
         const response = yield call(setConfirmEmailService, action.payload)
-        yield put(setConfirmEmail())
+        yield put(setConfirmEmail(true))
     } catch (e) {
         yield put(setErrorInfo(e.response?.data?.errorInfo || e.message))
     } finally {

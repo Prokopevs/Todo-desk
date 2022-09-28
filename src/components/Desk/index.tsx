@@ -10,7 +10,7 @@ import { IStorage } from "../../models/EditMode/IStorage"
 
 const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
     const dispatch = useAppDispatch()
-    const { isAuth } = useAppSelector(selectAuthorization)
+    const { isAuth, user } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
     let columnsLength
     if (data) {
@@ -60,6 +60,12 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                 </div>
                 <AddTask setMTA={setMTA} />
             </div>
+            {!user.emailConfirmed && isAuth && (
+                <p className="demo__email_confirmed">
+                    Please go to your email and verify your account otherwise it will be
+                    deleted.
+                </p>
+            )}
         </DragDropContext>
     )
 }
