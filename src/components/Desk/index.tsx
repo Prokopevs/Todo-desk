@@ -58,7 +58,7 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                         </p>
                     )}
                 </div>
-                <AddTask setMTA={setMTA} />
+                {columnsLength !== 0 && <AddTask setMTA={setMTA} />}
             </div>
             {!user.emailConfirmed && isAuth && (
                 <p className="demo__email_confirmed">
