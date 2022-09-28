@@ -58,7 +58,7 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                         </p>
                     )}
                 </div>
-                <AddTask setMTA={setMTA} />
+                {columnsLength !== 0 && <AddTask setMTA={setMTA} />}
             </div>
         </DragDropContext>
     )
