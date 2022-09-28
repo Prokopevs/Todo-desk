@@ -208,7 +208,7 @@ export const dndSlice = createSlice({
                 state.data.columnOrder.splice(startIndex + 1, 0, `${id}`)
             } else {
                 const arrOfNumbers = state.data.columnOrder.map(item => Number(item)) // [1, 2, 3]
-                let newIndexToColumn = Math.max( ...arrOfNumbers ) + 1 // 3 + 1
+                let newIndexToColumn = arrOfNumbers.length === 0 ? 1 : Math.max( ...arrOfNumbers ) + 1
                 const newColumnValue = {
                     id: String(newIndexToColumn), //"4"
                     name: action.payload.name,
