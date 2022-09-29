@@ -148,7 +148,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     }
                                     autoComplete="off"
                                     {...register("password", {
-                                        required: "cannot be empty",
+                                        required: false,
                                         minLength: {
                                             value: 8,
                                             message: "must be at least 8 characters",

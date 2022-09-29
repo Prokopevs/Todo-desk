@@ -35,7 +35,7 @@ const LoginForm: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["rememberMe"] = rememberMe
