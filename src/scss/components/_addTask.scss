@@ -12,10 +12,9 @@
 
     position: sticky;
     left: 100vw;
-    bottom: 10.5vh;
+    bottom: 11.5vh;
     cursor: pointer;
-    margin-right: 22px;
-    margin-top: -10px;
+    margin: -70px 15px 5px 0;
 
     &:hover {
         background: #dedcdc;
@@ -51,7 +50,7 @@
 }
 
 .addTask-absolute.demo {
-    bottom: 50px;
+    bottom: 46px;
 }
 
 @media (max-height: 800px) {
@@ -71,13 +70,13 @@
     .addTask {
         width: 65px;
         height: 65px;
-        bottom: 14vh;
+        bottom: 16vh;
     }
 
     .addTask-absolute {
         width: 65px;
         height: 65px;
-        bottom: 2vh;
+        bottom: 3vh;
     }
 
     @media (max-height: 800px) {
@@ -97,7 +96,7 @@
     .addTask {
         width: 60px;
         height: 60px;
-        bottom: 17vh;
+        bottom: 19vh;
         margin-right: 11px;
     }
 
@@ -110,12 +109,6 @@
         height: 60px;
         right: 13px;
         bottom: 2vh;
-    }
-
-    @media (max-height: 800px) {
-        .addTask-absolute {
-            bottom: 2vh;
-        }
     }
 }
 
@@ -130,7 +123,7 @@
     .addTask {
         width: 56px;
         height: 56px;
-        bottom: 18vh;
+        bottom: 20vh;
         margin-right: 7px;
     }
 
@@ -142,7 +135,7 @@
         width: 56px;
         height: 56px;
         right: 8px;
-        bottom: 1vh;
+        bottom: 2vh;
     }
 }
 
@@ -154,7 +147,7 @@
     .addTask {
         width: 64px;
         height: 64px;
-        bottom: 11vh;
+        bottom: 15vh;
         margin-right: 12px;
     }
 }
@@ -186,19 +179,20 @@
 
 @media (max-height: 800px) {
     .addTask-absolute.demo {
-        bottom: 2px;
+        bottom: 9px;
         right: 0;
     }
 
     @media (max-width: 1199px) {
         .addTask-absolute.demo {
+            bottom: 13px;
             right: -5px;
         }
     }
 
     @media (max-width: 991px) {
         .addTask-absolute.demo {
-            bottom: 32px;
+            bottom: 42px;
             right: -8px;
         }
     }
@@ -208,6 +202,7 @@
     @media (max-width: 1199px) {
         .addTask-absolute {
             right: 12px;
+            bottom: 2vh;
         }
     }
 

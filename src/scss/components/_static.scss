@@ -200,8 +200,18 @@
     margin: 18px 15px 10px 15px;
 }
 
-@media (max-width: 767px) {
-    .demo__email_confirmed {
-        margin: 12px 15px 10px 15px;
+// @media (max-width: 767px) {
+//     .demo__email_confirmed {
+//         margin: 12px 15px 10px 15px;
+//     }
+// }
+
+.demo__footer {
+    height: 70px;
+}
+
+@media (max-height: 800px) {
+    .demo__footer {
+        height: 50px;
     }
 }
