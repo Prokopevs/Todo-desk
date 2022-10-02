@@ -62,7 +62,7 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
             </div>
             
             <div className="demo__footer">
-                {user.emailConfirmed && isAuth && (
+                {!user.emailConfirmed && isAuth && (
                     <p className="demo__email_confirmed">
                         Please go to your email and verify your account otherwise it will
                         be deleted.

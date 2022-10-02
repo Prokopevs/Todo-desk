@@ -25,12 +25,6 @@
 }
 
 @media (max-height: 800px) {
-    .demo {
-        margin: 20px;
-    }
-}
-
-@media (max-height: 800px) {
     @media (max-width: 767px) {
         .demo {
             margin: 18px 0;
@@ -46,7 +40,7 @@
     line-height: 24px;
     color: #B9ADAD;
 
-    margin: -6px 0 30px 50px
+    margin: -13px 0 21px 50px;
 }
 
 @media (max-width: 1399px) {
@@ -58,33 +52,33 @@
 @media (max-width: 1199px) {
     .demo__description {
         font-size: 21.5px;
-        margin: -10px 0 23px 50px
+        margin: -10px 0 23px 50px;
     }
 }
 
 @media (max-width: 991px) {
     .demo__description {
         font-size: 19px;
-        margin: -20px 50px 20px 50px
+        margin: -20px 50px 20px 50px;
     }
 }
 
 @media (max-width: 767px) {
     .demo__description {
-        margin: -23px 75px 20px 42px
+        margin: -23px 75px 20px 42px;
     }
 }
 
 @media (max-width: 415px) {
     .demo__description {
         font-size: 19px;
-        margin: -20px 64px 20px 28px
+        margin: -20px 64px 20px 28px;
     }
 }
 
 @media (max-height: 800px) {
     .demo__description {
-        margin: -20px 70px 23px 50px
+        margin: -17px 70px 16px 50px;
     }
 }
 
