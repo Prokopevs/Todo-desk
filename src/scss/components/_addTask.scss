@@ -14,7 +14,7 @@
     left: 100vw;
     bottom: 11.5vh;
     cursor: pointer;
-    margin: -70px 15px 5px 0;
+    margin: -82px 15px 17px 0;
 
     &:hover {
         background: #dedcdc;
@@ -149,13 +149,14 @@
 
 @media (max-width: 767px) {
     .addTask.demo {
-        margin-right: 8px;
+        bottom: 2vh;
+        margin: 0 8px 20px 0;
     }
 
     .addTask {
         width: 64px;
         height: 64px;
-        bottom: 15vh;
+        bottom: 2vh;
         margin-right: 6px;
     }
 }
@@ -168,7 +169,7 @@
     .addTask {
         width: 60px;
         height: 60px;
-        margin-right: 1px;
+        margin: -76px 1px 11px 0;
     }
 }
 
@@ -180,8 +181,7 @@
     .addTask {
         width: 55px;
         height: 55px;
-        bottom: 14vh;
-        margin-right: 0px;
+        margin: -71px 0 6px 0;
     }
 }
 
@@ -191,10 +191,22 @@
         right: 22px;
     }
 
+    @media (min-width: 768px) {
+        .addTask.demo {
+            bottom: 8vh;
+        }
+    }
+
     @media (max-width: 1399px) {
         .addTask-absolute.demo {
             bottom: 22px;
             right: 25px;
+        }
+        
+        @media (min-width: 768px) {
+            .addTask.demo {
+                bottom: 12vh;
+            }
         }
     }
 
@@ -203,12 +215,24 @@
             bottom: 25px;
             right: 22px;
         }
+
+        @media (min-width: 768px) {
+            .addTask.demo {
+                bottom: 14vh;
+            }
+        }
     }
 
     @media (max-width: 991px) {
         .addTask-absolute.demo {
             bottom: 51px;
             right: 17px;
+        }
+
+        @media (min-width: 768px) {
+            .addTask.demo {
+                bottom: 16vh;
+            }
         }
     }
 }
