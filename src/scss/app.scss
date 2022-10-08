@@ -24,11 +24,14 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #8A8383;
-  -webkit-box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5),
-   inset -3px 3px 4px rgba(202, 202, 202, 0.2), inset 3px -3px 4px rgba(202, 202, 202, 0.2),
-   inset -3px -3px 4px rgba(246, 246, 246, 0.9), inset 3px 3px 6px rgba(202, 202, 202, 0.9);
-  transition: background-color 5000s ease-in-out 0s;
+    -webkit-appearance: none;
+    -webkit-text-fill-color: #8A8383;
+    -webkit-box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5),
+    inset -3px 3px 4px rgba(202, 202, 202, 0.2), inset 3px -3px 4px rgba(202, 202, 202, 0.2),
+    inset -3px -3px 4px rgba(246, 246, 246, 0.9), inset 3px 3px 6px rgba(202, 202, 202, 0.9);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5), inset -3px 3px 4px rgba(202, 202, 202, 0.2), inset 3px -3px 4px rgba(202, 202, 202, 0.2), inset -3px -3px 4px rgba(246, 246, 246, 0.9), inset 3px 3px 6px rgba(202, 202, 202, 0.9);
+    -moz-box-shadow: 1px 1px 2px rgba(246, 246, 246, 0.3), -1px -1px 2px rgba(202, 202, 202, 0.5), inset -3px 3px 4px rgba(202, 202, 202, 0.2), inset 3px -3px 4px rgba(202, 202, 202, 0.2), inset -3px -3px 4px rgba(246, 246, 246, 0.9), inset 3px 3px 6px rgba(202, 202, 202, 0.9);
 }
 
 .modal-open {
