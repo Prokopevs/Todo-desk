@@ -3,7 +3,10 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CSSTransition } from "react-transition-group"
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux"
 import { IProfile } from "../../../models/Generally/IProfile"
-import { getTTLArray, setConfirmEmail, setSettingsQuery } from "../../../Store/reducers/authorization/slice"
+import {
+    getTTLArray,
+    setSettingsQuery,
+} from "../../../Store/reducers/authorization/slice"
 import { setQueryFlag } from "../../../Store/reducers/dnd/slice"
 import { deleteErrorInfo } from "../../../Store/reducers/errorMessage/slice"
 import { selectDnd, selectAuthorization } from "../../../Store/selectors"
@@ -26,7 +29,12 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
     const [click, setClick] = React.useState(false)
     const [timeLife, setTimeLife] = React.useState(false)
 
-    const { register, handleSubmit, reset, formState: { errors }, } = useForm<Inputs>({ mode: "onSubmit" })
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["taskTTL"] = user.taskTTL
@@ -164,7 +172,7 @@ const UpdateProfile: React.FC<IProfile> = ({ modalProfileActive, setProfileActiv
                                     </p>
                                 )}
                             </div>
-                            
+
                             <TasksLife timeLife={timeLife} setTimeLife={setTimeLife} />
                             {!timeLife && (
                                 <SelectButtons closeStatusWindow={closeStatusWindow} />
