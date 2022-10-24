@@ -12,7 +12,10 @@ const Settings = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { name } = useAppSelector((state) => state.authorizationSlice.user)
-    const [modalProfileActive, setProfileActive] = useSessionStorage("ProfileModal", false)
+    const [modalProfileActive, setProfileActive] = useSessionStorage(
+        "ProfileModal",
+        false
+    )
     const [active, setActive] = React.useState(true)
 
     const logout = () => {
