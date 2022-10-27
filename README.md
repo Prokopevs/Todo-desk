@@ -2,8 +2,6 @@
 
 <p align="center"> <img  src="src/assets/img/home.png"></p>
 
----
-
 ### Описание
 
 Доска задач, где можно создавать статусы и задачи. Также на сайте есть 
@@ -28,21 +26,14 @@
 <p align="center"> <img  src="src/assets/img/drag.png"></p>
 
 
----
-
-
 Редактировать выбирая при этом приоритет.
 <p align="center"> <img  src="src/assets/img/edit1.png"></p>
 
-
----
 
 
 Добавлять новые.
 <p align="center"> <img  src="src/assets/img/add.png"></p>
 
-
----
 
 
 ### Статусы:
