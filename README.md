@@ -25,16 +25,17 @@
 Задачи можно перетаскивать между статусами.
 <p align="center"> <img  src="src/assets/img/drag.png"></p>
 
+----
 
 Редактировать выбирая при этом приоритет.
 <p align="center"> <img  src="src/assets/img/edit1.png"></p>
 
-
+----
 
 Добавлять новые.
 <p align="center"> <img  src="src/assets/img/add.png"></p>
 
-
+----
 
 ### Статусы:
 
