@@ -46,3 +46,8 @@
 <p align="center"> <img  src="src/assets/img/login1.png"></p>
 <p align="center"> <img  src="src/assets/img/register.png"></p>
 
+---
+### Зайдя в свой аккаунт можно изменить пароль, имя пользователя и длительность жизни задач.
+
+<p align="center"> <img  src="src/assets/img/update.png"></p>
+
