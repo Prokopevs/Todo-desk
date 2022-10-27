@@ -31,25 +31,18 @@
 Добавлять новые.
 <p align="center"> <img  src="src/assets/img/add.png"></p>
 
+---
 ### Статусы:
 
 Статусы можно удалять и добавлять новые. 
 <p align="center"> <img  src="src/assets/img/status.png"></p>
 
-
----
-
-
 Если зажать левую кнопку мыши, то можно перейти в меню редактирования статуса.
 <p align="center"> <img  src="src/assets/img/editStatus.png"></p>
 
-
 ---
+### Можно зайти в аккаунт или создать новый:
 
-
-### Пагинация:
-
-Также реализована пагинация
-
-<p align="center"> <img  src="src/assets/img/pagination.png"></p>
+<p align="center"> <img  src="src/assets/img/login1.png"></p>
+<p align="center"> <img  src="src/assets/img/register.png"></p>
 
