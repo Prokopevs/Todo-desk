@@ -10,7 +10,7 @@ import { IStorage } from "../../models/EditMode/IStorage"
 
 const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
     const dispatch = useAppDispatch()
-    const { isAuth } = useAppSelector(selectAuthorization)
+    const { isAuth, user } = useAppSelector(selectAuthorization)
     const { data } = useAppSelector(selectDnd)
     let columnsLength
     if (data) {
@@ -25,7 +25,11 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
         <DragDropContext onDragEnd={onDrag}>
             <div className="row margin">
                 <div className="col-12 desk">
-                    <ul className={isAuth ? "row row-padding mg" : "row row-padding"}>
+                    <ul
+                        className={
+                            isAuth ? "row row-padding" : "row row-padding noActive"
+                        }
+                    >
                         {columnsLength ? (
                             data.columnOrder.map((columnId, index) => {
                                 const column = data.columns[columnId] // id: '1' name: 'To do', taskIds: ['0', '1']
@@ -57,8 +61,17 @@ const Desk: React.FC<IStorage> = ({ setMTA, setMSA }) => {
                             to get full functionality.
                         </p>
                     )}
+                    {columnsLength !== 0 && <AddTask setMTA={setMTA} />}
                 </div>
-                {columnsLength !== 0 && <AddTask setMTA={setMTA} />}
+            </div>
+
+            <div className="demo__footer">
+                {!user.emailConfirmed && isAuth && (
+                    <p className="demo__email_confirmed">
+                        Please go to your email and verify your account otherwise it will
+                        be deleted.
+                    </p>
+                )}
             </div>
         </DragDropContext>
     )

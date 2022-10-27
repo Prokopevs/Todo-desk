@@ -12,7 +12,7 @@ export const setSettingsService = async ({email, emailConfirmed, name, password,
 };
 
 export const setConfirmEmailService = async ( token: string ) => {
-    const response = await $api.get(`/confirm_email?token=${token}`)
+    const response = await $api.get(`/auth/confirm_email/${token}`)
     return response
 };
 

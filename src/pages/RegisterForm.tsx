@@ -34,7 +34,7 @@ const RegisterForm: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         dispatch(registration(data))

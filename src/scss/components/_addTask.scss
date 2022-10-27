@@ -12,10 +12,9 @@
 
     position: sticky;
     left: 100vw;
-    bottom: 10.5vh;
+    bottom: 11.5vh;
     cursor: pointer;
-    margin-right: 22px;
-    margin-top: -10px;
+    margin: -82px 15px 17px 0;
 
     &:hover {
         background: #dedcdc;
@@ -23,8 +22,8 @@
 }
 
 .addTask.demo {
-    margin-right: 20px;
-    margin-top: -37px;
+    margin-right: 14px;
+    margin-top: -65px;
     bottom: 12vh;
 }
 
@@ -51,7 +50,7 @@
 }
 
 .addTask-absolute.demo {
-    bottom: 50px;
+    bottom: 30px;
 }
 
 @media (max-height: 800px) {
@@ -62,27 +61,32 @@
 
 @media (max-width: 1399px) {
     .addTask.demo {
-        margin-right: 15px;
+        margin-right: 16px;
         width: 65px;
         height: 65px;
-        bottom: 17vh;
+        bottom: 16vh;
     }
 
     .addTask {
         width: 65px;
         height: 65px;
-        bottom: 14vh;
+        bottom: 16vh;
+        margin-right: 11px;
     }
 
     .addTask-absolute {
         width: 65px;
         height: 65px;
-        bottom: 2vh;
+        bottom: 3vh;
+    }
+
+    .addTask-absolute.demo {
+        right: 23px;
     }
 
     @media (max-height: 800px) {
         .addTask-absolute {
-            bottom: 3.1vh;
+            bottom: 2vh;
         }
     }
 }
@@ -92,17 +96,19 @@
         width: 60px;
         height: 60px;
         bottom: 19vh;
+        margin-right: 13px;
     }
 
     .addTask {
         width: 60px;
         height: 60px;
-        bottom: 17vh;
-        margin-right: 11px;
+        bottom: 19vh;
+        margin-right: 5px;
     }
 
     .addTask-absolute.demo {
         bottom: 45px;
+        right: 19px;
     }
 
     .addTask-absolute {
@@ -110,12 +116,6 @@
         height: 60px;
         right: 13px;
         bottom: 2vh;
-    }
-
-    @media (max-height: 800px) {
-        .addTask-absolute {
-            bottom: 2vh;
-        }
     }
 }
 
@@ -130,32 +130,34 @@
     .addTask {
         width: 56px;
         height: 56px;
-        bottom: 18vh;
-        margin-right: 7px;
+        bottom: 20vh;
+        margin-right: 0;
     }
 
     .addTask-absolute.demo {
         bottom: 55px;
+        right: 16px;
     }
 
     .addTask-absolute {
         width: 56px;
         height: 56px;
         right: 8px;
-        bottom: 1vh;
+        bottom: 2vh;
     }
 }
 
 @media (max-width: 767px) {
     .addTask.demo {
-        margin-right: 20px;
+        bottom: 2vh;
+        margin: 0 8px 20px 0;
     }
 
     .addTask {
         width: 64px;
         height: 64px;
-        bottom: 11vh;
-        margin-right: 12px;
+        bottom: 2vh;
+        margin-right: 6px;
     }
 }
 
@@ -167,7 +169,7 @@
     .addTask {
         width: 60px;
         height: 60px;
-        margin-right: 8px;
+        margin: -76px 1px 11px 0;
     }
 }
 
@@ -179,27 +181,58 @@
     .addTask {
         width: 55px;
         height: 55px;
-        bottom: 14vh;
-        margin-right: 6px;
+        margin: -71px 0 6px 0;
     }
 }
 
 @media (max-height: 800px) {
     .addTask-absolute.demo {
-        bottom: 2px;
-        right: 0;
+        bottom: 20px;
+        right: 22px;
+    }
+
+    @media (min-width: 768px) {
+        .addTask.demo {
+            bottom: 8vh;
+        }
+    }
+
+    @media (max-width: 1399px) {
+        .addTask-absolute.demo {
+            bottom: 22px;
+            right: 25px;
+        }
+        
+        @media (min-width: 768px) {
+            .addTask.demo {
+                bottom: 12vh;
+            }
+        }
     }
 
     @media (max-width: 1199px) {
         .addTask-absolute.demo {
-            right: -5px;
+            bottom: 25px;
+            right: 22px;
+        }
+
+        @media (min-width: 768px) {
+            .addTask.demo {
+                bottom: 14vh;
+            }
         }
     }
 
     @media (max-width: 991px) {
         .addTask-absolute.demo {
-            bottom: 32px;
-            right: -8px;
+            bottom: 51px;
+            right: 17px;
+        }
+
+        @media (min-width: 768px) {
+            .addTask.demo {
+                bottom: 16vh;
+            }
         }
     }
 }
@@ -208,6 +241,7 @@
     @media (max-width: 1199px) {
         .addTask-absolute {
             right: 12px;
+            bottom: 2vh;
         }
     }
 

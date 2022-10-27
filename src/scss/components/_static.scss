@@ -25,12 +25,6 @@
 }
 
 @media (max-height: 800px) {
-    .demo {
-        margin: 20px;
-    }
-}
-
-@media (max-height: 800px) {
     @media (max-width: 767px) {
         .demo {
             margin: 18px 0;
@@ -46,7 +40,7 @@
     line-height: 24px;
     color: #B9ADAD;
 
-    margin: -6px 0 30px 50px
+    margin: -13px 83px 21px 50px;
 }
 
 @media (max-width: 1399px) {
@@ -58,34 +52,40 @@
 @media (max-width: 1199px) {
     .demo__description {
         font-size: 21.5px;
-        margin: -10px 0 23px 50px
+        margin: -10px 75px 23px 50px;
     }
 }
 
 @media (max-width: 991px) {
     .demo__description {
         font-size: 19px;
-        margin: -20px 50px 20px 50px
+        margin: -20px 60px 20px 50px;
     }
 }
 
 @media (max-width: 767px) {
     .demo__description {
-        margin: -23px 75px 20px 42px
+        margin: -29px 75px -65px 38px;
     }
 }
 
 @media (max-width: 415px) {
     .demo__description {
         font-size: 19px;
-        margin: -20px 64px 20px 28px
+        margin: -29px 75px -65px 38px;
     }
 }
 
 @media (max-height: 800px) {
     .demo__description {
-        margin: -20px 70px 23px 50px
+        margin: -17px 70px 16px 50px; 
     }
+
+    @media (max-width: 767px) {
+        .demo__description {
+            margin: -24px 75px -65px 38px;
+        }
+    } 
 }
 
 .demo__center {
@@ -186,5 +186,32 @@
         width: 180px;
         height: 37px;
         font-size: 21px;
+    }
+}
+
+.demo__email_confirmed {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    opacity: 0.4;
+
+    color: #8A8383;
+    margin: 18px 15px 10px 15px;
+}
+
+// @media (max-width: 767px) {
+//     .demo__email_confirmed {
+//         margin: 12px 15px 10px 15px;
+//     }
+// }
+
+.demo__footer {
+    height: 70px;
+}
+
+@media (max-height: 800px) {
+    .demo__footer {
+        height: 50px;
     }
 }

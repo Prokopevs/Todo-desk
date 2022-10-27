@@ -22,7 +22,7 @@ const EditStatus: React.FC<IEditStatus> = ({ column, setChangeName }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorStatusName(column.id))
         data["id"] = column.id

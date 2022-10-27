@@ -31,11 +31,11 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["isAuth"] = isAuth!
-        data["parentId"] = parentId ? parentId : 0
+        data["parentId"] = parentId
         if (isAuth) {
             dispatch(addStatusQuery(data))
         } else {
@@ -82,6 +82,7 @@ const StatusModalWindow: React.FC<IModalStatus> = ({ modalSA, setMSA }) => {
                                             : "form__input status"
                                     }
                                     autoComplete="off"
+                                    autoFocus
                                     {...register("name", { required: "cannot be empty" })}
                                 ></input>
                             </div>

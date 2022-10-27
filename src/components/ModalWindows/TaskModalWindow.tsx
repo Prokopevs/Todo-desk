@@ -36,7 +36,7 @@ const TaskModalWindow: React.FC<IModalTask> = ({ modalTA, setMTA }) => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<Inputs>({ mode: "onBlur" })
+    } = useForm<Inputs>({ mode: "onSubmit" })
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         dispatch(deleteErrorInfo())
         data["priority"] = priority
@@ -88,6 +88,7 @@ const TaskModalWindow: React.FC<IModalTask> = ({ modalTA, setMTA }) => {
                                             ? "form__input textarea error-input"
                                             : "form__input textarea"
                                     }
+                                    autoFocus
                                     autoComplete="off"
                                     {...register("content", {
                                         required: "cannot be empty",
