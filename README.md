@@ -41,13 +41,13 @@
 <p align="center"> <img  src="src/assets/img/editStatus.png"></p>
 
 ---
-### Можно зайти в аккаунт или создать новый:
+### Можно зайти в свой аккаунт или создать новый:
 
 <p align="center"> <img  src="src/assets/img/login1.png"></p>
 <p align="center"> <img  src="src/assets/img/register.png"></p>
 
 ---
-### Зайдя в свой аккаунт можно изменить пароль, имя пользователя и длительность жизни задач.
+### Зайдя в аккаунт есть возможность изменить пароль, имя пользователя и длительность жизни задач.
 
 <p align="center"> <img  src="src/assets/img/update.png"></p>
 
